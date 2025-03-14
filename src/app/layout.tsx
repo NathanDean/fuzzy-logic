@@ -37,7 +37,7 @@ export default function RootLayout({
 
         <Header />
         
-          <main className = "flex flex-grow flex-col">
+          <main className = "flex flex-grow flex-col m-10">
 
             {children}
       
