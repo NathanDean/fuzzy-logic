@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { Oi } from "next/font/google";
 
 
