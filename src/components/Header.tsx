@@ -25,7 +25,7 @@ export default function Header(){
 
     <header className = "bg-white dark:bg-gray-900 py-4">
 
-      <div className = "container px-4 flex justify-between items-center">
+      <div className = "px-6 flex justify-between items-center">
 
         {/* Logo */}
         <Link href = "/" className = {`${oi.className} text-2xl`}>Fuzzy Logic</Link>

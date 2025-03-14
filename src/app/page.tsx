@@ -8,7 +8,7 @@ const oi = Oi({
   subsets: ["latin"]
 });
 
-const coustard = Outfit({
+const outfit = Outfit({
   weight: "400",
   subsets: ["latin"]
 })
