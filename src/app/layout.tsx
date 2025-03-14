@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Oi } from "next/font/google";
 
+import Header from "@/components/Header";
+
 
 // Fonts
 const oi = Oi({
@@ -31,9 +33,15 @@ export default function RootLayout({
   
     <html lang="en">
       
-      <body className={`${oi.variable} antialiased`}>
+      <body className={`${oi.variable} antialiased flex flex-col h-screen`}>
+
+        <Header />
         
-        {children}
+          <main className = "flex flex-grow flex-col">
+
+            {children}
+      
+          </main>
       
       </body>
     
