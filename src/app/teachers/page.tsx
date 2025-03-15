@@ -1,15 +1,10 @@
-import { Oi, Outfit } from "next/font/google";
+import { Oi } from "next/font/google";
     
 const oi = Oi({
   weight: "400",
   variable: "--font-oi",
   subsets: ["latin"]
 });
-
-const outfit = Outfit({
-  weight: "400",
-  subsets: ["latin"]
-})
 
 export default function Teachers(){
     
