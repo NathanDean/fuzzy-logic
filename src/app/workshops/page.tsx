@@ -76,42 +76,47 @@ export default function Workshops(){
 
     <div className = "flex flex-col h-full items-center justify-center">
 
-      <div className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {loading ? (
 
-        {workshops.map((workshop) => (
+        <h1 className = {`${oi.className} text-5xl`}>loading...</h1>
 
-          <div key = {workshop.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden">
+      ) : (
+      
+        <div className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          <img src = "/default-workshop-image.jpg" alt = "Workshop image" className = "w-full h-48 object-cover" />
+          {workshops.map((workshop) => (
 
-            <div className = "p-6">
-              
-              <h2 className = {`${outfit.className} text-2xl font-medium`}>{workshop.class_name}</h2>
-              
-              <div className = {`${outfit.className}`}>
-              
-                {/* <p className = "text-center mb-1">{workshop.start_time.substring(0, 5)}, {workshop.date.split("-").reverse().join("/")} | {workshop.venue}</p>
-                <p className = "mb-1"></p> */}
+            <div key = {workshop.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden">
 
-                <p className = "py-2">{dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")}</p>
-                <p>{workshop.venue}</p>
-              
-              </div>
+            <img src = "/default-workshop-image.jpg" alt = "Workshop image" className = "w-full h-48 object-cover" />
 
-              <div className = "flex flex-col sm:flex-row gap-3 mt-4">
-              
-              <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>Book now</button>
-              <button className = {`${outfit.className}  w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>More info</button>
+              <div className = "p-6">
+                
+                <h2 className = {`${outfit.className} text-2xl font-medium`}>{workshop.class_name}</h2>
+                
+                <div className = {`${outfit.className}`}>
+
+                  <p className = "py-2">{dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")}</p>
+                  <p>{workshop.venue}</p>
+                
+                </div>
+
+                <div className = "flex flex-col sm:flex-row gap-3 mt-4">
+                
+                <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>Book now</button>
+                <button className = {`${outfit.className}  w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>More info</button>
+
+                </div>
 
               </div>
 
             </div>
 
-          </div>
+          ))}
 
-        ))}
+        </div>
 
-      </div>
+      )}
 
     </div>
 
