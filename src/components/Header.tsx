@@ -55,7 +55,7 @@ export default function Header(){
 
   return (
 
-    <header className = "relative z-10 bg-white dark:bg-gray-900 py-4">
+    <header className = "fixed top-0 left-0 right-0 z-10 bg-white dark:bg-gray-900 py-4">
 
       <div className = "px-6 flex justify-between items-center">
 
@@ -107,19 +107,19 @@ export default function Header(){
 
       {isMenuVisible && (
 
-        <div className = {`sm:hidden absolute w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-20
+        <div className = {`sm:hidden absolute w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-20 flex items-center justify-center
         
         ${isMenuOpaque ? "opacity-100" : "opacity-0"}
         
         `}>
 
-          <nav className = {`${outfit.className} flex flex-col space-y-6 text-xl tracking-wider`}>
+          <nav className = {`${outfit.className} flex flex-col justify-around h-1/2 space-y-6 text-xl tracking-wider`}>
                     
-            <Link href = "/workshops" className = "hover:text-blue-500 transition" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
+            <Link href = "/workshops" className = "hover:text-blue-500 transitio text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
 
-            <Link href = "/teachers" className = "hover:text-blue-500 transition" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
+            <Link href = "/teachers" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
 
-            <Link href = "/about" className = "hover:text-blue-500 transition" onClick = {() => setIsMenuOpen(false)}>About</Link>
+            <Link href = "/about" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>About</Link>
 
           </nav>
 
