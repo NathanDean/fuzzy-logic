@@ -69,11 +69,11 @@ export default function Workshops(){
 
       ) : (
       
-        <div className = "flex flex-row gap-8 justify-items-center max-w-screen-xl">
+        <div className = "flex flex-wrap gap-8 max-w-screen-xl justify-center">
 
           {workshops.map((workshop) => (
 
-            <div key = {workshop.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div key = {workshop.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden max-w-100">
 
             <img src = "/default-workshop-image.jpg" alt = "Workshop image" className = "w-full h-48 object-cover" />
 
