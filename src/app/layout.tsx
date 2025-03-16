@@ -3,8 +3,13 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { oi, outfit } from "@/lib/fonts";
-
 import Header from "@/components/Header";
+
+// Metadata
+export const metadata: Metadata = {
+  title: "Fuzzy Logic",
+  description: "Fuzzy Logic",
+};
 
 
 // Component

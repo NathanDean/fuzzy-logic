@@ -1,12 +1,4 @@
-import { Oi } from "next/font/google";
-
-
-// Fonts
-const oi = Oi({
-  weight: "400",
-  variable: "--font-oi",
-  subsets: ["latin"]
-});
+import { oi, outfit } from "@/lib/fonts";
 
 export default function Home() {
   

@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Oi, Outfit } from "next/font/google";
 
-const oi = Oi({
+export const oi = Oi({
   weight: "400",
   variable: "--font-oi",
   subsets: ["latin"]
 });
 
-const outfit = Outfit({
-  weight: "400",
+export const outfit = Outfit({
+  weight: "variable",
   subsets: ["latin"]
-})
+});
 
 export default function Header(){
 
@@ -69,8 +69,6 @@ export default function Header(){
           
           <Link href = "/teachers" className = "hover:text-blue-500 transition">Teachers</Link>
           
-          <Link href = "/about" className = "hover:text-blue-500 transition">About</Link>
-
         </nav>
 
         {/* Mobile menu button */}
@@ -118,8 +116,6 @@ export default function Header(){
             <Link href = "/workshops" className = "hover:text-blue-500 transitio text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
 
             <Link href = "/teachers" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
-
-            <Link href = "/about" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>About</Link>
 
           </nav>
 
