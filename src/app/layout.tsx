@@ -2,24 +2,9 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { Oi } from "next/font/google";
+import { oi, outfit } from "@/lib/fonts";
 
 import Header from "@/components/Header";
-
-
-// Fonts
-const oi = Oi({
-  weight: "400",
-  variable: "--font-oi",
-  subsets: ["latin"]
-});
-
-
-// Metadata
-export const metadata: Metadata = {
-  title: "fuzzy logic",
-  description: "fuzzy logic",
-};
 
 
 // Component

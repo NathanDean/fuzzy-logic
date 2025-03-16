@@ -4,20 +4,9 @@ import { useState, useEffect } from "react";
 import supabase from "@/lib/supabaseClient";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { Oi, Outfit } from "next/font/google";
+import { oi, outfit } from "@/lib/fonts";
 
 dayjs.extend(advancedFormat);
-
-const oi = Oi({
-  weight: "400",
-  variable: "--font-oi",
-  subsets: ["latin"]
-});
-
-const outfit = Outfit({
-  weight: "variable",
-  subsets: ["latin"]
-})
 
 interface Workshop {
 
@@ -68,9 +57,7 @@ export default function Workshops(){
 
     fetchWorkshops();
 
-  }, [])
-
-  console.log(workshops)
+  }, []);
 
   return(
 
@@ -82,7 +69,7 @@ export default function Workshops(){
 
       ) : (
       
-        <div className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className = "flex flex-row gap-8 justify-items-center max-w-screen-xl">
 
           {workshops.map((workshop) => (
 
