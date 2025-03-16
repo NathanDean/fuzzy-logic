@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { oi, outfit } from "@/lib/fonts";
+import { oi } from "@/lib/fonts";
 import Header from "@/components/Header";
 
 // Metadata

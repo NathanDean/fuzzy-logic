@@ -1,4 +1,4 @@
-import { oi, outfit } from "@/lib/fonts";
+import { oi } from "@/lib/fonts";
 
 export default function Home() {
   
