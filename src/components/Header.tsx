@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Oi, Outfit } from "next/font/google";
 
 const oi = Oi({
@@ -18,6 +18,39 @@ const outfit = Outfit({
 export default function Header(){
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isMenuOpaque, setIsMenuOpaque] = useState(false);
+
+  useEffect(() => {
+
+    if(isMenuOpen){
+
+      setIsMenuVisible(true)
+
+      const timer = setTimeout(() => {
+
+        setIsMenuOpaque(true);
+
+      }, 10);
+
+      return () => clearTimeout(timer);
+
+    } else {
+
+      setIsMenuOpaque(false);
+
+      const timer = setTimeout(() => {
+
+        setIsMenuVisible(false);
+
+      }, 300);
+
+      return () => clearTimeout(timer);
+
+    }
+
+  }, [isMenuOpen]);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
@@ -27,7 +60,7 @@ export default function Header(){
       <div className = "px-6 flex justify-between items-center">
 
         {/* Logo */}
-        <Link href = "/" className = {`${oi.className} text-2xl`}>fuzzy logic</Link>
+        <Link href = "/" className = {`${oi.className} text-2xl`}  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
         {/* Full nav menu */}
         <nav className = {`${outfit.className} hidden sm:flex space-x-6 text-xl tracking-wider`}>
@@ -72,9 +105,13 @@ export default function Header(){
 
       {/* Mobile dropdown menu */}
 
-      {isMenuOpen && (
+      {isMenuVisible && (
 
-        <div className = "sm:hidden absolute w-full h-screen bg-white p-6">
+        <div className = {`sm:hidden absolute w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-20
+        
+        ${isMenuOpaque ? "opacity-100" : "opacity-0"}
+        
+        `}>
 
           <nav className = {`${outfit.className} flex flex-col space-y-6 text-xl tracking-wider`}>
                     
