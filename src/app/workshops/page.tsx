@@ -78,7 +78,11 @@ export default function Workshops(){
 
       {loading ? (
 
-        <h1 className = {`${oi.className} text-5xl`}>Loading...</h1>
+<<<<<<< HEAD
+        <h1 className = {`${oi.className} text-5xl`}>loading...</h1>
+=======
+        <h1 className = {`${oi.className} text-5xl`}>loading...</h1>
+>>>>>>> dev
 
       ) : (
       
