@@ -67,9 +67,9 @@ export default function Teachers(){
 
           {people.map((person) => (
 
-            <div key = {person.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden max-w-100">
+            <div key = {person.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden max-w-150">
 
-            <img src = "/default-person-image.jpg" alt = {`${person.name}`} className = "w-full h-48 object-cover" />
+            <img src = "/default-person-image.jpg" alt = {`${person.name}`} className = "w-full h-75 object-cover" />
 
               <div className = "p-6">
                 
