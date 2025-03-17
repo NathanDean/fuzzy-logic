@@ -1,6 +1,6 @@
 import { Oi } from "next/font/google";
 
-export const oi = Oi({
+const oi = Oi({
   weight: "400",
   variable: "--font-oi",
   subsets: ["latin"]
