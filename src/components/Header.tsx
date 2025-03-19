@@ -68,6 +68,8 @@ export default function Header(){
           <Link href = "/workshops" className = "hover:text-blue-500 transition">Workshops</Link>
           
           <Link href = "/teachers" className = "hover:text-blue-500 transition">Teachers</Link>
+
+          <Link href = "/login" className = "hover:text-blue-500 transition">Login</Link>
           
         </nav>
 
@@ -149,6 +151,8 @@ export default function Header(){
 
           <nav className = {`${outfit.className} flex flex-col justify-center h-1/2 space-y-6 text-xl tracking-wider`}>
                     
+            <Link href = "/login" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Login</Link>
+            
             <Link href = "/workshops" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
 
             <Link href = "/teachers" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
