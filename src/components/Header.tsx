@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 import { Oi, Outfit } from "next/font/google";
 
 export const oi = Oi({
@@ -17,6 +18,8 @@ export const outfit = Outfit({
 
 export default function Header(){
 
+  const { isLoggedIn, signOut } = useAuth();
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isMenuOpaque, setIsMenuOpaque] = useState(false);
@@ -53,6 +56,13 @@ export default function Header(){
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const handleLogout = async () => {
+
+    await signOut();
+    setIsMenuOpen(false);
+
+  }
+
   return (
 
     <header className = "fixed top-0 left-0 right-0 z-10 bg-white dark:bg-gray-900 py-4">
@@ -69,7 +79,26 @@ export default function Header(){
           
           <Link href = "/teachers" className = "hover:text-blue-500 transition">Teachers</Link>
 
-          <Link href = "/login" className = "hover:text-blue-500 transition">Login</Link>
+          {
+
+            isLoggedIn ? (
+
+              <>
+
+                <Link href = "/account" className = "hover:text-blue-500 transition">Account</Link>
+
+                <button onClick={handleLogout} className="hover:text-blue-500 transition">Logout</button>
+
+              </>
+
+            ) : (
+
+              <Link href = "/login" className = "hover:text-blue-500 transition">Login</Link>
+
+            )
+
+          }
+          
           
         </nav>
 
@@ -151,8 +180,19 @@ export default function Header(){
 
           <nav className = {`${outfit.className} flex flex-col justify-center h-1/2 space-y-6 text-xl tracking-wider`}>
                     
-            <Link href = "/login" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Login</Link>
-            
+            {
+
+              isLoggedIn ? (
+
+                <Link href = "/account" className = "hover:text-blue-500 transition">Account</Link>
+
+              ) : (
+
+                <Link href = "/login" className = "hover:text-blue-500 transition">Login</Link>
+
+              )
+
+            }            
             <Link href = "/workshops" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
 
             <Link href = "/teachers" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
