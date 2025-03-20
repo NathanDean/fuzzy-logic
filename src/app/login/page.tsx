@@ -1,24 +1,32 @@
 import { login } from "./actions";
+
+import Form from "next/form";
 import Link from "next/link";
+
+import { outfit } from "@/lib/fonts";
 
 export default function LoginPage() {
 
   return (
 
-    <form className = "flex flex-col items-center">
+    <div className = {`${outfit.className} text-lg flex flex-col items-center`}>
 
-      <label htmlFor="email">Email:</label>
-      <input className = "my-2 border-2 rounded-sm w-100" id="email" name="email" type="email" required />
+      <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {login}>
 
-      <label htmlFor="password">Password:</label>
-      <input className = "my-2 border-2 rounded-sm w-100" id="password" name="password" type="password" required />
+        <label htmlFor="email">Email:</label>
+        <input className = "w-full my-2 p-2 border rounded-sm" id="email" name="email" type="email" required />
 
-      <button className = "my-2 border-2 rounded-sm w-100" formAction={login}>Log in</button>
+        <label htmlFor="password">Password:</label>
+        <input className = "w-full mt-2 p-2 mb-4 border rounded-sm" id="password" name="password" type="password" required />
 
-      <Link href = "/signup">Don't have an account?  Sign up here.</Link>
+        <button className = "my-2 border rounded-sm w-full mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all" type = "submit">Log in</button>
+
+        <Link href = "/signup">New to Fuzzy Logic?  Sign up here.</Link>
 
 
-    </form>
+      </Form>
+
+    </div>
 
   )
 
