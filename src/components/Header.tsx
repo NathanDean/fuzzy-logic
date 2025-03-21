@@ -179,23 +179,30 @@ export default function Header(){
           </div>
 
           <nav className = {`${outfit.className} flex flex-col justify-center h-1/2 space-y-6 text-xl tracking-wider`}>
-                    
+
+            <Link href = "/workshops" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
+
+            <Link href = "/teachers" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
+
             {
 
               isLoggedIn ? (
 
-                <Link href = "/account" className = "hover:text-blue-500 transition">Account</Link>
+                <>
+                
+                  <Link href = "/account" className = "mt-4 hover:text-blue-500 transition text-center text-3xl">Account</Link>
+
+                  <button onClick={handleLogout} className="hover:text-blue-500 transition text-center text-3xl">Logout</button>
+
+                </>
 
               ) : (
 
-                <Link href = "/login" className = "hover:text-blue-500 transition">Login</Link>
+                <Link href = "/login" className = "hover:text-blue-500 transition text-center text-3xl">Login</Link>
 
               )
 
-            }            
-            <Link href = "/workshops" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
-
-            <Link href = "/teachers" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
+            }
 
           </nav>
 
