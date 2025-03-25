@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 
-type AuthContextType = {
+type AuthContext = {
 
   user: User | null;
   isLoading: boolean;
@@ -14,7 +14,7 @@ type AuthContextType = {
 };
 
 // Create AuthContext with default values
-const AuthContext = createContext<AuthContextType>({
+const AuthContext = createContext<AuthContext>({
 
   user: null,
   isLoading: true,
@@ -29,43 +29,47 @@ export function AuthProvider({children}: { children: ReactNode }){
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Checks for user when component renders
-  useEffect(() => {
 
-    // Checks for logged in user
-    async function checkUser(){
+  // Checks for logged in user
+  async function checkUser(){
 
-      const supabase = createClient();
+    const supabase = createClient();
 
-      // Checks for current session
-      const { data } = await supabase.auth.getUser();
-      setUser(data.user);
-      setIsLoading(false);
+    // Checks for current session
+    const { data } = await supabase.auth.getUser();
+    setUser(data.user);
 
-      // Listens for auth state changes
-      const { data: authListener } = supabase.auth.onAuthStateChange(
+    setIsLoading(false);
 
-        async (_event, session) => {
+    // Listens for auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange(
 
-          const currentUser = session?.user ?? null
-          setUser(currentUser);
+      async (_event, session) => {
 
-        }
-
-      );
-
-      // Clean up listener when component unmounts
-      return () => {
-
-        authListener.subscription.unsubscribe();
+        const currentUser = session?.user ?? null
+        setUser(currentUser);
 
       }
 
+    );
+
+    // Clean up listener when component unmounts
+    return () => {
+
+      authListener.subscription.unsubscribe();
+
     }
+
+  }
+
+
+  // Checks for user when component renders
+  useEffect(() => {
 
     checkUser();
 
   }, []);
+
 
   // Sign out function
   async function signOut(){
@@ -81,7 +85,7 @@ export function AuthProvider({children}: { children: ReactNode }){
     user,
     isLoading,
     isLoggedIn: !!user,
-    signOut
+    signOut,
 
   };
 

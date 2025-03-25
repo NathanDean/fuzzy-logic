@@ -26,7 +26,7 @@ export default function Teachers(){
           try {
     
             const { data, error } = await supabase
-              .from("People")
+              .from("Team")
               .select("*");
     
             if(error){

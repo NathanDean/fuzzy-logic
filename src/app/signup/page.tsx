@@ -13,6 +13,12 @@ export default function SignUpPage() {
 
       <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {signup}>
 
+        <label htmlFor="firstName">First name:</label>
+        <input className = "w-full my-2 p-2 border rounded-sm" id="firstName" name="firstName" type="text" required />
+
+        <label htmlFor="lastName">Last name:</label>
+        <input className = "w-full my-2 p-2 border rounded-sm" id="lastName" name="lastName" type="text" required />
+        
         <label htmlFor="email">Email:</label>
         <input className = "w-full my-2 p-2 border rounded-sm" id="email" name="email" type="email" required />
 

@@ -9,6 +9,7 @@ export default function Account(){
 
   const { user, isLoading, isLoggedIn } = useAuth();
   const router = useRouter();
+  const metadata = user?.user_metadata;
 
   useEffect(() => {
 
@@ -34,9 +35,9 @@ export default function Account(){
 
             <div className = "p-2 bg-white shadow-xl">
 
-                <h1 className = "text-2xl">Account</h1>
-
-                <p>{user?.email}</p>
+                <h1 className = "text-3xl font-medium">Account</h1>
+                <p>Name: {metadata?.first_name} {metadata?.last_name}</p>
+                <p>Email: {user?.email}</p>
 
             </div>
 
