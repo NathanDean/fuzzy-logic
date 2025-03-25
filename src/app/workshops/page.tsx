@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import supabase from "@/lib/supabaseClient";
 import dayjs from "dayjs";
@@ -32,7 +33,7 @@ export default function Workshops(){
       try {
 
         const { data, error } = await supabase
-          .from("Workshops")
+          .from("workshops")
           .select("*");
 
         if(error){
@@ -90,8 +91,8 @@ export default function Workshops(){
 
                 <div className = "flex flex-col sm:flex-row gap-3 mt-4">
                 
-                <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>Book now</button>
-                <button className = {`${outfit.className}  w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>More info</button>
+                  <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>Book now</button>
+                  <Link href = {`workshops/${workshop.id}`} className = {`${outfit.className}  w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white text-center rounded-md p-2 transition-all`}>More info</Link>
 
                 </div>
 
