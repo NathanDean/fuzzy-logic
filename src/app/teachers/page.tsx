@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import supabase from "@/lib/supabaseClient";
 import { oi, outfit } from "@/lib/fonts";
 
-interface Person {
+interface TeamMember {
 
     id: number,
     created_at: string,
@@ -16,17 +16,17 @@ interface Person {
 
 export default function Teachers(){
 
-    const [people, setPeople] = useState<Person[]>([]);
+    const [team, setTeam] = useState<TeamMember[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
 
-        async function fetchPeople(){
+        async function fetchTeam(){
     
           try {
     
             const { data, error } = await supabase
-              .from("Team")
+              .from("team")
               .select("*");
     
             if(error){
@@ -34,12 +34,12 @@ export default function Teachers(){
             }
     
             if(data){
-              setPeople(data);
+              setTeam(data);
             }
     
           } catch(error){
     
-            console.error("Error fetching people:", error)
+            console.error("Error fetching team:", error)
     
           } finally {
     
@@ -49,7 +49,7 @@ export default function Teachers(){
     
         }
     
-        fetchPeople();
+        fetchTeam();
     
     }, []);
     
@@ -65,19 +65,19 @@ export default function Teachers(){
       
         <div className = "flex flex-wrap gap-8 max-w-screen-xl justify-center">
 
-          {people.map((person) => (
+          {team.map((teamMember) => (
 
-            <div key = {person.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden max-w-150">
+            <div key = {teamMember.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden max-w-150">
 
-            <img src = "/default-person-image.jpg" alt = {`${person.name}`} className = "w-full h-75 object-cover" />
+            <img src = "/default-team-member-image.jpg" alt = {`${teamMember.name}`} className = "w-full h-75 object-cover" />
 
               <div className = "p-6">
                 
-                <h2 className = {`${outfit.className} text-2xl font-medium`}>{person.name}</h2>
+                <h2 className = {`${outfit.className} text-2xl font-medium`}>{teamMember.name}</h2>
                 
                 <div className = {`${outfit.className}`}>
 
-                  <p className = "py-2">{person.bio}</p>
+                  <p className = "py-2">{teamMember.bio}</p>
                 
                 </div>
 
