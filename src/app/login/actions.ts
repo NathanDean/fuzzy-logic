@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/utils/supabase/server";
+import { verifyTurnstileToken } from "@/utils/turnstile";
+
 
 export async function login(formData: FormData) {
 
@@ -11,6 +13,7 @@ export async function login(formData: FormData) {
 
   const email = formData.get("email");
   const password = formData.get("password");
+  const turnstileToken = formData.get("cf-turnstile-response");
 
   
   //Validation
@@ -41,9 +44,31 @@ export async function login(formData: FormData) {
 
   }
 
-  const data = { email, password }
+  if (!turnstileToken || typeof turnstileToken !== "string") {
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+    throw new Error("CAPTCHA verification failed: Missing token");
+
+  }
+
+  const isTurnstileTokenValid = await verifyTurnstileToken(turnstileToken);
+
+  if (!isTurnstileTokenValid) {
+
+    throw new Error("CAPTCHA verification failed: Invalid token");
+
+  }
+
+
+  // Supabase sign in function
+  const { error } = await supabase.auth.signInWithPassword({
+    
+    email,
+    password,
+    options: {
+      captchaToken: turnstileToken
+    }
+
+  });
 
   if (error) {
 
@@ -67,6 +92,7 @@ export async function signup(formData: FormData) {
   const lastName = formData.get("lastName");
   const email = formData.get("email");
   const password = formData.get("password");
+  const turnstileToken = formData.get("cf-turnstile-response");
 
   
   //Validation
@@ -97,6 +123,20 @@ export async function signup(formData: FormData) {
 
   }
 
+  if (!turnstileToken || typeof turnstileToken !== "string") {
+
+    throw new Error("CAPTCHA verification failed: Missing token");
+
+  }
+
+  const isTurnstileTokenValid = await verifyTurnstileToken(turnstileToken);
+
+  if (!isTurnstileTokenValid) {
+
+    throw new Error("CAPTCHA verification failed: Invalid token");
+
+  }
+
 
   // Sign up with Supabase Auth
   const { error } = await supabase.auth.signUp({
@@ -104,6 +144,7 @@ export async function signup(formData: FormData) {
     email: email as string,
     password: password as string,
     options: {
+      captchaToken: turnstileToken,
       data: {
         first_name: firstName as string,
         last_name: lastName as string
