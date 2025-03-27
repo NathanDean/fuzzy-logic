@@ -26,7 +26,7 @@ export default function SignUpPage() {
         <label htmlFor="password">Password:</label>
         <input className = "w-full mt-2 mb-4 p-2 border rounded-sm" id="password" name="password" type="password" required />
 
-        <Turnstile siteKey = "0x4AAAAAABBPVejNx7Dn7R6Z" />
+        <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} />
 
         <button className = "my-2 border rounded-sm w-full mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all" type = "submit">Sign up</button>
 
