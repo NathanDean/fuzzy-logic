@@ -26,8 +26,6 @@ export default function UpdatePassword() {
 
     <>
     
-      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
       <div className = {`${outfit.className} text-lg flex flex-col items-center`}>
 
         <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {updatePassword}>

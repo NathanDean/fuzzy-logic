@@ -1,12 +1,19 @@
+"use client"
+
 import { signup } from "../login/actions";
 import Link from "next/link";
 import Form from "next/form";
 import { Turnstile } from "@marsidev/react-turnstile";
 
+import { useState } from "react";
+
 import { outfit } from "@/lib/fonts";
 
 
 export default function SignUpPage() {
+
+  const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
+  
 
   return (
 
@@ -26,9 +33,9 @@ export default function SignUpPage() {
         <label htmlFor="password">Password:</label>
         <input className = "w-full mt-2 mb-4 p-2 border rounded-sm" id="password" name="password" type="password" required />
 
-        <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} />
+        <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
 
-        <button className = "my-2 border rounded-sm w-full mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all" type = "submit">Sign up</button>
+        <button className = "my-2 border rounded-sm w-full mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all" type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Sign up"}</button>
 
         <Link href = "/login">Already have an account?  Log in here.</Link>
 

@@ -12,7 +12,7 @@ export default function Home() {
 
     <div className = "flex flex-col h-full items-center justify-center">
 
-      <h1 className = {`${oi.className} text-5xl text-center px-1`}>
+      <h1 className = {`${oi.className} text-6xl text-center px-1`}>
         
         fuzzy logic
       
