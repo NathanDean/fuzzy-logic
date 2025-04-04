@@ -3,11 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
-<<<<<<< HEAD
-import { verifyTurnstileToken } from "@/utils/turnstile";
-
-=======
->>>>>>> main
 
 export async function signup(formData: FormData) {
 
@@ -128,17 +123,6 @@ export async function login(formData: FormData) {
 
   }
 
-<<<<<<< HEAD
-  const isTurnstileTokenValid = await verifyTurnstileToken(turnstileToken);
-
-  if (!isTurnstileTokenValid) {
-
-    throw new Error("CAPTCHA verification failed: Invalid token");
-
-  }
-
-=======
->>>>>>> main
 
   // Supabase sign in function
   const { error } = await supabase.auth.signInWithPassword({
@@ -196,16 +180,6 @@ export async function resetPassword(formData: FormData){
 
   }
 
-<<<<<<< HEAD
-  const isTurnstileTokenValid = await verifyTurnstileToken(turnstileToken);
-
-  if (!isTurnstileTokenValid) {
-
-    throw new Error("CAPTCHA verification failed: Invalid token");
-
-  }
-=======
->>>>>>> main
 
   // Supabase password reset function
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -231,10 +205,6 @@ export async function updatePassword(formData: FormData){
 
   const supabase = await createClient();
   const password = formData.get("password");
-<<<<<<< HEAD
-  const turnstileToken = formData.get("cf-turnstile-response");
-=======
->>>>>>> main
   
   if(!password || typeof password != "string"){
 
@@ -248,22 +218,6 @@ export async function updatePassword(formData: FormData){
 
   }
 
-<<<<<<< HEAD
-  if (!turnstileToken || typeof turnstileToken !== "string") {
-
-    throw new Error("CAPTCHA verification failed: Missing token");
-
-  }
-
-  const isTurnstileTokenValid = await verifyTurnstileToken(turnstileToken);
-
-  if (!isTurnstileTokenValid) {
-
-    throw new Error("CAPTCHA verification failed: Invalid token");
-
-  }
-=======
->>>>>>> main
 
   const { error } = await supabase.auth.updateUser({
     password: password,

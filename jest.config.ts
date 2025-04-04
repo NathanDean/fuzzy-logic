@@ -73,9 +73,9 @@ const config: Config = {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: [
-  //   "node_modules"
-  // ],
+  moduleDirectories: [
+    "node_modules", "<rootDir>"
+  ],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [
@@ -90,8 +90,9 @@ const config: Config = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
-
+  moduleNameMapper: {
+    "^next/font/(.*)$": "<rootDir>/__mocks__/next/font/$1",
+  },
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
 
@@ -175,9 +176,15 @@ const config: Config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-    transform: {
-      "^.+\\.(ts|tsx)$": "babel-jest",
-    },
+  transform: {
+    "^.+\\.(ts|tsx)$": ['babel-jest', {
+      presets: [
+        ["@babel/preset-env", { targets: { node: "current" } }],
+        ["@babel/preset-react", { runtime: "automatic" }],
+        "@babel/preset-typescript"
+      ]
+    }],
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
