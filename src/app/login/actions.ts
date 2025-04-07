@@ -12,6 +12,7 @@ export async function signup(formData: FormData) {
   const lastName = formData.get("lastName");
   const email = formData.get("email");
   const password = formData.get("password");
+  const confirmPassword = formData.get("confirmPassword");
   const turnstileToken = formData.get("cf-turnstile-response");
 
   
@@ -40,6 +41,12 @@ export async function signup(formData: FormData) {
   if (password.length < 8) {
 
     throw new Error("Password must be 8 or more characters long");
+
+  }
+
+  if (password !== confirmPassword) {
+
+    throw new Error("Passwords must match");
 
   }
 

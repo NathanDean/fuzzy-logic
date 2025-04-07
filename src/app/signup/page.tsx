@@ -31,7 +31,10 @@ export default function SignUpPage() {
         <input className = "w-full my-2 p-2 border rounded-sm" id="email" name="email" type="email" required />
 
         <label htmlFor="password">Password:</label>
-        <input className = "w-full mt-2 mb-4 p-2 border rounded-sm" id="password" name="password" type="password" required />
+        <input className = "w-full my-2 p-2 border rounded-sm" id="password" name="password" type="password" required />
+
+        <label htmlFor="confirmPassword">Confirm password:</label>
+        <input className = "w-full mt-2 mb-4 p-2 border rounded-sm" id="confirmPassword" name="confirmPassword" type="password" required />
 
         <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
 
