@@ -212,6 +212,7 @@ export async function updatePassword(formData: FormData){
 
   const supabase = await createClient();
   const password = formData.get("password");
+  const confirmPassword = formData.get("confirmPassword");
   
   if(!password || typeof password != "string"){
 
@@ -225,6 +226,11 @@ export async function updatePassword(formData: FormData){
 
   }
 
+  if (password !== confirmPassword) {
+
+    throw new Error("Passwords must match");
+
+  }
 
   const { error } = await supabase.auth.updateUser({
     password: password,
