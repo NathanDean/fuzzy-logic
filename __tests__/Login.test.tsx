@@ -22,8 +22,8 @@ describe("Login", () => {
 
         render(<LoginPage />);
 
-        expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+        expect(screen.getByLabelText("Email:")).toBeInTheDocument();
+        expect(screen.getByLabelText("Password:")).toBeInTheDocument();
         expect(screen.getByRole("button", {name: /log in/i})).toBeInTheDocument();
 
     });
@@ -32,13 +32,13 @@ describe("Login", () => {
 
         render(<LoginPage />);
 
-        fireEvent.change(screen.getByLabelText(/email/i), {
+        fireEvent.change(screen.getByLabelText("Email:"), {
 
             target: { value: "test@test.com" }
 
         });
 
-        fireEvent.change(screen.getByLabelText(/password/i), {
+        fireEvent.change(screen.getByLabelText("Password:"), {
 
             target: { value: "TEST1234" }
 

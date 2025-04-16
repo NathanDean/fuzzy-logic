@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import SignUpPage from "../src/app/signup/page";
-import { signup } from "@/app/login/actions";
 
 const mockSignUp = jest.fn();
 
