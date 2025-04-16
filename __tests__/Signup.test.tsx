@@ -18,7 +18,7 @@ jest.mock("../src/app/login/actions", () => ({
 
 describe("SignUp", () => {
 
-    it("renders login form correctly", () => {
+    it("renders sign up form correctly", () => {
 
         render(<SignUpPage />);
 
