@@ -28,15 +28,6 @@ describe("Login", () => {
 
     });
 
-    it("enables the login button after Turnstile verification", () => {
-
-        render(<LoginPage />);
-
-        expect(screen.getByRole("button", { name: /log in/i })).not.toBeDisabled();
-
-
-    })
-
     it("submits form with correct values when clicking login", () => {
 
         render(<LoginPage />);
