@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import supabase from "@/lib/supabaseClient";
+import supabase from "@/utils/supabase/supabaseClient";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { oi, outfit } from "@/lib/fonts";

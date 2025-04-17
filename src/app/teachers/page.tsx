@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import supabase from "@/lib/supabaseClient";
+import supabase from "@/utils/supabase/supabaseClient";
 import { oi, outfit } from "@/lib/fonts";
 
 interface TeamMember {
