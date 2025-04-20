@@ -202,8 +202,6 @@ export async function resetPassword(formData: FormData){
 
   revalidatePath("/", "layout");
 
-  redirect("/");
-
 }
 
 export async function updatePassword(formData: FormData){
