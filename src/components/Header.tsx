@@ -136,7 +136,7 @@ export default function Header(){
 
       {isMenuVisible && (
 
-        <div className = {`sm:hidden fixed inset-0 w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center
+        <div data-testid = "mobile-menu" className = {`sm:hidden fixed inset-0 w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center
         
         ${isMenuOpaque ? "opacity-100" : "opacity-0"}
         

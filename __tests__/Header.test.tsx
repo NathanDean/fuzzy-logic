@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import { useAuth } from "@/contexts/AuthContext";
-import { render, screen, act, fireEvent } from "@testing-library/react"
+import { render, screen, act, fireEvent, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom";
 
 jest.mock("@/contexts/AuthContext", () => ({
@@ -93,6 +93,29 @@ describe("Header", () => {
         expect(screen.queryByRole("link", { name: "Account"})).not.toBeInTheDocument();
         expect(screen.queryByRole("button", { name: "Logout" })).not.toBeInTheDocument();
 
-    })
+    });
+
+    it("toggles mobile menu when user clicks menu button", async () => {
+
+        render(<Header />);
+
+        const toggleButton = screen.getByRole("button", { name: "Toggle menu"});
+
+        expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+
+        fireEvent.click(toggleButton);
+
+        expect(screen.queryByTestId("mobile-menu")).toBeInTheDocument();
+
+        fireEvent.click(toggleButton);
+
+        // Wait for animation to complete
+        await waitFor(() => {
+
+            expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+
+        }, { timeout: 1000 });
+
+    });
 
 });
