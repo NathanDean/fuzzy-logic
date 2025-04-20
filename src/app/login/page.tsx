@@ -14,13 +14,26 @@ export default function LoginPage() {
 
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
 
+  // Ensures UI updates correctly
+  const handleSubmit = async (formData: FormData) => {
+
+    const result = await login(formData);
+    
+    if (result?.success) {
+  
+      window.location.href = "/";
+  
+    }
+  
+  };
+
   return (
 
     <>
     
       <div className = {`${outfit.className} text-lg flex flex-col items-center`}>
 
-        <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {login}>
+        <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {handleSubmit}>
 
           <label htmlFor="email">Email:</label>
           <input className = "w-full my-2 p-2 border rounded-sm" id="email" name="email" type="email" required />

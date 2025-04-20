@@ -46,8 +46,7 @@ export function AuthProvider({children}: { children: ReactNode }){
 
       async (_event, session) => {
 
-        const currentUser = session?.user ?? null
-        setUser(currentUser);
+        setUser(session?.user ?? null);
 
       }
 
