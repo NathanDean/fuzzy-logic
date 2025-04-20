@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
 
-  // Ensures UI updates correctly
+  // Refreshes page to ensure header UI updates correctly
   const handleSubmit = async (formData: FormData) => {
 
     const result = await login(formData);
