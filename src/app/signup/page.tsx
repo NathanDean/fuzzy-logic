@@ -1,6 +1,6 @@
 "use client"
 
-import { signup } from "../login/actions";
+import { signup } from "@/utils/auth/actions";
 import Link from "next/link";
 import Form from "next/form";
 import { Turnstile } from "@marsidev/react-turnstile";

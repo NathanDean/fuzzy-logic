@@ -1,6 +1,6 @@
 "use client";
 
-import { resetPassword } from "../login/actions";
+import { resetPassword } from "@/utils/auth/actions";
 
 import Form from "next/form";
 import Link from "next/link";

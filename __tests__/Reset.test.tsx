@@ -4,7 +4,7 @@ import ResetPassword from "../src/app/reset/page";
 
 const mockReset = jest.fn();
 
-jest.mock("../src/app/login/actions", () => ({
+jest.mock("@/utils/auth/actions", () => ({
 
     resetPassword: (formData: FormData) => {
 

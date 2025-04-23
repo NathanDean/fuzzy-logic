@@ -4,7 +4,7 @@ import UpdatePassword from "../src/app/update/page";
 
 const mockUpdate = jest.fn();
 
-jest.mock("../src/app/login/actions", () => ({
+jest.mock("@/utils/auth/actions", () => ({
 
     updatePassword: (formData: FormData) => {
 

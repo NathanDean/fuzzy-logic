@@ -1,6 +1,6 @@
 "use client";
 
-import { updatePassword } from "../login/actions";
+import { updatePassword } from "@/utils/auth/actions";
 import Form from "next/form";
 import Link from "next/link";
 

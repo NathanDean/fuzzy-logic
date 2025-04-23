@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "./actions";
+import { login } from "@/utils/auth/actions";
 
 import Form from "next/form";
 import Link from "next/link";
