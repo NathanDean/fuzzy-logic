@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { outfit } from "@/lib/fonts";
 
-
 dayjs.extend(advancedFormat);
 
 export default async function WorkshopDetails({params}: {params: Promise<{ workshopId: string }>}){
@@ -40,7 +39,7 @@ export default async function WorkshopDetails({params}: {params: Promise<{ works
 
                 <p className = "pb-2">{workshop.description}</p>
 
-                <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`}>Book now</button>
+                <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`} >Book now</button>
 
             </div>
 
