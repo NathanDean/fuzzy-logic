@@ -22,8 +22,10 @@ interface Workshop {
   start_time: string,
   end_time: string,
   venue: string,
+  price: number,
+  max_places_available: number,
   description: string,
-  price: number
+  bookings: number
 
 }
 
@@ -42,14 +44,21 @@ export default function Workshops(){
 
         const { data, error } = await supabase
           .from("workshops")
-          .select("*");
+          .select("*, bookings:bookings(count)");
 
         if(error){
           throw error;
         }
 
         if(data){
-          setWorkshops(data);
+
+          const workshopsWithCount = data.map(workshop => ({
+            ...workshop,
+            bookings: (workshop.bookings?.[0]?.count || 0)
+          }));
+          
+          setWorkshops(workshopsWithCount);
+
         }
 
       } catch(error){
@@ -126,7 +135,12 @@ export default function Workshops(){
 
                 <div className = "flex flex-col sm:flex-row gap-3 mt-4">
                 
-                  <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all`} onClick = {() => handleBookNow(workshop.id)}>Book now</button>
+                  <button className = {`${outfit.className} w-full sm:w-1/2 mt-2 border ${workshop.max_places_available - workshop.bookings > 0 ? "border-gray-800 hover:bg-gray-800 hover:text-white" : "border-gray-400 bg-gray-400 text-white"} rounded-md p-2 transition-all`} onClick = {() => handleBookNow(workshop.id)} disabled = {
+
+                    workshop.max_places_available - workshop.bookings > 0 ? false : true
+
+                  }>{workshop.max_places_available - workshop.bookings > 0 ? "Book now" : "Sold out"}</button>
+
                   <Link href = {`workshops/${workshop.id}`} className = {`${outfit.className}  w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white text-center rounded-md p-2 transition-all`}>More info</Link>
 
                 </div>
