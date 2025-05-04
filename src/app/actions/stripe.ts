@@ -15,6 +15,7 @@ interface Workshop {
     venue: string,
     description: string,
     price: number
+    places_remaining: number
   
   }
 
@@ -22,13 +23,14 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
+    const supabase = await createClient();
+
     const getworkshop = async (workshopId: string): Promise<Workshop> => {
     
-        const supabase = await createClient();
-    
+        // Get workshop details from Supabase
         const { data: workshop, error } = await supabase
           .from("workshops")
-          .select("*")
+          .select("*, bookings:bookings(count)")
           .eq("id", workshopId)
           .single();
       
@@ -44,11 +46,22 @@ export async function createCheckoutSession(workshopId: string, userId: string){
           
         }
 
-        return workshop
+        // Check whether there are places remaining on the workshop
+        const places_remaining = workshop.max_places_available - (workshop.bookings?.[0]?.count || 0);
+
+        return { ...workshop, places_remaining }
     
     }
+    
+    const workshop = await getworkshop(workshopId);
 
-    // Create temporary booking
+    if(workshop.places_remaining <= 0){
+
+        throw new Error("Sorry, this workshop is now sold out.")
+
+    }
+
+    // Create in progress booking
     const supabaseAdmin = createAdminClient();
 
     const { error } = await supabaseAdmin
@@ -57,17 +70,16 @@ export async function createCheckoutSession(workshopId: string, userId: string){
             workshop_id: workshopId,
             user_id: userId,
             status: "in progress"
-    });
-
-              
+        });
+    
+                  
     if(error){
-      
+          
         throw new Error(`Error processing booking: ${error.message}`);
-        
+            
     }
     
-    const workshop = await getworkshop(workshopId);
-    
+    // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
     
         payment_method_types: ["card"],
@@ -98,6 +110,8 @@ export async function createCheckoutSession(workshopId: string, userId: string){
         mode: "payment",
         success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/cancel`,
+        
+        // Pass workshop and user metadata to Stripe (to update booking after payment)
         metadata: {
     
             workshop_id: workshop.id,
