@@ -2,6 +2,7 @@
 
 import Stripe from "stripe";
 import { createClient } from "@/utils/supabase/server";
+import { createAdminClient } from "@/utils/supabase/admin";
 
 interface Workshop {
 
@@ -45,6 +46,24 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
         return workshop
     
+    }
+
+    // Create temporary booking
+    const supabaseAdmin = createAdminClient();
+
+    const { error } = await supabaseAdmin
+        .from("bookings")
+        .insert({
+            workshop_id: workshopId,
+            user_id: userId,
+            status: "in progress"
+    });
+
+              
+    if(error){
+      
+        throw new Error(`Error processing booking: ${error.message}`);
+        
     }
     
     const workshop = await getworkshop(workshopId);
