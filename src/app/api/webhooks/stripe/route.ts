@@ -20,6 +20,7 @@ export async function POST(req: NextRequest){
         try {
 
             event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+            console.log("Event type:", event.type);
 
         } catch (error) {
 
@@ -62,6 +63,51 @@ export async function POST(req: NextRequest){
                 if(error){
 
                     console.error("Error saving booking:", error);
+
+                }
+
+            }
+
+        }
+
+        // If payment expires or fails
+        else if(event.type === "checkout.session.expired" || event.type === "payment_intent.payment_failed"){
+
+            let workshopId, userId;
+    
+            if (event.type === "payment_intent.payment_failed") {
+
+                const paymentIntent = event.data.object as Stripe.PaymentIntent;
+                workshopId = paymentIntent.metadata?.workshop_id;
+                userId = paymentIntent.metadata?.user_id;
+
+            } else {
+
+                const session = event.data.object as Stripe.Checkout.Session;
+                workshopId = session.metadata?.workshop_id;
+                userId = session.metadata?.user_id;
+            
+            }
+
+            if(workshopId && userId){
+
+              const supabase = createAdminClient();
+         
+                // Find matching "in progress" booking and delete it
+                const { error } = await supabase
+                    .from("bookings")
+                    .delete()
+                    .match({
+
+                      workshop_id: workshopId,
+                      user_id: userId,
+                      status: "in progress"
+                      
+                    })
+
+                if(error){
+
+                    console.error("Error deleting booking:", error);
 
                 }
 
