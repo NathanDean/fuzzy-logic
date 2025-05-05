@@ -24,6 +24,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
     const supabase = await createClient();
+    const supabaseAdmin = createAdminClient();
 
     const getworkshop = async (workshopId: string): Promise<Workshop> => {
     
@@ -61,22 +62,38 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     }
 
-    // Create in progress booking
-    const supabaseAdmin = createAdminClient();
+    // Create in progress booking if one does not already exist
+    const { data: existingBooking, error: existingBookingError } = await supabase
+        .from("bookings")
+        .select("*")
+        .match({
+            workshop_id: workshopId,
+            user_id: userId,
+            status: "in progress"
+        })
 
-    const { error } = await supabaseAdmin
+    if(existingBookingError){
+
+        throw new Error(`Error checking for existing in progress booking: ${existingBookingError.message}`)
+
+    }
+
+    if(!existingBooking || existingBooking.length === 0){
+
+        const { error } = await supabaseAdmin
         .from("bookings")
         .insert({
             workshop_id: workshopId,
             user_id: userId,
             status: "in progress"
         });
-    
                   
-    if(error){
-          
-        throw new Error(`Error processing booking: ${error.message}`);
+        if(error){
             
+            throw new Error(`Error processing booking: ${error.message}`);
+                
+        }
+
     }
     
     // Create Stripe checkout session
