@@ -62,7 +62,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     }
 
-    // Create in progress booking if one does not already exist
+    // Check for existing in progress booking
     const { data: existingBooking, error: existingBookingError } = await supabase
         .from("bookings")
         .select("*")
@@ -78,20 +78,17 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     }
 
-    if(!existingBooking || existingBooking.length === 0){
+    // If and existing in progress booking exists with an active checkout session, expire checkout session before continuing
+    if(existingBooking && existingBooking.length > 0 && existingBooking[0].session_id){
 
-        const { error } = await supabaseAdmin
-        .from("bookings")
-        .insert({
-            workshop_id: workshopId,
-            user_id: userId,
-            status: "in progress"
-        });
-                  
-        if(error){
-            
-            throw new Error(`Error processing booking: ${error.message}`);
-                
+        try{
+
+            await stripe.checkout.sessions.expire(existingBooking[0].session_id)
+
+        } catch (error) {
+
+            throw new Error(`Error expiring previous checkout session: ${error}`)
+
         }
 
     }
@@ -138,6 +135,44 @@ export async function createCheckoutSession(workshopId: string, userId: string){
         }
     
     })
+
+    // Update existing in progress booking if one exists
+    if(existingBooking && existingBooking.length > 0){
+
+        const { error } = await supabaseAdmin
+        .from("bookings")
+        .update({ session_id: session.id })
+        .match({
+            workshop_id: workshopId,
+            user_id: userId,
+            status: "in progress"
+        });
+                  
+        if(error){
+            
+            throw new Error(`Error processing booking: ${error.message}`);
+                
+        }
+
+    // Otherwise create new in progress booking
+    } else {
+
+        const { error } = await supabaseAdmin
+        .from("bookings")
+        .insert({
+            workshop_id: workshopId,
+            user_id: userId,
+            session_id: session.id,
+            status: "in progress"
+        });
+                  
+        if(error){
+            
+            throw new Error(`Error processing booking: ${error.message}`);
+                
+        }
+
+    }
 
     return { sessionId: session.id, url: session.url }
 

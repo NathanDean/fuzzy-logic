@@ -8,6 +8,8 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 
 export async function POST(req: NextRequest){
 
+    const supabase = createAdminClient();
+
     try {
 
       // Get Stripe request info  
@@ -39,15 +41,13 @@ export async function POST(req: NextRequest){
             const userId = session.metadata?.user_id
 
             if(workshopId && userId){
-
-              const supabase = createAdminClient();
          
                 // Find matching "in progress" booking, update to "confirmed" and add payment_id
                 const { error } = await supabase
                     .from("bookings")
                     .update({
 
-                        payment_id: session.id,
+                        session_id: session.id,
                         status: "confirmed"
 
                     })
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest){
         // If payment expires or fails
         else if(event.type === "checkout.session.expired" || event.type === "payment_intent.payment_failed"){
 
-            let workshopId, userId;
+            let workshopId, userId, sessionId;
     
             if (event.type === "payment_intent.payment_failed") {
 
@@ -86,28 +86,49 @@ export async function POST(req: NextRequest){
                 const session = event.data.object as Stripe.Checkout.Session;
                 workshopId = session.metadata?.workshop_id;
                 userId = session.metadata?.user_id;
+                sessionId = session.id;
             
             }
 
             if(workshopId && userId){
 
-              const supabase = createAdminClient();
-         
-                // Find matching "in progress" booking and delete it
-                const { error } = await supabase
+                // Look for existing in progress booking
+                const { data: existingBooking, error: existingBookingError } = await supabase
                     .from("bookings")
-                    .delete()
+                    .select("session_id")
                     .match({
+                        workshop_id: workshopId,
+                        user_id: userId,
+                        status: "in progress"
+                    });
 
-                      workshop_id: workshopId,
-                      user_id: userId,
-                      status: "in progress"
-                      
-                    })
+                if(existingBookingError){
 
-                if(error){
+                    console.error("Error finding existing booking:", existingBookingError);
+                    return;
 
-                    console.error("Error deleting booking:", error);
+                }
+
+                // If the existing booking's session_id is the current session.id, find matching "in progress" booking and delete it
+                if(existingBooking && existingBooking.length > 0 && (!sessionId || existingBooking[0].session_id === sessionId)){
+
+                    const { error } = await supabase
+                        .from("bookings")
+                        .delete()
+                        .match({
+
+                        workshop_id: workshopId,
+                        user_id: userId,
+                        status: "in progress",
+                        session_id: existingBooking[0].session_id
+                        
+                        })
+
+                    if(error){
+
+                        console.error("Error deleting booking:", error);
+
+                    }
 
                 }
 
