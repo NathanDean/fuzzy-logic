@@ -122,8 +122,13 @@ export async function createCheckoutSession(workshopId: string, userId: string){
         ],
     
         mode: "payment",
+
+        // URLs for redirection after session completed or cancelled
         success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/cancel`,
+        
+        // Expire checkout session after 15 mins
+        expires_at: Math.floor(Date.now() / 1000) + (60 * 30),
         
         // Pass workshop and user metadata to Stripe (to update booking after payment)
         metadata: {
