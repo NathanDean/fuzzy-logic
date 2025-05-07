@@ -78,22 +78,30 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     }
 
-    // If and existing in progress booking exists with an active checkout session, expire checkout session before continuing
+    // If existing in progress booking has an active checkout session, retreive it and use that session
     if(existingBooking && existingBooking.length > 0 && existingBooking[0].session_id){
 
         try{
 
-            await stripe.checkout.sessions.expire(existingBooking[0].session_id)
+            // Check for existing checkout session
+            const existingSession = await stripe.checkout.sessions.retrieve(existingBooking[0].session_id);
+        
+            // If the session is still active (not expired), return it
+            if(existingSession.status !== "expired" && existingSession.status !== "complete") {
+                
+                return { sessionId: existingSession.id, url: existingSession.url };
+            
+            }
 
         } catch (error) {
 
-            throw new Error(`Error expiring previous checkout session: ${error}`)
+            throw new Error(`Error retrieving previous checkout session: ${error}`)
 
         }
 
     }
     
-    // Create Stripe checkout session
+    // Otherwise, create new checkout session
     const session = await stripe.checkout.sessions.create({
     
         payment_method_types: ["card"],
