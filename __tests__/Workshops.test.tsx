@@ -1,7 +1,21 @@
 import "@testing-library/jest-dom";
-import { render, screen, act } from "@testing-library/react"
+import { render, screen, act, fireEvent } from "@testing-library/react"
 import Workshops from "@/app/workshops/page";
 
+// AuthContext mock
+jest.mock("@/contexts/AuthContext", () => ({
+
+    useAuth: () => ({
+    
+        isLoggedIn: true,
+    
+        user: { id: "test-user-id" }
+    
+    })
+
+}));
+
+// Supabase client mock
 jest.mock("@/utils/supabase/supabaseClient", () => ({
 
         from: jest.fn(() => ({
@@ -12,24 +26,32 @@ jest.mock("@/utils/supabase/supabaseClient", () => ({
 
                     {
 
-                        id: 1,
+                        id: "1",
                         created_at: "2025-04-01T12:00:00Z",
                         class_name: "Intro to Testing",
                         date: "2025-04-18",
                         start_time: "18:00:00",
                         end_time: "21:00:00",
-                        venue: "Test Theatre"
+                        venue: "Test Theatre",
+                        price: 100,
+                        max_places_available: 12,
+                        description: "Lorem ipsum",
+                        bookings: [{ count: 10 }]
 
                     },
                     {
 
-                        id: 2,
+                        id: "2",
                         created_at: "2025-04-01T12:00:00Z",
                         class_name: "Advanced Testing",
                         date: "2025-04-19",
                         start_time: "18:00:00",
                         end_time: "21:00:00",
-                        venue: "The New Test Theatre"
+                        venue: "The New Test Theatre",
+                        price: 100,
+                        max_places_available: 12,
+                        description: "Slorem slipsum",
+                        bookings: [{ count: 12 }]
 
                     }
 
@@ -45,7 +67,22 @@ jest.mock("@/utils/supabase/supabaseClient", () => ({
 
 ))
 
+// Stripe createCheckoutSession mock
+jest.mock("@/app/actions/stripe", () => ({
+
+    createCheckoutSession: jest.fn().mockResolvedValue({ url: "https://stripe.com/checkout" })
+
+}));
+
+const mockCreateCheckoutSession = require("@/app/actions/stripe").createCheckoutSession;
+
 describe("Workshops", () => {
+
+    beforeEach(() => {
+       
+        jest.clearAllMocks();
+    
+    });
 
     it("initially displays loading state", () => {
 
@@ -72,12 +109,45 @@ describe("Workshops", () => {
         expect(screen.getByText("The New Test Theatre")).toBeInTheDocument();
         expect(screen.getByText("6pm on Sat 19th Apr")).toBeInTheDocument();
 
-        const bookNowLinks = screen.getAllByRole("button", {name: "Book now"});
-        expect(bookNowLinks).toHaveLength(2);
+        const bookingButton = screen.getAllByRole("button");
+        expect(bookingButton).toHaveLength(2);
 
         const moreInfoLinks = screen.getAllByRole("link", {name: "More info"});
         expect(moreInfoLinks).toHaveLength(2);
 
     });
+
+    it("enables Book Now button when workshop.bookings < workshop.places_available", async () => {
+
+        render(<Workshops />);
+
+        await act(async () => {
+
+            await new Promise(resolve => setTimeout(resolve, 0))
+
+        })
+
+        expect(screen.getByRole("button", { name: "Book now" })).toBeEnabled();
+        expect(screen.getByRole("button", { name: "Sold out" })).toBeDisabled();
+
+
+    });
+
+    it("calls createCheckoutSession with correct details when user clicks Book Now button", async () => {
+
+        render(<Workshops />);
+
+        await act(async() => {
+
+            await new Promise(resolve => setTimeout(resolve, 0))
+
+        });
+
+        const bookNowButton = screen.getAllByRole("button", { name: "Book now" })[0];
+        fireEvent.click(bookNowButton);
+        
+        expect(mockCreateCheckoutSession).toHaveBeenCalledWith("1", "test-user-id");
+
+    })
 
 });
