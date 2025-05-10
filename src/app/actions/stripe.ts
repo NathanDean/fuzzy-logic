@@ -3,6 +3,7 @@
 import Stripe from "stripe";
 import { createClient } from "@/utils/supabase/server";
 import { createAdminClient } from "@/utils/supabase/admin";
+import { PostgrestError } from "@supabase/supabase-js";
 
 interface Workshop {
 
@@ -17,18 +18,24 @@ interface Workshop {
     price: number
     places_remaining: number
   
-  }
+}
 
-export async function createCheckoutSession(workshopId: string, userId: string){
+interface Booking {
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
+    id: string,
+    created_at: string,
+    workshop_id: string,
+    user_id: string,
+    status: string,
+    session_id: string
 
-    const supabase = await createClient();
-    const supabaseAdmin = createAdminClient();
+}
 
-    const getworkshop = async (workshopId: string): Promise<Workshop> => {
+async function getWorkshop(workshopId: string): Promise<Workshop> {
+
+    const supabase = await createClient();    
     
-        // Get workshop details from Supabase
+    // Get workshop details from Supabase
         const { data: workshop, error } = await supabase
           .from("workshops")
           .select("*, bookings:bookings(count)")
@@ -51,11 +58,17 @@ export async function createCheckoutSession(workshopId: string, userId: string){
         const places_remaining = workshop.max_places_available - (workshop.bookings?.[0]?.count || 0);
 
         return { ...workshop, places_remaining }
-    
-    }
-    
-    const workshop = await getworkshop(workshopId);
 
+}
+
+export async function createCheckoutSession(workshopId: string, userId: string){
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
+    const supabase = await createClient();
+    const supabaseAdmin = createAdminClient();
+    const workshop = await getWorkshop(workshopId);
+
+    // Check whether the workshop has places remaining
     if(workshop.places_remaining <= 0){
 
         throw new Error("Sorry, this workshop is now sold out.")
@@ -71,6 +84,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
             user_id: userId,
             status: "in progress"
         })
+        .limit(1) as { data: Booking[] | null, error: PostgrestError | null }
 
     if(existingBookingError){
 
@@ -78,7 +92,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     }
 
-    // If existing in progress booking has an active checkout session, retreive it and use that session
+    // If existing in progress booking has an active checkout session, retrieve it
     if(existingBooking && existingBooking.length > 0 && existingBooking[0].session_id){
 
         try{
@@ -86,16 +100,16 @@ export async function createCheckoutSession(workshopId: string, userId: string){
             // Check for existing checkout session
             const existingSession = await stripe.checkout.sessions.retrieve(existingBooking[0].session_id);
         
-            // If the session is still active (not expired), return it
+            // If the session is active, return and continue to its checkout URL
             if(existingSession.status !== "expired" && existingSession.status !== "complete") {
                 
-                return { sessionId: existingSession.id, url: existingSession.url };
+                return { url: existingSession.url };
             
             }
 
         } catch (error) {
 
-            throw new Error(`Error retrieving previous checkout session: ${error}`)
+            console.error(`Error retrieving previous checkout session: ${error}`)
 
         }
 
@@ -135,7 +149,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
         success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/cancel`,
         
-        // Expire checkout session after 15 mins
+        // Expire checkout session after 30 mins
         expires_at: Math.floor(Date.now() / 1000) + (60 * 30),
         
         // Pass workshop and user metadata to Stripe (to update booking after payment)
@@ -149,7 +163,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
     
     })
 
-    // Update existing in progress booking if one exists
+    // If existing in progress booking exists update it with new session ID
     if(existingBooking && existingBooking.length > 0){
 
         const { error } = await supabaseAdmin
@@ -187,6 +201,6 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     }
 
-    return { sessionId: session.id, url: session.url }
+    return { url: session.url }
 
 }

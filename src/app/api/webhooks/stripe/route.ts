@@ -2,6 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import Stripe from "stripe";
 import { createAdminClient } from "@/utils/supabase/admin";
+import { PostgrestError } from "@supabase/supabase-js";
+
+interface Booking {
+
+    id: string,
+    created_at: string,
+    workshop_id: string,
+    user_id: string,
+    status: string,
+    session_id: string
+
+}
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
@@ -57,8 +69,7 @@ export async function POST(req: NextRequest){
                       user_id: userId,
                       status: "in progress"
                       
-                    })
-                    .select()
+                    }) as { error: PostgrestError | null }
 
                 if(error){
 
@@ -71,36 +82,26 @@ export async function POST(req: NextRequest){
         }
 
         // If payment expires or fails
-        else if(event.type === "checkout.session.expired" || event.type === "payment_intent.payment_failed"){
+        else if(event.type === "checkout.session.expired"){
 
-            let workshopId, userId, sessionId;
-    
-            if (event.type === "payment_intent.payment_failed") {
-
-                const paymentIntent = event.data.object as Stripe.PaymentIntent;
-                workshopId = paymentIntent.metadata?.workshop_id;
-                userId = paymentIntent.metadata?.user_id;
-
-            } else {
-
-                const session = event.data.object as Stripe.Checkout.Session;
-                workshopId = session.metadata?.workshop_id;
-                userId = session.metadata?.user_id;
-                sessionId = session.id;
-            
-            }
+            const session = event.data.object as Stripe.Checkout.Session;
+            const workshopId = session.metadata?.workshop_id;
+            const userId = session.metadata?.user_id;
+            const sessionId = session.id;
 
             if(workshopId && userId){
 
-                // Look for existing in progress booking
+                // Look for matching in progress booking
                 const { data: existingBooking, error: existingBookingError } = await supabase
                     .from("bookings")
-                    .select("session_id")
+                    .select("*")
                     .match({
                         workshop_id: workshopId,
                         user_id: userId,
-                        status: "in progress"
-                    });
+                        status: "in progress",
+                        session_id: sessionId
+                    })
+                    .limit(1) as { data: Booking[] | null, error: PostgrestError | null};
 
                 if(existingBookingError){
 
@@ -109,8 +110,8 @@ export async function POST(req: NextRequest){
 
                 }
 
-                // If the existing booking's session_id is the current session.id, find matching "in progress" booking and delete it
-                if(existingBooking && existingBooking.length > 0 && (!sessionId || existingBooking[0].session_id === sessionId)){
+                // If the existing booking exists and has matching session ID, delete the booking
+                if(existingBooking && existingBooking.length > 0){
 
                     const { error } = await supabase
                         .from("bookings")
