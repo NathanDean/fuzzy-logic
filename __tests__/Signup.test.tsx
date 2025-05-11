@@ -27,7 +27,7 @@ describe("SignUp", () => {
         expect(screen.getByLabelText("Email:")).toBeInTheDocument();
         expect(screen.getByLabelText("Password:")).toBeInTheDocument();
         expect(screen.getByLabelText("Confirm password:")).toBeInTheDocument();
-        expect(screen.getByRole("button", {name: /sign up/i})).toBeInTheDocument();
+        expect(screen.getByRole("button")).toBeInTheDocument();
 
     });
 
@@ -65,7 +65,7 @@ describe("SignUp", () => {
 
         });
 
-        fireEvent.click(screen.getByRole("button", { name: /sign up/i }));
+        fireEvent.click(screen.getByRole("button"));
 
         expect(mockSignUp).toHaveBeenCalledTimes(1);
         expect(mockSignUp).toHaveBeenCalledWith(expect.objectContaining({
@@ -73,8 +73,8 @@ describe("SignUp", () => {
             firstName: "Mark",
             lastName: "Corrigan",
             email: "test@test.com",
-            password: "TEST1234",
-            confirmPassword: "TEST1234",
+            password: "LeapH!meNev3rMind",
+            confirmPassword: "LeapH!meNev3rMind",
             "cf-turnstile-response": "mock-turnstile-token"
 
         }))

@@ -10,6 +10,50 @@ jest.mock("@/contexts/AuthContext", () => ({
   
 }));
 
+// Supabase client mock
+jest.mock("@/utils/supabase/supabaseClient", () => ({
+
+        from: jest.fn(() => ({
+
+            select: jest.fn().mockResolvedValue({
+
+                data: [
+
+                    {
+
+                        id: "test-id",
+                        created_at: "2025-05-10 22:37:58.966912+00",
+                        workshop_id: "test-workshop-id",
+                        user_id: "test-user-id",
+                        status: "confirmed",
+                        session_id: "test-session-id",
+                        workshop: {
+                            id: "test-workshop-id",
+                            created_at: "2025-05-09 22:37:58.966912+00",
+                            class_name: "Intro to testing",
+                            date: "2025-06-04",
+                            start_time: "19:00:00",
+                            end_time: "22:00:00",
+                            venue: "Test Theatre",
+                            price: 100,
+                            max_places_available: 12,
+                            description: "Lorem ipsum"
+                        }
+
+                    },
+
+                ],
+
+                error: null
+
+            })
+
+        }))
+
+    }
+
+))
+
 describe("Account", () => {
 
     beforeEach(() => {
