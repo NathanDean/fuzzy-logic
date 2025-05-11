@@ -55,13 +55,13 @@ describe("SignUp", () => {
 
         fireEvent.change(screen.getByLabelText("Password:"), {
 
-            target: { value: "TEST1234" }
+            target: { value: "LeapH!meNev3rMind" }
 
         });
 
         fireEvent.change(screen.getByLabelText("Confirm password:"), {
 
-            target: { value: "TEST1234" }
+            target: { value: "LeapH!meNev3rMind" }
 
         });
 
