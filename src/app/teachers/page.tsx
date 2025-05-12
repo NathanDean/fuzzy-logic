@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import supabase from "@/utils/supabase/supabaseClient";
-import { oi, outfit } from "@/lib/fonts";
+import { sigmar, outfit } from "@/lib/fonts";
 
 interface TeamMember {
 
@@ -59,7 +59,7 @@ export default function Teachers(){
 
       {loading ? (
 
-        <h1 className = {`${oi.className} text-5xl`}>loading...</h1>
+        <h1 className = {`${sigmar.className} text-5xl`}>loading...</h1>
 
       ) : (
       

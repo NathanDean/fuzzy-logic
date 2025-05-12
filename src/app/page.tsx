@@ -1,8 +1,7 @@
-import { Oi } from "next/font/google";
+import { Sigmar } from "next/font/google";
 
-const oi = Oi({
+const sigmar = Sigmar({
   weight: "400",
-  variable: "--font-oi",
   subsets: ["latin"]
 });
 
@@ -12,7 +11,7 @@ export default function Home() {
 
     <div className = "flex flex-col h-full items-center justify-center">
 
-      <h1 className = {`${oi.className} text-6xl text-center px-1`}>
+      <h1 className = {`${sigmar.className} text-8xl text-center px-1`}>
         
         fuzzy logic
       

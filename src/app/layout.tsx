@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { oi } from "@/lib/fonts";
+import { sigmar } from "@/lib/fonts";
 import Header from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
   
     <html lang="en">
       
-      <body className={`${oi.variable} antialiased flex flex-col h-screen`}>
+      <body className={`${sigmar} antialiased flex flex-col h-screen`}>
 
         <AuthProvider>
         

@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Oi, Outfit } from "next/font/google";
+import { Sigmar, Outfit } from "next/font/google";
 
-export const oi = Oi({
+const sigmar = Sigmar({
   weight: "400",
-  variable: "--font-oi",
   subsets: ["latin"]
 });
+
 
 export const outfit = Outfit({
   weight: "variable",
@@ -70,7 +70,7 @@ export default function Header(){
       <div className = "px-6 flex justify-between items-center">
 
         {/* Logo */}
-        <Link href = "/" className = {`${oi.className} text-2xl`}  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
+        <Link href = "/" className = {`${sigmar.className} text-3xl`}  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
         {/* Full nav menu */}
         <nav className = {`${outfit.className} hidden sm:flex space-x-6 text-xl tracking-wider`}>
@@ -146,7 +146,7 @@ export default function Header(){
 
             <div className = "flex justify-between items-center">
             
-              <Link href = "/" className = {`${oi.className} text-2xl`}  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
+              <Link href = "/" className = {`${sigmar.className} text-2xl`}  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
               <button className = "sm:hidden" onClick = {toggleMenu} aria-label = "Toggle menu">
 

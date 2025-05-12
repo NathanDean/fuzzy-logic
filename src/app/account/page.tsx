@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
-import { oi, outfit } from "@/lib/fonts";
+import { sigmar, outfit } from "@/lib/fonts";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 
@@ -123,7 +123,7 @@ export default function Account(){
 
       {isLoading ? (
 
-        <h1 className = {`${oi.className} text-5xl`}>loading...</h1>
+        <h1 className = {`${sigmar.className} text-5xl`}>loading...</h1>
 
       ) : (
       
@@ -138,7 +138,7 @@ export default function Account(){
 
                 {isSupabaseLoading ? (
 
-                  <h1 className = {`${oi.className} text-5xl`}>loading...</h1>
+                  <h1 className = {`${sigmar.className} text-5xl`}>loading...</h1>
 
                 ) : (
 

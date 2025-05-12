@@ -6,7 +6,7 @@ import supabase from "@/utils/supabase/supabaseClient";
 import { createCheckoutSession } from "../actions/stripe";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { oi, outfit } from "@/lib/fonts";
+import { sigmar, outfit } from "@/lib/fonts";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
@@ -110,7 +110,7 @@ export default function Workshops(){
 
       {loading ? (
 
-        <h1 className = {`${oi.className} text-5xl`}>loading...</h1>
+        <h1 className = {`${sigmar.className} text-5xl`}>loading...</h1>
 
       ) : (
       
