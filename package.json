@@ -23,7 +23,7 @@
     "@zxcvbn-ts/language-en": "^3.0.2",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.5.0",
-    "next": "15.2.1",
+    "next": "^15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "stripe": "^18.0.0",
