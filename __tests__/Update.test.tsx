@@ -24,33 +24,81 @@ describe("Update", () => {
 
         expect(screen.getByLabelText("New password:")).toBeInTheDocument();
         expect(screen.getByLabelText("Confirm new password:")).toBeInTheDocument();
-        expect(screen.getByRole("button", {name: /update password/i})).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
 
     });
 
-    it("submits form with correct values when clicking reset password", () => {
+    it("disables submit button when user enters weak password", () => {
 
         render(<UpdatePassword />);
-        
+
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+
         fireEvent.change(screen.getByLabelText("New password:"), {
 
-            target: { value: "TEST1234" }
+            target: { value: "p@ssword" }
 
         });
 
         fireEvent.change(screen.getByLabelText("Confirm new password:"), {
 
-            target: { value: "TEST1234" }
+            target: { value: "p@ssword" }
+
+        });
+        
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+
+    })
+
+    it("enables submit button when user enters strong password", () => {
+
+        render(<UpdatePassword />);
+
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+
+        fireEvent.change(screen.getByLabelText("New password:"), {
+
+            target: { value: "LeapH!meNev3rMind" }
 
         });
 
-        fireEvent.click(screen.getByRole("button", { name: /update password/i }));
+        fireEvent.change(screen.getByLabelText("Confirm new password:"), {
+
+            target: { value: "LeapH!meNev3rMind" }
+
+        });
+        
+        expect(screen.getByRole("button", { name: "Update password" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Update password" })).toBeEnabled();
+
+    })
+
+    it("submits form with correct values when user clicks reset password", () => {
+
+        render(<UpdatePassword />);
+        
+        fireEvent.change(screen.getByLabelText("New password:"), {
+
+            target: { value: "LeapH!meNev3rMind" }
+
+        });
+
+        fireEvent.change(screen.getByLabelText("Confirm new password:"), {
+
+            target: { value: "LeapH!meNev3rMind" }
+
+        });
+
+        fireEvent.click(screen.getByRole("button"), { name: "Update password" });
 
         expect(mockUpdate).toHaveBeenCalledTimes(1);
         expect(mockUpdate).toHaveBeenCalledWith(expect.objectContaining({
 
-            password: "TEST1234",
-            confirmPassword: "TEST1234"
+            password: "LeapH!meNev3rMind",
+            confirmPassword: "LeapH!meNev3rMind"
 
         }))
 

@@ -27,9 +27,57 @@ describe("SignUp", () => {
         expect(screen.getByLabelText("Email:")).toBeInTheDocument();
         expect(screen.getByLabelText("Password:")).toBeInTheDocument();
         expect(screen.getByLabelText("Confirm password:")).toBeInTheDocument();
-        expect(screen.getByRole("button")).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
 
     });
+    
+    it("disables submit button when user enters weak password", () => {
+
+        render(<SignUpPage />);
+
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+
+        fireEvent.change(screen.getByLabelText("Password:"), {
+
+            target: { value: "p@ssword" }
+
+        });
+
+        fireEvent.change(screen.getByLabelText("Confirm password:"), {
+
+            target: { value: "p@ssword" }
+
+        });
+        
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+
+    })
+
+    it("enables submit button when user enters strong password", () => {
+
+        render(<SignUpPage />);
+
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+
+        fireEvent.change(screen.getByLabelText("Password:"), {
+
+            target: { value: "LeapH!meNev3rMind" }
+
+        });
+
+        fireEvent.change(screen.getByLabelText("Confirm password:"), {
+
+            target: { value: "LeapH!meNev3rMind" }
+
+        });
+        
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeEnabled();
+
+    })
 
     it("submits form with correct values when clicking sign up", () => {
 
