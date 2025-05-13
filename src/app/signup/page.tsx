@@ -22,7 +22,7 @@ zxcvbnOptions.setOptions({
 export default function SignUpPage() {
 
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
-    const [password, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
   const [passwordFeedback, setPasswordFeedback] = useState<string>("");
 

@@ -147,7 +147,7 @@ export default function Account(){
                     {bookings.map((booking) => (
 
                       booking.workshop ? (
-                        <li key = {booking.workshop.id}>
+                        <li key = {booking.id}>
                           {booking.workshop.class_name} - {dayjs(`${booking.workshop.date} ${booking.workshop.start_time}`).format("ha on ddd Do MMM")} at {booking.workshop.venue}
                         </li>
                       ) : null
