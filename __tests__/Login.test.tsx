@@ -24,7 +24,7 @@ describe("Login", () => {
 
         expect(screen.getByLabelText("Email:")).toBeInTheDocument();
         expect(screen.getByLabelText("Password:")).toBeInTheDocument();
-        expect(screen.getByRole("button", {name: /log in/i})).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Log in" })).toBeInTheDocument();
 
     });
 
@@ -44,7 +44,7 @@ describe("Login", () => {
 
         });
 
-        fireEvent.click(screen.getByRole("button", { name: /log in/i }));
+        fireEvent.click(screen.getByRole("button", { name: "Log in" }));
 
         expect(mockLogin).toHaveBeenCalledTimes(1);
         expect(mockLogin).toHaveBeenCalledWith(expect.objectContaining({

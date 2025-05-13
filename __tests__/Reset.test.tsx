@@ -23,7 +23,7 @@ describe("Reset", () => {
         render(<ResetPassword />);
 
         expect(screen.getByLabelText("Email:")).toBeInTheDocument();
-        expect(screen.getByRole("button", {name: /reset password/i})).toBeInTheDocument();
+        expect(screen.getByRole("button", {name: "Reset password" })).toBeInTheDocument();
 
     });
 
@@ -37,7 +37,7 @@ describe("Reset", () => {
 
         });
 
-        fireEvent.click(screen.getByRole("button", { name: /reset password/i }));
+        fireEvent.click(screen.getByRole("button", { name: "Reset password" }));
 
         expect(mockReset).toHaveBeenCalledTimes(1);
         expect(mockReset).toHaveBeenCalledWith(expect.objectContaining({

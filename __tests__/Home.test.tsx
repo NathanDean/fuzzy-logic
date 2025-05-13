@@ -8,9 +8,7 @@ describe("Home", () => {
 
     render(<Page />);
  
-    const heading = screen.getByRole("heading");
- 
-    expect(heading).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "fuzzy logic" })).toBeInTheDocument();
 
   });
 
