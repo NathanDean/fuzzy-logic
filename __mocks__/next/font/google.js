@@ -17,6 +17,7 @@ const createFontMock = () => {
   // Create mocks for each font
 module.exports = {
   Oi: createFontMock,
-  Outfit: createFontMock
+  Outfit: createFontMock,
+  Sigmar: createFontMock
   // Add other fonts as needed
 };
