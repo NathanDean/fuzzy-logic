@@ -127,6 +127,8 @@ describe("Account", () => {
         expect(screen.getByText("Account")).toBeInTheDocument();
         expect(screen.getByText("Name: Mark Corrigan")).toBeInTheDocument();
         expect(screen.getByText("Email: m.corrigan@jlb-credit.com")).toBeInTheDocument();
+        expect(screen.getByText("Upcoming workshops:")).toBeInTheDocument();
+        expect(screen.getByRole("list")).toBeInTheDocument();
 
     });
 
