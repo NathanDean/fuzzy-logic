@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
-import { sigmar, outfit } from "@/lib/fonts";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 
@@ -123,22 +122,22 @@ export default function Account(){
 
       {isLoading ? (
 
-        <h1 className = {`${sigmar.className} text-5xl`}>loading...</h1>
+        <h1 className = "text-5xl">loading...</h1>
 
       ) : (
       
-        <div className = {`${outfit.className} flex justify-center`}>
+        <div className = "flex justify-center">
 
             <div className = "p-2 bg-white shadow-xl">
 
-                <h1 className = "text-3xl font-medium">Account</h1>
+                <h3 className = "text-3xl font-medium">Account</h3>
                 <p>Name: {metadata?.first_name} {metadata?.last_name}</p>
                 <p>Email: {user?.email}</p>
                 <p>Upcoming workshops:</p>
 
                 {isSupabaseLoading ? (
 
-                  <h1 className = {`${sigmar.className} text-5xl`}>loading...</h1>
+                  <h1 className = "text-5xl">loading...</h1>
 
                 ) : (
 

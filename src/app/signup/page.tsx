@@ -7,7 +7,6 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
 import { useEffect, useState } from "react";
-import { outfit } from "@/lib/fonts";
 
 zxcvbnOptions.setOptions({
   
@@ -69,24 +68,24 @@ export default function SignUpPage() {
 
   return (
 
-    <div className = {`${outfit.className} text-lg flex flex-col items-center`}>
+    <div className = "text-lg flex flex-col items-center">
 
       <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {signup}>
 
         <label htmlFor="firstName">First name:</label>
-        <input className = "w-full my-2 p-2 border rounded-sm" id="firstName" name="firstName" type="text" required />
+        <input id="firstName" name="firstName" type="text" required />
 
         <label htmlFor="lastName">Last name:</label>
-        <input className = "w-full my-2 p-2 border rounded-sm" id="lastName" name="lastName" type="text" required />
+        <input id="lastName" name="lastName" type="text" required />
         
         <label htmlFor="email">Email:</label>
-        <input className = "w-full my-2 p-2 border rounded-sm" id="email" name="email" type="email" required />
+        <input id="email" name="email" type="email" required />
 
         <label htmlFor="password">Password:</label>
-        <input className = "w-full my-2 p-2 border rounded-sm" id="password" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <input id="password" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
         <label htmlFor="confirmPassword">Confirm password:</label>
-        <input className = "w-full mt-2 mb-4 p-2 border rounded-sm" id="confirmPassword" name="confirmPassword" type="password" required />
+        <input id="confirmPassword" name="confirmPassword" type="password" required />
 
         {password && (
           <div className="w-full mb-2">

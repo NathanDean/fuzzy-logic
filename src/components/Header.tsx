@@ -75,9 +75,9 @@ export default function Header(){
         {/* Full nav menu */}
         <nav className = {`${outfit.className} hidden sm:flex space-x-6 text-xl tracking-wider`}>
           
-          <Link href = "/workshops" className = "hover:text-blue-500 transition">Workshops</Link>
+          <Link href = "/workshops">Workshops</Link>
           
-          <Link href = "/teachers" className = "hover:text-blue-500 transition">Teachers</Link>
+          <Link href = "/teachers">Teachers</Link>
 
           {
 
@@ -85,7 +85,7 @@ export default function Header(){
 
               <>
 
-                <Link href = "/account" className = "hover:text-blue-500 transition">Account</Link>
+                <Link href = "/account">Account</Link>
 
                 <button onClick={handleLogout} className="hover:text-blue-500 transition">Logout</button>
 
@@ -93,7 +93,7 @@ export default function Header(){
 
             ) : (
 
-              <Link href = "/login" className = "hover:text-blue-500 transition">Login</Link>
+              <Link href = "/login">Login</Link>
 
             )
 
@@ -180,9 +180,9 @@ export default function Header(){
 
           <nav className = {`${outfit.className} flex flex-col justify-center h-1/2 space-y-6 text-xl tracking-wider`}>
 
-            <Link href = "/workshops" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
+            <Link href = "/workshops" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
 
-            <Link href = "/teachers" className = "hover:text-blue-500 transition text-center text-3xl" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
+            <Link href = "/teachers" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
 
             {
 
@@ -190,15 +190,15 @@ export default function Header(){
 
                 <>
                 
-                  <Link href = "/account" className = "mt-4 hover:text-blue-500 transition text-center text-3xl">Account</Link>
+                  <Link href = "/account" className = "mt-4 text-center">Account</Link>
 
-                  <button onClick={handleLogout} className="hover:text-blue-500 transition text-center text-3xl">Logout</button>
+                  <button onClick={handleLogout} className="text-center">Logout</button>
 
                 </>
 
               ) : (
 
-                <Link href = "/login" className = "hover:text-blue-500 transition text-center text-3xl">Login</Link>
+                <Link href = "/login" className = "text-center">Login</Link>
 
               )
 

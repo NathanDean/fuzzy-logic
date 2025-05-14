@@ -11,8 +11,6 @@ import { useEffect, useState } from "react";
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
 
-import { outfit } from "@/lib/fonts";
-
 zxcvbnOptions.setOptions({
   
   dictionary: {
@@ -26,7 +24,7 @@ zxcvbnOptions.setOptions({
 export default function UpdatePassword() {
 
   const { user, isLoading } = useAuth();
-      const [password, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
   const [passwordFeedback, setPasswordFeedback] = useState<string>("");
   const router = useRouter();
@@ -83,15 +81,15 @@ export default function UpdatePassword() {
 
     <>
     
-      <div className = {`${outfit.className} text-lg flex flex-col items-center`}>
+      <div className = "text-lg flex flex-col items-center">
 
         <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {updatePassword}>
 
           <label htmlFor="password">New password:</label>
-          <input className = "w-full my-2 p-2 border rounded-sm" id="password" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+          <input id="password" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
 
           <label htmlFor="confirmPassword">Confirm new password:</label>
-          <input className = "w-full mt-2 p-2 mb-4 border rounded-sm" id="confirmPassword" name="confirmPassword" type="password" required />
+          <input id="confirmPassword" name="confirmPassword" type="password" required />
 
           {password && (
             <div className="w-full mb-2">

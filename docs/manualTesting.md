@@ -70,3 +70,122 @@
 
 ### Expect: No booking to be created for second user
 - Passed
+
+
+# Auth
+
+## Describes: User attempts to submit signup form with missing field
+
+### Expect: Form to not submitted
+- TBC
+
+### Expect: User to be prompted to fill in missing field
+- TBC
+
+
+## Describes: User attempts to sign up with email address already associated with an account
+
+### Expect: Form to not be submitted
+- TBC
+
+### Expect: User to see message telling them that email address is already associated with an account
+- TBC
+
+
+## Describes: User attempts to submit signup form with mismatched passwords
+
+### Expect: Form to not submitted
+- TBC
+
+### Expect: User to be prompted to match passwords
+- TBC
+
+
+## Describes: User attempts to submit signup form with full details including new email address and matching passwords
+
+### Expect: Form to be submitted
+- TBC
+
+### Expect: User to be prompted to confirm email address
+- TBC
+
+
+## Describes: User attempts to submit login form with missing field
+
+### Expect: Form to not submitted
+- TBC
+
+### Expect: User to be prompted to fill in missing field
+- TBC
+
+
+## Describes: User attempts to submit login form with incorrect details
+
+### Expect: Form to not submitted
+- TBC
+
+### Expect: User to be prompted to enter correct details
+- TBC
+
+
+## Describes: User attempts to submit login form with correct details
+
+### Expect: Form to be submitted
+- TBC
+
+### Expect: User to be successfully logged in
+- TBC
+
+### Expect: User to be redirected to Home page
+- TBC
+
+
+## Describes: User attempts to login from two different browseres simultaneously
+
+### Expect: Form to be submitted in each browser
+- TBC
+
+### Expect: User to be successfully logged in in each browser
+- TBC
+
+### Expect: User to be redirected to Home page in each browser
+- TBC
+
+
+## Describes: User attempts to submit reset password form with email address that does not match existing account
+
+### Expect: Form to not be submitted
+- TBC
+
+### Expect: User to be prompted to enter a matching email address
+- TBC
+
+
+## Describes: User attempts to submit reset password form with email address that matches existing account
+
+### Expect: Form to be submitted
+- TBC
+
+### Expect: User to be prompted to visit link in email
+- TBC
+
+
+## Describes: User attempts to submit update password form with mismatched passwords
+
+### Expect: Form to not submitted
+- TBC
+
+### Expect: User to be prompted to match passwords
+- TBC
+
+
+## Describes: User attempts to submit update password form with matching passwords
+
+### Expect: Form to be submitted
+- TBC
+
+### Expect: User to see message confirming password updated
+- TBC
+
+### Expect: User to be redirected to Home page
+- TBC

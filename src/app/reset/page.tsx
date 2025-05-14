@@ -8,8 +8,6 @@ import { Turnstile } from "@marsidev/react-turnstile";
 
 import { useState } from "react";
 
-import { outfit } from "@/lib/fonts";
-
 export default function ResetPassword() {
 
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
@@ -18,12 +16,12 @@ export default function ResetPassword() {
 
     <>
     
-      <div className = {`${outfit.className} text-lg flex flex-col items-center`}>
+      <div className = "text-lg flex flex-col items-center">
 
         <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {resetPassword}>
 
           <label htmlFor="email">Email:</label>
-          <input className = "w-full my-2 p-2 border rounded-sm" id="email" name="email" type="email" required />
+          <input id="email" name="email" type="email" required />
 
           <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
 

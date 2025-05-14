@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import supabase from "@/utils/supabase/supabaseClient";
-import { sigmar, outfit } from "@/lib/fonts";
 
 interface TeamMember {
 
@@ -59,7 +58,7 @@ export default function Teachers(){
 
       {loading ? (
 
-        <h1 className = {`${sigmar.className} text-5xl`}>loading...</h1>
+        <h1 className = "text-5xl">loading...</h1>
 
       ) : (
       
@@ -73,9 +72,9 @@ export default function Teachers(){
 
               <div className = "p-6">
                 
-                <h2 className = {`${outfit.className} text-2xl font-medium`}>{teamMember.name}</h2>
+                <h2 className = "font-medium">{teamMember.name}</h2>
                 
-                <div className = {`${outfit.className}`}>
+                <div>
 
                   <p className = "py-2">{teamMember.bio}</p>
                 
