@@ -28,7 +28,7 @@
   }
 
   h2 {
-    @apply text-5xl
+    @apply text-5xl font-medium
   }
 
   h3 {

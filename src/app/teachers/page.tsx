@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import supabase from "@/utils/supabase/supabaseClient";
 import Loading from "@/components/Loading";
+import PersonCard from "@/components/PersonCard";
 
-interface TeamMember {
+interface Person {
 
     id: number,
     created_at: string,
@@ -12,11 +13,11 @@ interface TeamMember {
     name: string,
     bio: string
   
-  }
+}
 
 export default function Teachers(){
 
-    const [team, setTeam] = useState<TeamMember[]>([]);
+    const [people, setPeople] = useState<Person[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export default function Teachers(){
             }
     
             if(data){
-              setTeam(data);
+              setPeople(data);
             }
     
           } catch(error){
@@ -65,25 +66,9 @@ export default function Teachers(){
       
         <div className = "flex flex-wrap gap-8 max-w-screen-xl justify-center">
 
-          {team.map((teamMember) => (
+          {people.map((person) => (
 
-            <div key = {teamMember.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden max-w-150">
-
-            <img src = "/default-team-member-image.jpg" alt = {`${teamMember.name}`} className = "w-full h-75 object-cover" />
-
-              <div className = "p-6">
-                
-                <h2 className = "font-medium">{teamMember.name}</h2>
-                
-                <div>
-
-                  <p className = "py-2">{teamMember.bio}</p>
-                
-                </div>
-
-              </div>
-
-            </div>
+            <PersonCard key = {person.id} person = {person} />
 
           ))}
 

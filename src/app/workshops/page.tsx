@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import supabase from "@/utils/supabase/supabaseClient";
 import { createCheckoutSession } from "../actions/stripe";
@@ -11,6 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
 import Loading from "@/components/Loading";
+import WorkshopCard from "@/components/WorkshopCard";
 
 dayjs.extend(advancedFormat);
 
@@ -39,10 +39,12 @@ export default function Workshops(){
 
   useEffect(() => {
 
+    // Get workshops from Supabase
     async function fetchWorkshops(){
 
       try {
 
+        // Get workshops
         const { data, error } = await supabase
           .from("workshops")
           .select("*, bookings:bookings(count)");
@@ -53,6 +55,7 @@ export default function Workshops(){
 
         if(data){
 
+          // Add no. of bookings to each workshop
           const workshopsWithCount = data.map(workshop => ({
             ...workshop,
             bookings: (workshop.bookings?.[0]?.count || 0)
@@ -119,36 +122,7 @@ export default function Workshops(){
 
           {workshops.map((workshop) => (
 
-            <div key = {workshop.id} className = "bg-white rounded-2xl shadow-xl overflow-hidden max-w-100">
-
-            <img src = "/default-workshop-image.jpg" alt = "Workshop image" className = "w-full h-48 object-cover" />
-
-              <div className = "p-6">
-                
-                <h2 className = "font-medium">{workshop.class_name}</h2>
-                
-                <div>
-
-                  <p className = "py-2">{dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")}</p>
-                  <p>{workshop.venue}</p>
-                
-                </div>
-
-                <div className = "flex flex-col sm:flex-row gap-3 mt-4">
-                
-                  <button className = {`btn ${workshop.max_places_available - workshop.bookings > 0 ? "btn-primary" : "btn-disabled"} rounded-md p-2 transition-all`} onClick = {() => handleBookNow(workshop.id)} disabled = {
-
-                    workshop.max_places_available - workshop.bookings > 0 ? false : true
-
-                  }>{workshop.max_places_available - workshop.bookings > 0 ? "Book now" : "Sold out"}</button>
-
-                  <Link href = {`workshops/${workshop.id}`} className = "btn btn-primary">More info</Link>
-
-                </div>
-
-              </div>
-
-            </div>
+            <WorkshopCard key = {workshop.id} workshop = {workshop} onBookNow = {handleBookNow} showFullInfo = {false} />
 
           ))}
 

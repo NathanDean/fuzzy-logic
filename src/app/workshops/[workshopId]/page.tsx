@@ -1,8 +1,21 @@
 import { createClient } from "@/utils/supabase/server";
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
+import WorkshopDetailsClientWrapper from "../WorkshopDetailsClientWrapper";
 
-dayjs.extend(advancedFormat);
+interface Workshop {
+
+    id: string,
+    created_at: string,
+    class_name: string,
+    date: string,
+    start_time: string,
+    end_time: string,
+    venue: string,
+    price: number,
+    max_places_available: number,
+    description: string,
+    bookings: number
+
+}
 
 export default async function WorkshopDetails({params}: {params: Promise<{ workshopId: string }>}){
 
@@ -10,39 +23,26 @@ export default async function WorkshopDetails({params}: {params: Promise<{ works
 
   const supabase = await createClient();
 
-  const { data: workshop, error } = await supabase
+  const { data: workshopData, error } = await supabase
     .from("workshops")
-    .select("*")
+    .select("*, bookings:bookings(count)")
     .eq("id", workshopId)
+    .limit(1)
     .single();
 
-  if(error){
+  if(error || !workshopData){
 
     return <div>Workshop not found</div>;
 
   }
 
+  const workshop: Workshop = {...workshopData, bookings: (workshopData.bookings?.[0]?.count || 0)};
+
   return (
 
     <div className = "flex flex-col h-full items-center justify-center">
 
-        <div className = "w-1/4 bg-white rounded-2xl shadow-xl overflow-hidden">
-
-            <img src = "/default-workshop-image.jpg" alt = "Workshop image" className = "w-full h-48 object-cover" />
-
-            <div className = "flex flex-col items-center justify-center p-6">
-                
-                <h1>{workshop.class_name}</h1>
-                <h2>{dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")}</h2>
-                <h2>{workshop.venue}</h2>
-
-                <p className = "pb-2">{workshop.description}</p>
-
-                <button className = "btn btn-primary" >Book now</button>
-
-            </div>
-
-        </div>
+      <WorkshopDetailsClientWrapper workshop = {workshop} />
 
     </div>
 
