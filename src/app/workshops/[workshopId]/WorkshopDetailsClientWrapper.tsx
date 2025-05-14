@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext"
 import { useRouter } from "next/navigation"
-import { createCheckoutSession } from "../actions/stripe"
+import { createCheckoutSession } from "../../actions/stripe"
 import WorkshopCard from "@/components/WorkshopCard"
 
 interface Workshop {

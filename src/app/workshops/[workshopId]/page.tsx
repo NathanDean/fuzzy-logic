@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import WorkshopDetailsClientWrapper from "../WorkshopDetailsClientWrapper";
+import WorkshopDetailsClientWrapper from "./WorkshopDetailsClientWrapper";
 
 interface Workshop {
 
