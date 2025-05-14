@@ -1,13 +1,8 @@
-export default function Cancel () {
+import { sigmar } from "@/lib/fonts"
 
-    return (
+export default function Cancel () {
     
-        <div className = "flex flex-col h-full items-center justify-center">
-    
-            <h1>Booking cancelled.</h1>
-    
-        </div>
-    
-    )
+    return <p className = {`${sigmar.className} text-5xl`}>Booking cancelled</p >
+
         
 }
