@@ -38,14 +38,6 @@ export default async function WorkshopDetails({params}: {params: Promise<{ works
 
   const workshop: Workshop = {...workshopData, bookings: (workshopData.bookings?.[0]?.count || 0)};
 
-  return (
-
-    <div className = "flex flex-col h-full items-center justify-center">
-
-      <WorkshopDetailsClientWrapper workshop = {workshop} />
-
-    </div>
-
-  )
+  return <WorkshopDetailsClientWrapper workshop = {workshop} />
 
 }

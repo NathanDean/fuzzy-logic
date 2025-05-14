@@ -79,10 +79,6 @@ export default function UpdatePassword() {
 
   return (
 
-    <>
-    
-      <div className = "text-lg flex flex-col items-center">
-
         <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {updatePassword}>
 
           <label htmlFor="password">New password:</label>
@@ -119,15 +115,13 @@ export default function UpdatePassword() {
             
             {passwordStrength < 3 
               ? "Password too weak" 
-              : "Update password"}</button>
+              : "Update password"}
+              
+          </button>
 
           <Link href = "/signup">New to Fuzzy Logic?  Sign up here.</Link>
 
         </Form>
-
-      </div>
-
-    </>
 
   )
 

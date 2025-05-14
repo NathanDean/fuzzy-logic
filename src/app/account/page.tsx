@@ -120,7 +120,7 @@ export default function Account(){
 
   return(
 
-    <div className = "flex flex-col h-full items-center justify-center">
+    <>
 
       {isLoading ? (
 
@@ -128,11 +128,11 @@ export default function Account(){
 
       ) : (
       
-        <div className = "flex justify-center">
+        <div>
 
             <div className = "p-2 bg-white shadow-xl">
 
-                <h3 className = "text-3xl font-medium">Account</h3>
+                <h3>Account</h3>
                 <p>Name: {metadata?.first_name} {metadata?.last_name}</p>
                 <p>Email: {user?.email}</p>
                 <p>Upcoming workshops:</p>
@@ -166,7 +166,7 @@ export default function Account(){
 
       )}
 
-    </div>
+    </>
 
   )
 

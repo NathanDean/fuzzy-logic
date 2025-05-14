@@ -68,8 +68,6 @@ export default function SignUpPage() {
 
   return (
 
-    <div className = "text-lg flex flex-col items-center">
-
       <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {signup}>
 
         <label htmlFor="firstName">First name:</label>
@@ -88,6 +86,7 @@ export default function SignUpPage() {
         <input id="confirmPassword" name="confirmPassword" type="password" required />
 
         {password && (
+          
           <div className="w-full mb-2">
             
             <div className="flex justify-between mb-1">
@@ -124,8 +123,6 @@ export default function SignUpPage() {
         <Link href = "/login">Already have an account?  Log in here.</Link>
 
       </Form>
-
-    </div>
 
   )
 

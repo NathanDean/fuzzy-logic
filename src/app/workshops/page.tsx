@@ -110,7 +110,7 @@ export default function Workshops(){
 
   return(
 
-    <div className = "flex flex-col h-full items-center justify-center">
+    <>
 
       {loading ? (
 
@@ -130,7 +130,7 @@ export default function Workshops(){
 
       )}
 
-    </div>
+    </>
 
   )
 

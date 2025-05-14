@@ -14,10 +14,6 @@ export default function ResetPassword() {
   
   return (
 
-    <>
-    
-      <div className = "text-lg flex flex-col items-center">
-
         <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {resetPassword}>
 
           <label htmlFor="email">Email:</label>
@@ -30,10 +26,6 @@ export default function ResetPassword() {
           <Link href = "/signup">New to Fuzzy Logic?  Sign up here.</Link>
 
         </Form>
-
-      </div>
-
-    </>
 
   )
 

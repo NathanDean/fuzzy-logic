@@ -28,8 +28,6 @@ export default function LoginPage() {
   return (
 
     <>
-    
-      <div className = "text-lg flex flex-col items-center">
 
         <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {handleSubmit}>
 
@@ -52,8 +50,6 @@ export default function LoginPage() {
 
 
         </Form>
-
-      </div>
 
     </>
 
