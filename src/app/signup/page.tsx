@@ -113,7 +113,7 @@ export default function SignUpPage() {
 
         <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
 
-        <button className = "my-2 border rounded-sm w-full mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white disabled:bg-gray-500 disabled:border-gray-500 disabled:hover:bg-gray-500 disabled:text-white rounded-md p-2 transition-all" type = "submit" disabled = {isTurnstileLoading || passwordStrength < 3}>
+        <button className = {`btn ${isTurnstileLoading || passwordStrength < 3 ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || passwordStrength < 3}>
           
           {isTurnstileLoading 
             ? "Loading" 

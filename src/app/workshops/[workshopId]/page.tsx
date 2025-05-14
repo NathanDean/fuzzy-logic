@@ -38,7 +38,7 @@ export default async function WorkshopDetails({params}: {params: Promise<{ works
 
                 <p className = "pb-2">{workshop.description}</p>
 
-                <button className = "w-full sm:w-1/2 mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all" >Book now</button>
+                <button className = "btn btn-primary" >Book now</button>
 
             </div>
 

@@ -45,7 +45,7 @@ export default function LoginPage() {
 
           </div>
 
-          <button className = "my-2 border rounded-sm w-full mt-2 border border-gray-800 hover:bg-gray-800 hover:text-white rounded-md p-2 transition-all" type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Log in"}</button>
+          <button className = {`btn ${isTurnstileLoading ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Log in"}</button>
 
           <Link href = "/signup">New to Fuzzy Logic?  Sign up here.</Link>
           <Link href = "/reset">Reset your password.</Link>

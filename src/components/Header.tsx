@@ -70,7 +70,7 @@ export default function Header(){
       <div className = "px-6 flex justify-between items-center">
 
         {/* Logo */}
-        <Link href = "/" className = {`${sigmar.className} text-3xl`}  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
+        <Link href = "/" className = {`logo ${sigmar.className} text-3xl`} onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
         {/* Full nav menu */}
         <nav className = {`${outfit.className} hidden sm:flex space-x-6 text-xl tracking-wider`}>
