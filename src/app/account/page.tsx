@@ -8,6 +8,8 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 
 import supabase from "@/utils/supabase/supabaseClient"
 
+import Loading from "@/components/Loading";
+
 dayjs.extend(advancedFormat);
 
 interface Booking {
@@ -122,7 +124,7 @@ export default function Account(){
 
       {isLoading ? (
 
-        <h1 className = "text-5xl">loading...</h1>
+        <Loading />
 
       ) : (
       
@@ -137,7 +139,7 @@ export default function Account(){
 
                 {isSupabaseLoading ? (
 
-                  <h1 className = "text-5xl">loading...</h1>
+                  <Loading />
 
                 ) : (
 

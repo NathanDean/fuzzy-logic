@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import supabase from "@/utils/supabase/supabaseClient";
+import Loading from "@/components/Loading";
 
 interface TeamMember {
 
@@ -58,7 +59,7 @@ export default function Teachers(){
 
       {loading ? (
 
-        <h1 className = "text-5xl">loading...</h1>
+        <Loading />
 
       ) : (
       

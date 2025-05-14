@@ -10,6 +10,8 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
+import Loading from "@/components/Loading";
+
 dayjs.extend(advancedFormat);
 
 interface Workshop {
@@ -109,7 +111,7 @@ export default function Workshops(){
 
       {loading ? (
 
-        <h1>loading...</h1>
+        <Loading />
 
       ) : (
       
