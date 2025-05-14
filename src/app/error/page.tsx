@@ -2,6 +2,6 @@
 
 export default function ErrorPage() {
 
-  return <p>Sorry, something went wrong.</p>
+  return <h1 className = "notification">Sorry, something went wrong.</h1>
 
 }

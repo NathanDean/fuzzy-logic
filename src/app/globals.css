@@ -27,7 +27,11 @@
     @apply text-8xl mb-4
   }
 
-  h2 {
+  .notification {
+    font-family: var(--font-outfit);
+  }
+
+  h2, .notification {
     @apply text-5xl font-medium
   }
 
