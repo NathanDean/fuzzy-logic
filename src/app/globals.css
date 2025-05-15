@@ -27,16 +27,16 @@
     @apply text-8xl mb-4
   }
 
-  .notification {
+  .secondary {
     font-family: var(--font-outfit);
   }
 
-  h2, .notification {
-    @apply text-5xl font-medium
+  h2, .secondary {
+    @apply text-4xl font-medium
   }
 
   h3 {
-    @apply text-2xl
+    @apply text-xl font-medium
   }
 
   a {
@@ -45,6 +45,10 @@
 
   a.logo {
     @apply hover:text-inherit transition-none;
+  }
+
+  p, li {
+    @apply py-1
   }
 
 }

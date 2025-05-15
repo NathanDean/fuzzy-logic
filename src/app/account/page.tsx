@@ -9,6 +9,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 import supabase from "@/utils/supabase/supabaseClient"
 
 import Loading from "@/components/Loading";
+import Card from "@/components/Card";
 
 dayjs.extend(advancedFormat);
 
@@ -130,9 +131,9 @@ export default function Account(){
       
         <div>
 
-            <div className = "p-2 bg-white shadow-xl">
-
-                <h3>Account</h3>
+            <Card className = "p-6">
+                
+                <h1 className = "secondary">Account</h1>
                 <p>Name: {metadata?.first_name} {metadata?.last_name}</p>
                 <p>Email: {user?.email}</p>
                 <p>Upcoming workshops:</p>
@@ -159,7 +160,7 @@ export default function Account(){
 
                 )}
 
-            </div>
+            </Card>
 
 
         </div>
