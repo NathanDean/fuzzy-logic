@@ -21,6 +21,7 @@ export default function PersonCard({ person }: { person: Person }){
             <CardImage 
                 src = "default-team-member-image.jpg" 
                 alt = {person.name}
+                height = "lg"
              />
 
             <div className = "p-6">

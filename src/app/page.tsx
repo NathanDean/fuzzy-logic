@@ -10,6 +10,8 @@ export default function Home() {
       
       </h1>
 
+      <h3>an improv company</h3>
+
     </div>
   
   );

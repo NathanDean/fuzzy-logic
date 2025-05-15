@@ -4,13 +4,19 @@ interface CardImageProps {
 
     src: string,
     alt: string,
-    height?: number,
+    height?: "sm" | "md" | "lg",
     className?: string
 
 }
 
-export default function CardImage({ src, alt, height = 96, className = ""}: CardImageProps){
+export default function CardImage({ src, alt, height = "md", className = ""}: CardImageProps){
 
-    return <Image src = {`/${src}`} width = {500} height = {500} alt = {alt} className = {`${className} h-${height} object-cover`}  />
+    const heightClass = {
+        sm: "h-48",
+        md: "h-72", 
+        lg: "h-96"
+    }[height];
+
+    return <Image src = {`/${src}`} width = {500} height = {500} alt = {alt} className = {`${className} ${heightClass} object-cover`}  />
 
 }
