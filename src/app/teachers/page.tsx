@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import supabase from "@/utils/supabase/supabaseClient";
 import Loading from "@/components/Loading";
 import PersonCard from "@/components/PersonCard";
+import CardGrid from "@/components/CardGrid";
 
 interface Person {
 
@@ -64,7 +65,7 @@ export default function Teachers(){
 
       ) : (
       
-        <div className = "flex flex-wrap gap-8 max-w-screen-xl justify-center">
+        <CardGrid>
 
           {people.map((person) => (
 
@@ -72,7 +73,7 @@ export default function Teachers(){
 
           ))}
 
-        </div>
+        </CardGrid>
 
       )}
 

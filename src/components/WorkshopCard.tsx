@@ -42,7 +42,7 @@ export default function WorkshopCard({ workshop, onBookNow, showFullInfo}: Works
                 <CardImage 
                     src = "default-workshop-image.jpg" 
                     alt = "Workshop image" 
-                    height = {75}
+                    height = {72}
                     
                 />
 

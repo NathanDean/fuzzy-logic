@@ -10,6 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
 import Loading from "@/components/Loading";
+import CardGrid from "@/components/CardGrid";
 import WorkshopCard from "@/components/WorkshopCard";
 
 dayjs.extend(advancedFormat);
@@ -118,7 +119,7 @@ export default function Workshops(){
 
       ) : (
       
-        <div className = "flex flex-wrap gap-8 max-w-screen-xl justify-center">
+        <CardGrid>
 
           {workshops.map((workshop) => (
 
@@ -126,7 +127,7 @@ export default function Workshops(){
 
           ))}
 
-        </div>
+        </CardGrid>
 
       )}
 
