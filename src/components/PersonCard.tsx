@@ -1,5 +1,5 @@
-import Image from "next/image"
 import Card from "./Card"
+import CardImage from "./CardImage"
 
 interface Person {
 
@@ -18,7 +18,10 @@ export default function PersonCard({ person }: { person: Person }){
         <Card key = {person.id}>
 
             {/* Image */}
-            <Image src = "/default-team-member-image.jpg" width = "100" height = "100" alt = {`${person.name}`} className = "w-full h-75 object-cover" />
+            <CardImage 
+                src = "default-team-member-image.jpg" 
+                alt = {person.name}
+             />
 
             <div className = "p-6">
                 

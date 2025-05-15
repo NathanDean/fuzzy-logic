@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import Card from "./Card";
+import CardImage from "./CardImage";
 
 import dayjs from "dayjs";
 
@@ -39,12 +39,10 @@ export default function WorkshopCard({ workshop, onBookNow, showFullInfo}: Works
             <div className = "flex flex-col h-full">
             
                 {/* Image */}
-                <Image 
-                    className = "w-full h-48 object-cover" 
-                    src = "/default-workshop-image.jpg" 
-                    width = "100"
-                    height = "200"
+                <CardImage 
+                    src = "default-workshop-image.jpg" 
                     alt = "Workshop image" 
+                    height = {75}
                     
                 />
 
