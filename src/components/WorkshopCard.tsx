@@ -36,16 +36,22 @@ export default function WorkshopCard({ workshop, onBookNow, showFullInfo}: Works
 
         <Card>
 
-            <div className = "flex flex-col h-full">
+            <div className = {`flex flex-col ${showFullInfo && "md:flex-row"} h-full`}>
             
                 {/* Image */}
-                <CardImage 
-                    src = "default-workshop-image.jpg" 
-                    alt = "Workshop image"                     
-                />
+                
+                <div className = {`${showFullInfo && "md:max-h-64"}`}>
+                
+                    <CardImage 
+                        src = "default-workshop-image.jpg"
+                        alt = "Workshop image"
+                        showFullInfo = {showFullInfo}
+                    />
+
+                </div>
 
                 {/* Text content */}
-                <div className = "p-6 flex flex-col flex-grow">
+                <div className = {`p-6 flex flex-col flex-grow`}>
 
                     <div className = "flex-grow">
                     
@@ -54,11 +60,11 @@ export default function WorkshopCard({ workshop, onBookNow, showFullInfo}: Works
                         
                         {/* Date/time */}
                         <h3 className = "py-1">
-                            {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")}
+                            {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")} at {workshop.venue}
                         </h3>
                         
                         {/* Venue */}
-                        <h3 className = "py-1">{workshop.venue}</h3>
+                        <h3 className = "py-1">£{workshop.price}</h3>
 
                         {/* Description */}
                         {showFullInfo && <p className = "py-1">{workshop.description}</p>}

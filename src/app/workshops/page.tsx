@@ -119,7 +119,7 @@ export default function Workshops(){
 
       ) : (
       
-        <CardGrid>
+        <CardGrid cardWidth = "md" cols = {2}>
 
           {workshops.map((workshop) => (
 

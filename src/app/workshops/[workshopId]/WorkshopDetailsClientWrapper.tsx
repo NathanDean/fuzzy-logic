@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { useRouter } from "next/navigation"
 import { createCheckoutSession } from "../../actions/stripe"
 import WorkshopCard from "@/components/WorkshopCard"
+import CardGrid from "@/components/CardGrid"
 
 interface Workshop {
 
@@ -55,12 +56,16 @@ export default function WorkshopClientWrapper({ workshop }: { workshop: Workshop
 
     return (
 
-        <WorkshopCard
-            key = {workshop.id}
-            workshop = {workshop}
-            onBookNow = {handleBookNow}
-            showFullInfo = {true}
-        />
+        <CardGrid cardWidth = "xl" cols = {1}>
+        
+          <WorkshopCard
+              key = {workshop.id}
+              workshop = {workshop}
+              onBookNow = {handleBookNow}
+              showFullInfo = {true}
+          />
+
+        </CardGrid>
 
     )
     

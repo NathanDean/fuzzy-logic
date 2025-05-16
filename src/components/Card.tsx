@@ -11,7 +11,7 @@ export default function Card({ children, className = "" }: CardProps){
 
     return (
 
-        <div className = {`${className} bg-white rounded-2xl shadow-xl overflow-hidden max-w-100`}>{children}</div>
+        <div className = {`${className} bg-white rounded-2xl shadow-xl overflow-hidden`}>{children}</div>
 
     )
 
