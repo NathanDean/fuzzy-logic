@@ -3,13 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Sigmar, Outfit } from "next/font/google";
-
-const sigmar = Sigmar({
-  weight: "400",
-  subsets: ["latin"]
-});
-
+import { Outfit } from "next/font/google";
 
 export const outfit = Outfit({
   weight: "variable",
@@ -70,10 +64,10 @@ export default function Header(){
       <div className = "px-6 flex justify-between items-center">
 
         {/* Logo */}
-        <Link href = "/" className = {`logo ${sigmar.className} text-3xl`} onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
+        <Link href = "/" className = "logo" onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
         {/* Full nav menu */}
-        <nav className = {`${outfit.className} hidden sm:flex space-x-6 text-xl tracking-wider`}>
+        <nav className = "hidden sm:flex space-x-6 text-xl tracking-wider">
           
           <Link href = "/workshops">Workshops</Link>
           
@@ -136,17 +130,13 @@ export default function Header(){
 
       {isMenuVisible && (
 
-        <div data-testid = "mobile-menu" className = {`sm:hidden fixed inset-0 w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center
-        
-        ${isMenuOpaque ? "opacity-100" : "opacity-0"}
-        
-        `}>
+        <div data-testid = "mobile-menu" className = {`${isMenuOpaque ? "opacity-100" : "opacity-0"} sm:hidden fixed inset-0 w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center`}>
 
           <div className = "fixed top-0 left-0 right-0 px-6 py-4">
 
             <div className = "flex justify-between items-center">
             
-              <Link href = "/" className = {`${sigmar.className} text-2xl`}  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
+              <Link href = "/" className = "logo"  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
               <button className = "sm:hidden" onClick = {toggleMenu} aria-label = "Toggle menu">
 
@@ -178,7 +168,7 @@ export default function Header(){
 
           </div>
 
-          <nav className = {`${outfit.className} flex flex-col justify-center h-1/2 space-y-6 text-xl tracking-wider`}>
+          <nav className = "flex flex-col justify-center h-1/2 space-y-6 text-2xl tracking-wider">
 
             <Link href = "/workshops" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
 
@@ -190,15 +180,15 @@ export default function Header(){
 
                 <>
                 
-                  <Link href = "/account" className = "mt-4 text-center">Account</Link>
+                  <Link href = "/account" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Account</Link>
 
-                  <button onClick={handleLogout} className="text-center">Logout</button>
+                  <button className = "text-center" onClick={handleLogout}>Logout</button>
 
                 </>
 
               ) : (
 
-                <Link href = "/login" className = "text-center">Login</Link>
+                <Link href = "/login" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Login</Link>
 
               )
 

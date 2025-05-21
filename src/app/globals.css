@@ -44,12 +44,19 @@
   }
 
   a.logo {
-    @apply hover:text-inherit transition-none;
+    font-family: var(--font-sigmar);
+    @apply text-3xl hover:text-inherit transition-none;
   }
 
   p, li {
     @apply py-1
   }
+
+  .navLink {
+    @apply text-xl
+  }
+
+
 
 }
 
