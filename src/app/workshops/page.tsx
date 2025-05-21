@@ -86,7 +86,7 @@ export default function Workshops(){
 
     if(!isLoggedIn || !user){
 
-      router.push("/login");
+      router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
       return;
 
     }
