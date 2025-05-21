@@ -87,7 +87,10 @@ export default function Header(){
 
             ) : (
 
-              <Link href = "/login">Login</Link>
+              <>
+                <Link href = "/signup">Sign up</Link>
+                <Link href = "/login">Login</Link>
+              </>
 
             )
 
@@ -188,8 +191,12 @@ export default function Header(){
 
               ) : (
 
+                <>
+                
+                <Link href = "/signup" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Sign up</Link>
                 <Link href = "/login" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Login</Link>
 
+                </>
               )
 
             }
