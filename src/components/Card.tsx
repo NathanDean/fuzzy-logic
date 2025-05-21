@@ -20,7 +20,7 @@ export default function Card({ children, className = "", imageHeight = "lg" }: C
 
     return (
 
-        <div className = {`${className} ${imageHeightClass} h-full bg-white rounded-2xl shadow-xl overflow-hidden`}>{children}</div>
+        <div className = {`${className} ${imageHeightClass} h-full rounded-2xl bg-[var(--background)] text-[var(--foreground)] dark:border dark:border-gray-500 shadow-xl overflow-hidden`}>{children}</div>
 
     )
 
