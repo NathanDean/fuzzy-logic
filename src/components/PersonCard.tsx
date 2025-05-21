@@ -11,7 +11,14 @@ interface Person {
   
 }
 
-export default function PersonCard({ person }: { person: Person }){
+interface PersonCardProps {
+
+    person: Person,
+    imageHeight?: "sm" | "md" | "lg"
+
+}
+
+export default function PersonCard({ person, imageHeight = "lg" }: PersonCardProps){
 
     return (
 
@@ -21,7 +28,7 @@ export default function PersonCard({ person }: { person: Person }){
             <CardImage 
                 src = "default-team-member-image.jpg" 
                 alt = {person.name}
-                height = "lg"
+                height = {imageHeight}
              />
 
             <div className = "p-6">

@@ -24,34 +24,34 @@ interface WorkshopCardProps {
 
     workshop: Workshop,
     onBookNow: (id: string) => void,
-    showFullInfo: boolean
+    imageHeight?: "sm" | "md" | "lg"
 
 }
 
-export default function WorkshopCard({ workshop, onBookNow, showFullInfo}: WorkshopCardProps){
+export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}: WorkshopCardProps){
 
     const isSoldOut = workshop.max_places_available - workshop.bookings <= 0
 
     return (
 
-        <Card>
+        <Card className = "w-full h-full" imageHeight = {imageHeight}>
 
-            <div className = {`flex flex-col ${showFullInfo && "md:flex-row"} h-full`}>
+            <div className = {`flex flex-col h-full`}>
             
                 {/* Image */}
                 
-                <div className = {`${showFullInfo && "md:max-h-64"}`}>
+                <div className = "relative">
                 
                     <CardImage 
                         src = "default-workshop-image.jpg"
                         alt = "Workshop image"
-                        showFullInfo = {showFullInfo}
+                        imageHeight = {imageHeight}
                     />
 
                 </div>
 
                 {/* Text content */}
-                <div className = {`p-6 flex flex-col flex-grow`}>
+                <div className = "p-6 flex flex-col flex-grow">
 
                     <div className = "flex-grow">
                     
@@ -64,41 +64,34 @@ export default function WorkshopCard({ workshop, onBookNow, showFullInfo}: Works
                         </h3>
                         
                         {/* Venue */}
-                        <h3 className = "py-1">£{workshop.price}</h3>
-
-                        {/* Description */}
-                        {showFullInfo && <p className = "py-1">{workshop.description}</p>}
-                        
+                        <h3 className = "py-1">£{workshop.price}</h3>                        
 
                     </div>
 
                     {/* Buttons */}
-                        <div className = "flex sm:flex-row gap-3 mt-4">
-                            
+                    <div className = "flex sm:flex-row gap-3 mt-4">
+                        
                         {/* Book now */}
-                            <button 
-                                className = {`btn ${workshop.max_places_available - workshop.bookings > 0 ? "btn-primary" : "btn-disabled"} rounded-md p-2 transition-all`}
-                                onClick = {() => onBookNow(workshop.id)}
-                                disabled = {
+                        <button 
+                            className = {`btn ${workshop.max_places_available - workshop.bookings > 0 ? "btn-primary" : "btn-disabled"} rounded-md p-2 transition-all`}
+                            onClick = {() => onBookNow(workshop.id)}
+                            disabled = {
 
-                                    isSoldOut ? true : false
+                                isSoldOut ? true : false
 
-                                }>{isSoldOut ? "Sold out" : "Book now"}
-                            </button>
+                            }>{isSoldOut ? "Sold out" : "Book now"}
+                        </button>
 
-                            {/* More info */}
-                            {!showFullInfo && (
+                        {/* More info */}
 
-                                <Link 
-                                    href = {`workshops/${workshop.id}`} 
-                                    className = "btn btn-primary"
-                                >
-                                    More info
-                                </Link>
+                        <Link 
+                            href = {`workshops/${workshop.id}`} 
+                            className = "btn btn-primary"
+                        >
+                            More info
+                        </Link>
 
-                            )}
-
-                        </div>
+                    </div>
 
                 </div>       
 

@@ -65,7 +65,7 @@ export default function Teachers(){
 
       ) : (
       
-        <CardGrid cardWidth = "md" cols = {2}>
+        <CardGrid cardWidth = "md" imageHeight = "lg" cols = {2}>
 
           {people.map((person) => (
 

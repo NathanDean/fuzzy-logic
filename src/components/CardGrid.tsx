@@ -3,12 +3,13 @@ import { ReactNode, Children, cloneElement, isValidElement } from "react";
 interface CardGridProps {
 
     children: ReactNode,
-    cardWidth: "sm" | "md" | "lg" | "xl",
-    cols: 1 | 2 | 3
+    cardWidth?: "sm" | "md" | "lg" | "xl",
+    imageHeight?: "sm" | "md" | "lg" 
+    cols?: 1 | 2 | 3
 
 }
 
-export default function CardGrid({ children, cardWidth = "md", cols = 2 }: CardGridProps) {
+export default function CardGrid({ children, cardWidth = "md", imageHeight = "lg", cols = 2 }: CardGridProps) {
 
     const gridCols = {
 
@@ -18,21 +19,34 @@ export default function CardGrid({ children, cardWidth = "md", cols = 2 }: CardG
 
     }[cols]
 
+    const cardWidthClass = {
+
+        sm: "max-w-sm",
+        md: "max-w-md",
+        lg: "max-w-lg",
+        xl: "sm:w-xl lg:w-3xl xl:w-5xl"
+
+    }[cardWidth]
+
+    const childrenWithProps = Children.map(children, child => {
+
+        if (isValidElement(child)) {
+        
+            return cloneElement(child, { imageHeight });
+        
+        }
+        
+        return child;
+    
+    });
+
     return (
 
         <div className={`grid grid-cols-1 ${gridCols} gap-10 pt-2`}>
         
-            {Children.map(children, child => (
+            {Children.map(childrenWithProps, child => (
         
-                <div className={`flex justify-center ${
-                
-                    cardWidth === "sm" ? "max-w-sm" :
-                
-                    cardWidth === "md" ? "max-w-md" :
-
-                    cardWidth === "lg" ? "max-w-lg" : "max-w-4xl"
-                
-                }`}>
+                <div className={`flex justify-center ${cardWidthClass}`}>
                 
                     {child}
                 

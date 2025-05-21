@@ -119,11 +119,11 @@ export default function Workshops(){
 
       ) : (
       
-        <CardGrid cardWidth = "md" cols = {2}>
+        <CardGrid cardWidth = "md" imageHeight = "lg" cols = {2}>
 
           {workshops.map((workshop) => (
 
-            <WorkshopCard key = {workshop.id} workshop = {workshop} onBookNow = {handleBookNow} showFullInfo = {false} />
+            <WorkshopCard key = {workshop.id} workshop = {workshop} onBookNow = {handleBookNow} />
 
           ))}
 

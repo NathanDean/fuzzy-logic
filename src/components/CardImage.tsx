@@ -4,20 +4,33 @@ interface CardImageProps {
 
     src: string,
     alt: string,
-    height?: "sm" | "md" | "lg",
+    imageHeight?: "sm" | "md" | "lg",
     className?: string,
     showFullInfo?: boolean
 
 }
 
-export default function CardImage({ src, alt, height = "md", className = "", showFullInfo = false}: CardImageProps){
+export default function CardImage({ src, alt, imageHeight = "md", className = "", showFullInfo = false}: CardImageProps){
 
-    const heightClass = {
+    const heightClass = !showFullInfo ? {
         sm: "h-48",
         md: "h-72", 
         lg: "h-96"
-    }[height];
+    }[imageHeight] : "";
 
-    return <Image src = {`/${src}`} width = {5000} height = {5000} alt = {alt} className = {`${className} ${heightClass} ${showFullInfo && "md:h-auto"} object-cover object-position-center`}  />
+    return (
+        <Image 
+            src = {`/${src}`} 
+            fill = {showFullInfo}
+            width = {showFullInfo ? undefined : 5000}
+            height = {showFullInfo ? undefined : 5000}
+            alt = {alt} 
+            className = {`
+                ${className} 
+                ${!showFullInfo ? heightClass : "h-full w-full"} 
+                object-center object-cover
+            `}
+        />
+    )
 
 }
