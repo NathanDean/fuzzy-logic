@@ -28,7 +28,7 @@ export default function PersonCard({ person, imageHeight = "lg" }: PersonCardPro
             <CardImage 
                 src = "default-team-member-image.jpg" 
                 alt = {person.name}
-                height = {imageHeight}
+                imageHeight = {imageHeight}
              />
 
             <div className = "p-6">

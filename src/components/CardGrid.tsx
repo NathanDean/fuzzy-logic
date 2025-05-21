@@ -9,6 +9,10 @@ interface CardGridProps {
 
 }
 
+interface WithImageHeight {
+  imageHeight?: "sm" | "md" | "lg";
+}
+
 export default function CardGrid({ children, cardWidth = "md", imageHeight = "lg", cols = 2 }: CardGridProps) {
 
     const gridCols = {
@@ -32,7 +36,7 @@ export default function CardGrid({ children, cardWidth = "md", imageHeight = "lg
 
         if (isValidElement(child)) {
         
-            return cloneElement(child, { imageHeight });
+            return cloneElement(child as React.ReactElement<WithImageHeight>, { imageHeight });
         
         }
         
