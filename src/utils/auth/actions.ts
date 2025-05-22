@@ -20,7 +20,7 @@ export async function signup(formData: FormData) {
 
   if(!email || typeof email != "string"){
 
-    throw new Error("Email is required");
+    return { error: "Email is required" };
 
   }
 
@@ -28,31 +28,31 @@ export async function signup(formData: FormData) {
   
   if (!emailRegex.test(email)) {
   
-    throw new Error("Please enter a valid email address");
+    return { error: "Please enter a valid email address" };
 
   }
 
   if(!password || typeof password != "string"){
 
-    throw new Error("Password is required");
+    return { error: "Password is required" };
 
   }
 
   if (password.length < 8) {
 
-    throw new Error("Password must be 8 or more characters long");
+    return { error: "Password must be 8 or more characters long" };
 
   }
 
   if (password !== confirmPassword) {
 
-    throw new Error("Passwords must match");
+    return { error: "Passwords must match" };
 
   }
 
   if (!turnstileToken || typeof turnstileToken !== "string") {
 
-    throw new Error("CAPTCHA verification failed: Missing token");
+    return { error: "CAPTCHA verification failed: Missing token" };
 
   }
 
@@ -74,9 +74,8 @@ export async function signup(formData: FormData) {
 
   if (error) {
 
-    console.log("Error signing up:")
-    console.error(error);
-    redirect("/error");
+    console.error("Error signing up:", error)
+    return { error: "Error signing up, please try again" }
 
   }
 
@@ -144,7 +143,7 @@ export async function login(formData: FormData) {
   if (error) {
 
     console.error("Error logging in", error);
-    return { error: "Invalid email or password" };
+    return { error: "Invalid email or password, please try again" };
 
   }
 
@@ -165,7 +164,7 @@ export async function resetPassword(formData: FormData){
 
   if(!email || typeof email != "string"){
 
-    throw new Error("Email is required");
+    return { error: "Email is required" };
 
   }
 
@@ -173,13 +172,13 @@ export async function resetPassword(formData: FormData){
   
   if (!emailRegex.test(email)) {
   
-    throw new Error("Please enter a valid email address");
+    return { error: "Please enter a valid email address" };
 
   }
 
   if (!turnstileToken || typeof turnstileToken !== "string") {
 
-    throw new Error("CAPTCHA verification failed: Missing token");
+    return { error: "CAPTCHA verification failed: Missing token" };
 
   }
 
@@ -192,9 +191,8 @@ export async function resetPassword(formData: FormData){
 
   if (error) {
 
-    console.log("Error resetting password:")
-    console.error(error);
-    redirect("/error");
+    console.error("Error resetting password:", error);
+    return { error: "Error resetting password, please try again" };
 
   }
 

@@ -20,6 +20,7 @@ zxcvbnOptions.setOptions({
 
 export default function SignUpPage() {
 
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
   const [password, setPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
@@ -64,11 +65,26 @@ export default function SignUpPage() {
       case 4: return "Strong";
       default: return "";
     }
-  };  
+  };
+
+  const handleSubmit = async(formData: FormData) => {
+
+    setErrorMessage("");
+    const result = await signup(formData);
+
+    if (result?.error) {
+
+      setErrorMessage(result.error)
+
+    }
+
+  }
 
   return (
 
-      <Form action = {signup}>
+      <Form action = {handleSubmit}>
+
+        { errorMessage && <p className = "error">{errorMessage}</p>}
 
         <label htmlFor="firstName">First name:</label>
         <input id="firstName" name="firstName" type="text" required />
