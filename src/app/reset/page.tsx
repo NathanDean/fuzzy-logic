@@ -10,11 +10,27 @@ import { useState } from "react";
 
 export default function ResetPassword() {
 
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
+
+  const handleSubmit = async(formData: FormData) => {
+
+    setErrorMessage("");
+    const result = await resetPassword(formData);
+
+    if (result?.error){
+
+      setErrorMessage(result.error)
+
+    }
+
+  }
   
   return (
 
-        <Form action = {resetPassword}>
+        <Form action = {handleSubmit}>
+
+          { errorMessage && <p className = "error">{errorMessage}</p>}
 
           <label htmlFor="email">Email:</label>
           <input id="email" name="email" type="email" required />
