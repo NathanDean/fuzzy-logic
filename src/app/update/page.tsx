@@ -27,11 +27,12 @@ export default function UpdatePassword() {
   const [password, setPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
   const [passwordFeedback, setPasswordFeedback] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const router = useRouter();
 
+  // Not logged in or in recovery state, redirect to login
   useEffect(() => {
     if (!isLoading && !user) {
-      // Not logged in or in recovery state, redirect to login
       router.push("/login");
     }
   }, [isLoading, user, router]);
@@ -75,11 +76,27 @@ export default function UpdatePassword() {
       case 4: return "Strong";
       default: return "";
     }
-  };  
+  };
+
+  const handleSubmit = async (formData: FormData) => {
+
+    setErrorMessage("");
+
+    const result = await updatePassword(formData);
+
+    if (result?.error){
+
+      setErrorMessage(result.error)
+
+    }
+
+  }
 
   return (
 
-        <Form action = {updatePassword}>
+        <Form action = {handleSubmit}>
+
+          { errorMessage && <p className = "error">{errorMessage}</p>}
 
           <label htmlFor="password">New password:</label>
           <input id="password" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>

@@ -208,19 +208,19 @@ export async function updatePassword(formData: FormData){
   
   if(!password || typeof password != "string"){
 
-    throw new Error("Password is required");
+    return { error: "Password is required" };
 
   }
 
   if (password.length < 8) {
 
-    throw new Error("Password must be 8 or more characters long");
+    return { error: "Password must be 8 or more characters long" };
 
   }
 
   if (password !== confirmPassword) {
 
-    throw new Error("Passwords must match");
+    return { error: "Passwords must match" };
 
   }
 
@@ -230,9 +230,8 @@ export async function updatePassword(formData: FormData){
 
   if (error) {
 
-    console.log("Error updating password:");
-    console.error(error);
-    redirect("/error");
+    console.error("Error updating password:", error);
+    return { error: "Error updating password, please try again" };
 
   }
 
