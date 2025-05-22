@@ -36,6 +36,7 @@ export default function Workshops(){
   const { user, isLoggedIn } = useAuth();
   const [workshops, setWorkshops] = useState<Workshop[]>([]);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
@@ -84,26 +85,28 @@ export default function Workshops(){
 
   const handleBookNow = async(workshopId: string) => {
 
+    setErrorMessage("");
+    
     if(!isLoggedIn || !user){
 
       router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
       return;
 
     }
-    
-    try {
 
-      const { url } = await createCheckoutSession(workshopId, user.id);
+    const result = await createCheckoutSession(workshopId, user.id);
 
-      if(url){
+    if (result.error){
 
-        window.location.href = url
+      console.error("Error creating checkout session:", result.error);
+      setErrorMessage(result.error);
+      return;
 
-      }
+    }
 
-    } catch(error){
+    if(result.url){
 
-      console.error("Error creating checkout session:", error);
+      window.location.href = result.url
 
     }
 
@@ -119,15 +122,21 @@ export default function Workshops(){
 
       ) : (
       
-        <CardGrid cardWidth = "md" imageHeight = "lg" cols = {2}>
+        <>
 
-          {workshops.map((workshop) => (
+          {errorMessage && <p className = "error">{errorMessage}</p>}
 
-            <WorkshopCard key = {workshop.id} workshop = {workshop} onBookNow = {handleBookNow} />
+          <CardGrid cardWidth = "md" imageHeight = "lg" cols = {2}>
+            
+            {workshops.map((workshop) => (
 
-          ))}
+              <WorkshopCard key = {workshop.id} workshop = {workshop} onBookNow = {handleBookNow} />
 
-        </CardGrid>
+            ))}
+
+          </CardGrid>
+
+        </>
 
       )}
 

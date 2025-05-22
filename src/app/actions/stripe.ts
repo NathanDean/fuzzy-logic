@@ -31,7 +31,7 @@ interface Booking {
 
 }
 
-async function getWorkshop(workshopId: string): Promise<Workshop> {
+async function getWorkshop(workshopId: string): Promise<Workshop | { error: string }> {
 
     const supabase = await createClient();    
     
@@ -44,13 +44,13 @@ async function getWorkshop(workshopId: string): Promise<Workshop> {
       
         if(error){
       
-          throw new Error(`Error fetching workshop: ${error.message}`);
+          return { error: "Error fetching workshop, please try again." };
       
         }
 
         if (!workshop) {
             
-            throw new Error(`Workshop not found with ID: ${workshopId}`);
+            return { error: `Workshop not found with ID: ${workshopId}.` };
           
         }
 
@@ -66,12 +66,20 @@ export async function createCheckoutSession(workshopId: string, userId: string){
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
     const supabase = await createClient();
     const supabaseAdmin = createAdminClient();
-    const workshop = await getWorkshop(workshopId);
+    const result = await getWorkshop(workshopId);
+
+    if ("error" in result) {
+
+        return { error: "Error creating checkout session, please try again" }
+    
+    }
+
+    const workshop = result;
 
     // Check whether the workshop has places remaining
     if(workshop.places_remaining <= 0){
 
-        throw new Error("Sorry, this workshop is now sold out.")
+        return { error: "Sorry, this workshop is now sold out." }
 
     }
 
@@ -88,7 +96,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
     if(existingBookingError){
 
-        throw new Error(`Error checking for existing in progress booking: ${existingBookingError.message}`)
+        return { error: "Error finding existing booking, please try again." }
 
     }
 
@@ -109,7 +117,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
 
         } catch (error) {
 
-            console.error(`Error retrieving previous checkout session: ${error}`)
+            return { error: "Error retrieving checkout session, please try again" };
 
         }
 
@@ -177,7 +185,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
                   
         if(error){
             
-            throw new Error(`Error processing booking: ${error.message}`);
+            return { error: `Error processing booking: ${error.message}` };
                 
         }
 
@@ -195,7 +203,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
                   
         if(error){
             
-            throw new Error(`Error processing booking: ${error.message}`);
+            return { error:`Error processing booking: ${error.message}` };
                 
         }
 

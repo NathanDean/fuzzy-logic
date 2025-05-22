@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { createCheckoutSession } from "../../actions/stripe"
 import WorkshopDetailsCard from "@/components/WorkshopDetailsCard"
 import CardGrid from "@/components/CardGrid"
@@ -25,9 +26,12 @@ interface Workshop {
 export default function WorkshopClientWrapper({ workshop }: { workshop: Workshop }){
 
     const { user, isLoggedIn } = useAuth();
+    const [errorMessage, setErrorMessage] = useState<string>("");
     const router = useRouter();
 
     const handleBookNow = async(workshopId: string) => {
+
+      setErrorMessage("");
   
       if(!isLoggedIn || !user){
   
@@ -35,20 +39,20 @@ export default function WorkshopClientWrapper({ workshop }: { workshop: Workshop
         return;
   
       }
-      
-      try {
+
+      const result = await createCheckoutSession(workshopId, user.id);
+
+      if (result.error) {
+
+        console.error("Error creating checkout session:", result.error);
+        setErrorMessage(result.error);
+        return;
+
+      }  
   
-        const { url } = await createCheckoutSession(workshopId, user.id);
+      if(result.url){
   
-        if(url){
-  
-          window.location.href = url
-  
-        }
-  
-      } catch(error){
-  
-        console.error("Error creating checkout session:", error);
+        window.location.href = result.url
   
       }
   
@@ -57,6 +61,8 @@ export default function WorkshopClientWrapper({ workshop }: { workshop: Workshop
     return (
 
         <CardGrid cardWidth = "xl" imageHeight = "lg" cols = {1}>
+
+          {errorMessage && <p className = "error">{errorMessage}</p>}
         
           <WorkshopDetailsCard
               key = {workshop.id}
