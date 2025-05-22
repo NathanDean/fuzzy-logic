@@ -16,6 +16,7 @@ import Loading from "@/components/Loading";
 
 function LoginForm(){
 
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirectTo");
@@ -23,9 +24,16 @@ function LoginForm(){
 
   const handleSubmit = async (formData: FormData) => {
 
+    setErrorMessage("");
+
     const result = await login(formData);
     
-    // Refreshes page to ensure header UI updates correctly    
+    if (result?.error) {
+
+      setErrorMessage(result.error)
+
+    }
+
     if (result?.success) {
 
       if(redirectTo === "workshop" && workshopId) {
@@ -73,6 +81,8 @@ function LoginForm(){
             <p className="text-center">Please login to complete your booking</p>
         
           )}
+
+          { errorMessage && <p className = "error">{errorMessage}</p>}
 
           <label htmlFor="email">Email:</label>
           <input id="email" name="email" type="email" required />
