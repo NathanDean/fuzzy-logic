@@ -14,12 +14,16 @@ export default function ResetPassword() {
   
   return (
 
-        <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {resetPassword}>
+        <Form action = {resetPassword}>
 
           <label htmlFor="email">Email:</label>
           <input id="email" name="email" type="email" required />
 
-          <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
+          <div className = "turnstile">
+          
+            <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
+
+          </div>
 
           <button className = {`btn ${isTurnstileLoading ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Reset password"}</button>
 

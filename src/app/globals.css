@@ -56,24 +56,32 @@
     @apply text-xl
   }
 
-
-
 }
 
 /* Form Basics */
 @layer components {
   
+  form {
+    @apply flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] shadow-xl rounded-2xl p-10 text-lg
+  }
+
+  form p, form a, .turnstile {
+    @apply mt-2
+  }
+  
   input, textarea, select {
     @apply w-full my-2 p-2 border rounded-sm transition-all duration-200
-      focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent
       hover:border-gray-500;
   }
 
+  .zxcvbn {
+    @apply flex flex-col w-full space-y-2 mt-2 mb-4
+  }
+
   .btn {
-    @apply inline-flex items-center justify-center w-full px-4 py-2 
+    @apply inline-flex items-center justify-center w-full mt-2 px-4 py-2 
         border rounded-md font-medium text-center
         transition-all duration-200 ease-in-out
-        focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
 
   .btn-primary {

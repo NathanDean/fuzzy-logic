@@ -66,11 +66,11 @@ function LoginForm(){
 
     <>
 
-        <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {handleSubmit}>
+        <Form action = {handleSubmit}>
 
           {redirectTo === "workshop" && workshopId && (
         
-            <p className="text-center mb-4">Please login to complete your booking</p>
+            <p className="text-center">Please login to complete your booking</p>
         
           )}
 
@@ -80,7 +80,7 @@ function LoginForm(){
           <label htmlFor="password">Password:</label>
           <input id="password" name="password" type="password" required />
 
-          <div className = "mt-2">
+          <div className = "turnstile">
 
             <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
 

@@ -68,7 +68,7 @@ export default function SignUpPage() {
 
   return (
 
-      <Form className = "flex flex-col items-center bg-white shadow-xl rounded-2xl p-10" action = {signup}>
+      <Form action = {signup}>
 
         <label htmlFor="firstName">First name:</label>
         <input id="firstName" name="firstName" type="text" required />
@@ -87,30 +87,28 @@ export default function SignUpPage() {
 
         {password && (
           
-          <div className="w-full mb-2">
+          <div className="zxcvbn">
             
-            <div className="flex justify-between mb-1">
+              <div>Password strength: {getStrengthLabel()}</div>
             
-              <span>Password strength: {getStrengthLabel()}</span>
-            
-            </div>
-            
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-            
-              <div className={`${getStrengthColor()} h-2.5 rounded-full transition-all`} 
-                style={{ width: `${(passwordStrength + 1) * 20}%` }}></div>
-            
-            </div>
+              <div 
+                className={`${getStrengthColor()} h-2.5 rounded-full transition-all`} 
+                style={{ width: `${(passwordStrength + 1) * 20}%` }}>
+              </div>
             
             {passwordFeedback && (
-              <p className="text-red-500 text-sm mt-1">{passwordFeedback}</p>
+              <p className="text-red-500">{passwordFeedback}</p>
             )}
 
           </div>
 
         )}
 
-        <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
+        <div className = "turnstile">
+        
+          <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
+
+        </div>
 
         <button className = {`btn ${isTurnstileLoading || passwordStrength < 3 ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || passwordStrength < 3}>
           
