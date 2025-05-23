@@ -19,11 +19,14 @@ interface Person {
 export default function Teachers(){
 
     const [people, setPeople] = useState<Person[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string>("");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
 
         async function fetchTeam(){
+
+          setErrorMessage("");
     
           try {
     
@@ -41,7 +44,8 @@ export default function Teachers(){
     
           } catch(error){
     
-            console.error("Error fetching team:", error)
+            console.error("Error fetching people:", error)
+            setErrorMessage("Error fetching people.  Please try refreshing the page, or contact us if the problem continues.")
     
           } finally {
     
@@ -65,15 +69,21 @@ export default function Teachers(){
 
       ) : (
       
-        <CardGrid cardWidth = "md" imageHeight = "lg" cols = {2}>
+        <>
+        
+          {errorMessage && <p className = "error">{errorMessage}</p>}
 
-          {people.map((person) => (
+          <CardGrid cardWidth = "md" imageHeight = "lg" cols = {2}>
 
-            <PersonCard key = {person.id} person = {person} />
+            {people.map((person) => (
 
-          ))}
+              <PersonCard key = {person.id} person = {person} />
 
-        </CardGrid>
+            ))}
+
+          </CardGrid>
+
+        </>
 
       )}
 

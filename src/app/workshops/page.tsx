@@ -44,6 +44,8 @@ export default function Workshops(){
     // Get workshops from Supabase
     async function fetchWorkshops(){
 
+      setErrorMessage("");
+      
       try {
 
         // Get workshops
@@ -70,6 +72,7 @@ export default function Workshops(){
       } catch(error){
 
         console.error("Error fetching workshops:", error)
+        setErrorMessage("Error fetching workshops.  Please try refreshing the page, or contact us if the problem continues.")
 
       } finally {
 
@@ -84,8 +87,6 @@ export default function Workshops(){
   }, []);
 
   const handleBookNow = async(workshopId: string) => {
-
-    setErrorMessage("");
     
     if(!isLoggedIn || !user){
 

@@ -32,7 +32,7 @@ export default async function WorkshopDetails({params}: {params: Promise<{ works
 
   if(error || !workshopData){
 
-    return <div>Workshop not found</div>;
+    return <p className = "error">Workshop not found</p>;
 
   }
 

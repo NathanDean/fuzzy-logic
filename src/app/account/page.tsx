@@ -42,6 +42,7 @@ export default function Account(){
   const { user, isLoading, isLoggedIn } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isSupabaseLoading, setIsSupabaseLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const router = useRouter();
   const metadata = user?.user_metadata;
 
@@ -59,6 +60,8 @@ export default function Account(){
   useEffect(() => {
 
     async function fetchBookings(){
+
+      setErrorMessage("");
 
       if(!isLoading && user){
 
@@ -102,7 +105,8 @@ export default function Account(){
 
         } catch(error) {
           
-          console.error("Error fetching workshops", error)
+          console.error("Error fetching workshops", error);
+          setErrorMessage("Error fetching bookings.  Please try refreshing the page, or contact us if the problem continues.")
           
         } finally {
 
@@ -144,6 +148,10 @@ export default function Account(){
 
                 ) : (
 
+                  <>
+                  
+                  {errorMessage && <p className = "error">{errorMessage}</p>}
+                  
                   <ul className = "list-disc pl-5">
 
                     {bookings.map((booking) => (
@@ -157,6 +165,8 @@ export default function Account(){
                     ))}
 
                   </ul>
+
+                  </>
 
                 )}
 
