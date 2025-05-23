@@ -81,7 +81,7 @@ export async function signup(formData: FormData) {
 
   revalidatePath("/", "layout")
 
-  redirect("/")
+  redirect("/auth/success?message=signup-successful")
 
 }
 
@@ -197,6 +197,7 @@ export async function resetPassword(formData: FormData){
   }
 
   revalidatePath("/", "layout");
+  redirect("/auth/success?message=password-reset-request-successful")
 
 }
 
@@ -237,6 +238,6 @@ export async function updatePassword(formData: FormData){
 
   revalidatePath("/", "layout");
 
-  redirect("/login");
+  redirect("/auth/success?message=password-update-successful");
 
 }

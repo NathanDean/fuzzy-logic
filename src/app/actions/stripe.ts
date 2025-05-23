@@ -115,7 +115,7 @@ export async function createCheckoutSession(workshopId: string, userId: string){
             
             }
 
-        } catch (error) {
+        } catch {
 
             return { error: "Error retrieving checkout session, please try again" };
 

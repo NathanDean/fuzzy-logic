@@ -15,25 +15,32 @@ export async function GET(request: NextRequest) {
 
   if (token_hash && type) {
 
-    const supabase = await createClient()
+    try {
 
-    const { error } = await supabase.auth.verifyOtp({
+      const supabase = await createClient()
 
-      type,
-      token_hash,
+      const { error } = await supabase.auth.verifyOtp({
 
-    })
-    
-    if (!error) {
+        type,
+        token_hash,
 
-      // redirect user to specified redirect URL or root of app
-      redirect(next)
+      })
+
+      if (!error) {
+
+        // redirect user to specified redirect URL or root of app
+        redirect(next)
+
+    }
+
+    } catch {
+
+      redirect(`/error?message=email-verification-failed`)
 
     }
 
   }
 
-  // redirect the user to an error page with some instructions
-  redirect("/error")
+  redirect("/error?message=invalid-verification-link")
 
 }
