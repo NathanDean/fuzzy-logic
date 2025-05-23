@@ -71,7 +71,7 @@ export default function Header(){
           
           <Link href = "/workshops">Workshops</Link>
           
-          <Link href = "/teachers">Teachers</Link>
+          <Link href = "/about">About</Link>
 
           {
 
@@ -175,7 +175,7 @@ export default function Header(){
 
             <Link href = "/workshops" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Workshops</Link>
 
-            <Link href = "/teachers" className = "text-center" onClick = {() => setIsMenuOpen(false)}>Teachers</Link>
+            <Link href = "/about" className = "text-center" onClick = {() => setIsMenuOpen(false)}>About</Link>
 
             {
 

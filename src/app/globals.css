@@ -39,6 +39,10 @@
     @apply text-xl font-medium
   }
 
+  .main-text {
+    @apply text-2xl sm:text-3xl 
+  }
+
   a {
     @apply hover:text-blue-500 transition-colors duration-300;
   }
