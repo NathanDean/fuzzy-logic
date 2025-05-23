@@ -13,7 +13,8 @@ interface Workshop {
     price: number,
     max_places_available: number,
     description: string,
-    bookings: number
+    bookings: number,
+    course_type: string
 
 }
 

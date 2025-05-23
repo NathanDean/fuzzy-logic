@@ -16,7 +16,8 @@ interface Workshop {
     price: number,
     max_places_available: number,
     description: string,
-    bookings: number
+    bookings: number,
+    course_type: string
 
 }
 
@@ -58,9 +59,11 @@ export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}:
                         {/* Workshop name */}
                         <h2 className = "py-1">{workshop.class_name}</h2>
                         
+                        <h3 className = "py-1">{workshop.course_type}</h3>
+                        
                         {/* Date/time */}
                         <h3 className = "py-1">
-                            {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")} at {workshop.venue}
+                            Begins {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")} at {workshop.venue}
                         </h3>
                         
                         {/* Venue */}
