@@ -35,9 +35,18 @@ export function AuthProvider({children}: { children: ReactNode }){
 
     const supabase = createClient();
 
-    // Checks for current session
-    const { data } = await supabase.auth.getUser();
-    setUser(data.user);
+    try {
+
+      // Checks for current session
+      const { data } = await supabase.auth.getUser();
+      setUser(data.user);
+
+    } catch (error) {
+
+      console.error("Error fetching user", error);
+      setUser(null);
+
+    }
 
     setIsLoading(false);
 
@@ -73,8 +82,17 @@ export function AuthProvider({children}: { children: ReactNode }){
   // Sign out function
   async function signOut(){
 
-    const supabase = createClient();
-    await supabase.auth.signOut();
+    try {
+
+      const supabase = createClient();
+      await supabase.auth.signOut();
+
+    } catch (error) {
+
+      console.error("Error signing out", error);
+
+    }
+
     setUser(null)
 
   };
