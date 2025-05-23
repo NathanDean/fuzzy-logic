@@ -9,15 +9,17 @@ interface Workshop {
     id: string,
     created_at: string,
     class_name: string,
+    teacher: string,
+    course_type: string,
     date: string,
     start_time: string,
     end_time: string,
     venue: string,
     price: number,
     max_places_available: number,
+    image_url: string
     description: string,
-    bookings: number,
-    course_type: string
+    bookings: number
 
 }
 
@@ -44,7 +46,7 @@ export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}:
                 <div className = "relative">
                 
                     <CardImage 
-                        src = "default-workshop-image.jpg"
+                        src = {workshop.image_url}
                         alt = "Workshop image"
                         imageHeight = {imageHeight}
                     />
@@ -58,6 +60,8 @@ export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}:
                     
                         {/* Workshop name */}
                         <h2 className = "py-1">{workshop.class_name}</h2>
+
+                        <h3>with {workshop.teacher}</h3>
                         
                         <h3 className = "py-1">{workshop.course_type}</h3>
                         
