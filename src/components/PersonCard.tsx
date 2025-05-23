@@ -37,7 +37,7 @@ export default function PersonCard({ person, imageHeight = "lg" }: PersonCardPro
                 <h2 className = "pb-1">{person.name}</h2>
 
                 {/* Bio */}
-                <p className = "py-1">{person.bio}</p>
+                <p className = "py-1 detail-text">{person.bio}</p>
 
             </div>
 

@@ -135,7 +135,7 @@ export default function Account(){
       
         <div>
 
-            <Card className = "p-6">
+            <Card className = "p-6 text-lg sm:text-xl">
                 
                 <h1 className = "secondary">Account</h1>
                 <p>Name: {metadata?.first_name} {metadata?.last_name}</p>
@@ -144,7 +144,7 @@ export default function Account(){
 
                 {isSupabaseLoading ? (
 
-                  <Loading />
+                  <p>...</p>
 
                 ) : (
 

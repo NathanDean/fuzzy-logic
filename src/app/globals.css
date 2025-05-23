@@ -43,6 +43,19 @@
     @apply text-2xl sm:text-3xl 
   }
 
+  .detail-text {
+    @apply text-base
+  }
+
+  .error {
+    @apply text-red-600
+  }
+
+
+  p, li {
+    @apply py-1
+  }
+
   a {
     @apply hover:text-blue-500 transition-colors duration-300;
   }
@@ -50,14 +63,6 @@
   a.logo {
     font-family: var(--font-sigmar);
     @apply text-3xl hover:text-inherit transition-none;
-  }
-
-  p, li {
-    @apply py-1
-  }
-
-  .error {
-    @apply text-red-600
   }
 
   .navLink {

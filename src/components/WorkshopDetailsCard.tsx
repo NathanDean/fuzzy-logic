@@ -66,7 +66,7 @@ export default function WorkshopDetailsCard({ workshop, onBookNow, imageHeight =
                         <h3 className = "py-1">£{workshop.price}</h3>
 
                         {/* Description */}
-                        <p className = "py-1">{workshop.description}</p>
+                        <p className = "py-1 detail-text">{workshop.description}</p>
                         
 
                     </div>
