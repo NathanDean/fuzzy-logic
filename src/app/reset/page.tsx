@@ -3,10 +3,10 @@
 import { resetPassword } from "@/utils/auth/actions";
 
 import Form from "next/form";
-import Link from "next/link";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 import { useState } from "react";
+import SignUpLink from "@/components/SignUpLink";
 
 export default function ResetPassword() {
 
@@ -43,7 +43,7 @@ export default function ResetPassword() {
 
           <button className = {`btn ${isTurnstileLoading ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Reset password"}</button>
 
-          <Link href = "/signup">New to Fuzzy Logic?  Sign up here.</Link>
+          <SignUpLink />
 
         </Form>
 

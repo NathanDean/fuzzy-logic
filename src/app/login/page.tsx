@@ -3,7 +3,6 @@
 import { login } from "@/utils/auth/actions";
 
 import Form from "next/form";
-import Link from "next/link";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 import { useSearchParams } from "next/navigation";
@@ -13,6 +12,8 @@ import { useState } from "react";
 import { createCheckoutSession } from "@/app/actions/stripe";
 import { createClient } from "@/utils/supabase/client";
 import Loading from "@/components/Loading";
+import SignUpLink from "@/components/SignUpLink";
+import ResetPasswordLink from "@/components/ResetPasswordLink";
 
 function LoginForm(){
 
@@ -98,9 +99,8 @@ function LoginForm(){
 
           <button className = {`btn ${isTurnstileLoading ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Log in"}</button>
 
-          <Link href = "/signup">New to Fuzzy Logic?  Sign up here.</Link>
-          <Link href = "/reset">Reset your password.</Link>
-
+          <SignUpLink />
+          <ResetPasswordLink />
 
         </Form>
 

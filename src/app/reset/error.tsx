@@ -19,7 +19,7 @@ export default function Error({ error, reset}: {
         
             <h1 className = "secondary">Sorry, something went wrong.</h1>
 
-            <p>Password reset error.  Please try again, if the problem continues please send us an email.</p>
+            <p>Password reset error.  Please try again, if the problem continues please get in touch.</p>
 
             <button className = "btn btn-primary" onClick = {() => reset()}>Try again</button>
         

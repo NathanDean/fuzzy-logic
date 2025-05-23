@@ -125,9 +125,7 @@ export default function UpdatePassword() {
 
           <button className = {`btn ${passwordStrength < 3 ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {passwordStrength < 3}>
             
-            {passwordStrength < 3 
-              ? "Password too weak" 
-              : "Update password"}
+            Update password
               
           </button>
 

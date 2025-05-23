@@ -26,7 +26,7 @@ function ErrorPageComponent (){
 
       <p>Error: {displayMessage}</p>
 
-      <p>Please try again, if the problem continues please send us an email.</p>
+      <p>Please try again, if the problem continues please get in touch.</p>
       
     </>
 

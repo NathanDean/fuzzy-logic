@@ -1,12 +1,12 @@
 "use client"
 
 import { signup } from "@/utils/auth/actions";
-import Link from "next/link";
 import Form from "next/form";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
 import { useEffect, useState } from "react";
+import LoginLink from "@/components/LoginLink";
 
 zxcvbnOptions.setOptions({
   
@@ -128,13 +128,11 @@ export default function SignUpPage() {
 
         <button className = {`btn ${isTurnstileLoading || passwordStrength < 3 ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || passwordStrength < 3}>
           
-          {isTurnstileLoading 
-            ? "Loading" 
-            : passwordStrength < 3 
-              ? "Password too weak" 
-              : "Sign up"}</button>
+          {isTurnstileLoading ? "Loading" : "Sign up"}
+          
+        </button>
 
-        <Link href = "/login">Already have an account?  Log in here.</Link>
+        <LoginLink />
 
       </Form>
 

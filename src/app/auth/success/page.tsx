@@ -13,7 +13,7 @@ function AuthSuccessComponent(){
 
         "signup-successful": ["Thanks for signing up.", "Please check your inbox and confirm your email address to continue."],
         "password-reset-request-successful": ["We've received your password reset request.", "Please check your inbox for a password reset email and follow the instructions inside to continue."],
-        "password-update-successful": ["Your password has been reset."]
+        "password-update-successful": ["Your password has been reset.", "Please login to continue."]
 
     }
 
