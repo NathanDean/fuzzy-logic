@@ -29,6 +29,7 @@ jest.mock("@/utils/supabase/supabaseClient", () => ({
                         id: "1",
                         created_at: "2025-04-01T12:00:00Z",
                         class_name: "Intro to Testing",
+                        teacher: "Mark Corrigan",
                         date: "2025-04-18",
                         start_time: "18:00:00",
                         end_time: "21:00:00",
@@ -44,6 +45,7 @@ jest.mock("@/utils/supabase/supabaseClient", () => ({
                         id: "2",
                         created_at: "2025-04-01T12:00:00Z",
                         class_name: "Advanced Testing",
+                        teacher: "Alan Johnson",
                         date: "2025-04-19",
                         start_time: "18:00:00",
                         end_time: "21:00:00",
@@ -103,11 +105,11 @@ describe("Workshops", () => {
         });
 
         expect(screen.getByText("Intro to Testing")).toBeInTheDocument();
-        expect(screen.getByText("Test Theatre")).toBeInTheDocument();
-        expect(screen.getByText("6pm on Fri 18th Apr")).toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: "Begins 6pm on Fri 18 Apr at Test Theatre"})).toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: "with Mark Corrigan"})).toBeInTheDocument();
         expect(screen.getByText("Advanced Testing")).toBeInTheDocument();
-        expect(screen.getByText("The New Test Theatre")).toBeInTheDocument();
-        expect(screen.getByText("6pm on Sat 19th Apr")).toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: "Begins 6pm on Sat 19 Apr at The New Test Theatre"})).toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: "with Alan Johnson"})).toBeInTheDocument();
 
         const bookingButton = screen.getAllByRole("button");
         expect(bookingButton).toHaveLength(2);

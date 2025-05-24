@@ -9,6 +9,7 @@ describe("Home", () => {
     render(<Page />);
  
     expect(screen.getByRole("heading", { name: "fuzzy logic" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "an improv company" })).toBeInTheDocument();
 
   });
 

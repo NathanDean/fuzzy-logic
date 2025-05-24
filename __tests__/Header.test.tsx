@@ -29,7 +29,7 @@ describe("Header", () => {
 
         expect(screen.getByRole("link", { name: "fuzzy logic"})).toBeInTheDocument();
         expect(screen.getByRole("link", { name: "Workshops"})).toBeInTheDocument();
-        expect(screen.getByRole("link", { name: "Teachers"})).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: "About"})).toBeInTheDocument();
         expect(screen.getByRole("link", { name: "Login"})).toBeInTheDocument();
 
     });
@@ -47,7 +47,7 @@ describe("Header", () => {
 
         expect(screen.getByRole("link", { name: "fuzzy logic"})).toBeInTheDocument();
         expect(screen.getByRole("link", { name: "Workshops"})).toBeInTheDocument();
-        expect(screen.getByRole("link", { name: "Teachers"})).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: "About"})).toBeInTheDocument();
         expect(screen.getByRole("link", { name: "Account"})).toBeInTheDocument();
         expect(screen.getByRole("button", { name: "Logout"})).toBeInTheDocument();
 

@@ -8,9 +8,16 @@ const useRouter = jest.fn(() => ({
 
 const redirect = jest.fn();
 
+const useSearchParams = jest.fn(() => ({
+
+    get: jest.fn(() => null) // Returns null by default for any parameter
+
+}))
+
 module.exports = {
 
     useRouter,
-    redirect
+    redirect,
+    useSearchParams
 
 }

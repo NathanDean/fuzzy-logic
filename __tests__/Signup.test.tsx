@@ -27,7 +27,7 @@ describe("SignUp", () => {
         expect(screen.getByLabelText("Email:")).toBeInTheDocument();
         expect(screen.getByLabelText("Password:")).toBeInTheDocument();
         expect(screen.getByLabelText("Confirm password:")).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeInTheDocument();
 
     });
     
@@ -35,8 +35,8 @@ describe("SignUp", () => {
 
         render(<SignUpPage />);
 
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeDisabled();
 
         fireEvent.change(screen.getByLabelText("Password:"), {
 
@@ -50,8 +50,7 @@ describe("SignUp", () => {
 
         });
         
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeDisabled();
 
     })
 
@@ -59,8 +58,8 @@ describe("SignUp", () => {
 
         render(<SignUpPage />);
 
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Sign up" })).toBeDisabled();
 
         fireEvent.change(screen.getByLabelText("Password:"), {
 
@@ -74,7 +73,6 @@ describe("SignUp", () => {
 
         });
         
-        expect(screen.getByRole("button", { name: "Sign up" })).toBeInTheDocument();
         expect(screen.getByRole("button", { name: "Sign up" })).toBeEnabled();
 
     })

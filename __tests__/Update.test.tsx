@@ -24,7 +24,7 @@ describe("Update", () => {
 
         expect(screen.getByLabelText("New password:")).toBeInTheDocument();
         expect(screen.getByLabelText("Confirm new password:")).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Update password" })).toBeInTheDocument();
 
     });
 
@@ -32,8 +32,8 @@ describe("Update", () => {
 
         render(<UpdatePassword />);
 
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "Update password" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Update password" })).toBeDisabled();
 
         fireEvent.change(screen.getByLabelText("New password:"), {
 
@@ -47,8 +47,7 @@ describe("Update", () => {
 
         });
         
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "Update password" })).toBeDisabled();
 
     })
 
@@ -56,8 +55,8 @@ describe("Update", () => {
 
         render(<UpdatePassword />);
 
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: "Password too weak" })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "Update password" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Update password" })).toBeDisabled();
 
         fireEvent.change(screen.getByLabelText("New password:"), {
 
@@ -71,7 +70,6 @@ describe("Update", () => {
 
         });
         
-        expect(screen.getByRole("button", { name: "Update password" })).toBeInTheDocument();
         expect(screen.getByRole("button", { name: "Update password" })).toBeEnabled();
 
     })

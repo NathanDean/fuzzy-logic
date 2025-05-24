@@ -68,7 +68,7 @@ jest.mock("@/app/workshops/[workshopId]/WorkshopDetailsClientWrapper", () => {
   
     return function MockedWrapper({ workshop }: { workshop: Workshop }) {
   
-        return workshop; // Just return the props for testing
+        return workshop; // Return props for testing
   
     };
 
