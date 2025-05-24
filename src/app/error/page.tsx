@@ -20,15 +20,15 @@ function ErrorPageComponent (){
 
   return (
 
-    <>
+    <div className = "flex flex-col items-center space-y-1">
       
-      <h1 className = "secondary">Sorry, something went wrong.</h1>
+      <h1 className = "heading">Sorry, something went wrong.</h1>
 
-      <p>Error: {displayMessage}</p>
+      <p className = "medium-text">Error: {displayMessage}</p>
 
-      <p>Please try again, if the problem continues please get in touch.</p>
+      <p className = "medium-text">Please try again, if the problem continues please get in touch.</p>
       
-    </>
+    </div>
 
   )
 

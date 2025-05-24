@@ -35,7 +35,7 @@ export default async function WorkshopDetails({params}: {params: Promise<{ works
 
   if(error || !workshopData){
 
-    return <p className = "error">Workshop not found</p>;
+    return <p className = "medium-text error">Workshop not found</p>;
 
   }
 

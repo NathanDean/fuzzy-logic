@@ -22,25 +22,40 @@
     font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
   }
 
-  h1 {
+  .logo {
     font-family: var(--font-sigmar);
+  }
+
+  .main-logo {
     @apply text-8xl mb-4
   }
 
-  .secondary {
-    font-family: var(--font-outfit);
+  .header-logo {
+    @apply text-3xl hover:text-inherit transition-none;
   }
 
-  h2, .secondary {
-    @apply text-2xl font-medium
+  .heading {
+    @apply text-2xl sm:text-3xl font-medium
   }
 
-  h3 {
-    @apply text-xl font-medium
+  .card-heading, .subheading {
+    @apply text-xl sm:text-2xl font-medium
   }
 
-  .main-text {
-    @apply text-2xl sm:text-3xl 
+  .card-subheading {
+    @apply text-lg sm:text-xl font-medium
+  }
+
+  .info-heading {
+    @apply text-base sm:text-lg font-medium
+  }
+
+  .large-text {
+    @apply text-xl sm:text-2xl 
+  }
+
+  .medium-text {
+    @apply text-lg sm:text-xl
   }
 
   .detail-text {
@@ -51,18 +66,12 @@
     @apply text-red-600
   }
 
-
   p, li {
     @apply py-1
   }
 
   a {
     @apply hover:text-blue-500 transition-colors duration-300;
-  }
-
-  a.logo {
-    font-family: var(--font-sigmar);
-    @apply text-3xl hover:text-inherit transition-none;
   }
 
   .navLink {

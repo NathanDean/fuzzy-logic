@@ -135,9 +135,12 @@ export default function Account(){
       
         <div>
 
-            <Card className = "p-6 text-lg sm:text-xl">
+            <Card className = "p-6 space-y-1">
                 
-                <h1 className = "secondary">Account</h1>
+                <h1 className = "heading">Account</h1>
+
+                <div className = "space-y-1 medium-text">
+
                 <p>Name: {metadata?.first_name} {metadata?.last_name}</p>
                 <p>Email: {user?.email}</p>
                 <p>Upcoming workshops:</p>
@@ -152,7 +155,7 @@ export default function Account(){
                   
                   {errorMessage && <p className = "error">{errorMessage}</p>}
                   
-                  <ul className = "list-disc pl-5">
+                  <ul className = "list-disc pl-5 space-y-1">
 
                     {bookings.map((booking) => (
 
@@ -169,6 +172,8 @@ export default function Account(){
                   </>
 
                 )}
+
+                </div>
 
             </Card>
 

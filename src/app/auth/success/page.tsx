@@ -25,17 +25,17 @@ function AuthSuccessComponent(){
         
             {displayMessages.length > 0 ? (
             
-                <>
+                <div className = "flex flex-col items-center space-y-1">
                 
-                    <h1 className = "secondary">{displayMessages[0]}</h1>
+                    <h1 className = "heading">{displayMessages[0]}</h1>
 
-                    {displayMessages[1] && <p>{displayMessages[1]}</p>}
+                    {displayMessages[1] && <p className = "medium-text">{displayMessages[1]}</p>}
 
-                </>
+                </div>
 
             ) : (
 
-                <p>Invalid success code</p>
+                <h1 className = "heading">Invalid success code</h1>
 
             )}
         

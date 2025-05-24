@@ -56,22 +56,22 @@ export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}:
                 {/* Text content */}
                 <div className = "p-6 flex flex-col flex-grow">
 
-                    <div className = "flex-grow">
+                    <div className = "flex-grow space-y-1">
                     
                         {/* Workshop name */}
-                        <h2 className = "py-1">{workshop.class_name}</h2>
+                        <h2 className = "card-heading">{workshop.class_name}</h2>
 
-                        <h3>with {workshop.teacher}</h3>
+                        <h3 className = "card-subheading">with {workshop.teacher}</h3>
                         
-                        <h4 className = "py-1">{workshop.course_type}</h4>
+                        <h4 className = "info-heading">{workshop.course_type}</h4>
                         
                         {/* Date/time */}
-                        <h4 className = "py-1">
+                        <h4 className = "info-heading">
                             Begins {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd D MMM")} at {workshop.venue}
                         </h4>
                         
                         {/* Venue */}
-                        <h4 className = "py-1">£{workshop.price}</h4>                        
+                        <h4 className = "info-heading">£{workshop.price}</h4>                        
 
                     </div>
 

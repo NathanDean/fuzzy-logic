@@ -64,7 +64,7 @@ export default function Header(){
       <div className = "px-6 flex justify-between items-center">
 
         {/* Logo */}
-        <Link href = "/" className = "logo" onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
+        <Link href = "/" className = "logo header-logo" onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
         {/* Full nav menu */}
         <nav className = "hidden sm:flex space-x-6 text-xl tracking-wider">
@@ -139,7 +139,7 @@ export default function Header(){
 
             <div className = "flex justify-between items-center">
             
-              <Link href = "/" className = "logo"  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
+              <Link href = "/" className = "logo header-logo"  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
               <button className = "sm:hidden" onClick = {toggleMenu} aria-label = "Toggle menu">
 

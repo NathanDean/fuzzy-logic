@@ -128,7 +128,7 @@ export default function Workshops(){
       
         <>
 
-          {errorMessage && <p className = "error">{errorMessage}</p>}
+          {errorMessage && <p className = "medium-text error">{errorMessage}</p>}
 
           <CardGrid cardWidth = "md" imageHeight = "md" cols = {1}>
             

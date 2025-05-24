@@ -2,7 +2,7 @@ export default function About(){
 
     return (
 
-        <div className = "sm:w-xl lg:w-3xl xl:w-4xl space-y-2 main-text">
+        <div className = "sm:w-xl lg:w-3xl xl:w-4xl space-y-2 large-text">
 
             <p>Fuzzy Logic is an improv company.</p>
 
