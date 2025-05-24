@@ -63,15 +63,15 @@ export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}:
 
                         <h3>with {workshop.teacher}</h3>
                         
-                        <h3 className = "py-1">{workshop.course_type}</h3>
+                        <h4 className = "py-1">{workshop.course_type}</h4>
                         
                         {/* Date/time */}
-                        <h3 className = "py-1">
-                            Begins {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")} at {workshop.venue}
-                        </h3>
+                        <h4 className = "py-1">
+                            Begins {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd D MMM")} at {workshop.venue}
+                        </h4>
                         
                         {/* Venue */}
-                        <h3 className = "py-1">£{workshop.price}</h3>                        
+                        <h4 className = "py-1">£{workshop.price}</h4>                        
 
                     </div>
 

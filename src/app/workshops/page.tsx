@@ -130,7 +130,7 @@ export default function Workshops(){
 
           {errorMessage && <p className = "error">{errorMessage}</p>}
 
-          <CardGrid cardWidth = "md" imageHeight = "lg" cols = {2}>
+          <CardGrid cardWidth = "md" imageHeight = "md" cols = {1}>
             
             {workshops.map((workshop) => (
 

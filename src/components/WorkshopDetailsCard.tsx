@@ -60,20 +60,24 @@ export default function WorkshopDetailsCard({ workshop, onBookNow, imageHeight =
                         {/* Workshop name */}
                         <h2 className = "py-1">{workshop.class_name}</h2>
 
-                        <h3 className = "py-1">with {workshop.teacher}</h3>
+                        <h3>with {workshop.teacher}</h3>
                         
-                        <h3 className = "py-1">{workshop.course_type}</h3>
+                        <h4 className = "py-1">{workshop.course_type}</h4>
                         
                         {/* Date/time */}
-                        <h3 className = "py-1">
-                            Begins {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd Do MMM")} at {workshop.venue}
-                        </h3>
+                        <h4 className = "py-1">
+                            Begins {dayjs(`${workshop.date} ${workshop.start_time}`).format("ha on ddd D MMM")} at {workshop.venue}
+                        </h4>
                         
                         {/* Venue */}
-                        <h3 className = "py-1">£{workshop.price}</h3>
+                        <h4 className = "py-1">£{workshop.price}</h4>
 
                         {/* Description */}
-                        <p className = "py-1 detail-text">{workshop.description}</p>
+                        {workshop.description.split("\n").filter(paragraph => paragraph.trim()).map((paragraph, index) => (
+                            <p key={index}>{paragraph}</p>
+                        ))}
+                        
+                        {/* <p className = "py-1 detail-text">{workshop.description}</p> */}
                         
 
                     </div>

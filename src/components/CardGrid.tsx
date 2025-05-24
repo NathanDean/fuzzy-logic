@@ -28,7 +28,7 @@ export default function CardGrid({ children, cardWidth = "md", imageHeight = "lg
         sm: "max-w-sm",
         md: "max-w-md",
         lg: "max-w-lg",
-        xl: "sm:w-xl lg:w-3xl xl:w-5xl"
+        xl: "sm:w-xl lg:w-3xl xl:w-7xl"
 
     }[cardWidth]
 
@@ -46,7 +46,7 @@ export default function CardGrid({ children, cardWidth = "md", imageHeight = "lg
 
     return (
 
-        <div className={`grid grid-cols-1 ${gridCols} gap-10 pt-2`}>
+        <div className={`grid grid-cols-1 ${gridCols} gap-10`}>
         
             {Children.map(childrenWithProps, child => (
         
