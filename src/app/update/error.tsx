@@ -15,15 +15,15 @@ export default function Error({ error, reset}: {
 
     return (
 
-        <>
+        <div className = "flex flex-col items-center space-y-1">
         
-            <h1 className = "secondary">Sorry, something went wrong.</h1>
+            <h1 className = "header">Sorry, something went wrong.</h1>
 
-            <p>Password update error.  Please try again, if the problem continues please get in touch.</p>
+            <p className = "medium-text">Password update error.  Please try again, if the problem continues please get in touch.</p>
 
             <button className = "btn btn-primary" onClick = {() => reset()}>Try again</button>
         
-        </>
+        </div>
 
     )
 
