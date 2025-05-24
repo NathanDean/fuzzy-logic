@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import supabase from "@/utils/supabase/supabaseClient";
 import { createCheckoutSession } from "../actions/stripe";
-import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
@@ -71,6 +69,8 @@ export default function Workshops(){
   }, []);
 
   const handleBookNow = async(workshopId: string) => {
+    
+    setErrorMessage("");
     
     if(!isLoggedIn || !user){
 

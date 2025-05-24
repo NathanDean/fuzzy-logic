@@ -20,7 +20,7 @@ export default function WorkshopClientWrapper({ workshop }: { workshop: Workshop
   
       if(!isLoggedIn || !user){
   
-        router.push("/login");
+        router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
         return;
   
       }
