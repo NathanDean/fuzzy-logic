@@ -8,7 +8,7 @@ import WorkshopDetailsCard from "@/components/WorkshopDetailsCard"
 import CardGrid from "@/components/CardGrid"
 import { Workshop } from "@/utils/types/Workshop"
 
-export default function WorkshopClientWrapper({ workshop }: { workshop: Workshop }){
+export default function WorkshopDetailsClientWrapper({ workshop }: { workshop: Workshop }){
 
     const { user, isLoggedIn } = useAuth();
     const [errorMessage, setErrorMessage] = useState<string>("");
