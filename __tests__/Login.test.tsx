@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import LoginPage from "../src/app/login/page";
+import { useSearchParams } from "next/navigation";
 
 const mockLogin = jest.fn();
 
@@ -18,6 +19,19 @@ jest.mock("@/utils/auth/actions", () => ({
 
 describe("Login", () => {
 
+    beforeEach(() => {
+    
+        jest.clearAllMocks();
+
+        // Default mock - no search params
+        (useSearchParams as jest.Mock).mockReturnValue({
+
+            get: jest.fn(() => null)
+
+        });
+    
+    });
+    
     it("renders login form correctly", () => {
 
         render(<LoginPage />);
@@ -27,6 +41,27 @@ describe("Login", () => {
         expect(screen.getByRole("button", { name: "Log in" })).toBeInTheDocument();
 
     });
+
+    it("renders conditional header when routed from workshop booking attempt", () => {
+
+        (useSearchParams as jest.Mock).mockReturnValue({
+
+            get: jest.fn((param: string) => {
+
+                if (param === "redirectTo") return "workshop";
+                if (param === "workshopId") return "test-workshop-id";
+
+                return null;
+
+            })
+
+        });
+
+        render(<LoginPage />);
+
+        expect(screen.getByText("Please login to complete your booking")).toBeInTheDocument();
+
+    })
 
     it("submits form with correct values when clicking login", () => {
 
