@@ -133,11 +133,11 @@ export default function Header(){
 
       {isMenuVisible && (
 
-        <div data-testid = "mobile-menu" className = {`${isMenuOpaque ? "opacity-100" : "opacity-0"} sm:hidden fixed inset-0 w-full h-screen bg-white p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center`}>
+        <div data-testid = "mobile-menu" className = {`${isMenuOpaque ? "opacity-100" : "opacity-0"} sm:hidden fixed inset-0 w-full h-screen p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center bg-[var(--background)] text-[var(--foreground)]`}>
 
           <div className = "fixed top-0 left-0 right-0 px-6 py-4">
 
-            <div className = "flex justify-between items-center">
+            <div className = "flex justify-between items-center bg">
             
               <Link href = "/" className = "logo header-logo"  onClick = {() => setIsMenuOpen(false)}>fuzzy logic</Link>
 
