@@ -11,7 +11,7 @@
 
 - Signup: User can submit sign up form with email address associated with existing account
     - New user entry not created in database and no confirmation email sent
-- Login: After submitting form with incorrect details, form will not submit successfully even with correct details until after page refresh
+- Login: After submitting form with incorrect details, form will not submit successfully even with correct details until page refresh
 - Update: User is logged in after updating password
     - Consider whether acceptable from security/UX POV, or whether user should be required to log in manually
 - Account: Only lists date of first workshop for multi-date courses under Upcoming Workshops
@@ -51,82 +51,81 @@
 
 ### Expect: Single booking to be created with status === "in progress"
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: Same booking status === "confirmed" after completing payment in second tab/window
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 
 ## Describes: Exiting checkout session and returning to it before expiry
 
 ### Expect : Single booking to be in table with status === "in progress"
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: Matching booking status === "confirmed" after payment
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 
 ## Describes: Expired checkout session
 
 ### Expect: Matching booking to be deleted
-- TBC from Workshops
-- TBC from WorkshopDetails
-
+- Passed from Workshops
+- Passed from WorkshopDetails
 
 ## Describes: Failed payment
 
 ### Expect: Matching booking to be in table with status === "in progress"
-- TBC from Workshops
-- TBC from WorkshopDetails
+- Passed from Workshops
+- Passed from WorkshopDetails
 
 ### Expect: Matching booking to be deleted when checkout session expires
-- TBC from Workshops
-- TBC from WorkshopDetails
+- Passed from Workshops
+- Passed from WorkshopDetails
 
 
 ## Describes: Multiple users attempt to book last place
 
 ### Expect: Both users to see Book Now button enabled
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: First user to proceed to checkout on clicking Book Now button
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: Single booking for first user to be created with status === "in progress"
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: Second user to see error message on clicking Book Now button
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: No booking to be created for second user
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 
 ## Describes: User attempts to book while logged out
 
 ### Expect: User to be redirected to login page displayed "Please login to continue" message
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: User to be redirected to correct checkout page after successful login
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: Single booking to be created with status === "in progress"
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 ### Expect: Matching booking status === "confirmed" after payment
 - Passed from Workshops
-- TBC from WorkshopDetails
+- Passed from WorkshopDetails
 
 
 # Auth
