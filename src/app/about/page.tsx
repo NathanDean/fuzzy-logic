@@ -6,9 +6,9 @@ export default function About(){
 
             <p>Fuzzy Logic is an improv company.</p>
 
-            <p>We run a selection of carefully curated workshops to help improvisers find their artistic voice and develop the technical skills to express it.</p>
+            <p>We run a small and carefully curated selection of workshops designed to help improvisers find their artistic voice and develop the technical skills to express it more clearly.</p>
 
-            <p>We produce shows that aim to explore the potential of improv as a form of artistic expression.</p>
+            <p>We aim to explore the ways improv can enhance and learn from other artforms, and experiment with new ideas of what improv can do and be.</p>
 
         </div>
 
