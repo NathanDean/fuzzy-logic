@@ -20,34 +20,34 @@ function ConfirmSignupComponent() {
 
   if (!confirmationUrl) {
     return (
-      <>
+      <div className = "flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
         <h1 className = "heading">Invalid confirmation link</h1>
         <p className = "medium-text">This confirmation link appears to be invalid or incomplete.</p>
         <p className = "medium-text">Please try clicking the link in your email again, or contact us if the problem continues.</p>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <h1 className="heading">Confirm your email address</h1>
+    <div className = "flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
+      <h1 className="heading">Please confirm your email address</h1>
       
       <p className = "medium-text">
-        Thanks for signing up! Please confirm your email address by clicking the button below.
+        Thanks for signing up. Please confirm your email address by clicking the button below.
       </p>
 
       <button 
-        className={`btn ${isConfirming ? "btn-disabled" : "btn-primary"}`}
+        className={`btn ${isConfirming ? "btn-disabled" : "btn-primary"} sm:w-1/2`}
         onClick={handleConfirm}
         disabled={isConfirming}
       >
-        {isConfirming ? "Confirming..." : "Confirm Email"}
+        {isConfirming ? "Confirming..." : "Confirm email address"}
       </button>
 
       <p className="medium-text">
         {`If you have any problems signing up please get in touch.`}
       </p>
-    </>
+    </div>
   );
 }
 
