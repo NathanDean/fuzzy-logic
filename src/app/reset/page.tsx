@@ -2,7 +2,6 @@
 
 import { resetPassword } from "@/utils/auth/actions";
 
-import Form from "next/form";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 import { useState } from "react";
@@ -11,11 +10,14 @@ import SignUpLink from "@/components/SignUpLink";
 export default function ResetPassword() {
 
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
 
   const handleSubmit = async(formData: FormData) => {
 
+    setIsSubmitting(true)
     setErrorMessage("");
+
     const result = await resetPassword(formData);
 
     if (result?.error){
@@ -24,11 +26,18 @@ export default function ResetPassword() {
 
     }
 
+    setIsSubmitting(false)
+
   }
   
   return (
 
-        <Form action = {handleSubmit}>
+        <form onSubmit = {async (e) => {
+
+          e.preventDefault();
+          await handleSubmit(new FormData(e.currentTarget));
+
+        }}>
 
           { errorMessage && <p className = "error">{errorMessage}</p>}
 
@@ -41,11 +50,11 @@ export default function ResetPassword() {
 
           </div>
 
-          <button className = {`btn ${isTurnstileLoading ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Reset password"}</button>
+          <button className = {`btn ${isTurnstileLoading || isSubmitting ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || isSubmitting}>{isTurnstileLoading ? "Loading" : isSubmitting ? "Please wait..." : "Reset password"}</button>
 
           <SignUpLink />
 
-        </Form>
+        </form>
 
   )
 
