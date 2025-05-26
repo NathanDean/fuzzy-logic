@@ -11,8 +11,8 @@ function AuthSuccessComponent(){
 
     const successMessages : { [key: string]: string[] } = {
 
-        "signup-successful": ["Thanks for signing up.", "Please check your inbox and confirm your email address to continue."],
-        "password-reset-request-successful": ["We've received your password reset request.", "Please check your inbox for a password reset email and follow the instructions inside to continue."],
+        "signup-successful": ["Thanks for signing up.", "Please check your inbox and confirm your email address to continue.", "If you haven't received an email it may be in your junk folder, or you may have already signed up with this email address."],
+        "password-reset-request-successful": ["We've received your password reset request.", "If this email address is registered to an account we'll send you a password reset email.", "Please follow the instructions inside to continue."],
         "password-update-successful": ["Your password has been reset.", "Please login to continue."]
 
     }
@@ -30,6 +30,8 @@ function AuthSuccessComponent(){
                     <h1 className = "heading">{displayMessages[0]}</h1>
 
                     {displayMessages[1] && <p className = "medium-text">{displayMessages[1]}</p>}
+
+                    {displayMessages[2] && <p className = "medium-text">{displayMessages[2]}</p>}
 
                 </div>
 
