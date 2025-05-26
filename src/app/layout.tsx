@@ -11,6 +11,22 @@ import { AuthProvider } from "@/contexts/AuthContext";
 export const metadata: Metadata = {
   title: "Fuzzy Logic",
   description: "Fuzzy Logic",
+  openGraph: {
+    title: "Fuzzy Logic",
+    description: "An improv company", 
+    url: "https://www.fzzy.co.uk",
+    siteName: "Fuzzy Logic",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 400,
+        height: 400,
+        alt: "Fuzzy Logic: An improv company",
+      }
+    ],
+    locale: "en_GB",
+    type: "website",
+  }
 };
 
 
