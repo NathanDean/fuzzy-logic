@@ -2,7 +2,6 @@
 
 import { login } from "@/utils/auth/actions";
 
-import Form from "next/form";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 import { useSearchParams } from "next/navigation";
@@ -19,12 +18,14 @@ function LoginForm(){
 
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirectTo");
   const workshopId = searchParams.get("workshopId")
 
   const handleSubmit = async (formData: FormData) => {
 
+    setIsSubmitting(true);
     setErrorMessage("");
 
     const result = await login(formData);
@@ -69,13 +70,20 @@ function LoginForm(){
     
     };
 
+    setIsSubmitting(false);
+
   }
 
   return (
 
     <>
 
-        <Form action = {handleSubmit}>
+        <form onSubmit = {async (e) => {
+
+          e.preventDefault();
+          await handleSubmit(new FormData(e.currentTarget));
+
+        }}>
 
           {redirectTo === "workshop" && workshopId && (
         
@@ -97,12 +105,12 @@ function LoginForm(){
 
           </div>
 
-          <button className = {`btn ${isTurnstileLoading ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading}>{isTurnstileLoading ? "Loading" : "Log in"}</button>
+          <button className = {`btn ${isTurnstileLoading || isSubmitting ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || isSubmitting}>{isTurnstileLoading ? "Loading" : isSubmitting ? "Please wait..." : "Log in"}</button>
 
           <SignUpLink />
           <ResetPasswordLink />
 
-        </Form>
+        </form>
 
     </>
 
