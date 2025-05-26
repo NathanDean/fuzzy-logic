@@ -76,18 +76,6 @@ export async function signup(formData: FormData) {
 
     console.error("Error signing up:", error)
 
-    if(error.code?.includes("email_exists")){
-
-      return { error: "Email address already registered, please login."}
-
-    }
-
-    if(error.code?.includes("email_not_confirmed")){
-
-      return { error: "Email address already registered, please check your inbox for a confirmation email."}
-
-    }
-
     if(error.code?.includes("captcha_failed")){
 
       return { error: "Captcha verification failed, please refresh the page and try again."}
@@ -96,7 +84,7 @@ export async function signup(formData: FormData) {
 
     if(error.code?.includes("rate_limit")){
 
-      return { error: "Sorry, an error occured, please try again in a few minutes."}
+      return { error: "Too many requests, please try again in a few minutes."}
 
     }
 
@@ -240,6 +228,12 @@ export async function resetPassword(formData: FormData){
     if(error.code?.includes("captcha_failed")){
 
       return { error: "Captcha verification failed, please refresh the page and try again."}
+
+    }
+
+    if(error.code?.includes("rate_limit")){
+
+      return { error: "Too many requests, please try again in a few minutes."}
 
     }
 
