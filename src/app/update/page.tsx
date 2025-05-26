@@ -1,8 +1,6 @@
 "use client";
 
 import { updatePassword } from "@/utils/auth/actions";
-import Form from "next/form";
-import Link from "next/link";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
@@ -10,6 +8,7 @@ import { useEffect, useState } from "react";
 
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
+import SignUpLink from "@/components/SignUpLink";
 
 zxcvbnOptions.setOptions({
   
@@ -28,6 +27,7 @@ export default function UpdatePassword() {
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
   const [passwordFeedback, setPasswordFeedback] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   // Not logged in or in recovery state, redirect to login
@@ -80,6 +80,7 @@ export default function UpdatePassword() {
 
   const handleSubmit = async (formData: FormData) => {
 
+    setIsSubmitting(true);
     setErrorMessage("");
 
     const result = await updatePassword(formData);
@@ -90,11 +91,18 @@ export default function UpdatePassword() {
 
     }
 
+    setIsSubmitting(false)
+
   }
 
   return (
 
-        <Form action = {handleSubmit}>
+        <form onSubmit = {async (e) => {
+
+          e.preventDefault();
+          await handleSubmit(new FormData(e.currentTarget));
+
+        }}>
 
           { errorMessage && <p className = "error">{errorMessage}</p>}
 
@@ -123,15 +131,15 @@ export default function UpdatePassword() {
 
           )}
 
-          <button className = {`btn ${passwordStrength < 3 ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {passwordStrength < 3}>
+          <button className = {`btn ${passwordStrength < 3 || isSubmitting ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {passwordStrength < 3 || isSubmitting}>
             
-            Update password
+            {isSubmitting ? "Please wait..." : "Update password"}
               
           </button>
 
-          <Link href = "/signup">New to Fuzzy Logic?  Sign up here.</Link>
+          <SignUpLink />
 
-        </Form>
+        </form>
 
   )
 
