@@ -4,6 +4,8 @@ import CardImage from "./CardImage";
 
 import { Workshop } from "@/utils/types/Workshop";
 
+import { useState } from "react";
+
 import dayjs from "dayjs";
 
 interface WorkshopCardProps {
@@ -17,6 +19,15 @@ interface WorkshopCardProps {
 export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}: WorkshopCardProps){
 
     const isSoldOut = workshop.max_places_available - workshop.bookings <= 0
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleBookNow = async () => {
+
+        setIsSubmitting(true);
+        await onBookNow(workshop.id);
+        setIsSubmitting(false);
+
+    }
 
     return (
 
@@ -63,13 +74,11 @@ export default function WorkshopCard({ workshop, onBookNow, imageHeight = "md"}:
                         
                         {/* Book now */}
                         <button 
-                            className = {`btn ${workshop.max_places_available - workshop.bookings > 0 ? "btn-primary" : "btn-disabled"} rounded-md p-2 transition-all`}
-                            onClick = {() => onBookNow(workshop.id)}
-                            disabled = {
-
-                                isSoldOut ? true : false
-
-                            }>{isSoldOut ? "Sold out" : "Book now"}
+                            className = {`btn ${isSoldOut || isSubmitting ? "btn-disabled" : "btn-primary"} rounded-md p-2 transition-all`}
+                            onClick = {handleBookNow}
+                            disabled = {isSoldOut || isSubmitting}
+                        >
+                                {isSoldOut ? "Sold out" : isSubmitting ? "Please wait..." : "Book now"}
                         </button>
 
                         {/* More info */}
