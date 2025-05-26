@@ -100,7 +100,7 @@ export async function signup(formData: FormData) {
 
     }
 
-    return { error: "Error signing up, please refresh the page and try again" }
+    return { error: "Error signing up, please refresh the page and try again." }
 
   }
 
@@ -168,7 +168,26 @@ export async function login(formData: FormData) {
   if (error) {
 
     console.error("Error logging in", error);
-    return { error: "Invalid email or password, please try again" };
+
+    if(error.code?.includes("invalid_credentials")){
+
+      return { error: "Invalid email or password, please try again."}
+
+    }
+
+    if(error.code?.includes("email_not_confirmed")){
+
+      return { error: "Email address not confirmed, please check your inbox for a confirmation email."}
+
+    }
+
+    if(error.code?.includes("captcha_failed")){
+
+      return { error: "Captcha verification failed, please refresh the page and try again."}
+
+    }
+
+    return { error: "Error logging in, please refresh the page and try again." };
 
   }
 
