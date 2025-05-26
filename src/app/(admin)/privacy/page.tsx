@@ -37,14 +37,14 @@ export default function PrivacyPolicy() {
         <h2 className="card-heading">Lawful bases and data protection rights</h2>
         
         <p className="detail-text">
-          Under UK data protection law, we must have a "lawful basis" for collecting and using your personal information. 
+          Under UK data protection law, we must have a {`"lawful basis"`} for collecting and using your personal information. 
           There is a list of possible <a href="https://ico.org.uk/for-organisations/advice-for-small-organisations/key-data-protection-terms-you-need-to-know/#lawfulbasis" target="_blank" rel="noopener noreferrer">lawful bases</a> in the UK GDPR. 
-          You can find out more about lawful bases on the ICO's website.
+          You can find out more about lawful bases on the {`ICO's`} website.
         </p>
 
         <p className="detail-text">
           Which lawful basis we rely on may affect your data protection rights which are set out in brief below. 
-          You can find out more about your data protection rights and the exemptions which may apply on the ICO's website:
+          You can find out more about your data protection rights and the exemptions which may apply on the {`ICO's`} website:
         </p>
 
         <ul className="list-disc pl-5 space-y-2 detail-text">
@@ -104,13 +104,13 @@ export default function PrivacyPolicy() {
           
           <ul className="list-disc pl-5 space-y-1 detail-text">
             <li>
-              <strong>Legitimate interests</strong> - we're collecting or using your information because it benefits you, our organisation or someone else, 
+              <strong>Legitimate interests</strong> - {`we're`} collecting or using your information because it benefits you, our organisation or someone else, 
               without causing an undue risk of harm to anyone. All of your data protection rights may apply, except the right to portability. 
               Our legitimate interests are:
               <ul className="list-disc pl-5 mt-1 space-y-1">
                 <li>
-                  We collect customers' names to allow us to keep track of who is attending workshops. 
-                  We collect customers' email addresses to enable them to log into their accounts and track their bookings.
+                  We collect {`customers'`} names to allow us to keep track of who is attending workshops. 
+                  We collect {`customers'`} email addresses to enable them to log into their accounts and track their bookings.
                 </li>
               </ul>
             </li>
@@ -163,13 +163,13 @@ export default function PrivacyPolicy() {
         </p>
 
         <p className="detail-text">
-          If you remain unhappy with how we've used your data after raising a complaint with us, you can also complain to the ICO.
+          If you remain unhappy with how {`we've`} used your data after raising a complaint with us, you can also complain to the ICO.
         </p>
 
         <div className="space-y-1 detail-text">
-          <p><strong>The ICO's address:</strong></p>
+          <p><strong>The {`ICO's`} address:</strong></p>
           <address className="not-italic pl-4">
-            Information Commissioner's Office<br />
+            Information {`Commissioner's`} Office<br />
             Wycliffe House<br />
             Water Lane<br />
             Wilmslow<br />
