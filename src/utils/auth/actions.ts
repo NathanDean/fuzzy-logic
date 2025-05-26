@@ -236,7 +236,14 @@ export async function resetPassword(formData: FormData){
   if (error) {
 
     console.error("Error resetting password:", error);
-    return { error: "Error resetting password, please try again" };
+
+    if(error.code?.includes("captcha_failed")){
+
+      return { error: "Captcha verification failed, please refresh the page and try again."}
+
+    }
+
+    return { error: "Error requesting password reset, please refresh the page and try again" };
 
   }
 
