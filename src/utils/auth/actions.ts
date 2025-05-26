@@ -283,7 +283,20 @@ export async function updatePassword(formData: FormData){
   if (error) {
 
     console.error("Error updating password:", error);
-    return { error: "Error updating password, please try again" };
+
+    if(error.code?.includes("same_password")){
+
+      return { error: "New password must be different to previous password."}
+
+    }
+
+    if(error.code?.includes("invalid_credentials") || error.code?.includes("user_not_found")){
+
+      return { error: "Your session has expired, please request a new password reset email."}
+
+    }
+
+    return { error: "Error updating password, please refresh the page and try again" };
 
   }
 
