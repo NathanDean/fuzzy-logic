@@ -76,25 +76,25 @@ export async function signup(formData: FormData) {
 
     console.error("Error signing up:", error)
 
-    if(error?.message === "email_exists"){
+    if(error.code?.includes("email_exists")){
 
       return { error: "Email address already registered, please login."}
 
     }
 
-    if(error?.message === "email_not_confirmed"){
+    if(error.code?.includes("email_not_confirmed")){
 
       return { error: "Email address already registered, please check your inbox for a confirmation email."}
 
     }
 
-    if(error?.message === "captcha_failed"){
+    if(error.code?.includes("captcha_failed")){
 
       return { error: "Captcha verification failed, please refresh the page and try again."}
 
     }
 
-    if(error?.message.includes("rate_limit")){
+    if(error.code?.includes("rate_limit")){
 
       return { error: "Sorry, an error occured, please try again in a few minutes."}
 

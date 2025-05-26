@@ -1,7 +1,6 @@
 "use client"
 
 import { signup } from "@/utils/auth/actions";
-import Form from "next/form";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
@@ -22,6 +21,7 @@ export default function SignUpPage() {
 
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [password, setPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
   const [passwordFeedback, setPasswordFeedback] = useState<string>("");
@@ -69,7 +69,9 @@ export default function SignUpPage() {
 
   const handleSubmit = async(formData: FormData) => {
 
+    setIsSubmitting(true);
     setErrorMessage("");
+
     const result = await signup(formData);
 
     if (result?.error) {
@@ -78,11 +80,18 @@ export default function SignUpPage() {
 
     }
 
+    setIsSubmitting(false);
+
   }
 
   return (
 
-      <Form action = {handleSubmit}>
+      <form onSubmit = {async (e) => {
+      
+        e.preventDefault();
+        await handleSubmit(new FormData(e.currentTarget));
+      
+      }}>
 
         { errorMessage && <p className = "error">{errorMessage}</p>}
 
@@ -126,15 +135,15 @@ export default function SignUpPage() {
 
         </div>
 
-        <button className = {`btn ${isTurnstileLoading || passwordStrength < 3 ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || passwordStrength < 3}>
+        <button className = {`btn ${isTurnstileLoading || passwordStrength < 3 || isSubmitting ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || passwordStrength < 3 || isSubmitting}>
           
-          {isTurnstileLoading ? "Loading" : "Sign up"}
+          {isTurnstileLoading ? "Loading" : isSubmitting? "Please wait" : "Sign up"}
           
         </button>
 
         <LoginLink />
 
-      </Form>
+      </form>
 
   )
 
