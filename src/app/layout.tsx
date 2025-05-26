@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { sigmar } from "@/lib/fonts";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 // Metadata
@@ -37,7 +38,9 @@ export default function RootLayout({
           </main>
 
         </AuthProvider>
-      
+
+        <Footer />
+              
       </body>
     
     </html>
