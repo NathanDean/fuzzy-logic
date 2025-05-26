@@ -1,6 +1,6 @@
 # Manual testing report
 
-## Last tested: 25/05/2025 (commit aa655b0)
+## Last tested: 26/05/2025 (commit 50f170c)
 
 ## Status: Ready / ***Ready with minor issues*** / Blocked
 
@@ -8,12 +8,7 @@
 - None
 
 ### Minor issues
-
-- Signup: User can submit sign up form with email address associated with existing account
-    - New user entry not created in database and no confirmation email sent
-- Login: After submitting form with incorrect details, form will not submit successfully even with correct details until page refresh
-- Update: User is logged in after updating password
-    - Consider whether acceptable from security/UX POV, or whether user should be required to log in manually
+- Login: If user loads workshops page when there is one place remaining, then clicks Book now at the same time as another user, they may still be taken to login form, rather than seeing "Sorry, this workshop is now sold out" message
 - Account: Only lists date of first workshop for multi-date courses under Upcoming Workshops
 
 # Stripe
@@ -139,15 +134,6 @@
 - Passed
 
 
-## Describes: User attempts to sign up with email address already associated with an account
-
-### Expect: Form to not be submitted
-- Failed
-
-### Expect: User to see message telling them that email address is already associated with an account
-- Failed
-
-
 ## Describes: User attempts to submit signup form with mismatched passwords
 
 ### Expect: Form to not submitted
@@ -163,6 +149,12 @@
 - Passed
 
 ### Expect: User to be prompted to confirm email address
+- Passed
+
+
+## Describes: User attempts multiple clicks on Sign up button
+
+### Expect: Form to be disabled after first click
 - Passed
 
 
@@ -205,7 +197,13 @@
 - Passed
 
 
-## Describes: User attempts to login from two different browseres simultaneously
+## Describes: User attempts multiple clicks on Login button
+
+### Expect: Form to be disabled after first click
+- Passed
+
+
+## Describes: User attempts to login from two different browsers simultaneously
 
 ### Expect: Form to be submitted in each browser
 - Passed
@@ -214,6 +212,24 @@
 - Passed
 
 ### Expect: User to be redirected to Home page in each browser
+- Passed
+
+
+## Describes: User attempts to submit reset password form with missing field
+
+### Expect: Form to not submitted
+- Passed
+
+### Expect: User to be prompted to complete missing field
+- Passed
+
+
+## Describes: User attempts to submit reset password form with email address that does not match existing account
+
+### Expect: Form to be submitted
+- Passed
+
+### Expect: User to be prompted to visit link in email
 - Passed
 
 
@@ -226,12 +242,18 @@
 - Passed
 
 
+## Describes: User attempts multiple clicks on Reset password button
+
+### Expect: Form to be disabled after first click
+- Passed
+
+
 ## Describes: User attempts to submit update password form with missing field
 
 ### Expect: Form to not submitted
 - Passed
 
-### Expect: User to be prompted to match passwords
+### Expect: User to be prompted to complete missing field
 - Passed
 
 
@@ -256,4 +278,10 @@
 - Passed
 
 ### Expect: Login attempt with new password to succeed
+- Passed
+
+
+## Describes: User attempts multiple clicks on Update password button
+
+### Expect: Form to be disabled after first click
 - Passed
