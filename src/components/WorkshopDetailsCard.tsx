@@ -5,6 +5,8 @@ import CardImage from "./CardImage"
 
 import { Workshop } from "@/utils/types/Workshop";
 
+import { useState } from "react";
+
 interface WorkshopDetailsCardProps {
 
     workshop: Workshop,
@@ -16,6 +18,15 @@ interface WorkshopDetailsCardProps {
 export default function WorkshopDetailsCard({ workshop, onBookNow, imageHeight = "lg" }: WorkshopDetailsCardProps){
 
     const isSoldOut = workshop.max_places_available - workshop.bookings <= 0;
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleBookNow = async () => {
+
+        setIsSubmitting(true);
+        await onBookNow(workshop.id);
+        setIsSubmitting(false);
+
+    }
 
     return (
 
@@ -68,13 +79,12 @@ export default function WorkshopDetailsCard({ workshop, onBookNow, imageHeight =
                         {/* Book now */}
 
                             <button 
-                                className = {`btn ${workshop.max_places_available - workshop.bookings > 0 ? "btn-primary" : "btn-disabled"} rounded-md p-2 transition-all`}
-                                onClick = {() => onBookNow(workshop.id)}
-                                disabled = {
+                                className = {`btn ${isSoldOut || isSubmitting ? "btn-disabled" : "btn-primary"} rounded-md p-2 transition-all`}
+                                onClick = {handleBookNow}
+                                disabled = {isSoldOut || isSubmitting}
+                            >
 
-                                    isSoldOut ? true : false
-
-                                }>{isSoldOut ? "Sold out" : "Book now"}
+                                {isSoldOut ? "Sold out" : isSubmitting? "Please wait..." : "Book now"}
 
                             </button>
 
