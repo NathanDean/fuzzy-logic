@@ -6,7 +6,7 @@ export default function Footer () {
 
     return (
 
-        <footer className="flex justify-between mt-auto py-4 px-6 dark:border-gray-700">
+        <footer className="flex justify-between py-4 px-4">
             
             <div className="flex items-end space-x-4">
 
