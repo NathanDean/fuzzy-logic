@@ -129,6 +129,18 @@ export default function SignUpPage() {
 
         )}
 
+        <div className="flex flex-row content-center items-center w-full mt-2 mb-2 space-x-4">
+            <input 
+                id="subscribe" 
+                name="subscribe" 
+                type="checkbox" 
+                className= "w-auto h-full"
+            />
+            <label htmlFor="subscribe" className = "text-md">
+                Subscribe to mailing list
+            </label>
+        </div>
+
         <div className = "turnstile">
         
           <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />

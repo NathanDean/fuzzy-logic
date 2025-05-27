@@ -13,6 +13,7 @@ export async function signup(formData: FormData) {
   const email = formData.get("email");
   const password = formData.get("password");
   const confirmPassword = formData.get("confirmPassword");
+  const subscribe = formData.get("subscribe");
   const turnstileToken = formData.get("cf-turnstile-response");
 
   
@@ -90,6 +91,24 @@ export async function signup(formData: FormData) {
 
     return { error: "Error signing up, please refresh the page and try again." }
 
+  }
+
+  if (subscribe) {
+
+    try {
+
+        await supabase
+
+            .from("mailing_list")
+
+            .insert({ email });
+
+    } catch (mailingListError) {
+
+        // Log but don't fail the whole signup
+        console.error("Failed to add to mailing list:", mailingListError);
+
+    }
   }
 
   revalidatePath("/", "layout")
