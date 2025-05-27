@@ -1,11 +1,23 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { subscribeToMailingList } from "@/app/actions/mailingList"
 
 export default function MailingListForm (){
 
-    const [subscribeMessage, setSubScribeMessage] = useState("");
+    const [subscribeMessage, setSubscribeMessage] = useState("");
+
+    // Clear message after 3 seconds
+    useEffect(() => {
+        if (subscribeMessage) {
+            const timer = setTimeout(() => {
+                setSubscribeMessage("");
+            }, 3000);
+
+            // Cleanup timer if component unmounts or message changes
+            return () => clearTimeout(timer);
+        }
+    }, [subscribeMessage]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
@@ -16,11 +28,15 @@ export default function MailingListForm (){
         
         if (result?.error) {
             // Handle error
-            setSubScribeMessage("Sorry, please try again.")
+            setSubscribeMessage("Sorry, please try again.")
 
         } else {
             // Handle success
-            setSubScribeMessage("Thank you for subscribing")
+            setSubscribeMessage("Thank you for subscribing")
+
+            if (e.currentTarget) {
+                e.currentTarget.reset();
+            }
 
         }
 
