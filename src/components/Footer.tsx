@@ -8,7 +8,7 @@ export default function Footer () {
 
         <footer className="flex justify-between py-4 px-4">
             
-            <div className="flex items-end space-x-4">
+            <div className="flex items-center space-x-4">
 
                 <Link href="/privacy" className = "text-sm text-gray-600 dark:text-gray-400">
 

@@ -48,9 +48,9 @@ export default function MailingListForm (){
 
             {subscribeMessage && <p>{subscribeMessage}</p>}
             <div className = "flex flex-col sm:flex-row items-center space-x-2">
-            <h3 className = "w-full">Subscribe to our mailing list:</h3>
-            <input className = "w-auto my-0" id = "email" name = "email" type="email" placeholder = "Email" required />
-            <button className = "btn btn-primary my-0 text-sm " type="submit">Subscribe</button>
+            <h3 className = "leading-4">Subscribe to our mailing list:</h3>
+            <input className = "w-40 my-0 h-8" id = "email" name = "email" type="email" placeholder = "Email" required />
+            <button className = "btn btn-primary w-25 my-0 text-sm h-8" type="submit">Subscribe</button>
             </div>
 
         </form>
