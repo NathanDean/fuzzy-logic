@@ -1,10 +1,10 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --font-sigmar: 'Sigmar', sans-serif;
-  --font-outfit: "Outfit", sans-serif
+  --font-outfit: 'Outfit', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,7 +16,6 @@
 
 /* Base typography */
 @layer base {
-
   body {
     @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
     font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
@@ -27,7 +26,7 @@
   }
 
   .main-logo {
-    @apply text-8xl mb-4
+    @apply text-8xl mb-4;
   }
 
   .header-logo {
@@ -35,39 +34,41 @@
   }
 
   .heading {
-    @apply text-2xl sm:text-3xl font-medium
+    @apply text-2xl sm:text-3xl font-medium;
   }
 
-  .card-heading, .subheading {
-    @apply text-xl sm:text-2xl font-medium
+  .card-heading,
+  .subheading {
+    @apply text-xl sm:text-2xl font-medium;
   }
 
   .card-subheading {
-    @apply text-lg sm:text-xl font-medium
+    @apply text-lg sm:text-xl font-medium;
   }
 
   .info-heading {
-    @apply text-base sm:text-lg font-medium
+    @apply text-base sm:text-lg font-medium;
   }
 
   .large-text {
-    @apply text-xl sm:text-2xl 
+    @apply text-xl sm:text-2xl;
   }
 
   .medium-text {
-    @apply text-lg sm:text-xl
+    @apply text-lg sm:text-xl;
   }
 
   .detail-text {
-    @apply text-base
+    @apply text-base;
   }
 
   .error {
-    @apply text-red-600
+    @apply text-red-600;
   }
 
-  p, li {
-    @apply py-1
+  p,
+  li {
+    @apply py-1;
   }
 
   a {
@@ -75,35 +76,37 @@
   }
 
   .navLink {
-    @apply text-xl
+    @apply text-xl;
   }
-
 }
 
 /* Form Basics */
 @layer components {
-  
   form {
-    @apply flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] shadow-xl rounded-2xl p-10 text-lg
+    @apply flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] shadow-xl rounded-2xl p-10 text-lg;
   }
 
-  form p, form a, .turnstile {
-    @apply mt-2
+  form p,
+  form a,
+  .turnstile {
+    @apply mt-2;
   }
-  
-  input, textarea, select {
+
+  input,
+  textarea,
+  select {
     @apply w-full my-2 p-2 border rounded-sm transition-all duration-200
       hover:border-gray-500;
   }
 
   .zxcvbn {
-    @apply flex flex-col w-full space-y-2 mt-2 mb-4
+    @apply flex flex-col w-full space-y-2 mt-2 mb-4;
   }
 
   .btn {
     @apply inline-flex items-center justify-center w-full mt-2 px-4 py-2 text-lg
         border rounded-md font-medium text-center
-        transition-all duration-200 ease-in-out
+        transition-all duration-200 ease-in-out;
   }
 
   .btn-primary {
@@ -114,16 +117,11 @@
   .btn-disabled {
     @apply opacity-50 cursor-not-allowed hover:bg-inherit hover:text-inherit;
   }
-
 }
 
 /* Animation Utilities */
 @layer utilities {
-
   .transition-standard {
-
     @apply transition-all duration-300 ease-in-out;
-  
   }
-
 }

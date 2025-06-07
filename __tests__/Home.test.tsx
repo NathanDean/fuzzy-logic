@@ -1,16 +1,16 @@
-import "@testing-library/jest-dom"
-import { render, screen } from "@testing-library/react"
-import Page from "../src/app/page"
- 
-describe("Home", () => {
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import Page from '../src/app/page';
 
-  it("renders a heading", () => {
-
+describe('Home', () => {
+  it('renders a heading', () => {
     render(<Page />);
- 
-    expect(screen.getByRole("heading", { name: "fuzzy logic" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "an improv company" })).toBeInTheDocument();
 
+    expect(
+      screen.getByRole('heading', { name: 'fuzzy logic' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'an improv company' })
+    ).toBeInTheDocument();
   });
-
 });

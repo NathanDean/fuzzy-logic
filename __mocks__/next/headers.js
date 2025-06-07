@@ -7,5 +7,5 @@ const cookies = jest.fn(() => ({
 }));
 
 module.exports = {
-  cookies
+  cookies,
 };

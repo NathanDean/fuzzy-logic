@@ -1,214 +1,182 @@
-"use server"
+'use server';
 
-import Stripe from "stripe";
-import { createClient } from "@/utils/supabase/server";
-import { createAdminClient } from "@/utils/supabase/admin";
-import { PostgrestError } from "@supabase/supabase-js";
+import Stripe from 'stripe';
+import { createClient } from '@/utils/supabase/server';
+import { createAdminClient } from '@/utils/supabase/admin';
+import { PostgrestError } from '@supabase/supabase-js';
 
 interface Workshop {
-
-    id: string,
-    created_at: string,
-    class_name: string,
-    date: string,
-    start_time: string,
-    end_time: string,
-    venue: string,
-    description: string,
-    price: number
-    places_remaining: number
-  
+  id: string;
+  created_at: string;
+  class_name: string;
+  date: string;
+  start_time: string;
+  end_time: string;
+  venue: string;
+  description: string;
+  price: number;
+  places_remaining: number;
 }
 
 interface Booking {
-
-    id: string,
-    created_at: string,
-    workshop_id: string,
-    user_id: string,
-    status: string,
-    session_id: string
-
+  id: string;
+  created_at: string;
+  workshop_id: string;
+  user_id: string;
+  status: string;
+  session_id: string;
 }
 
-async function getWorkshop(workshopId: string): Promise<Workshop | { error: string }> {
+async function getWorkshop(
+  workshopId: string
+): Promise<Workshop | { error: string }> {
+  const supabase = await createClient();
 
-    const supabase = await createClient();    
-    
-    // Get workshop details from Supabase
-        const { data: workshop, error } = await supabase
-          .from("workshops")
-          .select("*, bookings:bookings(count)")
-          .eq("id", workshopId)
-          .single();
-      
-        if(error){
-      
-          return { error: "Error fetching workshop, please try again." };
-      
-        }
+  // Get workshop details from Supabase
+  const { data: workshop, error } = await supabase
+    .from('workshops')
+    .select('*, bookings:bookings(count)')
+    .eq('id', workshopId)
+    .single();
 
-        if (!workshop) {
-            
-            return { error: `Workshop not found with ID: ${workshopId}.` };
-          
-        }
+  if (error) {
+    return { error: 'Error fetching workshop, please try again.' };
+  }
 
-        // Check whether there are places remaining on the workshop
-        const places_remaining = workshop.max_places_available - (workshop.bookings?.[0]?.count || 0);
+  if (!workshop) {
+    return { error: `Workshop not found with ID: ${workshopId}.` };
+  }
 
-        return { ...workshop, places_remaining }
+  // Check whether there are places remaining on the workshop
+  const places_remaining =
+    workshop.max_places_available - (workshop.bookings?.[0]?.count || 0);
 
+  return { ...workshop, places_remaining };
 }
 
-export async function createCheckoutSession(workshopId: string, userId: string){
+export async function createCheckoutSession(
+  workshopId: string,
+  userId: string
+) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+  const supabase = await createClient();
+  const supabaseAdmin = createAdminClient();
+  const result = await getWorkshop(workshopId);
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
-    const supabase = await createClient();
-    const supabaseAdmin = createAdminClient();
-    const result = await getWorkshop(workshopId);
+  if ('error' in result) {
+    return { error: 'Error creating checkout session, please try again' };
+  }
 
-    if ("error" in result) {
+  const workshop = result;
 
-        return { error: "Error creating checkout session, please try again" }
-    
-    }
+  // Check whether the workshop has places remaining
+  if (workshop.places_remaining <= 0) {
+    return { error: 'Sorry, this workshop is now sold out.' };
+  }
 
-    const workshop = result;
-
-    // Check whether the workshop has places remaining
-    if(workshop.places_remaining <= 0){
-
-        return { error: "Sorry, this workshop is now sold out." }
-
-    }
-
-    // Check for existing in progress booking
-    const { data: existingBooking, error: existingBookingError } = await supabase
-        .from("bookings")
-        .select("*")
-        .match({
-            workshop_id: workshopId,
-            user_id: userId,
-            status: "in progress"
-        })
-        .limit(1) as { data: Booking[] | null, error: PostgrestError | null }
-
-    if(existingBookingError){
-
-        return { error: "Error finding existing booking, please try again." }
-
-    }
-
-    // If existing in progress booking has an active checkout session, retrieve it
-    if(existingBooking && existingBooking.length > 0 && existingBooking[0].session_id){
-
-        try{
-
-            // Check for existing checkout session
-            const existingSession = await stripe.checkout.sessions.retrieve(existingBooking[0].session_id);
-        
-            // If the session is active, return and continue to its checkout URL
-            if(existingSession.status !== "expired" && existingSession.status !== "complete") {
-                
-                return { url: existingSession.url };
-            
-            }
-
-        } catch {
-
-            return { error: "Error retrieving checkout session, please try again" };
-
-        }
-
-    }
-    
-    // Otherwise, create new checkout session
-    const session = await stripe.checkout.sessions.create({
-    
-        payment_method_types: ["card"],
-        line_items: [
-    
-            {
-    
-                price_data: {
-    
-                    currency: "gbp",
-                    product_data: {
-    
-                        name: workshop.class_name,
-                        description: workshop.description
-    
-                    },
-    
-                    unit_amount: workshop.price * 100
-    
-                },
-    
-                quantity: 1
-    
-            }
-    
-        ],
-    
-        mode: "payment",
-
-        // URLs for redirection after session completed or cancelled
-        success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/cancel`,
-        
-        // Expire checkout session after 30 mins
-        expires_at: Math.floor(Date.now() / 1000) + (60 * 30),
-        
-        // Pass workshop and user metadata to Stripe (to update booking after payment)
-        metadata: {
-    
-            workshop_id: workshop.id,
-            workshop_price: workshop.price,
-            user_id: userId
-    
-        }
-    
+  // Check for existing in progress booking
+  const { data: existingBooking, error: existingBookingError } = (await supabase
+    .from('bookings')
+    .select('*')
+    .match({
+      workshop_id: workshopId,
+      user_id: userId,
+      status: 'in progress',
     })
+    .limit(1)) as { data: Booking[] | null; error: PostgrestError | null };
 
-    // If existing in progress booking exists update it with new session ID
-    if(existingBooking && existingBooking.length > 0){
+  if (existingBookingError) {
+    return { error: 'Error finding existing booking, please try again.' };
+  }
 
-        const { error } = await supabaseAdmin
-        .from("bookings")
-        .update({ session_id: session.id })
-        .match({
-            workshop_id: workshopId,
-            user_id: userId,
-            status: "in progress"
-        });
-                  
-        if(error){
-            
-            return { error: `Error processing booking: ${error.message}` };
-                
-        }
+  // If existing in progress booking has an active checkout session, retrieve it
+  if (
+    existingBooking &&
+    existingBooking.length > 0 &&
+    existingBooking[0].session_id
+  ) {
+    try {
+      // Check for existing checkout session
+      const existingSession = await stripe.checkout.sessions.retrieve(
+        existingBooking[0].session_id
+      );
+
+      // If the session is active, return and continue to its checkout URL
+      if (
+        existingSession.status !== 'expired' &&
+        existingSession.status !== 'complete'
+      ) {
+        return { url: existingSession.url };
+      }
+    } catch {
+      return { error: 'Error retrieving checkout session, please try again' };
+    }
+  }
+
+  // Otherwise, create new checkout session
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'gbp',
+          product_data: {
+            name: workshop.class_name,
+            description: workshop.description,
+          },
+
+          unit_amount: workshop.price * 100,
+        },
+
+        quantity: 1,
+      },
+    ],
+
+    mode: 'payment',
+
+    // URLs for redirection after session completed or cancelled
+    success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/cancel`,
+
+    // Expire checkout session after 30 mins
+    expires_at: Math.floor(Date.now() / 1000) + 60 * 30,
+
+    // Pass workshop and user metadata to Stripe (to update booking after payment)
+    metadata: {
+      workshop_id: workshop.id,
+      workshop_price: workshop.price,
+      user_id: userId,
+    },
+  });
+
+  // If existing in progress booking exists update it with new session ID
+  if (existingBooking && existingBooking.length > 0) {
+    const { error } = await supabaseAdmin
+      .from('bookings')
+      .update({ session_id: session.id })
+      .match({
+        workshop_id: workshopId,
+        user_id: userId,
+        status: 'in progress',
+      });
+
+    if (error) {
+      return { error: `Error processing booking: ${error.message}` };
+    }
 
     // Otherwise create new in progress booking
-    } else {
+  } else {
+    const { error } = await supabaseAdmin.from('bookings').insert({
+      workshop_id: workshopId,
+      user_id: userId,
+      session_id: session.id,
+      status: 'in progress',
+    });
 
-        const { error } = await supabaseAdmin
-        .from("bookings")
-        .insert({
-            workshop_id: workshopId,
-            user_id: userId,
-            session_id: session.id,
-            status: "in progress"
-        });
-                  
-        if(error){
-            
-            return { error:`Error processing booking: ${error.message}` };
-                
-        }
-
+    if (error) {
+      return { error: `Error processing booking: ${error.message}` };
     }
+  }
 
-    return { url: session.url }
-
+  return { url: session.url };
 }

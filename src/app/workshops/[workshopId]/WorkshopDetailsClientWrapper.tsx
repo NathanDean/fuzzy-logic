@@ -1,62 +1,52 @@
-"use client"
+'use client';
 
-import { useAuth } from "@/contexts/AuthContext"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { createCheckoutSession } from "../../actions/stripe"
-import WorkshopDetailsCard from "@/components/WorkshopDetailsCard"
-import CardGrid from "@/components/CardGrid"
-import { Workshop } from "@/utils/types/Workshop"
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { createCheckoutSession } from '../../actions/stripe';
+import WorkshopDetailsCard from '@/components/WorkshopDetailsCard';
+import CardGrid from '@/components/CardGrid';
+import { Workshop } from '@/utils/types/Workshop';
 
-export default function WorkshopDetailsClientWrapper({ workshop }: { workshop: Workshop }){
+export default function WorkshopDetailsClientWrapper({
+  workshop,
+}: {
+  workshop: Workshop;
+}) {
+  const { user, isLoggedIn } = useAuth();
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const router = useRouter();
 
-    const { user, isLoggedIn } = useAuth();
-    const [errorMessage, setErrorMessage] = useState<string>("");
-    const router = useRouter();
+  const handleBookNow = async (workshopId: string) => {
+    setErrorMessage('');
 
-    const handleBookNow = async(workshopId: string) => {
-
-      setErrorMessage("");
-  
-      if(!isLoggedIn || !user){
-  
-        router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
-        return;
-  
-      }
-
-      const result = await createCheckoutSession(workshopId, user.id);
-
-      if (result.error) {
-
-        console.error("Error creating checkout session:", result.error);
-        setErrorMessage(result.error);
-        return;
-
-      }  
-  
-      if(result.url){
-  
-        window.location.href = result.url
-  
-      }
-  
+    if (!isLoggedIn || !user) {
+      router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
+      return;
     }
 
-    return (
+    const result = await createCheckoutSession(workshopId, user.id);
 
-        <CardGrid cardWidth = "xl" imageHeight = "lg" cols = {1}>
+    if (result.error) {
+      console.error('Error creating checkout session:', result.error);
+      setErrorMessage(result.error);
+      return;
+    }
 
-          {errorMessage && <p className = "error">{errorMessage}</p>}
-        
-          <WorkshopDetailsCard
-              key = {workshop.id}
-              workshop = {workshop}
-              onBookNow = {handleBookNow}
-          />
+    if (result.url) {
+      window.location.href = result.url;
+    }
+  };
 
-        </CardGrid>
+  return (
+    <CardGrid cardWidth="xl" imageHeight="lg" cols={1}>
+      {errorMessage && <p className="error">{errorMessage}</p>}
 
-    )
-    
+      <WorkshopDetailsCard
+        key={workshop.id}
+        workshop={workshop}
+        onBookNow={handleBookNow}
+      />
+    </CardGrid>
+  );
 }

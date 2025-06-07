@@ -1,17 +1,17 @@
-const React = require("react");
+const React = require('react');
 
 const Form = ({ children, action, ...props }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
+    if (action) action(new FormData(e.target));
+  };
 
-        e.preventDefault()
+  return React.createElement(
+    'form',
+    { onSubmit: handleSubmit, ...props },
+    children
+  );
+};
 
-        if(action) action(new FormData(e.target))
-
-    }
-
-    return React.createElement("form", { onSubmit: handleSubmit, ...props}, children);
-
-}
-
-module.exports = Form
+module.exports = Form;

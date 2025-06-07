@@ -1,48 +1,39 @@
-import Card from "./Card"
-import CardImage from "./CardImage"
+import Card from './Card';
+import CardImage from './CardImage';
 
 interface Person {
-
-    id: number,
-    created_at: string,
-    image_url: string,
-    name: string,
-    bio: string
-  
+  id: number;
+  created_at: string;
+  image_url: string;
+  name: string;
+  bio: string;
 }
 
 interface PersonCardProps {
-
-    person: Person,
-    imageHeight?: "sm" | "md" | "lg"
-
+  person: Person;
+  imageHeight?: 'sm' | 'md' | 'lg';
 }
 
-export default function PersonCard({ person, imageHeight = "lg" }: PersonCardProps){
+export default function PersonCard({
+  person,
+  imageHeight = 'lg',
+}: PersonCardProps) {
+  return (
+    <Card key={person.id}>
+      {/* Image */}
+      <CardImage
+        src="default-team-member-image.jpg"
+        alt={person.name}
+        imageHeight={imageHeight}
+      />
 
-    return (
+      <div className="p-6">
+        {/* Name */}
+        <h2 className="pb-1">{person.name}</h2>
 
-        <Card key = {person.id}>
-
-            {/* Image */}
-            <CardImage 
-                src = "default-team-member-image.jpg" 
-                alt = {person.name}
-                imageHeight = {imageHeight}
-             />
-
-            <div className = "p-6">
-                
-                {/* Name */}
-                <h2 className = "pb-1">{person.name}</h2>
-
-                {/* Bio */}
-                <p className = "py-1 detail-text">{person.bio}</p>
-
-            </div>
-
-        </Card>
-
-    )
-
+        {/* Bio */}
+        <p className="py-1 detail-text">{person.bio}</p>
+      </div>
+    </Card>
+  );
 }

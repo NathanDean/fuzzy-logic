@@ -1,61 +1,65 @@
-"use client";
+'use client';
 
-import { resetPassword } from "@/utils/auth/actions";
+import { resetPassword } from '@/utils/auth/actions';
 
-import { Turnstile } from "@marsidev/react-turnstile";
+import { Turnstile } from '@marsidev/react-turnstile';
 
-import { useState } from "react";
-import SignUpLink from "@/components/SignUpLink";
+import { useState } from 'react';
+import SignUpLink from '@/components/SignUpLink';
 
 export default function ResetPassword() {
-
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
 
-  const handleSubmit = async(formData: FormData) => {
-
-    setIsSubmitting(true)
-    setErrorMessage("");
+  const handleSubmit = async (formData: FormData) => {
+    setIsSubmitting(true);
+    setErrorMessage('');
 
     const result = await resetPassword(formData);
 
-    if (result?.error){
-
-      setErrorMessage(result.error)
-
+    if (result?.error) {
+      setErrorMessage(result.error);
     }
 
-    setIsSubmitting(false)
+    setIsSubmitting(false);
+  };
 
-  }
-  
   return (
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        await handleSubmit(new FormData(e.currentTarget));
+      }}
+    >
+      {errorMessage && <p className="error">{errorMessage}</p>}
 
-        <form onSubmit = {async (e) => {
+      <label htmlFor="email">Email:</label>
+      <input id="email" name="email" type="email" required />
 
-          e.preventDefault();
-          await handleSubmit(new FormData(e.currentTarget));
+      <div className="turnstile">
+        <Turnstile
+          siteKey={
+            process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+            '1x00000000000000000000AA'
+          }
+          onSuccess={() => setIsTurnstileLoading(false)}
+        />
+      </div>
 
-        }}>
+      <button
+        className={`btn ${isTurnstileLoading || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}
+        type="submit"
+        disabled={isTurnstileLoading || isSubmitting}
+      >
+        {isTurnstileLoading
+          ? 'Loading'
+          : isSubmitting
+            ? 'Please wait...'
+            : 'Reset password'}
+      </button>
 
-          { errorMessage && <p className = "error">{errorMessage}</p>}
-
-          <label htmlFor="email">Email:</label>
-          <input id="email" name="email" type="email" required />
-
-          <div className = "turnstile">
-          
-            <Turnstile siteKey = {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"} onSuccess = {() => setIsTurnstileLoading(false)} />
-
-          </div>
-
-          <button className = {`btn ${isTurnstileLoading || isSubmitting ? "btn-disabled" : "btn-primary"}`} type = "submit" disabled = {isTurnstileLoading || isSubmitting}>{isTurnstileLoading ? "Loading" : isSubmitting ? "Please wait..." : "Reset password"}</button>
-
-          <SignUpLink />
-
-        </form>
-
-  )
-
+      <SignUpLink />
+    </form>
+  );
 }

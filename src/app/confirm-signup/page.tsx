@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import Loading from "@/components/Loading";
-import { useState } from "react";
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Loading from '@/components/Loading';
+import { useState } from 'react';
 
 function ConfirmSignupComponent() {
   const searchParams = useSearchParams();
-  const confirmationUrl = searchParams.get("confirmation_url");
+  const confirmationUrl = searchParams.get('confirmation_url');
   const [isConfirming, setIsConfirming] = useState(false);
 
   const handleConfirm = () => {
@@ -20,28 +20,34 @@ function ConfirmSignupComponent() {
 
   if (!confirmationUrl) {
     return (
-      <div className = "flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
-        <h1 className = "heading">Invalid confirmation link</h1>
-        <p className = "medium-text">This confirmation link appears to be invalid or incomplete.</p>
-        <p className = "medium-text">Please try clicking the link in your email again, or contact us if the problem continues.</p>
+      <div className="flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
+        <h1 className="heading">Invalid confirmation link</h1>
+        <p className="medium-text">
+          This confirmation link appears to be invalid or incomplete.
+        </p>
+        <p className="medium-text">
+          Please try clicking the link in your email again, or contact us if the
+          problem continues.
+        </p>
       </div>
     );
   }
 
   return (
-    <div className = "flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
+    <div className="flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
       <h1 className="heading">Please confirm your email address</h1>
-      
-      <p className = "medium-text">
-        Thanks for signing up. Please confirm your email address by clicking the button below.
+
+      <p className="medium-text">
+        Thanks for signing up. Please confirm your email address by clicking the
+        button below.
       </p>
 
-      <button 
-        className={`btn ${isConfirming ? "btn-disabled" : "btn-primary"} sm:w-1/2`}
+      <button
+        className={`btn ${isConfirming ? 'btn-disabled' : 'btn-primary'} sm:w-1/2`}
         onClick={handleConfirm}
         disabled={isConfirming}
       >
-        {isConfirming ? "Confirming..." : "Confirm email address"}
+        {isConfirming ? 'Confirming...' : 'Confirm email address'}
       </button>
 
       <p className="medium-text">
