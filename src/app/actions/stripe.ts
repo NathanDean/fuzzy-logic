@@ -133,6 +133,7 @@ export async function createCheckoutSession(
     ],
 
     mode: 'payment',
+    allow_promotion_codes: true,
 
     // URLs for redirection after session completed or cancelled
     success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
