@@ -17,7 +17,7 @@ export default function Footer() {
           href="/cookies"
           className="text-sm text-gray-600 dark:text-gray-400"
         >
-          Cookie usage
+          Cookie Notice
         </Link>
       </div>
 
