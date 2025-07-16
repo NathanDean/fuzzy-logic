@@ -12,6 +12,7 @@ import CardGrid from '@/components/CardGrid';
 import WorkshopCard from '@/components/WorkshopCard';
 
 import { Workshop } from '@/utils/types/Workshop';
+import MailingListForm from '@/components/MailingListForm';
 
 export default function Workshops() {
   const { user, isLoggedIn } = useAuth();
@@ -19,6 +20,7 @@ export default function Workshops() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const router = useRouter();
+  const today = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
     // Get workshops from Supabase
@@ -29,7 +31,8 @@ export default function Workshops() {
         // Get workshops
         const { data, error } = await supabase
           .from('workshops')
-          .select('*, bookings:bookings(count)');
+          .select('*, bookings:bookings(count)')
+          .gte('date', today);
 
         if (error) {
           throw error;
@@ -82,20 +85,26 @@ export default function Workshops() {
     <>
       {loading ? (
         <Loading />
+      ) : errorMessage ? (
+        <p className="medium-text error">{errorMessage}</p>
+      ) : workshops.length === 0 ? (
+        <div className="space-y-2">
+          <p className="large-text">
+            No upcoming workshops. Please check back soon, or subscribe to our
+            mailing list for announcements.
+          </p>
+          <MailingListForm />
+        </div>
       ) : (
-        <>
-          {errorMessage && <p className="medium-text error">{errorMessage}</p>}
-
-          <CardGrid cardWidth="md" imageHeight="md" cols={1}>
-            {workshops.map((workshop) => (
-              <WorkshopCard
-                key={workshop.id}
-                workshop={workshop}
-                onBookNow={handleBookNow}
-              />
-            ))}
-          </CardGrid>
-        </>
+        <CardGrid cardWidth="md" imageHeight="md" cols={1}>
+          {workshops.map((workshop) => (
+            <WorkshopCard
+              key={workshop.id}
+              workshop={workshop}
+              onBookNow={handleBookNow}
+            />
+          ))}
+        </CardGrid>
       )}
     </>
   );
