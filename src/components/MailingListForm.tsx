@@ -40,17 +40,19 @@ export default function MailingListForm() {
   return (
     <form onSubmit={handleSubmit} className="m-0 p-0 shadow-none text-sm">
       {subscribeMessage && <p>{subscribeMessage}</p>}
-      <div className="flex flex-col sm:flex-row items-center space-x-2">
-        <h3 className="leading-4">Subscribe to our mailing list:</h3>
+      <div className="w-full sm:w-auto flex flex-col sm:flex-row items-center sm:space-x-2 space-y-2 sm:space-y-0">
         <input
-          className="w-40 my-0 h-8"
+          className="sm:my-0 sm:h-8"
           id="email"
           name="email"
           type="email"
           placeholder="Email"
           required
         />
-        <button className="btn btn-primary w-25 my-0 text-sm h-8" type="submit">
+        <button
+          className="btn btn-primary sm:my-0 text-sm sm:h-8"
+          type="submit"
+        >
           Subscribe
         </button>
       </div>

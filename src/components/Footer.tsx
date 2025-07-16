@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between py-4 px-4">
+    <footer className="flex justify-between py-4 px-4 text-sm">
       <div className="flex items-center space-x-4">
         <Link
           href="/privacy"
@@ -21,7 +21,10 @@ export default function Footer() {
         </Link>
       </div>
 
-      <div className="hidden sm:flex items-end">
+      <div className="hidden sm:flex flex-col md:flex-row items-center space-x-2 space-y-2 md:space-y-0">
+        <h3 className="hidden sm:flex sm:leading-4">
+          Subscribe to our mailing list:
+        </h3>
         <MailingListForm />
       </div>
     </footer>
