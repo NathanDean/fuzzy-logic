@@ -1,7 +1,7 @@
 export default function CookiePolicy() {
   return (
     <div className="sm:w-xl lg:w-3xl xl:w-4xl space-y-4 large-text">
-      <h1 className="heading">Cookie Policy</h1>
+      <h1 className="heading">Cookie Notice</h1>
 
       <div className="space-y-6 medium-text">
         <p>
