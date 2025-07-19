@@ -7,7 +7,7 @@ A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company.
 ### What it does
 
 - Displays upcoming workshops
-- Handles user accounts and authentication
+- Handles user account registration and authentication
 - Processes payments through Stripe
 - Shows upcoming bookings in user accounts
 
@@ -21,13 +21,6 @@ A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company.
 - Vercel (deployment)
 - Jest (unit testing)
 - Manual testing checklist for critical flows
-
-### Main features
-
-- Workshop listings with details
-- User registration and login, with email verification and password reset
-- Secure payment processing with webhook that automatically updates booking database
-- Mobile responsive design
 
 ## Data
 
@@ -156,7 +149,7 @@ flowchart LR
 
 Individual elements of the app are tested using Jest unit tests. Critical integration flows, e.g. account creation and workshop bookings, are tested manually using the checklist at `/docs/manualTesting`.
 
-## Future improvements
+## Next steps
 
 - **Standardise TypeScript usage:** I've used TypeScript inconsistently throughout the site. I'm working on improving my understanding of TypeScript best practices, after which I will standardise its usage throughout the app.
 - **Standardise file structure:** There's some inconsistency in file names and locations. For example, the names for the Supabase clients aren't super intuitive, and actions are split between the `/app/actions` and `/utils` folders. This makes the app harder to understand, and I plan to fix these inconsistencies. However, as the current structure works, I want to wait until I have ample time to properly apply and test a new approach, to avoid breaking changes.
