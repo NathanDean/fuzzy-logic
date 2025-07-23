@@ -28,7 +28,7 @@ export default async function About() {
   const people = await fetchPeople();
 
   return (
-    <div className="-mt-30">
+    <div className="-mt-15 sm:-mt-30">
       <section className="sm:w-xl lg:w-3xl xl:w-4xl min-h-screen flex flex-col justify-center items-start space-y-2 large-text">
         <p>Fuzzy Logic is an improv company.</p>
 
@@ -48,10 +48,10 @@ export default async function About() {
 
       <section
         id="people"
-        className="min-h-screen flex flex-col justify-center items-center space-y-8 scroll-mt-30"
+        className="min-h-screen flex flex-col justify-center items-center space-y-8 scroll-mt-20"
       >
         <h2 className="heading">Who is Fuzzy Logic?</h2>
-        <CardGrid cardWidth="md" imageHeight="md" cols={2}>
+        <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
           {people.map((person) => (
             <PersonCard key={person.id} person={person} />
           ))}

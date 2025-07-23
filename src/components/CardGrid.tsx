@@ -26,7 +26,7 @@ export default function CardGrid({
   const cardWidthClass = {
     sm: 'max-w-sm',
     md: 'max-w-md',
-    lg: 'max-w-lg',
+    lg: 'max-w-lg lg:max-w-3xl xl:max-w-4xl',
     xl: 'sm:w-xl lg:w-3xl xl:w-7xl',
   }[cardWidth];
 

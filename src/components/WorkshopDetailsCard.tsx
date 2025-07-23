@@ -28,7 +28,7 @@ export default function WorkshopDetailsCard({
   };
 
   return (
-    <Card className="w-full h-full md:min-h-[70vh] " imageHeight={imageHeight}>
+    <Card className="w-full h-full md:min-h-[70vh]" imageHeight={imageHeight}>
       <div className="flex flex-col lg:flex-row h-full">
         {/* Image */}
 

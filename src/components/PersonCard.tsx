@@ -11,28 +11,28 @@ interface Person {
 
 interface PersonCardProps {
   person: Person;
-  imageHeight?: 'sm' | 'md' | 'lg';
 }
 
-export default function PersonCard({
-  person,
-  imageHeight = 'lg',
-}: PersonCardProps) {
+export default function PersonCard({ person }: PersonCardProps) {
   return (
-    <Card key={person.id}>
-      {/* Image */}
-      <CardImage
-        src="default-team-member-image.jpg"
-        alt={person.name}
-        imageHeight={imageHeight}
-      />
+    <Card key={person.id} className="w-full h-full md:min-h-[70vh]">
+      <div className="flex flex-col lg:flex-row h-full">
+        {/* Image */}
+        <div className="h-96 lg:w-1/2 lg:h-auto relative">
+          <CardImage
+            src="default-team-member-image.jpg"
+            alt={person.name}
+            showFullInfo={true}
+          />
+        </div>
 
-      <div className="p-6">
-        {/* Name */}
-        <h2 className="pb-1">{person.name}</h2>
+        <div className="lg:w-1/2 flex flex-col flex-grow p-6">
+          {/* Name */}
+          <h2 className="card-heading">{person.name}</h2>
 
-        {/* Bio */}
-        <p className="py-1 detail-text">{person.bio}</p>
+          {/* Bio */}
+          <p className="py-1 detail-text">{person.bio}</p>
+        </div>
       </div>
     </Card>
   );
