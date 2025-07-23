@@ -13,7 +13,7 @@ interface Person {
 
 async function fetchPeople(): Promise<Person[]> {
   const supabase = await createClient();
-  const { data } = await supabase.from('team').select('*');
+  const { data } = await supabase.from('team').select('*').order('id');
 
   if (data) {
     return data;
@@ -28,7 +28,7 @@ export default async function About() {
   const people = await fetchPeople();
 
   return (
-    <div className="-mt-15 sm:-mt-30">
+    <div className="-mt-15 sm:-mt-30 -mb-26">
       <section className="sm:w-xl lg:w-3xl xl:w-4xl min-h-screen flex flex-col justify-center items-start space-y-2 large-text">
         <p>Fuzzy Logic is an improv company.</p>
 
@@ -41,9 +41,14 @@ export default async function About() {
           Our work explores the ways improv can give to and learn from other
           artforms, and experiments with new ideas of what improv can do and be.
         </p>
-        <Link className="btn btn-primary" href="/about/#people">
-          Who is Fuzzy Logic?
-        </Link>
+        <div className="w-full flex justify-center space-x-2">
+          <Link className="btn btn-primary" href="/about/#people">
+            Who is Fuzzy Logic?
+          </Link>
+          <Link className="btn btn-primary" href="/about/#story">
+            What's our story?
+          </Link>
+        </div>
       </section>
 
       <section
@@ -56,6 +61,22 @@ export default async function About() {
             <PersonCard key={person.id} person={person} />
           ))}
         </CardGrid>
+      </section>
+
+      <section
+        id="story"
+        className="sm:w-xl lg:w-3xl xl:w-4xl min-h-screen flex flex-col justify-center items-start space-y-2 large-text"
+      >
+        <p>
+          Fuzzy Logic was founded in 2025 by Nathan Dean, following a decade's
+          experience in the world of artist and artform development at Arts
+          Council England and talent agency Avalon.
+        </p>
+        <p>
+          We ran our first workshops in July 2025. We also produce the sketch
+          series scenesAboutLeaving and the twoprov show A Very Capable Boy,
+          with more shows to come in future.
+        </p>
       </section>
     </div>
   );
