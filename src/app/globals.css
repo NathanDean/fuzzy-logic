@@ -120,6 +120,17 @@
 }
 
 /* Animation Utilities */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 @layer utilities {
   .transition-standard {
     @apply transition-all duration-300 ease-in-out;
