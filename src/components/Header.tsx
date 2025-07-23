@@ -177,6 +177,14 @@ export default function Header() {
             </Link>
 
             <Link
+              href="/mailing-list"
+              className="text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Mailing list
+            </Link>
+
+            <Link
               href="/about"
               className="text-center"
               onClick={() => setIsMenuOpen(false)}
