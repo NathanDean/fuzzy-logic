@@ -57,7 +57,7 @@ export default function Header() {
         </Link>
 
         {/* Full nav menu */}
-        <nav className="hidden sm:flex space-x-6 text-xl tracking-wider">
+        <nav className="hidden lg:flex space-x-6 text-xl tracking-wider">
           <Link href="/workshops">Workshops</Link>
 
           <Link href="/about">About</Link>
@@ -84,7 +84,7 @@ export default function Header() {
         {/* Mobile menu button */}
 
         <button
-          className="sm:hidden"
+          className="lg:hidden"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -121,7 +121,7 @@ export default function Header() {
       {isMenuVisible && (
         <div
           data-testid="mobile-menu"
-          className={`${isMenuOpaque ? 'opacity-100' : 'opacity-0'} sm:hidden fixed inset-0 w-full h-screen p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center bg-[var(--background)] text-[var(--foreground)]`}
+          className={`${isMenuOpaque ? 'opacity-100' : 'opacity-0'} lg:hidden fixed inset-0 w-full h-screen p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center bg-[var(--background)] text-[var(--foreground)]`}
         >
           <div className="fixed top-0 left-0 right-0 px-6 py-4">
             <div className="flex justify-between items-center bg">
@@ -134,7 +134,7 @@ export default function Header() {
               </Link>
 
               <button
-                className="sm:hidden"
+                className="lg:hidden"
                 onClick={toggleMenu}
                 aria-label="Toggle menu"
               >
