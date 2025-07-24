@@ -28,7 +28,7 @@ export default async function About() {
   const people = await fetchPeople();
 
   return (
-    <div className="-mt-15 sm:-mt-30 -mb-26">
+    <div className="-mt-15 sm:-mt-30 -mb-23 sm:-mb-26">
       <section className="sm:w-xl lg:w-3xl xl:w-4xl min-h-screen flex flex-col justify-center items-start space-y-2 large-text">
         <p>{`Fuzzy Logic is an improv company.`}</p>
 
@@ -41,7 +41,7 @@ export default async function About() {
           {`Our work explores the ways improv can give to and learn from other
           artforms, and experiments with new ideas of what improv can do and be.`}
         </p>
-        <div className="w-full flex justify-center space-x-2">
+        <div className="w-full flex flex-row items-center justify-center space-x-2">
           <Link className="btn btn-primary" href="/about/#people">
             {`Who is Fuzzy Logic?`}
           </Link>
