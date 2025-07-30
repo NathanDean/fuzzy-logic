@@ -13,7 +13,7 @@ A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company.
 
 ### Tech stack
 
-- Next.js 15
+- Next.js 15 + TypeScript (front-end)
 - Supabase (database and auth)
 - Cloudflare Turnstile (CAPTCHA)
 - Stripe (payments)
