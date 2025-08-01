@@ -26,6 +26,8 @@ async function fetchPeople(): Promise<Person[]> {
 
 export default async function About() {
   const people = await fetchPeople();
+  const coreTeam = people.slice(0, 1);
+  const guestArtists = people.slice(1);
 
   return (
     <div className="-mt-15 sm:-mt-30 -mb-23 sm:-mb-26">
@@ -41,7 +43,7 @@ export default async function About() {
           {`Our work explores the ways improv can give to and learn from other
           artforms, and experiments with new ideas of what improv can do and be.`}
         </p>
-        <div className="w-full flex flex-row items-center justify-center space-x-2">
+        <div className="w-full flex flex-row items-stretch justify-center space-x-2">
           <Link className="btn btn-primary" href="/about/#people">
             {`Who is Fuzzy Logic?`}
           </Link>
@@ -55,9 +57,16 @@ export default async function About() {
         id="people"
         className="min-h-screen flex flex-col justify-center items-center space-y-8 scroll-mt-20"
       >
-        <h2 className="heading">Who is Fuzzy Logic?</h2>
+        <h2 className="heading">Core team</h2>
         <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
-          {people.map((person) => (
+          {coreTeam.map((person) => (
+            <PersonCard key={person.id} person={person} />
+          ))}
+        </CardGrid>
+
+        <h2 className="heading">Artists we work with</h2>
+        <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
+          {guestArtists.map((person) => (
             <PersonCard key={person.id} person={person} />
           ))}
         </CardGrid>
