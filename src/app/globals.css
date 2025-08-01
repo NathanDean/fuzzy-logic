@@ -110,8 +110,7 @@
   }
 
   .btn-primary {
-    @apply hover:bg-gray-700 hover:text-white
-           focus:ring-blue-500;
+    @apply hover:bg-gray-700 hover:text-white dark:hover:bg-gray-300 dark:hover:text-[var(--background)];
   }
 
   .btn-disabled {
