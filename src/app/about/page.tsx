@@ -6,7 +6,7 @@ import PersonCard from '@/components/PersonCard';
 interface Person {
   id: number;
   created_at: string;
-  image_url: string;
+  image_url: string | null;
   name: string;
   bio: string;
 }

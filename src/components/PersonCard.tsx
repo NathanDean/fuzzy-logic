@@ -4,7 +4,7 @@ import CardImage from './CardImage';
 interface Person {
   id: number;
   created_at: string;
-  image_url: string;
+  image_url: string | null;
   name: string;
   bio: string;
 }
@@ -20,7 +20,7 @@ export default function PersonCard({ person }: PersonCardProps) {
         {/* Image */}
         <div className="h-96 lg:w-1/2 lg:h-auto relative">
           <CardImage
-            src="default-team-member-image.jpg"
+            src={person.image_url || 'default-team-member-image.jpg'}
             alt={person.name}
             showFullInfo={true}
           />
