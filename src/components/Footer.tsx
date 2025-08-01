@@ -23,7 +23,7 @@ export default function Footer() {
 
       <div className="hidden lg:flex md:flex-row items-center space-x-2 space-y-2 md:space-y-0">
         <h3 className="leading-4">Subscribe to our mailing list:</h3>
-        <MailingListForm />
+        <MailingListForm isInFooter={true} />
       </div>
     </footer>
   );
