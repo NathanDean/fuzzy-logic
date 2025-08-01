@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between py-4 px-4 text-sm">
+    <footer className="w-full flex justify-between py-4 px-4 text-sm">
       <div className="flex items-center space-x-4">
         <Link
           href="/privacy"

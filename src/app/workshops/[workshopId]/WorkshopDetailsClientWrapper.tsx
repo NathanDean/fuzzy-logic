@@ -39,14 +39,16 @@ export default function WorkshopDetailsClientWrapper({
   };
 
   return (
-    <CardGrid cardWidth="xl" imageHeight="lg" cols={1}>
-      {errorMessage && <p className="error">{errorMessage}</p>}
+    <div className="sm:-mt-10">
+      <CardGrid cardWidth="xl" imageHeight="lg" cols={1}>
+        {errorMessage && <p className="error">{errorMessage}</p>}
 
-      <WorkshopDetailsCard
-        key={workshop.id}
-        workshop={workshop}
-        onBookNow={handleBookNow}
-      />
-    </CardGrid>
+        <WorkshopDetailsCard
+          key={workshop.id}
+          workshop={workshop}
+          onBookNow={handleBookNow}
+        />
+      </CardGrid>
+    </div>
   );
 }

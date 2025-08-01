@@ -30,8 +30,8 @@ export default async function About() {
   const guestArtists = people.slice(1);
 
   return (
-    <div className="-mt-15 sm:-mt-30 -mb-23 sm:-mb-26">
-      <section className="sm:w-xl lg:w-3xl xl:w-4xl min-h-screen flex flex-col justify-center items-start space-y-2 large-text">
+    <div className="-mt-15 sm:-mt-30 -mb-13 sm:-mb-16">
+      <section className="min-h-screen flex flex-col justify-center items-start space-y-2 large-text">
         <p>{`Fuzzy Logic is an improv company.`}</p>
 
         <p>
@@ -74,7 +74,7 @@ export default async function About() {
 
       <section
         id="story"
-        className="sm:w-xl lg:w-3xl xl:w-4xl min-h-screen flex flex-col justify-center items-start space-y-2 large-text"
+        className="min-h-screen flex flex-col justify-center items-start space-y-2 large-text"
       >
         <p>
           {`Fuzzy Logic was founded in 2025 by Nathan Dean, following a decade's

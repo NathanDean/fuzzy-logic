@@ -27,7 +27,7 @@ export default function CardGrid({
     sm: 'max-w-sm',
     md: 'max-w-md',
     lg: 'max-w-lg lg:max-w-3xl xl:max-w-4xl',
-    xl: 'sm:w-xl lg:w-3xl xl:w-7xl',
+    xl: 'sm:w-xl lg:w-3xl xl:w-6xl',
   }[cardWidth];
 
   const childrenWithProps = Children.map(children, (child) => {
@@ -41,7 +41,9 @@ export default function CardGrid({
   });
 
   return (
-    <div className={`grid grid-cols-1 ${gridCols} gap-10`}>
+    <div
+      className={`grid grid-cols-1 ${gridCols} justify-items-center gap-10 pb-10`}
+    >
       {Children.map(childrenWithProps, (child) => (
         <div className={`flex justify-center ${cardWidthClass}`}>{child}</div>
       ))}

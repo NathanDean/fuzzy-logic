@@ -96,15 +96,17 @@ export default function Workshops() {
           <MailingListForm />
         </div>
       ) : (
-        <CardGrid cardWidth="md" imageHeight="md" cols={1}>
-          {workshops.map((workshop) => (
-            <WorkshopCard
-              key={workshop.id}
-              workshop={workshop}
-              onBookNow={handleBookNow}
-            />
-          ))}
-        </CardGrid>
+        <div className="mt-10 sm:-mt-5">
+          <CardGrid cardWidth="md" imageHeight="md" cols={1}>
+            {workshops.map((workshop) => (
+              <WorkshopCard
+                key={workshop.id}
+                workshop={workshop}
+                onBookNow={handleBookNow}
+              />
+            ))}
+          </CardGrid>
+        </div>
       )}
     </>
   );
