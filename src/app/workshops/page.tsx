@@ -32,7 +32,8 @@ export default function Workshops() {
         const { data, error } = await supabase
           .from('workshops')
           .select('*, bookings:bookings(count)')
-          .gte('date', today);
+          .gte('date', today)
+          .order('date');
 
         if (error) {
           throw error;
