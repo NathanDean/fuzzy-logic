@@ -1,8 +1,8 @@
 # Manual testing report
 
-## Last tested: 26/05/2025 (commit 50f170c)
+## Last tested: 07/08/2025 (commit 50f170c)
 
-## Status: Ready / **_Ready with minor issues_** / Blocked
+## Status: _**Ready**_ / Ready with minor issues / Blocked
 
 ### Critical issues
 
@@ -10,8 +10,7 @@
 
 ### Minor issues
 
-- Login: If user loads workshops page when there is one place remaining, then clicks Book now at the same time as another user, they may still be taken to login form, rather than seeing "Sorry, this workshop is now sold out" message
-- Account: Only lists date of first workshop for multi-date courses under Upcoming Workshops
+- None
 
 # Stripe
 
@@ -51,7 +50,7 @@
 ### Expect: Single booking to be created with status === "in progress"
 
 - Passed from Workshops
-- Passed from WorkshopDetails
+- TBC from WorkshopDetails
 
 ### Expect: Same booking status === "confirmed" after completing payment in second tab/window
 
@@ -278,11 +277,7 @@
 
 ## Describes: User attempts to submit update password form with missing field
 
-### Expect: Form to not submitted
-
-- Passed
-
-### Expect: User to be prompted to complete missing field
+### Expect: Submit button to be disabled
 
 - Passed
 
@@ -302,11 +297,7 @@
 
 - Passed
 
-### Expect: User to see message confirming password updated
-
-- Passed
-
-### Expect: User to be redirected to success page
+### Expect: User to be redirected to success page with message confirming password updated
 
 - Passed
 
