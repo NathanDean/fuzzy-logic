@@ -1,6 +1,6 @@
 // Imports
 import type { Metadata } from 'next';
-
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { sigmar } from '@/lib/fonts';
 import Header from '@/components/Header';
@@ -45,8 +45,8 @@ export default function RootLayout({
             {children}
           </main>
         </AuthProvider>
-
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
