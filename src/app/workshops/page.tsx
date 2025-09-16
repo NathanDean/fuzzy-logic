@@ -33,6 +33,7 @@ export default function Workshops() {
           .from('workshops')
           .select('*, bookings:bookings(count)')
           .gte('date', today)
+          .eq('on_sale', true)
           .order('date');
 
         if (error) {
