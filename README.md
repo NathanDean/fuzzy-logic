@@ -2,7 +2,7 @@
 
 ## Overview
 
-A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company.
+A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company. I built this when I wanted to run some improv workshops, and decided I would challenge myself to build my own booking platform, rather than relying on a third party service.
 
 ### What it does
 
@@ -13,14 +13,14 @@ A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company.
 
 ### Tech stack
 
-- Next.js 15 + TypeScript (front-end)
+- Next.js 15 + TypeScript (front-end + back-end)
+- Tailwind (styling)
 - Supabase (database and auth)
 - Cloudflare Turnstile (CAPTCHA)
 - Stripe (payments)
-- Tailwind CSS
-- Vercel (deployment)
 - Jest (unit testing)
 - Manual testing checklist for critical flows
+- Vercel (deployment)
 
 ## Data
 
@@ -152,4 +152,4 @@ Individual elements of the app are tested using Jest unit tests. Critical integr
 ## Next steps
 
 - **Standardise TypeScript usage:** I've used TypeScript inconsistently throughout the site. I'm working on improving my understanding of TypeScript best practices, after which I will standardise its usage throughout the app.
-- **Standardise file structure:** There's some inconsistency in file names and locations. For example, the names for the Supabase clients aren't super intuitive, and actions are split between the `/app/actions` and `/utils` folders. This makes the app harder to understand, and I plan to fix these inconsistencies. However, as the current structure works, I want to wait until I have ample time to properly apply and test a new approach, to avoid breaking changes.
+- **Standardise file structure:** There's some inconsistency in file names and locations. For example, the names for the Supabase clients aren't completely intuitive, and actions are split between the `/app/actions` and `/utils` folders. This makes the app harder to understand, and I plan to fix these inconsistencies. However, as the current structure works, I want to wait until I have ample time to properly apply and test a new approach, to avoid breaking changes.
