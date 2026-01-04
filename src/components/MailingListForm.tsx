@@ -59,7 +59,7 @@ export default function MailingListForm({
           required
         />
         <button
-          className={`${isInFooter && 'h-8 text-sm'} btn btn-primary my-0 `}
+          className={`${isInFooter && 'h-8 text-sm'} btn btn-primary sm:my-0 `}
           type="submit"
         >
           Subscribe
