@@ -1,5 +1,6 @@
 'use client';
 
+import Logo from './Logo';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -50,10 +51,10 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="logo header-logo"
+          className="text-3xl"
           onClick={() => setIsMenuOpen(false)}
         >
-          fuzzy logic
+          <Logo />
         </Link>
 
         {/* Full nav menu */}

@@ -21,18 +21,6 @@
     font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
   }
 
-  .logo {
-    font-family: var(--font-sigmar);
-  }
-
-  .main-logo {
-    @apply text-8xl mb-4;
-  }
-
-  .header-logo {
-    @apply text-3xl hover:text-inherit transition-none;
-  }
-
   .heading {
     @apply text-2xl sm:text-3xl font-medium;
   }
