@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import supabase from '@/utils/supabase/supabaseClient';
 import Loading from '@/components/misc/Loading';
-import PersonCard from '@/components/about/PersonCard';
+import PersonCard from '@/app/about/_components/PersonCard';
 import CardGrid from '@/components/cards/CardGrid';
 
 interface Person {

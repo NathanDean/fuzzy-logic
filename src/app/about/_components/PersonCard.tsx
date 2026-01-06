@@ -1,5 +1,5 @@
-import Card from '../cards/Card';
-import CardImage from '../cards/CardImage';
+import Card from '../../../components/cards/Card';
+import CardImage from '../../../components/cards/CardImage';
 
 interface Person {
   id: number;

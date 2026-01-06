@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 import Loading from '@/components/misc/Loading';
 import CardGrid from '@/components/cards/CardGrid';
-import WorkshopCard from '@/components/workshops/WorkshopCard';
+import WorkshopCard from './_components/WorkshopCard';
 
 import { Workshop } from '@/utils/types/Workshop';
 import MailingListForm from '@/components/misc/MailingListForm';
