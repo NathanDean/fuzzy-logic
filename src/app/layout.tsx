@@ -1,7 +1,7 @@
 // Imports
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
-import './globals.css';
+import '@/styles/globals.css';
 import { sigmar } from '@/lib/fonts';
 import Header from '@/components/nav/Header';
 import Footer from '@/components/misc/Footer';
@@ -10,7 +10,13 @@ import { AuthProvider } from '@/contexts/AuthContext';
 // Metadata
 export const metadata: Metadata = {
   title: 'Fuzzy Logic',
-  description: 'Fuzzy Logic',
+  description: 'An improv company',
+  manifest: '/icons/site.webmanifest',
+  icons: {
+    icon: '/icons/favicon-32x32.png',
+    shortcut: '/icons/favicon.ico',
+    apple: '/icons/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'Fuzzy Logic',
     description: 'An improv company',
@@ -18,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Fuzzy Logic',
     images: [
       {
-        url: '/og-image.png',
+        url: '/icons/og-image.png',
         width: 400,
         height: 400,
         alt: 'Fuzzy Logic: An improv company',
