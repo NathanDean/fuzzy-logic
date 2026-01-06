@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import LoginPage from '../src/app/login/page';
+import LoginPage from '../src/app/(auth)/login/page';
 import { useSearchParams } from 'next/navigation';
 
 const mockLogin = jest.fn();

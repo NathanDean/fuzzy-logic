@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ResetPassword from '../src/app/reset/page';
+import ResetPassword from '../src/app/(auth)/reset/page';
 
 const mockReset = jest.fn();
 

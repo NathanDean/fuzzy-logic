@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import supabase from '@/utils/supabase/supabaseClient';
-import { createCheckoutSession } from '../actions/stripe';
+import { createCheckoutSession } from '../../actions/stripe';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';

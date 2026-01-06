@@ -3,7 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { createCheckoutSession } from '../../actions/stripe';
+import { createCheckoutSession } from '@/app/actions/stripe';
 import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 import CardGrid from '@/components/cards/CardGrid';
 import { Workshop } from '@/utils/types/Workshop';
