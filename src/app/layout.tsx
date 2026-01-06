@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { sigmar } from '@/lib/fonts';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@/components/nav/Header';
+import Footer from '@/components/misc/Footer';
 import { AuthProvider } from '@/contexts/AuthContext';
 
 // Metadata

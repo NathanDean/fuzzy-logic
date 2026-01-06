@@ -4,8 +4,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { createCheckoutSession } from '../../actions/stripe';
-import WorkshopDetailsCard from '@/components/WorkshopDetailsCard';
-import CardGrid from '@/components/CardGrid';
+import WorkshopDetailsCard from '@/components/workshops/WorkshopDetailsCard';
+import CardGrid from '@/components/cards/CardGrid';
 import { Workshop } from '@/utils/types/Workshop';
 
 export default function WorkshopDetailsClientWrapper({

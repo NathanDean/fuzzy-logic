@@ -10,9 +10,9 @@ import { Suspense } from 'react';
 import { useState } from 'react';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import { createClient } from '@/utils/supabase/client';
-import Loading from '@/components/Loading';
-import SignUpLink from '@/components/SignUpLink';
-import ResetPasswordLink from '@/components/ResetPasswordLink';
+import Loading from '@/components/misc/Loading';
+import SignUpLink from '@/components/auth/SignUpLink';
+import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
 
 function LoginForm() {
   const [errorMessage, setErrorMessage] = useState<string>('');

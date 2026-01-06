@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
-import SignUpLink from '@/components/SignUpLink';
+import SignUpLink from '@/components/auth/SignUpLink';
 
 zxcvbnOptions.setOptions({
   dictionary: {

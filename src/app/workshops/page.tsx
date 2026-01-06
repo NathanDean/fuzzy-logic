@@ -7,12 +7,12 @@ import { createCheckoutSession } from '../actions/stripe';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 
-import Loading from '@/components/Loading';
-import CardGrid from '@/components/CardGrid';
-import WorkshopCard from '@/components/WorkshopCard';
+import Loading from '@/components/misc/Loading';
+import CardGrid from '@/components/cards/CardGrid';
+import WorkshopCard from '@/components/workshops/WorkshopCard';
 
 import { Workshop } from '@/utils/types/Workshop';
-import MailingListForm from '@/components/MailingListForm';
+import MailingListForm from '@/components/misc/MailingListForm';
 
 export default function Workshops() {
   const { user, isLoggedIn } = useAuth();

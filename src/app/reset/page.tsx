@@ -5,7 +5,7 @@ import { resetPassword } from '@/utils/auth/actions';
 import { Turnstile } from '@marsidev/react-turnstile';
 
 import { useState } from 'react';
-import SignUpLink from '@/components/SignUpLink';
+import SignUpLink from '@/components/auth/SignUpLink';
 
 export default function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState<string>('');

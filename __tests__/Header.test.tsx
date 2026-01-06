@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/components/nav/Header';
 import { useAuth } from '@/contexts/AuthContext';
 import {
   render,

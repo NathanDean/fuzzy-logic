@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import supabase from '@/utils/supabase/supabaseClient';
-import Loading from '@/components/Loading';
-import PersonCard from '@/components/PersonCard';
-import CardGrid from '@/components/CardGrid';
+import Loading from '@/components/misc/Loading';
+import PersonCard from '@/components/about/PersonCard';
+import CardGrid from '@/components/cards/CardGrid';
 
 interface Person {
   id: number;

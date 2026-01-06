@@ -8,8 +8,8 @@ import advancedFormat from 'dayjs/plugin/advancedFormat';
 
 import supabase from '@/utils/supabase/supabaseClient';
 
-import Loading from '@/components/Loading';
-import Card from '@/components/Card';
+import Loading from '@/components/misc/Loading';
+import Card from '@/components/cards/Card';
 
 dayjs.extend(advancedFormat);
 

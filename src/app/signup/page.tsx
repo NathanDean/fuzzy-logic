@@ -5,7 +5,7 @@ import { Turnstile } from '@marsidev/react-turnstile';
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
 import { useEffect, useState } from 'react';
-import LoginLink from '@/components/LoginLink';
+import LoginLink from '@/components/auth/LoginLink';
 
 zxcvbnOptions.setOptions({
   dictionary: {

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
-import Card from './Card';
-import CardImage from './CardImage';
+import Card from '../cards/Card';
+import CardImage from '../cards/CardImage';
 
 import { Workshop } from '@/utils/types/Workshop';
 

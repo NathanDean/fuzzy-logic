@@ -1,4 +1,4 @@
-import MailingListForm from '@/components/MailingListForm';
+import MailingListForm from '@/components/misc/MailingListForm';
 
 export default function MailingList() {
   return (
