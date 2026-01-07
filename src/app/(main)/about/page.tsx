@@ -31,7 +31,7 @@ export default async function About() {
 
   return (
     <div className="-mt-15 sm:-mt-30 -mb-13 sm:-mb-16">
-      <section className="min-h-screen flex flex-col justify-center items-start space-y-2 large-text">
+      <section className="min-h-screen flex flex-col justify-center items-start space-y-2">
         <p>{`Fuzzy Logic is an improv company.`}</p>
 
         <p>
@@ -57,14 +57,14 @@ export default async function About() {
         id="people"
         className="min-h-screen flex flex-col justify-center items-center space-y-8 scroll-mt-20"
       >
-        <h2 className="heading">Core team</h2>
+        <h2>Core team</h2>
         <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
           {coreTeam.map((person) => (
             <PersonCard key={person.id} person={person} />
           ))}
         </CardGrid>
 
-        <h2 className="heading">Artists we work with</h2>
+        <h2>Artists we work with</h2>
         <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
           {guestArtists.map((person) => (
             <PersonCard key={person.id} person={person} />
@@ -74,7 +74,7 @@ export default async function About() {
 
       <section
         id="story"
-        className="min-h-screen flex flex-col justify-center items-start space-y-2 large-text"
+        className="min-h-screen flex flex-col justify-center items-start space-y-2"
       >
         <p>
           {`Fuzzy Logic was founded in 2025 by Nathan Dean, following a decade's

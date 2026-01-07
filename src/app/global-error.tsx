@@ -16,7 +16,7 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <h1 className="secondary">Sorry, something went wrong.</h1>
+        <h1>Sorry, something went wrong.</h1>
 
         <p>
           Global error. Please try again, if the problem continues please get in

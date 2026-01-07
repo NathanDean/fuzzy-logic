@@ -1,5 +1,5 @@
-import Card from '../../../../components/cards/Card';
-import CardImage from '../../../../components/cards/CardImage';
+import Card from '@/components/cards/Card';
+import CardImage from '@/components/cards/CardImage';
 
 interface Person {
   id: number;
@@ -28,10 +28,10 @@ export default function PersonCard({ person }: PersonCardProps) {
 
         <div className="lg:w-1/2 flex flex-col flex-grow p-6">
           {/* Name */}
-          <h2 className="card-heading">{person.name}</h2>
+          <h2>{person.name}</h2>
 
           {/* Bio */}
-          <p className="py-1 detail-text">{person.bio}</p>
+          <p className="py-1">{person.bio}</p>
         </div>
       </div>
     </Card>

@@ -14,54 +14,32 @@
   }
 }
 
-/* Base typography */
-@layer base {
-  body {
-    @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
-    font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
-  }
+/* Text */
 
-  .heading {
-    @apply text-2xl sm:text-3xl font-medium;
-  }
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
+  font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
+}
 
-  .card-heading,
-  .subheading {
-    @apply text-xl sm:text-2xl font-medium;
-  }
+h2 {
+  @apply text-xl sm:text-2xl font-medium;
+}
 
-  .card-subheading {
-    @apply text-lg sm:text-xl font-medium;
-  }
+h3 {
+  @apply text-lg sm:text-xl font-medium;
+}
 
-  .info-heading {
-    @apply text-base sm:text-lg font-medium;
-  }
+h4 {
+  @apply text-base sm:text-lg font-medium;
+}
 
-  .large-text {
-    @apply text-lg sm:text-2xl;
-  }
+p,
+li {
+  @apply py-1 text-lg sm:text-xl;
+}
 
-  .medium-text {
-    @apply text-lg sm:text-xl;
-  }
-
-  .detail-text {
-    @apply text-base;
-  }
-
-  .error {
-    @apply text-red-600;
-  }
-
-  p,
-  li {
-    @apply py-1;
-  }
-
-  a {
-    @apply hover:text-blue-500 transition-colors duration-300;
-  }
+a {
+  @apply hover:text-blue-500 transition-colors duration-300;
 }
 
 /* Form Basics */

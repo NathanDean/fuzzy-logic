@@ -1,5 +1,5 @@
 import { sigmar } from '@/lib/fonts';
 
 export default function Loading() {
-  return <p className={`${sigmar.className} text-6xl`}>loading...</p>;
+  return <h1 className={`${sigmar.className} text-6xl`}>loading...</h1>;
 }

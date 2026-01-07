@@ -45,14 +45,14 @@ export default function WorkshopCard({
         <div className="p-6 flex flex-col flex-grow">
           <div className="flex-grow space-y-1">
             {/* Workshop name */}
-            <h2 className="card-heading">{workshop.class_name}</h2>
+            <h2>{workshop.class_name}</h2>
 
-            <h3 className="card-subheading">with {workshop.teacher}</h3>
+            <h3>with {workshop.teacher}</h3>
 
-            <h4 className="info-heading">{workshop.course_type}</h4>
+            <h4>{workshop.course_type}</h4>
 
             {/* Date/time */}
-            <h4 className="info-heading">
+            <h4>
               Begins{' '}
               {dayjs(`${workshop.date} ${workshop.start_time}`).format(
                 'ha on ddd D MMM'
@@ -61,7 +61,7 @@ export default function WorkshopCard({
             </h4>
 
             {/* Venue */}
-            <h4 className="info-heading">£{workshop.price}</h4>
+            <h4>£{workshop.price}</h4>
           </div>
 
           {/* Buttons */}
