@@ -25,7 +25,7 @@ export default function CardImage({
 
   return (
     <Image
-      src={`/${src}`}
+      src={src}
       fill={showFullInfo}
       width={showFullInfo ? undefined : 5000}
       height={showFullInfo ? undefined : 5000}

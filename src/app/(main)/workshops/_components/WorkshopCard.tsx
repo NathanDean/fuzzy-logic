@@ -1,11 +1,8 @@
 import Link from 'next/link';
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
-
 import { Workshop } from '@/utils/types/Workshop';
-
 import { useState } from 'react';
-
 import dayjs from 'dayjs';
 
 interface WorkshopCardProps {
@@ -35,7 +32,7 @@ export default function WorkshopCard({
 
         <div className="relative">
           <CardImage
-            src={workshop.image_url}
+            src={`/workshops/${workshop.image_url}`}
             alt="Workshop image"
             imageHeight={imageHeight}
           />

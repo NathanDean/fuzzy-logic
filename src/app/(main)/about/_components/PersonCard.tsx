@@ -20,7 +20,10 @@ export default function PersonCard({ person }: PersonCardProps) {
         {/* Image */}
         <div className="h-96 lg:w-1/2 lg:h-auto relative">
           <CardImage
-            src={person.image_url || 'default-team-member-image.jpg'}
+            src={
+              `/people/${person.image_url}` ||
+              '/people/default-team-member-image.jpg'
+            }
             alt={person.name}
             showFullInfo={true}
           />
