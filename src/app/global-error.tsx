@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import ErrorMessage from '@/components/misc/ErrorMessage';
 
 export default function GlobalError({
   error,
@@ -16,16 +17,7 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <h1>Sorry, something went wrong.</h1>
-
-        <p>
-          Global error. Please try again, if the problem continues please get in
-          touch.
-        </p>
-
-        <button className="btn btn-primary" onClick={() => reset()}>
-          Try again
-        </button>
+        <ErrorMessage onClick={reset} type="global" />
       </body>
     </html>
   );
