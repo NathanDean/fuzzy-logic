@@ -2,14 +2,9 @@
 
 import { useEffect } from 'react';
 import ErrorMessage from '@/components/misc/ErrorMessage';
+import ErrorProps from '@/utils/types/ErrorProps';
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     console.error('Workshop error:', error);
   }, [error]);
