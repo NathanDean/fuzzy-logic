@@ -46,7 +46,7 @@ export default function MailingListForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`${isInFooter && 'text-sm'} m-0 p-0 shadow-none`}
+      className={`${isInFooter && 'text-sm'} m-0 p-0 bg-transparent shadow-none`}
     >
       {subscribeMessage && <p>{subscribeMessage}</p>}
       <div className="w-full sm:w-auto flex flex-col sm:flex-row items-center sm:space-x-2 space-y-2 sm:space-y-0">

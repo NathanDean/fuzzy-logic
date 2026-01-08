@@ -87,63 +87,89 @@ export default function SignUpPage() {
         e.preventDefault();
         await handleSubmit(new FormData(e.currentTarget));
       }}
+      className="mb-10"
     >
       {errorMessage && <p className="error">{errorMessage}</p>}
 
-      <label htmlFor="firstName">First name:</label>
-      <input id="firstName" name="firstName" type="text" required />
-
-      <label htmlFor="lastName">Last name:</label>
-      <input id="lastName" name="lastName" type="text" required />
-
-      <label htmlFor="email">Email:</label>
-      <input id="email" name="email" type="email" required />
-
-      <label htmlFor="password">Password:</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-
-      <label htmlFor="confirmPassword">Confirm password:</label>
-      <input
-        id="confirmPassword"
-        name="confirmPassword"
-        type="password"
-        required
-      />
-
-      {password && (
-        <div className="zxcvbn">
-          <div>Password strength: {getStrengthLabel()}</div>
-
-          <div
-            className={`${getStrengthColor()} h-2.5 rounded-full transition-all`}
-            style={{ width: `${(passwordStrength + 1) * 20}%` }}
-          ></div>
-
-          {passwordFeedback && (
-            <p className="text-red-500">{passwordFeedback}</p>
-          )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6 gap-y-3 lg:gap-y-1">
+        <div>
+          <label htmlFor="firstName">First name:</label>
+          <input id="firstName" name="firstName" type="text" required />
         </div>
-      )}
 
-      <div className="flex flex-row content-center items-center w-full mt-2 mb-2 space-x-4">
-        <input
-          id="subscribe"
-          name="subscribe"
-          type="checkbox"
-          className="w-auto h-full"
-        />
-        <label htmlFor="subscribe" className="text-md">
-          Subscribe to mailing list
-        </label>
+        <div>
+          <label htmlFor="lastName">Last name:</label>
+          <input id="lastName" name="lastName" type="text" required />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="confirmPassword">Confirm password:</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            required
+          />
+        </div>
+
+        {password && (
+          <div className="zxcvbn">
+            <div>Password strength: {getStrengthLabel()}</div>
+
+            <div
+              className={`${getStrengthColor()} h-2.5 rounded-full transition-all`}
+              style={{ width: `${(passwordStrength + 1) * 20}%` }}
+            ></div>
+
+            {passwordFeedback && (
+              <p className="text-red-500">{passwordFeedback}</p>
+            )}
+          </div>
+        )}
+
+        <div className="lg:order-8 flex flex-row justify-center items-center w-full space-x-2 text-center">
+          <input
+            id="subscribe"
+            name="subscribe"
+            type="checkbox"
+            className="w-auto h-full"
+          />
+          <label htmlFor="subscribe">Subscribe to mailing list</label>
+        </div>
+
+        <div className="flex flex-col justify-end">
+          <button
+            className={`btn ${isTurnstileLoading || passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'} my-2 p-2`}
+            type="submit"
+            disabled={
+              isTurnstileLoading || passwordStrength < 3 || isSubmitting
+            }
+          >
+            {isTurnstileLoading
+              ? 'Loading'
+              : isSubmitting
+                ? 'Please wait'
+                : 'Sign up'}
+          </button>
+        </div>
+        <div className="lg:order-7 text-center lg:text-start">
+          <LoginLink />
+        </div>
       </div>
-
       <div className="turnstile">
         <Turnstile
           siteKey={
@@ -153,20 +179,6 @@ export default function SignUpPage() {
           onSuccess={() => setIsTurnstileLoading(false)}
         />
       </div>
-
-      <button
-        className={`btn ${isTurnstileLoading || passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}
-        type="submit"
-        disabled={isTurnstileLoading || passwordStrength < 3 || isSubmitting}
-      >
-        {isTurnstileLoading
-          ? 'Loading'
-          : isSubmitting
-            ? 'Please wait'
-            : 'Sign up'}
-      </button>
-
-      <LoginLink />
     </form>
   );
 }

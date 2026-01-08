@@ -45,7 +45,7 @@ a {
 /* Form Basics */
 @layer components {
   form {
-    @apply flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] shadow-sm rounded-2xl p-10 text-lg;
+    @apply flex flex-col items-center bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm rounded-2xl p-10 text-lg;
   }
 
   form p,
@@ -57,7 +57,7 @@ a {
   input,
   textarea,
   select {
-    @apply w-full my-2 p-2 border rounded-sm transition-all duration-200
+    @apply w-full my-2 p-2 border rounded-sm bg-[var(--background)] transition-all duration-200
       hover:border-gray-500;
   }
 
