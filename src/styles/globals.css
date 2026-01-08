@@ -45,7 +45,7 @@ a {
 /* Form Basics */
 @layer components {
   form {
-    @apply flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] shadow-xl rounded-2xl p-10 text-lg;
+    @apply flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] shadow-sm rounded-2xl p-10 text-lg;
   }
 
   form p,
