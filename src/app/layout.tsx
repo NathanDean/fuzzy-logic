@@ -43,7 +43,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sigmar} antialiased flex flex-col h-screen`}>
+      <body
+        className={`${sigmar} antialiased flex flex-col h-screen bg-[url('/canvas.png')] bg-cover bg-no-repeat bg-fixed bg-center`}
+      >
         <AuthProvider>
           <Header />
 
