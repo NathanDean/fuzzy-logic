@@ -49,8 +49,7 @@ a {
   }
 
   form p,
-  form a,
-  .turnstile {
+  form a {
     @apply mt-2;
   }
 
@@ -62,7 +61,7 @@ a {
   }
 
   .zxcvbn {
-    @apply flex flex-col w-full space-y-2 mt-2 mb-4;
+    @apply flex flex-col w-full space-y-2;
   }
 
   .btn {

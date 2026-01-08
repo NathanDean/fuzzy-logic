@@ -81,6 +81,16 @@ export default function SignUpPage() {
     setIsSubmitting(false);
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 400);
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <form
       onSubmit={async (e) => {
@@ -126,32 +136,37 @@ export default function SignUpPage() {
           />
         </div>
 
-        {password && (
+        <div className="flex flex-col justify-start">
           <div className="zxcvbn">
-            <div>Password strength: {getStrengthLabel()}</div>
+            <div>Password strength: {password && getStrengthLabel()}</div>
 
-            <div
-              className={`${getStrengthColor()} h-2.5 rounded-full transition-all`}
-              style={{ width: `${(passwordStrength + 1) * 20}%` }}
-            ></div>
-
-            {passwordFeedback && (
-              <p className="text-red-500">{passwordFeedback}</p>
-            )}
+            <div className="bg-gray-300 w-full h-2.5 rounded-full">
+              <div
+                className={
+                  password
+                    ? `${getStrengthColor()} h-2.5 rounded-full transition-all`
+                    : 'bg-gray-300'
+                }
+                style={{ width: `${(passwordStrength + 1) * 20}%` }}
+              ></div>
+            </div>
           </div>
-        )}
-
-        <div className="lg:order-8 flex flex-row justify-center items-center w-full space-x-2 text-center">
-          <input
-            id="subscribe"
-            name="subscribe"
-            type="checkbox"
-            className="w-auto h-full"
-          />
-          <label htmlFor="subscribe">Subscribe to mailing list</label>
         </div>
 
-        <div className="flex flex-col justify-end">
+        <div className="flex justify-center items-end mt-6 mb-4 lg:m-0">
+          <Turnstile
+            siteKey={
+              process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+              '1x00000000000000000000AA'
+            }
+            onSuccess={() => setIsTurnstileLoading(false)}
+            options={{
+              size: isMobile ? 'compact' : 'normal',
+            }}
+          />
+        </div>
+
+        <div className="flex flex-col-reverse lgflex-col justify-end">
           <button
             className={`btn ${isTurnstileLoading || passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'} my-2 p-2`}
             type="submit"
@@ -165,19 +180,19 @@ export default function SignUpPage() {
                 ? 'Please wait'
                 : 'Sign up'}
           </button>
-        </div>
-        <div className="lg:order-7 text-center lg:text-start">
-          <LoginLink />
+          <div className="flex flex-row justify-center items-center w-full space-x-2 text-center mb-2 lg:mb-0">
+            <input
+              id="subscribe"
+              name="subscribe"
+              type="checkbox"
+              className="w-auto h-full"
+            />
+            <label htmlFor="subscribe">Subscribe to mailing list</label>
+          </div>
         </div>
       </div>
-      <div className="turnstile">
-        <Turnstile
-          siteKey={
-            process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
-            '1x00000000000000000000AA'
-          }
-          onSuccess={() => setIsTurnstileLoading(false)}
-        />
+      <div className=" text-center lg:text-start mt-4">
+        <LoginLink />
       </div>
     </form>
   );
