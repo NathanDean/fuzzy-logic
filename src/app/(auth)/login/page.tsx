@@ -1,19 +1,16 @@
 'use client';
 
 import { login } from '@/utils/auth/actions';
-
-import { Turnstile } from '@marsidev/react-turnstile';
-
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import { createClient } from '@/utils/supabase/client';
 import Loading from '@/components/misc/Loading';
 import SignUpLink from '@/components/auth/SignUpLink';
 import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
 import Text from '@/components/ui/Text';
+import TurnstileWidget from '@/components/misc/TurnstileWidget';
 
 function LoginForm() {
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -78,15 +75,7 @@ function LoginForm() {
         <label htmlFor="password">Password:</label>
         <input id="password" name="password" type="password" required />
 
-        <div className="turnstile">
-          <Turnstile
-            siteKey={
-              process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
-              '1x00000000000000000000AA'
-            }
-            onSuccess={() => setIsTurnstileLoading(false)}
-          />
-        </div>
+        <TurnstileWidget onSuccess={() => setIsTurnstileLoading(false)} />
 
         <button
           className={`btn ${isTurnstileLoading || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}

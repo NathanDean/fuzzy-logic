@@ -1,12 +1,12 @@
 'use client';
 
 import { signup } from '@/utils/auth/actions';
-import { Turnstile } from '@marsidev/react-turnstile';
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
 import { useEffect, useState } from 'react';
 import LoginLink from '@/components/auth/LoginLink';
 import Text from '@/components/ui/Text';
+import TurnstileWidget from '@/components/misc/TurnstileWidget';
 
 zxcvbnOptions.setOptions({
   dictionary: {
@@ -157,22 +157,14 @@ export default function SignUpPage() {
           </div>
         </div>
 
-        <div className="flex justify-center items-end mt-6 mb-4 lg:m-0">
-          <Turnstile
-            siteKey={
-              process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
-              '1x00000000000000000000AA'
-            }
-            onSuccess={() => setIsTurnstileLoading(false)}
-            options={{
-              size: isMobile ? 'compact' : 'normal',
-            }}
-          />
-        </div>
+        <TurnstileWidget
+          onSuccess={() => setIsTurnstileLoading(false)}
+          className="lg:items-end"
+        />
 
-        <div className="flex flex-col-reverse lgflex-col justify-end">
+        <div className="flex flex-col-reverse justify-end">
           <button
-            className={`btn ${isTurnstileLoading || passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'} my-2 p-2`}
+            className={`btn ${isTurnstileLoading || passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'} mt-2 p-2`}
             type="submit"
             disabled={
               isTurnstileLoading || passwordStrength < 3 || isSubmitting
@@ -197,7 +189,7 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-      <div className=" text-center lg:text-start mt-4">
+      <div className=" text-center mt-4">
         <LoginLink />
       </div>
     </form>

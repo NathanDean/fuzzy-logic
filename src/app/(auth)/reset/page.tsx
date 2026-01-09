@@ -1,12 +1,10 @@
 'use client';
 
 import { resetPassword } from '@/utils/auth/actions';
-
-import { Turnstile } from '@marsidev/react-turnstile';
-
 import { useState } from 'react';
 import SignUpLink from '@/components/auth/SignUpLink';
 import Text from '@/components/ui/Text';
+import TurnstileWidget from '@/components/misc/TurnstileWidget';
 
 export default function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -38,15 +36,7 @@ export default function ResetPassword() {
       <label htmlFor="email">Email:</label>
       <input id="email" name="email" type="email" required />
 
-      <div className="turnstile">
-        <Turnstile
-          siteKey={
-            process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
-            '1x00000000000000000000AA'
-          }
-          onSuccess={() => setIsTurnstileLoading(false)}
-        />
-      </div>
+      <TurnstileWidget onSuccess={() => setIsTurnstileLoading(false)} />
 
       <button
         className={`btn ${isTurnstileLoading || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}
