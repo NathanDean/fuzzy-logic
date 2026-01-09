@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 import WorkshopDetailsClientWrapper from './WorkshopDetailsClientWrapper';
 import { Workshop } from '@/utils/types/Workshop';
+import Text from '@/components/ui/Text';
 
 export default async function WorkshopDetails({
   params,
@@ -19,7 +20,7 @@ export default async function WorkshopDetails({
     .single();
 
   if (error || !workshopData) {
-    return <p className="medium-text error">Workshop not found</p>;
+    return <Text>Workshop not found</Text>;
   }
 
   const workshop: Workshop = {

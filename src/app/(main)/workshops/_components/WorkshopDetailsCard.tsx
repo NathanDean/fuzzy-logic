@@ -1,11 +1,9 @@
+import { useState } from 'react';
 import dayjs from 'dayjs';
-
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
-
+import Text from '@/components/ui/Text';
 import { Workshop } from '@/utils/types/Workshop';
-
-import { useState } from 'react';
 
 interface WorkshopDetailsCardProps {
   workshop: Workshop;
@@ -44,14 +42,14 @@ export default function WorkshopDetailsCard({
         <div className="p-6 flex flex-col flex-grow lg:w-1/2">
           <div className="flex-grow space-y-1">
             {/* Workshop name */}
-            <h2 className="card-heading">{workshop.class_name}</h2>
+            <h2>{workshop.class_name}</h2>
 
-            <h3 className="card-subheading">with {workshop.teacher}</h3>
+            <h3>with {workshop.teacher}</h3>
 
-            <h4 className="info-heading">{workshop.course_type}</h4>
+            <h4>{workshop.course_type}</h4>
 
             {/* Date/time */}
-            <h4 className="info-heading">
+            <h4>
               Begins{' '}
               {dayjs(`${workshop.date} ${workshop.start_time}`).format(
                 'ha on ddd D MMM'
@@ -60,14 +58,14 @@ export default function WorkshopDetailsCard({
             </h4>
 
             {/* Venue */}
-            <h4 className="info-heading">£{workshop.price}</h4>
+            <h4>£{workshop.price}</h4>
 
             {/* Description */}
             {workshop.description
               .split('\n')
               .filter((paragraph) => paragraph.trim())
               .map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <Text key={index}>{paragraph}</Text>
               ))}
           </div>
 
@@ -80,11 +78,13 @@ export default function WorkshopDetailsCard({
               onClick={handleBookNow}
               disabled={isSoldOut || isSubmitting}
             >
-              {isSoldOut
-                ? 'Sold out'
-                : isSubmitting
-                  ? 'Please wait...'
-                  : 'Book now'}
+              <Text as="span">
+                {isSoldOut
+                  ? 'Sold out'
+                  : isSubmitting
+                    ? 'Please wait...'
+                    : 'Book now'}
+              </Text>
             </button>
           </div>
         </div>

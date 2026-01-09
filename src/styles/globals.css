@@ -33,11 +33,6 @@ h4 {
   @apply text-base sm:text-lg font-medium;
 }
 
-p,
-li {
-  @apply py-1 text-lg sm:text-xl;
-}
-
 a {
   @apply hover:text-blue-500 transition-colors duration-300;
 }
@@ -60,12 +55,16 @@ a {
       hover:border-gray-500;
   }
 
+  label {
+    @apply text-base sm:text-lg;
+  }
+
   .zxcvbn {
     @apply flex flex-col w-full space-y-2;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center w-full mt-2 px-4 py-2 sm:px-4 sm:py-2 text-lg
+    @apply inline-flex items-center justify-center w-full mt-2 px-4 py-2 sm:px-4 sm:py-2
         border rounded-md font-medium text-center
         transition-all duration-200 ease-in-out;
   }

@@ -7,6 +7,7 @@ import { createCheckoutSession } from '@/app/actions/stripe';
 import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 import CardGrid from '@/components/cards/CardGrid';
 import { Workshop } from '@/utils/types/Workshop';
+import Text from '@/components/ui/Text';
 
 export default function WorkshopDetailsClientWrapper({
   workshop,
@@ -41,7 +42,7 @@ export default function WorkshopDetailsClientWrapper({
   return (
     <div className="sm:-mt-10">
       <CardGrid cardWidth="xl" imageHeight="lg" cols={1}>
-        {errorMessage && <p className="error">{errorMessage}</p>}
+        {errorMessage && <Text>{errorMessage}</Text>}
 
         <WorkshopDetailsCard
           key={workshop.id}

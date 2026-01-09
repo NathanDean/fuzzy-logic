@@ -3,16 +3,14 @@
 import { useState, useEffect } from 'react';
 import supabase from '@/utils/supabase/supabaseClient';
 import { createCheckoutSession } from '../../actions/stripe';
-
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-
 import Loading from '@/components/misc/Loading';
 import CardGrid from '@/components/cards/CardGrid';
 import WorkshopCard from './_components/WorkshopCard';
-
 import { Workshop } from '@/utils/types/Workshop';
 import MailingListForm from '@/components/misc/MailingListForm';
+import Text from '@/components/ui/Text';
 
 export default function Workshops() {
   const { user, isLoggedIn } = useAuth();
@@ -88,13 +86,13 @@ export default function Workshops() {
       {loading ? (
         <Loading />
       ) : errorMessage ? (
-        <p className="medium-text error">{errorMessage}</p>
+        <Text>{errorMessage}</Text>
       ) : workshops.length === 0 ? (
         <div className="space-y-2">
-          <p className="large-text">
+          <Text>
             No upcoming workshops. Please check back soon, or subscribe to our
             mailing list for announcements.
-          </p>
+          </Text>
           <MailingListForm />
         </div>
       ) : (

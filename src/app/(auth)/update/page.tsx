@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
 import SignUpLink from '@/components/auth/SignUpLink';
+import Text from '@/components/ui/Text';
 
 zxcvbnOptions.setOptions({
   dictionary: {
@@ -121,16 +122,15 @@ export default function UpdatePassword() {
 
       {password && (
         <div className="zxcvbn">
-          <div>Password strength: {getStrengthLabel()}</div>
+          <div>
+            <Text as="span">Password strength: </Text>
+            {getStrengthLabel()}
+          </div>
 
           <div
             className={`${getStrengthColor()} h-2.5 rounded-full transition-all`}
             style={{ width: `${(passwordStrength + 1) * 20}%` }}
           ></div>
-
-          {passwordFeedback && (
-            <p className="text-red-500">{passwordFeedback}</p>
-          )}
         </div>
       )}
 
@@ -139,7 +139,9 @@ export default function UpdatePassword() {
         type="submit"
         disabled={passwordStrength < 3 || isSubmitting}
       >
-        {isSubmitting ? 'Please wait...' : 'Update password'}
+        <Text as="span">
+          {isSubmitting ? 'Please wait...' : 'Update password'}
+        </Text>
       </button>
 
       <SignUpLink />

@@ -1,3 +1,4 @@
+import Text from '@/components/ui/Text';
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
 
@@ -34,7 +35,12 @@ export default function PersonCard({ person }: PersonCardProps) {
           <h2>{person.name}</h2>
 
           {/* Bio */}
-          <p className="py-1">{person.bio}</p>
+          {person.bio
+            .split('\n')
+            .filter((paragraph) => paragraph.trim())
+            .map((paragraph, index) => (
+              <Text key={index}>{paragraph}</Text>
+            ))}
         </div>
       </div>
     </Card>

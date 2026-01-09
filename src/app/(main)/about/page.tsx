@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
 import CardGrid from '@/components/cards/CardGrid';
 import PersonCard from '@/app/(main)/about/_components/PersonCard';
+import Text from '@/components/ui/Text';
 
 interface Person {
   id: number;
@@ -32,23 +33,23 @@ export default async function About() {
   return (
     <div className="-mt-15 sm:-mt-30 -mb-13 sm:-mb-16">
       <section className="min-h-screen flex flex-col justify-center items-start space-y-2">
-        <p>{`Fuzzy Logic is an improv company.`}</p>
+        <Text>{`Fuzzy Logic is an improv company.`}</Text>
 
-        <p>
+        <Text>
           {`We run workshops designed to help improvisers find their artistic
           voice and develop the technical skills to express it more clearly.`}
-        </p>
+        </Text>
 
-        <p>
+        <Text>
           {`Our work explores the ways improv can give to and learn from other
           artforms, and experiments with new ideas of what improv can do and be.`}
-        </p>
+        </Text>
         <div className="w-full flex flex-row items-stretch justify-center space-x-2">
           <Link className="btn btn-primary" href="/about/#people">
-            {`Who is Fuzzy Logic?`}
+            <Text as="span">{`Who is Fuzzy Logic?`}</Text>
           </Link>
           <Link className="btn btn-primary" href="/about/#story">
-            {`What's our story?`}
+            <Text as="span">{`What's our story?`}</Text>
           </Link>
         </div>
       </section>
@@ -76,16 +77,16 @@ export default async function About() {
         id="story"
         className="min-h-screen flex flex-col justify-center items-start space-y-2"
       >
-        <p>
+        <Text>
           {`Fuzzy Logic was founded in 2025 by Nathan Dean, following a decade's
           experience in the world of artist and artform development at Arts
           Council England and talent agency Avalon.`}
-        </p>
-        <p>
+        </Text>
+        <Text>
           {`We ran our first workshops in July 2025. We also produce the sketch
           series scenesAboutLeaving and the twoprov show A Very Capable Boy,
           with more shows to come in future.`}
-        </p>
+        </Text>
       </section>
     </div>
   );

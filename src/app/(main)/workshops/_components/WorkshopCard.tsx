@@ -1,9 +1,10 @@
+import dayjs from 'dayjs';
 import Link from 'next/link';
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
 import { Workshop } from '@/utils/types/Workshop';
 import { useState } from 'react';
-import dayjs from 'dayjs';
+import Text from '@/components/ui/Text';
 
 interface WorkshopCardProps {
   workshop: Workshop;
@@ -69,17 +70,19 @@ export default function WorkshopCard({
               onClick={handleBookNow}
               disabled={isSoldOut || isSubmitting}
             >
-              {isSoldOut
-                ? 'Sold out'
-                : isSubmitting
-                  ? 'Please wait...'
-                  : 'Book now'}
+              <Text as="span">
+                {isSoldOut
+                  ? 'Sold out'
+                  : isSubmitting
+                    ? 'Please wait...'
+                    : 'Book now'}
+              </Text>
             </button>
 
             {/* More info */}
 
             <Link href={`workshops/${workshop.id}`} className="btn btn-primary">
-              More info
+              <Text as="span">More info</Text>
             </Link>
           </div>
         </div>

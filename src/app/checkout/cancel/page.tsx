@@ -1,3 +1,3 @@
 export default function Cancel() {
-  return <h1 className="heading">Booking cancelled</h1>;
+  return <h1>Booking cancelled</h1>;
 }

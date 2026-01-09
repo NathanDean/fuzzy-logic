@@ -1,3 +1,5 @@
+import Text from '../ui/Text';
+
 interface ErrorMessageProps {
   onClick: () => void;
   type: string;
@@ -10,13 +12,13 @@ export default function ErrorMessage({ onClick, type }: ErrorMessageProps) {
     <div className="flex flex-col items-center space-y-1">
       <h1>Sorry, something went wrong.</h1>
 
-      <p>
-        {capitalised_type} error. Please try again, if the problem continues
-        please get in touch.
-      </p>
+      <Text>{capitalised_type} error.</Text>
+      <Text>
+        Please try again, if the problem continues please get in touch.
+      </Text>
 
       <button className="btn btn-primary" onClick={onClick}>
-        Try again
+        <Text as="span">Try again</Text>
       </button>
     </div>
   );

@@ -5,11 +5,10 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
-
 import supabase from '@/utils/supabase/supabaseClient';
-
 import Loading from '@/components/misc/Loading';
 import Card from '@/components/cards/Card';
+import Text from '@/components/ui/Text';
 
 dayjs.extend(advancedFormat);
 
@@ -109,30 +108,34 @@ export default function Account() {
       ) : (
         <div>
           <Card className="p-6 space-y-1">
-            <h1 className="heading">Account</h1>
+            <h1>Account</h1>
 
-            <div className="space-y-1 medium-text">
-              <p>
+            <div className="space-y-1">
+              <Text>
                 Name: {metadata?.first_name} {metadata?.last_name}
-              </p>
-              <p>Email: {user?.email}</p>
-              <p>Upcoming workshops:</p>
+              </Text>
+              <Text>Email: {user?.email}</Text>
+              <Text>Upcoming workshops:</Text>
 
               {isSupabaseLoading ? (
-                <p>...</p>
+                <Text>...</Text>
               ) : (
                 <>
-                  {errorMessage && <p className="error">{errorMessage}</p>}
+                  {errorMessage && (
+                    <Text className="error">{errorMessage}</Text>
+                  )}
 
                   <ul className="list-disc pl-5 space-y-1">
                     {bookings.map((booking) =>
                       booking.workshop ? (
                         <li key={booking.id}>
-                          {booking.workshop.class_name} -{' '}
-                          {dayjs(
-                            `${booking.workshop.date} ${booking.workshop.start_time}`
-                          ).format('ha on ddd Do MMM')}{' '}
-                          at {booking.workshop.venue}
+                          <Text>
+                            {booking.workshop.class_name} -{' '}
+                            {dayjs(
+                              `${booking.workshop.date} ${booking.workshop.start_time}`
+                            ).format('ha on ddd Do MMM')}{' '}
+                            at {booking.workshop.venue}
+                          </Text>{' '}
                         </li>
                       ) : null
                     )}

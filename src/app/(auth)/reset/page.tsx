@@ -6,6 +6,7 @@ import { Turnstile } from '@marsidev/react-turnstile';
 
 import { useState } from 'react';
 import SignUpLink from '@/components/auth/SignUpLink';
+import Text from '@/components/ui/Text';
 
 export default function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -52,11 +53,13 @@ export default function ResetPassword() {
         type="submit"
         disabled={isTurnstileLoading || isSubmitting}
       >
-        {isTurnstileLoading
-          ? 'Loading'
-          : isSubmitting
-            ? 'Please wait...'
-            : 'Reset password'}
+        <Text as="span">
+          {isTurnstileLoading
+            ? 'Loading'
+            : isSubmitting
+              ? 'Please wait...'
+              : 'Reset password'}
+        </Text>
       </button>
 
       <SignUpLink />

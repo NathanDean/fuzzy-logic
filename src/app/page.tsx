@@ -7,7 +7,7 @@ export default function Home() {
         <Logo />
       </h1>
 
-      <h2 className="subheading">an improv company</h2>
+      <h2>an improv company</h2>
     </div>
   );
 }

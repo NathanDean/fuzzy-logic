@@ -13,6 +13,7 @@ import { createClient } from '@/utils/supabase/client';
 import Loading from '@/components/misc/Loading';
 import SignUpLink from '@/components/auth/SignUpLink';
 import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
+import Text from '@/components/ui/Text';
 
 function LoginForm() {
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -92,11 +93,13 @@ function LoginForm() {
           type="submit"
           disabled={isTurnstileLoading || isSubmitting}
         >
-          {isTurnstileLoading
-            ? 'Loading'
-            : isSubmitting
-              ? 'Please wait...'
-              : 'Log in'}
+          <Text as="span">
+            {isTurnstileLoading
+              ? 'Loading'
+              : isSubmitting
+                ? 'Please wait...'
+                : 'Log in'}
+          </Text>
         </button>
 
         <SignUpLink />

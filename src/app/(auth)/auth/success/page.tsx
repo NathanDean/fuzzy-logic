@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Loading from '@/components/misc/Loading';
+import Text from '@/components/ui/Text';
 
 function AuthSuccessComponent() {
   const searchParams = useSearchParams();
@@ -34,18 +35,14 @@ function AuthSuccessComponent() {
     <>
       {displayMessages.length > 0 ? (
         <div className="flex flex-col items-center space-y-1">
-          <h1 className="heading">{displayMessages[0]}</h1>
+          <h1>{displayMessages[0]}</h1>
 
-          {displayMessages[1] && (
-            <p className="medium-text">{displayMessages[1]}</p>
-          )}
+          {displayMessages[1] && <Text>{displayMessages[1]}</Text>}
 
-          {displayMessages[2] && (
-            <p className="medium-text">{displayMessages[2]}</p>
-          )}
+          {displayMessages[2] && <Text>{displayMessages[2]}</Text>}
         </div>
       ) : (
-        <h1 className="heading">Invalid success code</h1>
+        <h1>Invalid success code</h1>
       )}
     </>
   );

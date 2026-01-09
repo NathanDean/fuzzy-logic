@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Loading from '@/components/misc/Loading';
+import Text from '@/components/ui/Text';
 
 function ErrorPageComponent() {
   const searchParams = useSearchParams();
@@ -24,13 +25,13 @@ function ErrorPageComponent() {
 
   return (
     <div className="flex flex-col items-center space-y-1">
-      <h1 className="heading">Sorry, something went wrong.</h1>
+      <h1>Sorry, something went wrong.</h1>
 
-      <p className="medium-text">Error: {displayMessage}</p>
+      <Text>Error: {displayMessage}</Text>
 
-      <p className="medium-text">
+      <Text>
         Please try again, if the problem continues please get in touch.
-      </p>
+      </Text>
     </div>
   );
 }

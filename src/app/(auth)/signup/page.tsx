@@ -6,6 +6,7 @@ import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
 import { useEffect, useState } from 'react';
 import LoginLink from '@/components/auth/LoginLink';
+import Text from '@/components/ui/Text';
 
 zxcvbnOptions.setOptions({
   dictionary: {
@@ -138,7 +139,10 @@ export default function SignUpPage() {
 
         <div className="flex flex-col justify-start">
           <div className="zxcvbn">
-            <div>Password strength: {password && getStrengthLabel()}</div>
+            <div>
+              <Text as="span">Password strength: </Text>
+              {password && getStrengthLabel()}
+            </div>
 
             <div className="bg-gray-300 w-full h-2.5 rounded-full">
               <div
@@ -174,11 +178,13 @@ export default function SignUpPage() {
               isTurnstileLoading || passwordStrength < 3 || isSubmitting
             }
           >
-            {isTurnstileLoading
-              ? 'Loading'
-              : isSubmitting
-                ? 'Please wait'
-                : 'Sign up'}
+            <Text as="span">
+              {isTurnstileLoading
+                ? 'Loading'
+                : isSubmitting
+                  ? 'Please wait'
+                  : 'Sign up'}
+            </Text>
           </button>
           <div className="flex flex-row justify-center items-center w-full space-x-2 text-center mb-2 lg:mb-0">
             <input

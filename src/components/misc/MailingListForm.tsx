@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { subscribeToMailingList } from '@/app/actions/mailingList';
+import Text from '../ui/Text';
 
 interface MailingListFormProps {
   isInFooter?: boolean;
@@ -48,7 +49,7 @@ export default function MailingListForm({
       onSubmit={handleSubmit}
       className={`${isInFooter && 'text-sm'} m-0 p-0 bg-transparent shadow-none`}
     >
-      {subscribeMessage && <p>{subscribeMessage}</p>}
+      {subscribeMessage && <Text variant="small">{subscribeMessage}</Text>}
       <div className="w-full sm:w-auto flex flex-col sm:flex-row items-center sm:space-x-2 space-y-2 sm:space-y-0">
         <input
           className={`${isInFooter && 'h-8'} my-0`}
@@ -62,7 +63,9 @@ export default function MailingListForm({
           className={`${isInFooter && 'h-8 text-sm'} btn btn-primary sm:my-0 `}
           type="submit"
         >
-          Subscribe
+          <Text variant="small" as="span">
+            Subscribe
+          </Text>
         </button>
       </div>
     </form>

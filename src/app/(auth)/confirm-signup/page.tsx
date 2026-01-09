@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Loading from '@/components/misc/Loading';
 import { useState } from 'react';
+import Text from '@/components/ui/Text';
 
 function ConfirmSignupComponent() {
   const searchParams = useSearchParams();
@@ -47,12 +48,12 @@ function ConfirmSignupComponent() {
         onClick={handleConfirm}
         disabled={isConfirming}
       >
-        {isConfirming ? 'Confirming...' : 'Confirm email address'}
+        <Text as="span">
+          {isConfirming ? 'Confirming...' : 'Confirm email address'}
+        </Text>
       </button>
 
-      <p className="medium-text">
-        {`If you have any problems signing up please get in touch.`}
-      </p>
+      <Text>{`If you have any problems signing up please get in touch.`}</Text>
     </div>
   );
 }
