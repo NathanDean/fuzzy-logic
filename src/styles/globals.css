@@ -21,6 +21,10 @@ body {
   font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
 }
 
+h1 {
+  @apply text-2xl sm:text-3xl font-medium;
+}
+
 h2 {
   @apply text-xl sm:text-2xl font-medium;
 }
