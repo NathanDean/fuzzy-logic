@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import LoginLink from '@/components/auth/LoginLink';
 import Text from '@/components/ui/Text';
 import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
 
 zxcvbnOptions.setOptions({
   dictionary: {
@@ -20,54 +21,6 @@ export default function SignUpPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [password, setPassword] = useState<string>('');
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
-  const [passwordFeedback, setPasswordFeedback] = useState<string>('');
-
-  useEffect(() => {
-    if (password) {
-      const result = zxcvbn(password);
-
-      setPasswordStrength(result.score);
-
-      setPasswordFeedback(result.feedback.warning || '');
-    } else {
-      setPasswordStrength(0);
-      setPasswordFeedback('');
-    }
-  }, [password]);
-
-  const getStrengthColor = (): string => {
-    switch (passwordStrength) {
-      case 0:
-        return 'bg-red-500';
-      case 1:
-        return 'bg-orange-500';
-      case 2:
-        return 'bg-yellow-500';
-      case 3:
-        return 'bg-lime-500';
-      case 4:
-        return 'bg-green-500';
-      default:
-        return 'bg-gray-300';
-    }
-  };
-
-  const getStrengthLabel = (): string => {
-    switch (passwordStrength) {
-      case 0:
-        return 'Very Weak';
-      case 1:
-        return 'Weak';
-      case 2:
-        return 'Fair';
-      case 3:
-        return 'Good';
-      case 4:
-        return 'Strong';
-      default:
-        return '';
-    }
-  };
 
   const handleSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
@@ -81,16 +34,6 @@ export default function SignUpPage() {
 
     setIsSubmitting(false);
   };
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 400);
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <form
@@ -137,25 +80,10 @@ export default function SignUpPage() {
           />
         </div>
 
-        <div className="flex flex-col justify-start">
-          <div className="zxcvbn">
-            <div>
-              <Text as="span">Password strength: </Text>
-              {password && getStrengthLabel()}
-            </div>
-
-            <div className="bg-gray-300 w-full h-2.5 rounded-full">
-              <div
-                className={
-                  password
-                    ? `${getStrengthColor()} h-2.5 rounded-full transition-all`
-                    : 'bg-gray-300'
-                }
-                style={{ width: `${(passwordStrength + 1) * 20}%` }}
-              ></div>
-            </div>
-          </div>
-        </div>
+        <PasswordStrengthIndicator
+          password={password}
+          onStrengthChange={setPasswordStrength}
+        />
 
         <TurnstileWidget
           onSuccess={() => setIsTurnstileLoading(false)}

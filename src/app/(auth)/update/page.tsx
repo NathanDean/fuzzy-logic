@@ -5,23 +5,14 @@ import { updatePassword } from '@/utils/auth/actions';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
-import { dictionary } from '@zxcvbn-ts/language-common';
 import SignUpLink from '@/components/auth/SignUpLink';
+import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
 import Text from '@/components/ui/Text';
-
-zxcvbnOptions.setOptions({
-  dictionary: {
-    ...dictionary,
-  },
-});
 
 export default function UpdatePassword() {
   const { user, isLoading } = useAuth();
   const [password, setPassword] = useState<string>('');
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
-  const [passwordFeedback, setPasswordFeedback] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -32,53 +23,6 @@ export default function UpdatePassword() {
       router.push('/login');
     }
   }, [isLoading, user, router]);
-
-  useEffect(() => {
-    if (password) {
-      const result = zxcvbn(password);
-
-      setPasswordStrength(result.score);
-
-      setPasswordFeedback(result.feedback.warning || '');
-    } else {
-      setPasswordStrength(0);
-      setPasswordFeedback('');
-    }
-  }, [password]);
-
-  const getStrengthColor = (): string => {
-    switch (passwordStrength) {
-      case 0:
-        return 'bg-red-500';
-      case 1:
-        return 'bg-orange-500';
-      case 2:
-        return 'bg-yellow-500';
-      case 3:
-        return 'bg-lime-500';
-      case 4:
-        return 'bg-green-500';
-      default:
-        return 'bg-gray-300';
-    }
-  };
-
-  const getStrengthLabel = (): string => {
-    switch (passwordStrength) {
-      case 0:
-        return 'Very Weak';
-      case 1:
-        return 'Weak';
-      case 2:
-        return 'Fair';
-      case 3:
-        return 'Good';
-      case 4:
-        return 'Strong';
-      default:
-        return '';
-    }
-  };
 
   const handleSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
@@ -120,19 +64,10 @@ export default function UpdatePassword() {
         required
       />
 
-      {password && (
-        <div className="zxcvbn">
-          <div>
-            <Text as="span">Password strength: </Text>
-            {getStrengthLabel()}
-          </div>
-
-          <div
-            className={`${getStrengthColor()} h-2.5 rounded-full transition-all`}
-            style={{ width: `${(passwordStrength + 1) * 20}%` }}
-          ></div>
-        </div>
-      )}
+      <PasswordStrengthIndicator
+        password={password}
+        onStrengthChange={setPasswordStrength}
+      />
 
       <button
         className={`btn ${passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}
