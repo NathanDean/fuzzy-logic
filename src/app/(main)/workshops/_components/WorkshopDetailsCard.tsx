@@ -65,7 +65,9 @@ export default function WorkshopDetailsCard({
               .split('\n')
               .filter((paragraph) => paragraph.trim())
               .map((paragraph, index) => (
-                <Text key={index}>{paragraph}</Text>
+                <Text key={index} variant="medium">
+                  {paragraph}
+                </Text>
               ))}
           </div>
 

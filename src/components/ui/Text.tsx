@@ -2,19 +2,20 @@ import { ReactNode } from 'react';
 
 interface TextProps {
   children: ReactNode;
-  variant?: 'body' | 'small';
+  variant?: 'large' | 'medium' | 'small';
   as?: 'p' | 'span';
   className?: string;
 }
 
 export default function Text({
   children,
-  variant = 'body',
+  variant = 'large',
   as = 'p',
   className = '',
 }: TextProps) {
   const variants = {
-    body: 'text-base sm:text-lg',
+    large: 'text-base sm:text-lg',
+    medium: 'text-base',
     small: 'text-sm',
   };
 

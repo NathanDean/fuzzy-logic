@@ -30,7 +30,7 @@ export default function PersonCard({ person }: PersonCardProps) {
           />
         </div>
 
-        <div className="lg:w-1/2 flex flex-col flex-grow p-6">
+        <div className="lg:w-1/2 flex flex-col flex-grow p-6 space-y-2">
           {/* Name */}
           <h2>{person.name}</h2>
 
@@ -39,7 +39,9 @@ export default function PersonCard({ person }: PersonCardProps) {
             .split('\n')
             .filter((paragraph) => paragraph.trim())
             .map((paragraph, index) => (
-              <Text key={index}>{paragraph}</Text>
+              <Text key={index} variant="medium">
+                {paragraph}
+              </Text>
             ))}
         </div>
       </div>
