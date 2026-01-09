@@ -14,31 +14,37 @@
   }
 }
 
-/* Text */
+@layer base {
+  /* Text */
 
-body {
-  @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
-  font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
-}
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
+    font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
+  }
 
-h1 {
-  @apply text-2xl sm:text-3xl font-medium;
-}
+  h1 {
+    @apply text-2xl sm:text-3xl font-medium;
+  }
 
-h2 {
-  @apply text-xl sm:text-2xl font-medium;
-}
+  h2 {
+    @apply text-xl sm:text-2xl font-medium;
+  }
 
-h3 {
-  @apply text-lg sm:text-xl font-medium;
-}
+  h3 {
+    @apply text-lg sm:text-xl font-medium;
+  }
 
-h4 {
-  @apply text-base sm:text-lg font-medium;
-}
+  h4 {
+    @apply text-base sm:text-lg font-medium;
+  }
 
-header a {
-  @apply hover:text-blue-500 transition-colors duration-300;
+  label {
+    @apply text-base sm:text-lg;
+  }
+
+  header a {
+    @apply hover:text-blue-500 transition-colors duration-300;
+  }
 }
 
 /* Form Basics */
@@ -57,10 +63,6 @@ header a {
   select {
     @apply w-full my-2 p-2 border rounded-sm bg-[var(--background)]/80 transition-all duration-200
       hover:border-gray-500;
-  }
-
-  label {
-    @apply text-base sm:text-lg;
   }
 
   button,
