@@ -1,6 +1,6 @@
-import '@testing-library/jest-dom';
-import { render, screen, act, fireEvent } from '@testing-library/react';
 import Workshops from '@/app/(main)/workshops/page';
+import '@testing-library/jest-dom';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 
 // AuthContext mock
 jest.mock('@/contexts/AuthContext', () => ({

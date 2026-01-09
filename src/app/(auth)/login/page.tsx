@@ -1,16 +1,19 @@
 'use client';
 
-import { login } from '@/utils/auth/actions';
-import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+import { useSearchParams } from 'next/navigation';
+
 import { createCheckoutSession } from '@/app/actions/stripe';
-import { createClient } from '@/utils/supabase/client';
-import Loading from '@/components/misc/Loading';
-import SignUpLink from '@/components/auth/SignUpLink';
 import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
-import Text from '@/components/ui/Text';
+import SignUpLink from '@/components/auth/SignUpLink';
+import Loading from '@/components/misc/Loading';
 import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import Text from '@/components/ui/Text';
+
+import { login } from '@/utils/auth/actions';
+import { createClient } from '@/utils/supabase/client';
 
 function LoginForm() {
   const [errorMessage, setErrorMessage] = useState<string>('');

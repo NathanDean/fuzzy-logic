@@ -1,9 +1,10 @@
 'use server';
 
-import Stripe from 'stripe';
-import { createClient } from '@/utils/supabase/server';
-import { createAdminClient } from '@/utils/supabase/admin';
 import { PostgrestError } from '@supabase/supabase-js';
+import Stripe from 'stripe';
+
+import { createAdminClient } from '@/utils/supabase/admin';
+import { createClient } from '@/utils/supabase/server';
 
 interface Workshop {
   id: string;

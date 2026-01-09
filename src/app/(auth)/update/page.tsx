@@ -1,13 +1,15 @@
 'use client';
 
-import { updatePassword } from '@/utils/auth/actions';
-
-import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+import { useRouter } from 'next/navigation';
+
 import SignUpLink from '@/components/auth/SignUpLink';
 import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
 import Text from '@/components/ui/Text';
+import { useAuth } from '@/contexts/AuthContext';
+
+import { updatePassword } from '@/utils/auth/actions';
 
 export default function UpdatePassword() {
   const { user, isLoading } = useAuth();

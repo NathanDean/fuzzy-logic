@@ -1,13 +1,13 @@
 import Header from '@/components/nav/Header';
 import { useAuth } from '@/contexts/AuthContext';
+import '@testing-library/jest-dom';
 import {
-  render,
-  screen,
   act,
   fireEvent,
+  render,
+  screen,
   waitFor,
 } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 jest.mock('@/contexts/AuthContext', () => ({
   useAuth: jest.fn(),

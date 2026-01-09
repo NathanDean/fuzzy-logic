@@ -1,6 +1,7 @@
-import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import { NextRequest } from 'next/server';
+
+import { createClient } from '@/utils/supabase/server';
 
 export async function GET(request: NextRequest) {
   // Get the code parameter from the URL

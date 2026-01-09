@@ -1,13 +1,17 @@
 'use client';
 
-import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+import { useRouter } from 'next/navigation';
+
 import { createCheckoutSession } from '@/app/actions/stripe';
-import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 import CardGrid from '@/components/cards/CardGrid';
-import { Workshop } from '@/utils/types/Workshop';
 import Text from '@/components/ui/Text';
+import { useAuth } from '@/contexts/AuthContext';
+
+import { Workshop } from '@/utils/types/Workshop';
+
+import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 
 export default function WorkshopDetailsClientWrapper({
   workshop,

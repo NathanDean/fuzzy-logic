@@ -2,13 +2,15 @@
 
 import {
   createContext,
+  ReactNode,
   useContext,
   useEffect,
   useState,
-  ReactNode,
 } from 'react';
-import { createClient } from '@/utils/supabase/client';
+
 import { User } from '@supabase/supabase-js';
+
+import { createClient } from '@/utils/supabase/client';
 
 type AuthContext = {
   user: User | null;

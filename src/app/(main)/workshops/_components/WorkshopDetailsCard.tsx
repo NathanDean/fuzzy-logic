@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import dayjs from 'dayjs';
+
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
 import Text from '@/components/ui/Text';
+import dayjs from 'dayjs';
+
 import { Workshop } from '@/utils/types/Workshop';
 
 interface WorkshopDetailsCardProps {

@@ -1,16 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import supabase from '@/utils/supabase/supabaseClient';
-import { createCheckoutSession } from '../../actions/stripe';
-import { useAuth } from '@/contexts/AuthContext';
+import { useEffect, useState } from 'react';
+
 import { useRouter } from 'next/navigation';
-import Loading from '@/components/misc/Loading';
+
 import CardGrid from '@/components/cards/CardGrid';
-import WorkshopCard from './_components/WorkshopCard';
-import { Workshop } from '@/utils/types/Workshop';
+import Loading from '@/components/misc/Loading';
 import MailingListForm from '@/components/misc/MailingListForm';
 import Text from '@/components/ui/Text';
+import { useAuth } from '@/contexts/AuthContext';
+
+import supabase from '@/utils/supabase/supabaseClient';
+import { Workshop } from '@/utils/types/Workshop';
+
+import { createCheckoutSession } from '../../actions/stripe';
+import WorkshopCard from './_components/WorkshopCard';
 
 export default function Workshops() {
   const { user, isLoggedIn } = useAuth();

@@ -1,10 +1,12 @@
 'use client';
 
-import { resetPassword } from '@/utils/auth/actions';
 import { useState } from 'react';
+
 import SignUpLink from '@/components/auth/SignUpLink';
-import Text from '@/components/ui/Text';
 import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import Text from '@/components/ui/Text';
+
+import { resetPassword } from '@/utils/auth/actions';
 
 export default function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState<string>('');

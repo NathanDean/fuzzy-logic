@@ -1,6 +1,6 @@
-import { render, screen, act } from '@testing-library/react';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import '@testing-library/jest-dom';
+import { act, render, screen } from '@testing-library/react';
 
 jest.mock('@/utils/supabase/client', () => ({
   createClient: jest.fn(() => ({

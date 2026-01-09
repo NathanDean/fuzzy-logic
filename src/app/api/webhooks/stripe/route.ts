@@ -1,8 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
-import Stripe from 'stripe';
-import { createAdminClient } from '@/utils/supabase/admin';
+import { NextRequest, NextResponse } from 'next/server';
+
 import { PostgrestError } from '@supabase/supabase-js';
+import Stripe from 'stripe';
+
+import { createAdminClient } from '@/utils/supabase/admin';
 
 interface Booking {
   id: string;

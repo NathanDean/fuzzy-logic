@@ -1,10 +1,13 @@
-import dayjs from 'dayjs';
+import { useState } from 'react';
+
 import Link from 'next/link';
+
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
-import { Workshop } from '@/utils/types/Workshop';
-import { useState } from 'react';
 import Text from '@/components/ui/Text';
+import dayjs from 'dayjs';
+
+import { Workshop } from '@/utils/types/Workshop';
 
 interface WorkshopCardProps {
   workshop: Workshop;

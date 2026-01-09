@@ -1,11 +1,14 @@
 'use client';
 
-import Logo from './Logo';
-import Link from 'next/link';
-import MenuToggleButton from './MenuToggleButton';
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
+
 import { Outfit } from 'next/font/google';
+import Link from 'next/link';
+
+import { useAuth } from '@/contexts/AuthContext';
+
+import Logo from './Logo';
+import MenuToggleButton from './MenuToggleButton';
 
 export const outfit = Outfit({
   weight: 'variable',

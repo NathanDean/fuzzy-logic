@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
-import { clsx, type ClassValue } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
 import Text from '../ui/Text';
 
 zxcvbnOptions.setOptions({

@@ -1,8 +1,9 @@
-import '@testing-library/jest-dom';
-import { render, screen, act } from '@testing-library/react';
+import { useRouter } from 'next/navigation';
+
 import Account from '@/app/account/page';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
+import '@testing-library/jest-dom';
+import { act, render, screen } from '@testing-library/react';
 
 jest.mock('@/contexts/AuthContext', () => ({
   useAuth: jest.fn(),

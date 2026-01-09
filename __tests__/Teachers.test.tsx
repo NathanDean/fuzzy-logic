@@ -1,6 +1,6 @@
-import '@testing-library/jest-dom';
-import { render, screen, act } from '@testing-library/react';
 import Teachers from '@/app/(main)/teachers/page';
+import '@testing-library/jest-dom';
+import { act, render, screen } from '@testing-library/react';
 
 jest.mock('@/utils/supabase/supabaseClient', () => ({
   from: jest.fn(() => ({

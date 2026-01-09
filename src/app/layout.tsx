@@ -1,11 +1,13 @@
 // Imports
 import type { Metadata } from 'next';
-import { Analytics } from '@vercel/analytics/next';
-import '@/styles/globals.css';
-import { sigmar } from '@/lib/fonts';
-import Header from '@/components/nav/Header';
+
 import Footer from '@/components/misc/Footer';
+import Header from '@/components/nav/Header';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { sigmar } from '@/lib/fonts';
+import { Analytics } from '@vercel/analytics/next';
+
+import '@/styles/globals.css';
 
 // Metadata
 export const metadata: Metadata = {

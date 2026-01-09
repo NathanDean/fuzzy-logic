@@ -1,4 +1,4 @@
-import { Sigmar, Outfit } from 'next/font/google';
+import { Outfit, Sigmar } from 'next/font/google';
 
 export const sigmar = Sigmar({
   weight: '400',

@@ -1,8 +1,10 @@
-import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
-import CardGrid from '@/components/cards/CardGrid';
+
 import PersonCard from '@/app/(main)/about/_components/PersonCard';
+import CardGrid from '@/components/cards/CardGrid';
 import Text from '@/components/ui/Text';
+
+import { createClient } from '@/utils/supabase/server';
 
 interface Person {
   id: number;

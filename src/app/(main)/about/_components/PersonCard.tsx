@@ -1,6 +1,6 @@
-import Text from '@/components/ui/Text';
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
+import Text from '@/components/ui/Text';
 
 interface Person {
   id: number;

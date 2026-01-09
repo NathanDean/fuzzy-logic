@@ -1,19 +1,13 @@
 'use client';
 
-import { signup } from '@/utils/auth/actions';
-import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
-import { dictionary } from '@zxcvbn-ts/language-common';
-import { useEffect, useState } from 'react';
-import LoginLink from '@/components/auth/LoginLink';
-import Text from '@/components/ui/Text';
-import TurnstileWidget from '@/components/misc/TurnstileWidget';
-import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
+import { useState } from 'react';
 
-zxcvbnOptions.setOptions({
-  dictionary: {
-    ...dictionary,
-  },
-});
+import LoginLink from '@/components/auth/LoginLink';
+import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
+import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import Text from '@/components/ui/Text';
+
+import { signup } from '@/utils/auth/actions';
 
 export default function SignUpPage() {
   const [errorMessage, setErrorMessage] = useState<string>('');

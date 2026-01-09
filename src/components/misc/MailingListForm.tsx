@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { subscribeToMailingList } from '@/app/actions/mailingList';
+
 import Text from '../ui/Text';
 
 interface MailingListFormProps {

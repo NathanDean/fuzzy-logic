@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
 import WorkshopDetails from '@/app/(main)/workshops/[workshopId]/page';
+import '@testing-library/jest-dom';
 
 interface Workshop {
   id: string;

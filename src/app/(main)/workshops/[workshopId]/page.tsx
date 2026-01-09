@@ -1,7 +1,9 @@
-import { createClient } from '@/utils/supabase/server';
-import WorkshopDetailsClientWrapper from './WorkshopDetailsClientWrapper';
-import { Workshop } from '@/utils/types/Workshop';
 import Text from '@/components/ui/Text';
+
+import { createClient } from '@/utils/supabase/server';
+import { Workshop } from '@/utils/types/Workshop';
+
+import WorkshopDetailsClientWrapper from './WorkshopDetailsClientWrapper';
 
 export default async function WorkshopDetails({
   params,
