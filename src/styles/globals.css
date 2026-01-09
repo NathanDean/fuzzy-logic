@@ -50,7 +50,7 @@
 /* Form Basics */
 @layer components {
   form {
-    @apply flex flex-col items-center bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm rounded-2xl p-10 text-lg;
+    @apply grid bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm rounded-2xl p-10 text-lg text-center;
   }
 
   form p,
