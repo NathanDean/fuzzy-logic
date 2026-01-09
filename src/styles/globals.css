@@ -33,7 +33,7 @@ h4 {
   @apply text-base sm:text-lg font-medium;
 }
 
-a {
+header a {
   @apply hover:text-blue-500 transition-colors duration-300;
 }
 
@@ -51,12 +51,17 @@ a {
   input,
   textarea,
   select {
-    @apply w-full my-2 p-2 border rounded-sm bg-[var(--background)] transition-all duration-200
+    @apply w-full my-2 p-2 border rounded-sm bg-[var(--background)]/80 transition-all duration-200
       hover:border-gray-500;
   }
 
   label {
     @apply text-base sm:text-lg;
+  }
+
+  button,
+  .btn {
+    @apply bg-[var(--background)]/50 text-[var(--foreground)] hover:bg-[var(--foreground)]/50 hover:border-[var(--foreground)] hover:text-[var(--background)];
   }
 
   .zxcvbn {
