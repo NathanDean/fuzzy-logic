@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import { useAuth } from '@/contexts/AuthContext';
 
-import Logo from './Logo';
+import Logo from '../ui/Logo';
 import MenuToggleButton from './MenuToggleButton';
 
 export const outfit = Outfit({
