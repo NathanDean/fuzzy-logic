@@ -1,4 +1,4 @@
-import MailingListForm from '@/components/misc/MailingListForm';
+import MailingListForm from '@/components/forms/MailingListForm';
 import Text from '@/components/ui/Text';
 
 export default function MailingList() {

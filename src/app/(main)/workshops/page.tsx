@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import CardGrid from '@/components/cards/CardGrid';
+import MailingListForm from '@/components/forms/MailingListForm';
 import Loading from '@/components/misc/Loading';
-import MailingListForm from '@/components/misc/MailingListForm';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 

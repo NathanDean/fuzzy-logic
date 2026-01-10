@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
+import MailingListForm from '../forms/MailingListForm';
 import Text from '../ui/Text';
-import MailingListForm from './MailingListForm';
 
 export default function Footer() {
   return (
