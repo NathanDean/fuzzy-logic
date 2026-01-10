@@ -8,8 +8,8 @@ import { useSearchParams } from 'next/navigation';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
 import SignUpLink from '@/components/auth/SignUpLink';
+import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Loading from '@/components/misc/Loading';
-import TurnstileWidget from '@/components/misc/TurnstileWidget';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 

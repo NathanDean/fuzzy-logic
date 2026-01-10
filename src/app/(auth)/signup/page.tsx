@@ -3,8 +3,8 @@
 import { useState } from 'react';
 
 import LoginLink from '@/components/auth/LoginLink';
-import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
-import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
+import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 

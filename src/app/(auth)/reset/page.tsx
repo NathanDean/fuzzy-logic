@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import SignUpLink from '@/components/auth/SignUpLink';
-import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import SignUpLink from '@/components/auth/SignUpLink';
-import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
+import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
