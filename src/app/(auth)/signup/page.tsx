@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import LoginLink from '@/components/auth/LoginLink';
+import AuthForm from '@/components/forms/Authform';
 import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Button from '@/components/ui/Button';
@@ -31,15 +32,11 @@ export default function SignUpPage() {
   };
 
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-        await handleSubmit(new FormData(e.currentTarget));
-      }}
+    <AuthForm
+      onSubmit={handleSubmit}
+      errorMessage={errorMessage}
       className="mb-10"
     >
-      {errorMessage && <p className="error">{errorMessage}</p>}
-
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6 gap-y-3 lg:gap-y-1">
         <div>
           <label htmlFor="firstName">First name:</label>
@@ -114,6 +111,6 @@ export default function SignUpPage() {
       <div className="text-center mt-4">
         <LoginLink />
       </div>
-    </form>
+    </AuthForm>
   );
 }

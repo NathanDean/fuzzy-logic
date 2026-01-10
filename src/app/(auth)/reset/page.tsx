@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import SignUpLink from '@/components/auth/SignUpLink';
+import AuthForm from '@/components/forms/Authform';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
@@ -28,14 +29,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-        await handleSubmit(new FormData(e.currentTarget));
-      }}
-    >
-      {errorMessage && <p className="error">{errorMessage}</p>}
-
+    <AuthForm onSubmit={handleSubmit} errorMessage={errorMessage}>
       <label htmlFor="email">Email:</label>
       <input id="email" name="email" type="email" required />
 
@@ -52,6 +46,6 @@ export default function ResetPassword() {
       </Button>
 
       <SignUpLink />
-    </form>
+    </AuthForm>
   );
 }

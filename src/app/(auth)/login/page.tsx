@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation';
 import { createCheckoutSession } from '@/app/actions/stripe';
 import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
 import SignUpLink from '@/components/auth/SignUpLink';
+import AuthForm from '@/components/forms/Authform';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Loading from '@/components/misc/Loading';
 import Button from '@/components/ui/Button';
@@ -61,17 +62,12 @@ function LoginForm() {
 
   return (
     <>
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          await handleSubmit(new FormData(e.currentTarget));
-        }}
-      >
+      <AuthForm onSubmit={handleSubmit} errorMessage={errorMessage}>
         {redirectTo === 'workshop' && workshopId && (
-          <p className="text-center">Please login to complete your booking</p>
+          <Text className="text-center">
+            Please login to complete your booking
+          </Text>
         )}
-
-        {errorMessage && <p className="error">{errorMessage}</p>}
 
         <label htmlFor="email">Email:</label>
         <input id="email" name="email" type="email" required />
@@ -93,7 +89,7 @@ function LoginForm() {
 
         <SignUpLink />
         <ResetPasswordLink />
-      </form>
+      </AuthForm>
     </>
   );
 }

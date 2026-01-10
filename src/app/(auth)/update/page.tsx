@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import SignUpLink from '@/components/auth/SignUpLink';
+import AuthForm from '@/components/forms/Authform';
 import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
@@ -41,12 +42,7 @@ export default function UpdatePassword() {
   };
 
   return (
-    <form
-      onSubmit={async (e) => {
-        e.preventDefault();
-        await handleSubmit(new FormData(e.currentTarget));
-      }}
-    >
+    <AuthForm onSubmit={handleSubmit} errorMessage={errorMessage}>
       {errorMessage && <p className="error">{errorMessage}</p>}
 
       <label htmlFor="password">New password:</label>
@@ -79,6 +75,6 @@ export default function UpdatePassword() {
       </Button>
 
       <SignUpLink />
-    </form>
+    </AuthForm>
   );
 }
