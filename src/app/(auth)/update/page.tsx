@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import SignUpLink from '@/components/auth/SignUpLink';
 import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
+import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -71,15 +72,11 @@ export default function UpdatePassword() {
         onStrengthChange={setPasswordStrength}
       />
 
-      <button
-        className={`btn ${passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}
-        type="submit"
-        disabled={passwordStrength < 3 || isSubmitting}
-      >
+      <Button type="submit" disabled={passwordStrength < 3 || isSubmitting}>
         <Text as="span">
           {isSubmitting ? 'Please wait...' : 'Update password'}
         </Text>
-      </button>
+      </Button>
 
       <SignUpLink />
     </form>

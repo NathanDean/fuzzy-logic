@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { subscribeToMailingList } from '@/app/actions/mailingList';
 
+import Button from '../ui/Button';
 import Text from '../ui/Text';
 
 interface MailingListFormProps {
@@ -61,14 +62,14 @@ export default function MailingListForm({
           placeholder="Email"
           required
         />
-        <button
-          className={`${isInFooter && 'h-8 text-sm'} btn btn-primary sm:my-0 `}
+        <Button
+          className={`${isInFooter && 'h-8 text-sm'} sm:my-0 `}
           type="submit"
         >
           <Text variant="small" as="span">
             Subscribe
           </Text>
-        </button>
+        </Button>
       </div>
     </form>
   );

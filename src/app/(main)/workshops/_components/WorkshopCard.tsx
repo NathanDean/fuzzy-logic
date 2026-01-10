@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
+import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 
@@ -68,8 +69,7 @@ export default function WorkshopCard({
           {/* Buttons */}
           <div className="flex sm:flex-row gap-3 mt-4">
             {/* Book now */}
-            <button
-              className={`btn ${isSoldOut || isSubmitting ? 'btn-disabled' : 'btn-primary'} rounded-md p-2 transition-all`}
+            <Button
               onClick={handleBookNow}
               disabled={isSoldOut || isSubmitting}
             >
@@ -80,13 +80,16 @@ export default function WorkshopCard({
                     ? 'Please wait...'
                     : 'Book now'}
               </Text>
-            </button>
+            </Button>
 
             {/* More info */}
 
-            <Link href={`workshops/${workshop.id}`} className="btn btn-primary">
+            <Button
+              href={`workshops/${workshop.id}`}
+              className="btn btn-primary"
+            >
               <Text as="span">More info</Text>
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

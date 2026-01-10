@@ -1,3 +1,5 @@
+import Heading from '@/components/ui/Heading';
+
 export default function Cancel() {
-  return <h1>Booking cancelled</h1>;
+  return <Heading>Booking cancelled</Heading>;
 }

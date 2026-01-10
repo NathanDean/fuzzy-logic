@@ -1,7 +1,6 @@
-import Link from 'next/link';
-
 import PersonCard from '@/app/(main)/about/_components/PersonCard';
 import CardGrid from '@/components/cards/CardGrid';
+import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 
 import { createClient } from '@/utils/supabase/server';
@@ -47,12 +46,12 @@ export default async function About() {
           artforms, and experiments with new ideas of what improv can do and be.`}
         </Text>
         <div className="w-full flex flex-row items-stretch justify-center space-x-2">
-          <Link className="btn btn-primary" href="/about/#people">
+          <Button href="#people">
             <Text as="span">{`Who is Fuzzy Logic?`}</Text>
-          </Link>
-          <Link className="btn btn-primary" href="/about/#story">
+          </Button>
+          <Button href="#story">
             <Text as="span">{`What's our story?`}</Text>
-          </Link>
+          </Button>
         </div>
       </section>
 

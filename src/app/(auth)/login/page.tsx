@@ -10,6 +10,7 @@ import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
 import SignUpLink from '@/components/auth/SignUpLink';
 import Loading from '@/components/misc/Loading';
 import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 
 import { login } from '@/utils/auth/actions';
@@ -80,11 +81,7 @@ function LoginForm() {
 
         <TurnstileWidget onSuccess={() => setIsTurnstileLoading(false)} />
 
-        <button
-          className={`btn ${isTurnstileLoading || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}
-          type="submit"
-          disabled={isTurnstileLoading || isSubmitting}
-        >
+        <Button type="submit" disabled={isTurnstileLoading || isSubmitting}>
           <Text as="span">
             {isTurnstileLoading
               ? 'Loading'
@@ -92,7 +89,7 @@ function LoginForm() {
                 ? 'Please wait...'
                 : 'Log in'}
           </Text>
-        </button>
+        </Button>
 
         <SignUpLink />
         <ResetPasswordLink />

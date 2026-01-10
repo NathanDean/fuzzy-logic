@@ -74,19 +74,18 @@
     @apply flex flex-col w-full space-y-2;
   }
 
-  .btn {
+  /* .btn {
     @apply inline-flex items-center justify-center w-full mt-2 px-4 py-2 sm:px-4 sm:py-2
-        border rounded-md font-medium text-center
-        transition-all duration-200 ease-in-out;
+        border rounded-md font-medium text-center ease-in-out;
   }
 
   .btn-primary {
-    @apply hover:bg-gray-700 hover:text-white dark:hover:bg-gray-300 dark:hover:text-[var(--background)];
+    @apply hover:bg-[var(--foreground)] hover:text-[var(--background)] dark:hover:bg-[var(--background)] dark:hover:text-[var(--foreground)];
   }
 
   .btn-disabled {
     @apply opacity-50 cursor-not-allowed hover:bg-inherit hover:text-inherit;
-  }
+  } */
 }
 
 /* Animation Utilities */

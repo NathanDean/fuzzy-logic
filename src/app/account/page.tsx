@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import Card from '@/components/cards/Card';
 import Loading from '@/components/misc/Loading';
+import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 import dayjs from 'dayjs';
@@ -111,7 +112,7 @@ export default function Account() {
       ) : (
         <div>
           <Card className="p-6 space-y-1">
-            <h1>Account</h1>
+            <Heading>Account</Heading>
 
             <div className="space-y-1">
               <Text>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import SignUpLink from '@/components/auth/SignUpLink';
 import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 
 import { resetPassword } from '@/utils/auth/actions';
@@ -40,11 +41,7 @@ export default function ResetPassword() {
 
       <TurnstileWidget onSuccess={() => setIsTurnstileLoading(false)} />
 
-      <button
-        className={`btn ${isTurnstileLoading || isSubmitting ? 'btn-disabled' : 'btn-primary'}`}
-        type="submit"
-        disabled={isTurnstileLoading || isSubmitting}
-      >
+      <Button type="submit" disabled={isTurnstileLoading || isSubmitting}>
         <Text as="span">
           {isTurnstileLoading
             ? 'Loading'
@@ -52,7 +49,7 @@ export default function ResetPassword() {
               ? 'Please wait...'
               : 'Reset password'}
         </Text>
-      </button>
+      </Button>
 
       <SignUpLink />
     </form>

@@ -1,3 +1,5 @@
+import Button from '../ui/Button';
+import Heading from '../ui/Heading';
 import Text from '../ui/Text';
 
 interface ErrorMessageProps {
@@ -10,16 +12,16 @@ export default function ErrorMessage({ onClick, type }: ErrorMessageProps) {
 
   return (
     <div className="flex flex-col items-center space-y-1">
-      <h1>Sorry, something went wrong.</h1>
+      <Heading>Sorry, something went wrong.</Heading>
 
       <Text>{capitalised_type} error.</Text>
       <Text>
         Please try again, if the problem continues please get in touch.
       </Text>
 
-      <button className="btn btn-primary" onClick={onClick}>
+      <Button onClick={onClick}>
         <Text as="span">Try again</Text>
-      </button>
+      </Button>
     </div>
   );
 }

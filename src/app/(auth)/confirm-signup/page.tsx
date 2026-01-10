@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import Loading from '@/components/misc/Loading';
+import Button from '@/components/ui/Button';
+import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
 function ConfirmSignupComponent() {
@@ -24,36 +26,34 @@ function ConfirmSignupComponent() {
   if (!confirmationUrl) {
     return (
       <div className="flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
-        <h1 className="heading">Invalid confirmation link</h1>
-        <p className="medium-text">
-          This confirmation link appears to be invalid or incomplete.
-        </p>
-        <p className="medium-text">
+        <Heading>Invalid confirmation link</Heading>
+        <Text>This confirmation link appears to be invalid or incomplete.</Text>
+        <Text>
           Please try clicking the link in your email again, or contact us if the
           problem continues.
-        </p>
+        </Text>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
-      <h1 className="heading">Please confirm your email address</h1>
+      <Heading>Please confirm your email address</Heading>
 
-      <p className="medium-text">
+      <Text>
         Thanks for signing up. Please confirm your email address by clicking the
         button below.
-      </p>
+      </Text>
 
-      <button
-        className={`btn ${isConfirming ? 'btn-disabled' : 'btn-primary'} sm:w-1/2`}
+      <Button
+        className="sm:w-1/2"
         onClick={handleConfirm}
         disabled={isConfirming}
       >
         <Text as="span">
           {isConfirming ? 'Confirming...' : 'Confirm email address'}
         </Text>
-      </button>
+      </Button>
 
       <Text>{`If you have any problems signing up please get in touch.`}</Text>
     </div>

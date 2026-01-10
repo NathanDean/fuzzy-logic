@@ -5,6 +5,7 @@ import { useState } from 'react';
 import LoginLink from '@/components/auth/LoginLink';
 import PasswordStrengthIndicator from '@/components/misc/PasswordStrengthIndicator';
 import TurnstileWidget from '@/components/misc/TurnstileWidget';
+import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';
 
 import { signup } from '@/utils/auth/actions';
@@ -85,8 +86,7 @@ export default function SignUpPage() {
         />
 
         <div className="flex flex-col-reverse justify-end">
-          <button
-            className={`btn ${isTurnstileLoading || passwordStrength < 3 || isSubmitting ? 'btn-disabled' : 'btn-primary'} mt-2 p-2`}
+          <Button
             type="submit"
             disabled={
               isTurnstileLoading || passwordStrength < 3 || isSubmitting
@@ -99,7 +99,7 @@ export default function SignUpPage() {
                   ? 'Please wait'
                   : 'Sign up'}
             </Text>
-          </button>
+          </Button>
           <div className="flex flex-row justify-center items-center w-full space-x-2 text-center mb-2 lg:mb-0">
             <input
               id="subscribe"
@@ -111,7 +111,7 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-      <div className=" text-center mt-4">
+      <div className="text-center mt-4">
         <LoginLink />
       </div>
     </form>
