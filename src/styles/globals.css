@@ -60,6 +60,10 @@
     @apply w-full my-2 p-2 border rounded-sm bg-[var(--background)]/80 transition-all duration-200
       hover:border-gray-500;
   }
+
+  header {
+    @apply fixed top-0 left-0 right-0 z-10 w-screen py-4 bg-transparent text-[var(--foreground)];
+  }
 }
 
 /* Animation Utilities */
@@ -78,8 +82,4 @@ html {
   .transition-standard {
     @apply transition-all duration-300 ease-in-out;
   }
-}
-
-header {
-  @apply fixed top-0 left-0 right-0 z-10 w-screen py-4 bg-transparent text-[var(--foreground)];
 }

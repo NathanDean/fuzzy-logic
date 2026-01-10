@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
 import { dictionary } from '@zxcvbn-ts/language-common';
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+
+import cn from '@/utils/style/cn';
 
 import Text from '../ui/Text';
 
@@ -12,10 +12,6 @@ zxcvbnOptions.setOptions({
     ...dictionary,
   },
 });
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 interface PasswordStrengthIndicatorProps {
   password: string;

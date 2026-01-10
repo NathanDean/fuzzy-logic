@@ -2,12 +2,7 @@ import { MouseEventHandler } from 'react';
 
 import Link from 'next/link';
 
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import cn from '@/utils/style/cn';
 
 interface BaseProps {
   children: React.ReactNode;

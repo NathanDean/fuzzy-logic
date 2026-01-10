@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { Turnstile } from '@marsidev/react-turnstile';
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import cn from '@/utils/style/cn';
 
 interface TurnstileWidgetProps {
   onSuccess: () => void;

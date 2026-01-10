@@ -1,15 +1,10 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import cn from '@/utils/style/cn';
 
 interface AuthFormProps {
   children: React.ReactNode;
   onSubmit: (formData: FormData) => Promise<void>;
   errorMessage?: string;
   className?: string;
-}
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
 }
 
 export default function AuthForm({
