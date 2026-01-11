@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import AuthForm from '@/components/forms/Authform';
-import SignUpLink from '@/components/forms/links/SignUpLink';
+import AuthForm from '@/components/forms/auth/Authform';
+import SignUpLink from '@/components/forms/auth/links/SignUpLink';
 
 import { resetPassword } from '@/utils/auth/actions';
 

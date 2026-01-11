@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 
-import AuthForm from '@/components/forms/Authform';
-import LoginLink from '@/components/forms/links/LoginLink';
+import AuthForm from '@/components/forms/auth/Authform';
+import LoginLink from '@/components/forms/auth/links/LoginLink';
 import {
   PasswordStrengthBar,
   PasswordStrengthLabel,
-} from '@/components/forms/PasswordStrength';
+} from '@/components/forms/auth/PasswordStrength';
 
 import usePasswordStrength from '@/hooks/usePasswordStrength';
 

@@ -1,6 +1,6 @@
 import cn from '@/utils/style/cn';
 
-import Text from '../ui/Text';
+import Text from '../../ui/Text';
 
 const STRENGTH_CONFIG = [
   { label: 'Very Weak', colour: 'bg-red-500' },

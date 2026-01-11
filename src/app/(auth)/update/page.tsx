@@ -4,20 +4,22 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import AuthForm from '@/components/forms/Authform';
-import SignUpLink from '@/components/forms/links/SignUpLink';
+import AuthForm from '@/components/forms/auth/Authform';
+import SignUpLink from '@/components/forms/auth/links/SignUpLink';
 import {
   PasswordStrengthBar,
   PasswordStrengthLabel,
-} from '@/components/forms/PasswordStrength';
+} from '@/components/forms/auth/PasswordStrength';
 import { useAuth } from '@/contexts/AuthContext';
+
+import usePasswordStrength from '@/hooks/usePasswordStrength';
 
 import { updatePassword } from '@/utils/auth/actions';
 
 export default function UpdatePassword() {
   const { user, isLoading } = useAuth();
   const [password, setPassword] = useState<string>('');
-  const [passwordStrength, setPasswordStrength] = useState<number>(0);
+  const passwordStrength = usePasswordStrength(password);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const router = useRouter();
 

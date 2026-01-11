@@ -65,7 +65,7 @@ export default function Header() {
   };
 
   return (
-    <header>
+    <header className="fixed top-0 left-0 right-0 z-10 w-screen py-4 bg-transparent text-[var(--foreground)]">
       <div className={styles.fullNavbar}>
         <Link href="/" className="text-3xl">
           <Logo />

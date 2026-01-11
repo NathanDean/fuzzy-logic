@@ -15,8 +15,6 @@
 }
 
 @layer base {
-  /* Text */
-
   body {
     @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
     font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
@@ -38,48 +36,27 @@
     @apply text-base sm:text-lg font-medium;
   }
 
-  label {
-    @apply text-base sm:text-lg;
-  }
-
   header a {
-    @apply hover:text-blue-500 transition-colors duration-300;
+    @apply hover:text-blue-700 transition-colors duration-300;
   }
 }
 
-/* Form Basics */
 @layer components {
-  form p,
-  form a {
-    @apply mt-2;
-  }
-
   input,
   textarea,
   select {
-    @apply w-full my-2 p-2 border rounded-sm bg-[var(--background)]/80 transition-all duration-200
+    @apply w-full p-2 border rounded-sm bg-[var(--background)]/80 focus:outline-1 outline-blue-700
       hover:border-gray-500;
-  }
-
-  header {
-    @apply fixed top-0 left-0 right-0 z-10 w-screen py-4 bg-transparent text-[var(--foreground)];
   }
 }
 
-/* Animation Utilities */
+/* Animation */
 html {
   scroll-behavior: smooth;
 }
 
-/* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-}
-
-@layer utilities {
-  .transition-standard {
-    @apply transition-all duration-300 ease-in-out;
   }
 }

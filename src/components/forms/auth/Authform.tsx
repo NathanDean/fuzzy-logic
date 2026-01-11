@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import cn from '@/utils/style/cn';
 
-import Button from '../ui/Button';
-import Text from '../ui/Text';
+import Button from '../../ui/Button';
+import Text from '../../ui/Text';
 import TurnstileWidget from './TurnstileWidget';
 
 interface AuthFormProps {
