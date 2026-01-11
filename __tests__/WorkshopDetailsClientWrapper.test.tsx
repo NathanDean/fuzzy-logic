@@ -1,6 +1,7 @@
-import WorkshopDetailsClientWrapper from '@/app/(main)/workshops/[workshopId]/WorkshopDetailsClientWrapper';
 import '@testing-library/jest-dom';
 import { act, fireEvent, render, screen } from '@testing-library/react';
+
+import WorkshopDetailsClientWrapper from '../src/app/(main)/workshops/[workshopId]/WorkshopDetailsClientWrapper';
 
 // AuthContext mock
 jest.mock('@/contexts/AuthContext', () => ({
