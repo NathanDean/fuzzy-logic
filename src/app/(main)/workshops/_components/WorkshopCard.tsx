@@ -83,10 +83,7 @@ export default function WorkshopCard({
 
             {/* More info */}
 
-            <Button
-              href={`workshops/${workshop.id}`}
-              className="btn btn-primary"
-            >
+            <Button href={`workshops/${workshop.id}`}>
               <Text as="span">More info</Text>
             </Button>
           </div>

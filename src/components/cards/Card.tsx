@@ -19,7 +19,7 @@ export default function Card({
 
   return (
     <div
-      className={`${className} ${imageHeightClass} h-full rounded-2xl bg-[var(--background)]/80 text-[var(--foreground)] dark:border dark:border-gray-500 shadow-sm overflow-hidden`}
+      className={`${className} ${imageHeightClass} h-full rounded-2xl bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm overflow-hidden`}
     >
       {children}
     </div>
