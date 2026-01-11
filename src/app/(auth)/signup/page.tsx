@@ -4,14 +4,19 @@ import { useState } from 'react';
 
 import AuthForm from '@/components/forms/Authform';
 import LoginLink from '@/components/forms/links/LoginLink';
-import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
+import {
+  PasswordStrengthBar,
+  PasswordStrengthLabel,
+} from '@/components/forms/PasswordStrength';
+
+import usePasswordStrength from '@/hooks/usePasswordStrength';
 
 import { signup } from '@/utils/auth/actions';
 
 export default function SignUpPage() {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [passwordStrength, setPasswordStrength] = useState<number>(0);
+  const passwordStrength = usePasswordStrength(password);
 
   const handleSubmit = async (formData: FormData) => {
     setErrorMessage('');
@@ -70,10 +75,11 @@ export default function SignUpPage() {
               />
             </div>
 
-            <PasswordStrengthIndicator
-              password={password}
-              onStrengthChange={setPasswordStrength}
-            />
+            <div className="space-y-2">
+              <PasswordStrengthLabel score={passwordStrength} />
+
+              <PasswordStrengthBar score={passwordStrength} />
+            </div>
 
             <div className="flex flex-col justify-end h-full">
               <FormTurnstile />

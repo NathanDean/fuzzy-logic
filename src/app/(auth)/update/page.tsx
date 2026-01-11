@@ -6,7 +6,10 @@ import { useRouter } from 'next/navigation';
 
 import AuthForm from '@/components/forms/Authform';
 import SignUpLink from '@/components/forms/links/SignUpLink';
-import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
+import {
+  PasswordStrengthBar,
+  PasswordStrengthLabel,
+} from '@/components/forms/PasswordStrength';
 import { useAuth } from '@/contexts/AuthContext';
 
 import { updatePassword } from '@/utils/auth/actions';
@@ -66,10 +69,11 @@ export default function UpdatePassword() {
             required
           />
 
-          <PasswordStrengthIndicator
-            password={password}
-            onStrengthChange={setPasswordStrength}
-          />
+          <div className="space-y-2">
+            <PasswordStrengthLabel score={passwordStrength} />
+
+            <PasswordStrengthBar score={passwordStrength} />
+          </div>
 
           <FormButton>Update password</FormButton>
         </>
