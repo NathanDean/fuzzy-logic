@@ -5,21 +5,15 @@ import { useState } from 'react';
 import AuthForm from '@/components/forms/Authform';
 import LoginLink from '@/components/forms/links/LoginLink';
 import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
-import TurnstileWidget from '@/components/forms/TurnstileWidget';
-import Button from '@/components/ui/Button';
-import Text from '@/components/ui/Text';
 
 import { signup } from '@/utils/auth/actions';
 
 export default function SignUpPage() {
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [password, setPassword] = useState<string>('');
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
 
   const handleSubmit = async (formData: FormData) => {
-    setIsSubmitting(true);
     setErrorMessage('');
 
     const result = await signup(formData);
@@ -27,12 +21,16 @@ export default function SignUpPage() {
     if (result?.error) {
       setErrorMessage(result.error);
     }
-
-    setIsSubmitting(false);
   };
+
+  const navigationLinks = <LoginLink />;
 
   return (
     <AuthForm
+      buttonText="Sign up"
+      usesTurnstile={true}
+      isDisabled={passwordStrength < 3}
+      navigationLinks={navigationLinks}
       onSubmit={handleSubmit}
       errorMessage={errorMessage}
       className="mb-10"
@@ -77,26 +75,7 @@ export default function SignUpPage() {
           onStrengthChange={setPasswordStrength}
         />
 
-        <TurnstileWidget
-          onSuccess={() => setIsTurnstileLoading(false)}
-          className="lg:items-end"
-        />
-
-        <div className="flex flex-col-reverse justify-end">
-          <Button
-            type="submit"
-            disabled={
-              isTurnstileLoading || passwordStrength < 3 || isSubmitting
-            }
-          >
-            <Text as="span">
-              {isTurnstileLoading
-                ? 'Loading'
-                : isSubmitting
-                  ? 'Please wait'
-                  : 'Sign up'}
-            </Text>
-          </Button>
+        <div className="flex items-center">
           <div className="flex flex-row justify-center items-center w-full space-x-2 text-center mb-2 lg:mb-0">
             <input
               id="subscribe"
@@ -108,9 +87,7 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-      <div className="text-center mt-4">
-        <LoginLink />
-      </div>
+      <div className="text-center mt-4"></div>
     </AuthForm>
   );
 }

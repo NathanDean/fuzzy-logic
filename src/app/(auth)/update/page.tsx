@@ -7,8 +7,6 @@ import { useRouter } from 'next/navigation';
 import AuthForm from '@/components/forms/Authform';
 import SignUpLink from '@/components/forms/links/SignUpLink';
 import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
-import Button from '@/components/ui/Button';
-import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 
 import { updatePassword } from '@/utils/auth/actions';
@@ -18,7 +16,6 @@ export default function UpdatePassword() {
   const [password, setPassword] = useState<string>('');
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   // Not logged in or in recovery state, redirect to login
@@ -29,7 +26,6 @@ export default function UpdatePassword() {
   }, [isLoading, user, router]);
 
   const handleSubmit = async (formData: FormData) => {
-    setIsSubmitting(true);
     setErrorMessage('');
 
     const result = await updatePassword(formData);
@@ -37,12 +33,18 @@ export default function UpdatePassword() {
     if (result?.error) {
       setErrorMessage(result.error);
     }
-
-    setIsSubmitting(false);
   };
 
+  const navigationLinks = <SignUpLink />;
+
   return (
-    <AuthForm onSubmit={handleSubmit} errorMessage={errorMessage}>
+    <AuthForm
+      buttonText="Update password"
+      navigationLinks={navigationLinks}
+      onSubmit={handleSubmit}
+      errorMessage={errorMessage}
+      isDisabled={passwordStrength < 3}
+    >
       {errorMessage && <p className="error">{errorMessage}</p>}
 
       <label htmlFor="password">New password:</label>
@@ -67,14 +69,6 @@ export default function UpdatePassword() {
         password={password}
         onStrengthChange={setPasswordStrength}
       />
-
-      <Button type="submit" disabled={passwordStrength < 3 || isSubmitting}>
-        <Text as="span">
-          {isSubmitting ? 'Please wait...' : 'Update password'}
-        </Text>
-      </Button>
-
-      <SignUpLink />
     </AuthForm>
   );
 }
