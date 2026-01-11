@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import Footer from '@/components/misc/Footer';
 import Header from '@/components/nav/Header';
 import { AuthProvider } from '@/contexts/AuthContext';
-import { sigmar } from '@/lib/fonts';
+import { outfit, sigmar } from '@/lib/fonts';
 import { Analytics } from '@vercel/analytics/next';
 
 import '@/styles/globals.css';
@@ -44,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sigmar.variable} ${outfit.variable}`}>
       <body
         className={`${sigmar} antialiased flex flex-col h-screen bg-[url('/canvas.png')] dark:bg-[url('/canvas-dark.png')] bg-cover bg-no-repeat bg-fixed bg-center sm:text-lg`}
       >

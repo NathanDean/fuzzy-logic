@@ -3,8 +3,6 @@
 :root {
   --background: #fefefe;
   --foreground: #160f29;
-  --font-sigmar: 'Sigmar', sans-serif;
-  --font-outfit: 'Outfit', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
