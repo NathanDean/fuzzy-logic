@@ -40,21 +40,21 @@ export default function SignUpPage() {
     >
       {({ FormTurnstile, FormButton }) => (
         <>
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6 gap-y-3 lg:gap-y-1">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6 gap-y-3">
+            <div className="flex flex-col space-y-1">
               <label htmlFor="firstName">First name:</label>
               <input id="firstName" name="firstName" type="text" required />
             </div>
 
-            <div>
+            <div className="flex flex-col space-y-1">
               <label htmlFor="lastName">Last name:</label>
               <input id="lastName" name="lastName" type="text" required />
             </div>
-            <div>
+            <div className="flex flex-col space-y-1">
               <label htmlFor="email">Email:</label>
               <input id="email" name="email" type="email" required />
             </div>
-            <div>
+            <div className="flex flex-col space-y-1">
               <label htmlFor="password">Password:</label>
               <input
                 id="password"
@@ -65,7 +65,7 @@ export default function SignUpPage() {
                 required
               />
             </div>
-            <div>
+            <div className="flex flex-col space-y-1">
               <label htmlFor="confirmPassword">Confirm password:</label>
               <input
                 id="confirmPassword"
@@ -75,7 +75,7 @@ export default function SignUpPage() {
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="flex flex-col space-y-1">
               <PasswordStrengthLabel score={passwordStrength} />
 
               <PasswordStrengthBar score={passwordStrength} />
