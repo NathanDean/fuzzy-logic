@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import LoginLink from '@/components/auth/LoginLink';
 import AuthForm from '@/components/forms/Authform';
+import LoginLink from '@/components/forms/links/LoginLink';
 import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Button from '@/components/ui/Button';

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Text from '../ui/Text';
+import Text from '@/components/ui/Text';
 
 export default function SignUpLink() {
   return (

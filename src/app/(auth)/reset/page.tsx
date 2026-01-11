@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import SignUpLink from '@/components/auth/SignUpLink';
 import AuthForm from '@/components/forms/Authform';
+import SignUpLink from '@/components/forms/links/SignUpLink';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';

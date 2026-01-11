@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import SignUpLink from '@/components/auth/SignUpLink';
 import AuthForm from '@/components/forms/Authform';
+import SignUpLink from '@/components/forms/links/SignUpLink';
 import PasswordStrengthIndicator from '@/components/forms/PasswordStrengthIndicator';
 import Button from '@/components/ui/Button';
 import Text from '@/components/ui/Text';

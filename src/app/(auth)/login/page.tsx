@@ -6,9 +6,9 @@ import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import { createCheckoutSession } from '@/app/actions/stripe';
-import ResetPasswordLink from '@/components/auth/ResetPasswordLink';
-import SignUpLink from '@/components/auth/SignUpLink';
 import AuthForm from '@/components/forms/Authform';
+import ResetPasswordLink from '@/components/forms/links/ResetPasswordLink';
+import SignUpLink from '@/components/forms/links/SignUpLink';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import Loading from '@/components/misc/Loading';
 import Button from '@/components/ui/Button';
