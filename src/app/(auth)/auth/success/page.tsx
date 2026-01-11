@@ -38,14 +38,14 @@ function AuthSuccessComponent() {
     <>
       {displayMessages.length > 0 ? (
         <div className="flex flex-col items-center space-y-1">
-          <Heading>{displayMessages[0]}</Heading>
+          <Heading variant="h1">{displayMessages[0]}</Heading>
 
           {displayMessages[1] && <Text>{displayMessages[1]}</Text>}
 
           {displayMessages[2] && <Text>{displayMessages[2]}</Text>}
         </div>
       ) : (
-        <Heading>Invalid success code</Heading>
+        <Heading variant="h1">Invalid success code</Heading>
       )}
     </>
   );

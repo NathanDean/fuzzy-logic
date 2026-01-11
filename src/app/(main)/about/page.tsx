@@ -1,6 +1,7 @@
 import PersonCard from '@/app/(main)/about/_components/PersonCard';
 import CardGrid from '@/components/cards/CardGrid';
 import Button from '@/components/ui/Button';
+import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
 import { createClient } from '@/utils/supabase/server';
@@ -59,14 +60,14 @@ export default async function About() {
         id="people"
         className="min-h-screen flex flex-col justify-center items-center space-y-8 scroll-mt-20"
       >
-        <h2>Core team</h2>
+        <Heading variant="h2">Core team</Heading>
         <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
           {coreTeam.map((person) => (
             <PersonCard key={person.id} person={person} />
           ))}
         </CardGrid>
 
-        <h2>Artists we work with</h2>
+        <Heading variant="h2">Artists we work with</Heading>
         <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
           {guestArtists.map((person) => (
             <PersonCard key={person.id} person={person} />

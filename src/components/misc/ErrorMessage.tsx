@@ -12,7 +12,7 @@ export default function ErrorMessage({ onClick, type }: ErrorMessageProps) {
 
   return (
     <div className="flex flex-col items-center space-y-1">
-      <Heading>Sorry, something went wrong.</Heading>
+      <Heading variant="h1">Sorry, something went wrong.</Heading>
 
       <Text>{capitalised_type} error.</Text>
       <Text>

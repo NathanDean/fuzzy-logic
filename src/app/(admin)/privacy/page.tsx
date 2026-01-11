@@ -1,10 +1,11 @@
+import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
 export default function PrivacyPolicy() {
   return (
     <div className="sm:w-xl lg:w-3xl xl:w-4xl space-y-4 large-text">
       {/* Main heading */}
-      <h1>Fuzzy Logic customer privacy notice</h1>
+      <Heading variant="h1">Fuzzy Logic customer privacy notice</Heading>
 
       <Text>
         This privacy notice tells you what to expect us to do with your personal
@@ -13,16 +14,18 @@ export default function PrivacyPolicy() {
 
       {/* Contact details section */}
       <section className="space-y-4">
-        <h2>Contact details</h2>
+        <Heading variant="h2">Contact details</Heading>
         <div>
-          <h3>Email</h3>
+          <Heading variant="h3">Email</Heading>
           <Text>data@fzzy.co.uk</Text>
         </div>
       </section>
 
       {/* What information we collect section */}
       <section className="space-y-4">
-        <h2>What information we collect, use, and why</h2>
+        <Heading variant="h2">
+          What information we collect, use, and why
+        </Heading>
 
         <Text>
           We collect or use the following information to provide services and
@@ -41,7 +44,7 @@ export default function PrivacyPolicy() {
 
       {/* Lawful bases section */}
       <section className="space-y-4">
-        <h2>Lawful bases and data protection rights</h2>
+        <Heading variant="h2">Lawful bases and data protection rights</Heading>
 
         <Text>
           Under UK data protection law, we must have a {`"lawful basis"`} for
@@ -199,7 +202,9 @@ export default function PrivacyPolicy() {
 
         {/* Lawful bases subsection */}
         <div className="space-y-4">
-          <h3>Our lawful bases for the collection and use of your data</h3>
+          <Heading variant="h3">
+            Our lawful bases for the collection and use of your data
+          </Heading>
 
           <Text>
             Our lawful bases for collecting or using personal information to{' '}
@@ -238,7 +243,7 @@ export default function PrivacyPolicy() {
 
       {/* Where we get information section */}
       <section className="space-y-4">
-        <h2>Where we get personal information from</h2>
+        <Heading variant="h2">Where we get personal information from</Heading>
         <ul className="list-disc pl-5 space-y-1">
           <li>
             <Text>Directly from you</Text>
@@ -248,7 +253,7 @@ export default function PrivacyPolicy() {
 
       {/* How long we keep information section */}
       <section className="space-y-4">
-        <h2>How long we keep information</h2>
+        <Heading variant="h2">How long we keep information</Heading>
         <Text>
           We retain your personal information for as long as necessary to
           provide our services and fulfill our legal obligations. Specifically:
@@ -277,9 +282,8 @@ export default function PrivacyPolicy() {
 
       {/* Who we share information with section */}
       <section className="space-y-4">
-        <h2>Who we share information with</h2>
+        <Heading variant="h2">Who we share information with</Heading>
 
-        <h3>Others we share personal information with</h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
             <Text>
@@ -292,7 +296,7 @@ export default function PrivacyPolicy() {
 
       {/* How to complain section */}
       <section className="space-y-4">
-        <h2>How to complain</h2>
+        <Heading variant="h2">How to complain</Heading>
 
         <Text>
           If you have any concerns about our use of your personal data, you can
@@ -336,7 +340,7 @@ export default function PrivacyPolicy() {
 
       {/* Last updated section */}
       <section className="space-y-4">
-        <h2>Last updated</h2>
+        <Heading variant="h2">Last updated</Heading>
         <Text>This privacy notice was last updated on 26/05/2025.</Text>
       </section>
     </div>

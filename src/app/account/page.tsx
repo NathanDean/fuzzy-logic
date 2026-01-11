@@ -112,7 +112,7 @@ export default function Account() {
       ) : (
         <div>
           <Card className="p-6 space-y-1">
-            <Heading>Account</Heading>
+            <Heading variant="h1">Account</Heading>
 
             <div className="space-y-1">
               <Text>

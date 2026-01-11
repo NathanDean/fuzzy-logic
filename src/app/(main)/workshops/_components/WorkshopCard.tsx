@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
-import Link from 'next/link';
-
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
 import Button from '@/components/ui/Button';
+import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 
@@ -47,23 +46,23 @@ export default function WorkshopCard({
         <div className="p-6 flex flex-col flex-grow">
           <div className="flex-grow space-y-1">
             {/* Workshop name */}
-            <h2>{workshop.class_name}</h2>
+            <Heading variant="h2">{workshop.class_name}</Heading>
 
-            <h3>with {workshop.teacher}</h3>
+            <Heading variant="h3">with {workshop.teacher}</Heading>
 
-            <h4>{workshop.course_type}</h4>
+            <Heading variant="h4">{workshop.course_type}</Heading>
 
             {/* Date/time */}
-            <h4>
+            <Heading variant="h4">
               Begins{' '}
               {dayjs(`${workshop.date} ${workshop.start_time}`).format(
                 'ha on ddd D MMM'
               )}{' '}
               at {workshop.venue}
-            </h4>
+            </Heading>
 
             {/* Venue */}
-            <h4>£{workshop.price}</h4>
+            <Heading variant="h4">£{workshop.price}</Heading>
           </div>
 
           {/* Buttons */}

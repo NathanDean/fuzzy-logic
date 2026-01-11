@@ -1,9 +1,10 @@
+import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
 export default function CookiePolicy() {
   return (
     <div className="sm:w-xl lg:w-3xl xl:w-4xl space-y-4">
-      <h1>Cookie Notice</h1>
+      <Heading variant="h1">Cookie Notice</Heading>
 
       <div className="space-y-6">
         <Text>
@@ -13,11 +14,15 @@ export default function CookiePolicy() {
         </Text>
 
         <div>
-          <h2 className="mb-4">Cookies we use</h2>
+          <Heading variant="h2" className="mb-4">
+            Cookies we use
+          </Heading>
           <div className="space-y-4">
             {/* Authentication cookies */}
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h3 className="mb-2">Authentication Cookies</h3>
+              <Heading variant="h3" className="mb-2">
+                Authentication Cookies
+              </Heading>
               <Text className="mb-2">
                 These cookies are essential to keep you logged in and secure
                 your account. They remember your login status and protect
@@ -36,7 +41,9 @@ export default function CookiePolicy() {
 
             {/* Turnstile cookies */}
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h3 className="mb-2">CAPTCHA Security Cookies</h3>
+              <Heading variant="h3" className="mb-2">
+                CAPTCHA Security Cookies
+              </Heading>
               <Text className="mb-2">
                 These cookies are set by Cloudflare Turnstile to protect our
                 forms from spam and automated attacks. They verify that form
@@ -58,7 +65,9 @@ export default function CookiePolicy() {
         </div>
 
         <div>
-          <h2 className="mb-4">Your rights</h2>
+          <Heading variant="h2" className="mb-4">
+            Your rights
+          </Heading>
           <Text>
             Since these cookies are strictly necessary for the website to
             function, they cannot be disabled. However, you can delete cookies

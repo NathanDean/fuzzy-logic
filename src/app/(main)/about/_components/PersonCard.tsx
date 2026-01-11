@@ -1,5 +1,6 @@
 import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
+import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
 interface Person {
@@ -32,7 +33,7 @@ export default function PersonCard({ person }: PersonCardProps) {
 
         <div className="lg:w-1/2 flex flex-col flex-grow p-6 space-y-2">
           {/* Name */}
-          <h2>{person.name}</h2>
+          <Heading variant="h2">{person.name}</Heading>
 
           {/* Bio */}
           {person.bio

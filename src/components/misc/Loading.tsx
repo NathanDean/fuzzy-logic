@@ -4,6 +4,8 @@ import Heading from '../ui/Heading';
 
 export default function Loading() {
   return (
-    <Heading className={`${sigmar.className} text-6xl`}>loading...</Heading>
+    <Heading variant="h1" className={`${sigmar.className} text-6xl`}>
+      loading...
+    </Heading>
   );
 }
