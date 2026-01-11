@@ -39,36 +39,41 @@ export default function UpdatePassword() {
 
   return (
     <AuthForm
-      buttonText="Update password"
       navigationLinks={navigationLinks}
       onSubmit={handleSubmit}
       errorMessage={errorMessage}
       isDisabled={passwordStrength < 3}
     >
-      {errorMessage && <p className="error">{errorMessage}</p>}
+      {({ FormTurnstile, FormButton }) => (
+        <>
+          {errorMessage && <p className="error">{errorMessage}</p>}
 
-      <label htmlFor="password">New password:</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
+          <label htmlFor="password">New password:</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-      <label htmlFor="confirmPassword">Confirm new password:</label>
-      <input
-        id="confirmPassword"
-        name="confirmPassword"
-        type="password"
-        required
-      />
+          <label htmlFor="confirmPassword">Confirm new password:</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            required
+          />
 
-      <PasswordStrengthIndicator
-        password={password}
-        onStrengthChange={setPasswordStrength}
-      />
+          <PasswordStrengthIndicator
+            password={password}
+            onStrengthChange={setPasswordStrength}
+          />
+
+          <FormButton>Update password</FormButton>
+        </>
+      )}
     </AuthForm>
   );
 }

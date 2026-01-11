@@ -24,14 +24,18 @@ export default function ResetPassword() {
 
   return (
     <AuthForm
-      buttonText="Reset password"
-      usesTurnstile={true}
       navigationLinks={navigationLinks}
       onSubmit={handleSubmit}
       errorMessage={errorMessage}
     >
-      <label htmlFor="email">Email:</label>
-      <input id="email" name="email" type="email" required />
+      {({ FormTurnstile, FormButton }) => (
+        <>
+          <label htmlFor="email">Email:</label>
+          <input id="email" name="email" type="email" required />{' '}
+          <FormTurnstile />
+          <FormButton>Reset password</FormButton>
+        </>
+      )}
     </AuthForm>
   );
 }

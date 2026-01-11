@@ -7,9 +7,10 @@ import Text from '../ui/Text';
 import TurnstileWidget from './TurnstileWidget';
 
 interface AuthFormProps {
-  children: React.ReactNode;
-  buttonText: string;
-  usesTurnstile?: boolean;
+  children: (components: {
+    FormTurnstile: React.FC;
+    FormButton: React.FC<{ children: React.ReactNode }>;
+  }) => React.ReactNode;
   isDisabled?: boolean;
   navigationLinks?: React.ReactNode;
   onSubmit: (formData: FormData) => Promise<void>;
@@ -19,8 +20,6 @@ interface AuthFormProps {
 
 export default function AuthForm({
   children,
-  buttonText,
-  usesTurnstile = false,
   isDisabled,
   navigationLinks,
   onSubmit,
@@ -34,6 +33,23 @@ export default function AuthForm({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
+
+  const FormTurnstile = () => (
+    <TurnstileWidget onSuccess={() => setIsTurnstileLoading(false)} />
+  );
+
+  const FormButton = ({
+    children: buttonText,
+  }: {
+    children: React.ReactNode;
+  }) => (
+    <Button
+      type="submit"
+      disabled={isDisabled || isTurnstileLoading || isSubmitting}
+    >
+      <Text as="span">{isSubmitting ? 'Please wait...' : buttonText}</Text>
+    </Button>
+  );
 
   return (
     <form
@@ -50,20 +66,8 @@ export default function AuthForm({
     >
       {errorMessage && <p className="error">{errorMessage}</p>}
 
-      {children}
+      {children({ FormTurnstile, FormButton })}
 
-      {usesTurnstile && (
-        <TurnstileWidget onSuccess={() => setIsTurnstileLoading(false)} />
-      )}
-
-      <Button
-        type="submit"
-        disabled={
-          isDisabled || (usesTurnstile && isTurnstileLoading) || isSubmitting
-        }
-      >
-        <Text as="span">{isSubmitting ? 'Please wait...' : buttonText}</Text>
-      </Button>
       {navigationLinks}
     </form>
   );

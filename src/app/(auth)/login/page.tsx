@@ -63,23 +63,28 @@ function LoginForm() {
   return (
     <>
       <AuthForm
-        buttonText="Log in"
-        usesTurnstile={true}
         navigationLinks={navigationLinks}
         onSubmit={handleSubmit}
         errorMessage={errorMessage}
       >
-        {redirectTo === 'workshop' && workshopId && (
-          <Text className="text-center">
-            Please login to complete your booking
-          </Text>
+        {({ FormTurnstile, FormButton }) => (
+          <>
+            {redirectTo === 'workshop' && workshopId && (
+              <Text className="text-center">
+                Please login to complete your booking
+              </Text>
+            )}
+            <label htmlFor="email">Email:</label>
+            <input id="email" name="email" type="email" required />
+
+            <label htmlFor="password">Password:</label>
+            <input id="password" name="password" type="password" required />
+
+            <FormTurnstile />
+
+            <FormButton>Log in</FormButton>
+          </>
         )}
-
-        <label htmlFor="email">Email:</label>
-        <input id="email" name="email" type="email" required />
-
-        <label htmlFor="password">Password:</label>
-        <input id="password" name="password" type="password" required />
       </AuthForm>
     </>
   );
