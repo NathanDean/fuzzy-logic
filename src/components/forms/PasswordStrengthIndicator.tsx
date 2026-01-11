@@ -43,6 +43,25 @@ export default function PasswordStrengthIndicator({
     color: 'bg-gray-300',
   };
 
+  const PassWordStrengthLabel = (
+    <div>
+      <Text as="span">Password strength: </Text>
+      {password && config.label}
+    </div>
+  );
+
+  const PassWordStrengthBar = (
+    <div className="bg-gray-300 w-full h-2.5 rounded-full">
+      <div
+        className={cn(
+          'h-2.5 rounded-full transition-all duration-300',
+          password ? config.color : 'bg-gray-300'
+        )}
+        style={{ width: password ? `${(passwordStrength + 1) * 20}%` : '0%' }}
+      />
+    </div>
+  );
+
   return (
     <div className="flex flex-col justify-start zxcvbn">
       <div>
