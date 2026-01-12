@@ -49,7 +49,7 @@ export default function UpdatePassword() {
       errorMessage={errorMessage}
       isDisabled={passwordStrength < 3}
     >
-      {({ FormTurnstile, FormButton }) => (
+      {({ FormButton }) => (
         <>
           {errorMessage && <p className="error">{errorMessage}</p>}
 

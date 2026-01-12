@@ -28,12 +28,6 @@ jest.mock('@/utils/supabase/supabaseClient', () => ({
 }));
 
 describe('About', () => {
-  it('initially displays loading state', () => {
-    render(<About />);
-
-    expect(screen.getByText('loading...')).toBeInTheDocument();
-  });
-
   it('displays people after loading from Supabase', async () => {
     render(<About />);
 

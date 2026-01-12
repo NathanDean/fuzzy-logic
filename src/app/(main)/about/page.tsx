@@ -38,13 +38,11 @@ export default async function About() {
         <Text>{`Fuzzy Logic is an improv company.`}</Text>
 
         <Text>
-          {`We run workshops designed to help improvisers find their artistic
-          voice and develop the technical skills to express it more clearly.`}
+          {`We run workshops designed to help improvisers find their artistic voice and develop the technical skills to express it more clearly.`}
         </Text>
 
         <Text>
-          {`Our work explores the ways improv can give to and learn from other
-          artforms, and experiments with new ideas of what improv can do and be.`}
+          {`Our work explores the ways improv can give to and learn from other artforms, and experiments with new ideas of what improv can do and be.`}
         </Text>
         <div className="w-full flex flex-row items-stretch justify-center space-x-2">
           <Button href="#people">
@@ -80,14 +78,10 @@ export default async function About() {
         className="min-h-screen flex flex-col justify-center items-start space-y-2"
       >
         <Text>
-          {`Fuzzy Logic was founded in 2025 by Nathan Dean, following a decade's
-          experience in the world of artist and artform development at Arts
-          Council England and talent agency Avalon.`}
+          {`Fuzzy Logic was founded in 2025 by Nathan Dean, following a decade's experience in the world of artist and artform development at Arts Council England and talent agency Avalon.`}
         </Text>
         <Text>
-          {`We ran our first workshops in July 2025. We also produce the sketch
-          series scenesAboutLeaving and the twoprov show A Very Capable Boy,
-          with more shows to come in future.`}
+          {`We ran our first workshops in July 2025. We also produce the sketch series scenesAboutLeaving and the twoprov show A Very Capable Boy, with more shows to come in future.`}
         </Text>
       </section>
     </div>
