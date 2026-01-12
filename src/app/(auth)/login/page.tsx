@@ -5,14 +5,14 @@ import { useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
-import { createCheckoutSession } from '@/app/actions/stripe';
+import { login } from '@/actions/auth';
+import { createCheckoutSession } from '@/actions/stripe';
 import AuthForm from '@/components/forms/auth/Authform';
 import ResetPasswordLink from '@/components/forms/auth/links/ResetPasswordLink';
 import SignUpLink from '@/components/forms/auth/links/SignUpLink';
 import Loading from '@/components/misc/Loading';
 import Text from '@/components/ui/Text';
 
-import { login } from '@/utils/auth/actions';
 import { createClient } from '@/utils/supabase/client';
 
 function LoginForm() {

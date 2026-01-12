@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 
+import { resetPassword } from '@/actions/auth';
 import AuthForm from '@/components/forms/auth/Authform';
 import SignUpLink from '@/components/forms/auth/links/SignUpLink';
-
-import { resetPassword } from '@/utils/auth/actions';
 
 export default function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState<string>('');

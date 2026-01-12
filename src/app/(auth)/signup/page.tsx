@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { signup } from '@/actions/auth';
 import AuthForm from '@/components/forms/auth/Authform';
 import LoginLink from '@/components/forms/auth/links/LoginLink';
 import {
@@ -10,8 +11,6 @@ import {
 } from '@/components/forms/auth/PasswordStrength';
 
 import usePasswordStrength from '@/hooks/usePasswordStrength';
-
-import { signup } from '@/utils/auth/actions';
 
 export default function SignUpPage() {
   const [errorMessage, setErrorMessage] = useState<string>('');

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { updatePassword } from '@/actions/auth';
 import AuthForm from '@/components/forms/auth/Authform';
 import SignUpLink from '@/components/forms/auth/links/SignUpLink';
 import {
@@ -13,8 +14,6 @@ import {
 import { useAuth } from '@/contexts/AuthContext';
 
 import usePasswordStrength from '@/hooks/usePasswordStrength';
-
-import { updatePassword } from '@/utils/auth/actions';
 
 export default function UpdatePassword() {
   const { user, isLoading } = useAuth();

@@ -13,7 +13,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import supabase from '@/utils/supabase/supabaseClient';
 import { Workshop } from '@/utils/types/Workshop';
 
-import { createCheckoutSession } from '../../actions/stripe';
+import { createCheckoutSession } from '../../../actions/stripe';
 import WorkshopCard from './_components/WorkshopCard';
 
 export default function Workshops() {

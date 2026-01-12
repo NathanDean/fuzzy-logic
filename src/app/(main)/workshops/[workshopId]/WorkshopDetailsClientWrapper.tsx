@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { createCheckoutSession } from '@/app/actions/stripe';
+import { createCheckoutSession } from '@/actions/stripe';
 import CardGrid from '@/components/cards/CardGrid';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';

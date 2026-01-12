@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { subscribeToMailingList } from '@/app/actions/mailingList';
+import { subscribeToMailingList } from '@/actions/mailingList';
 
 import Button from '../ui/Button';
 import Text from '../ui/Text';
