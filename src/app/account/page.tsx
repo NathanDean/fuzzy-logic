@@ -134,22 +134,13 @@ export default function Account() {
                   <ul className="list-disc pl-5 space-y-1">
                     {bookings.map((booking) =>
                       booking.workshop ? (
-                        <ul
-                          key={booking.id}
-                          className="list-disc pl-5 space-y-1"
-                        >
-                          {bookings.map((booking) =>
-                            booking.workshop ? (
-                              <ListItem key={booking.id}>
-                                {booking.workshop.class_name} -{' '}
-                                {dayjs(
-                                  `${booking.workshop.date} ${booking.workshop.start_time}`
-                                ).format('ha on ddd Do MMM')}{' '}
-                                at {booking.workshop.venue}
-                              </ListItem>
-                            ) : null
-                          )}
-                        </ul>
+                        <ListItem key={booking.id}>
+                          {booking.workshop.class_name} -{' '}
+                          {dayjs(
+                            `${booking.workshop.date} ${booking.workshop.start_time}`
+                          ).format('ha on ddd Do MMM')}{' '}
+                          at {booking.workshop.venue}
+                        </ListItem>
                       ) : null
                     )}
                   </ul>
