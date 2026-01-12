@@ -108,6 +108,7 @@ export default function Workshops() {
                 key={workshop.id}
                 workshop={workshop}
                 onBookNow={handleBookNow}
+                className="w-full, md:w-xl"
               />
             ))}
           </CardGrid>

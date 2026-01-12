@@ -52,6 +52,7 @@ export default function WorkshopDetailsClientWrapper({
           key={workshop.id}
           workshop={workshop}
           onBookNow={handleBookNow}
+          className="w-full, lg:w-4xl xl:w-6xl"
         />
       </CardGrid>
     </div>

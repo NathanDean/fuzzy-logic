@@ -62,7 +62,11 @@ export default async function About() {
         <Heading variant="h2">Core team</Heading>
         <CardGrid cols={1}>
           {coreTeam.map((person) => (
-            <PersonCard key={person.id} person={person} />
+            <PersonCard
+              key={person.id}
+              person={person}
+              className="w-full h-full md:min-h-[70vh]"
+            />
           ))}
         </CardGrid>
 

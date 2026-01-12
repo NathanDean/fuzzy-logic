@@ -13,11 +13,12 @@ interface Person {
 
 interface PersonCardProps {
   person: Person;
+  className?: string;
 }
 
-export default function PersonCard({ person }: PersonCardProps) {
+export default function PersonCard({ person, className }: PersonCardProps) {
   return (
-    <Card key={person.id} className="w-full h-full md:min-h-[70vh]">
+    <Card key={person.id} className={className}>
       <div className="flex flex-col lg:flex-row h-full">
         {/* Image */}
         <div className="h-96 lg:w-1/2 lg:h-auto relative">

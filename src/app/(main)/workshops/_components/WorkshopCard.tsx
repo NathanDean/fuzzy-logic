@@ -7,7 +7,6 @@ import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 
-import cn from '@/utils/style/cn';
 import { Workshop } from '@/utils/types/Workshop';
 
 interface WorkshopCardProps {
@@ -31,7 +30,7 @@ export default function WorkshopCard({
   };
 
   return (
-    <Card className={`${cn('w-full, md:w-xl', className)}`}>
+    <Card className={className}>
       <div className={`flex flex-col h-full`}>
         {/* Image */}
 
