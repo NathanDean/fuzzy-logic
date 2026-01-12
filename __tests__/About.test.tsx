@@ -1,4 +1,4 @@
-import Teachers from '@/app/(main)/teachers/page';
+import About from '@/app/(main)/about/page';
 import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 
@@ -27,15 +27,15 @@ jest.mock('@/utils/supabase/supabaseClient', () => ({
   })),
 }));
 
-describe('Workshops', () => {
+describe('About', () => {
   it('initially displays loading state', () => {
-    render(<Teachers />);
+    render(<About />);
 
     expect(screen.getByText('loading...')).toBeInTheDocument();
   });
 
-  it('displays workshops after loading from Supabase', async () => {
-    render(<Teachers />);
+  it('displays people after loading from Supabase', async () => {
+    render(<About />);
 
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));

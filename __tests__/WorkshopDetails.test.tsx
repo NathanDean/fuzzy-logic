@@ -46,11 +46,14 @@ jest.mock('@/utils/supabase/server', () => ({
 }));
 
 // Mock client wrapper component
-jest.mock('@/app/workshops/[workshopId]/WorkshopDetailsClientWrapper', () => {
-  return function MockedWrapper({ workshop }: { workshop: Workshop }) {
-    return workshop; // Return props for testing
-  };
-});
+jest.mock(
+  '@/app/(main)/workshops/[workshopId]/WorkshopDetailsClientWrapper',
+  () => {
+    return function MockedWrapper({ workshop }: { workshop: Workshop }) {
+      return workshop; // Return props for testing
+    };
+  }
+);
 
 describe('WorkshopDetails', () => {
   it('passes correct workshop data to client wrapper', async () => {
