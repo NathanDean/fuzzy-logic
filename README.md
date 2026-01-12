@@ -30,13 +30,11 @@ Some documentation on how data flows in the app, for my benefit in maintaining t
 
 The site fetches data from Supabase using the four clients in /utils/supabase:
 
-- **admin.ts:** Uses Supabase's createClient function with the service role key
+- **admin.ts:** Uses createClient function with secret key, for backend admin
   - Used by Stripe webhook
-- **supabaseClient.ts:** Uses Supabase's createClient function with the anon key
-  - Used by Account, Workshops and Teachers pages
-- **client.ts:** Uses Supabase's createBrowserClient function
-  - Used by Login page and auth context
-- **server.ts:** Uses Supabase's createServerClient function
+- **browserClient.ts:** Uses createBrowserClient function with publishable key, for data fetching in client components
+  - Used by About, Account, Login, and Workshops pages, and auth context
+- **serverClient.ts:** Uses createServerClient function with publishable key, for data fetching in server components
   - Used by WorkshopDetails page, `/auth/confirm` route, and mailing list, Stripe, and auth actions
 
 ### Auth data flows
