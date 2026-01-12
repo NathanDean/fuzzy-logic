@@ -11,7 +11,7 @@ import '@/styles/globals.css';
 
 // Metadata
 export const metadata: Metadata = {
-  title: 'Fuzzy Logic',
+  title: 'Fuzzy Logic: An improv company',
   description: 'An improv company',
   manifest: '/icons/site.webmanifest',
   icons: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     apple: '/icons/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'Fuzzy Logic',
+    title: 'Fuzzy Logic: An improv company',
     description: 'An improv company',
     url: 'https://www.fzzy.co.uk',
     siteName: 'Fuzzy Logic',
