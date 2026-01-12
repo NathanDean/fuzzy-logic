@@ -3,6 +3,11 @@
 import { useEffect } from 'react';
 
 import ErrorMessage from '@/components/misc/ErrorMessage';
+import Footer from '@/components/misc/Footer';
+import Header from '@/components/nav/Header';
+import { AuthProvider } from '@/contexts/AuthContext';
+import { outfit, sigmar } from '@/lib/fonts';
+import { Analytics } from '@vercel/analytics/next';
 
 import ErrorProps from '@/utils/types/ErrorProps';
 
@@ -12,9 +17,14 @@ export default function GlobalError({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <html>
-      <body>
-        <ErrorMessage onClick={reset} type="global" />
+    <html lang="en" className={`${sigmar.variable} ${outfit.variable}`}>
+      <body className="antialiased flex flex-col h-screen bg-[url('/canvas.png')] dark:bg-[url('/canvas-dark.png')] bg-cover bg-no-repeat bg-fixed bg-center sm:text-lg">
+        <AuthProvider>
+          <Header />
+          <ErrorMessage onClick={reset} type="global" />
+        </AuthProvider>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );
