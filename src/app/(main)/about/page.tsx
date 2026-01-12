@@ -4,7 +4,7 @@ import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/serverClient';
 
 interface Person {
   id: number;

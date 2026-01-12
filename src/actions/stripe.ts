@@ -3,8 +3,8 @@
 import { PostgrestError } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
-import { createAdminClient } from '@/utils/supabase/admin';
-import { createClient } from '@/utils/supabase/server';
+import { createAdminClient } from '@/utils/supabase/adminClient';
+import { createClient } from '@/utils/supabase/serverClient';
 
 interface Workshop {
   id: string;

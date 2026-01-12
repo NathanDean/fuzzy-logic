@@ -13,7 +13,7 @@ import SignUpLink from '@/components/forms/auth/links/SignUpLink';
 import Loading from '@/components/misc/Loading';
 import Text from '@/components/ui/Text';
 
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from '@/utils/supabase/browserClient';
 
 function LoginForm() {
   const [errorMessage, setErrorMessage] = useState<string>('');

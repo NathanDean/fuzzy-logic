@@ -1,7 +1,7 @@
 // src/utils/mailing-list/actions.ts
 'use server';
 
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/serverClient';
 
 export async function subscribeToMailingList(formData: FormData) {
   const supabase = await createClient();

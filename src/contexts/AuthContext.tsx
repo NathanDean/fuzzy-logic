@@ -10,7 +10,7 @@ import {
 
 import { User } from '@supabase/supabase-js';
 
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from '@/utils/supabase/browserClient';
 
 type AuthContext = {
   user: User | null;

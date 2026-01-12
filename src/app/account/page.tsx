@@ -12,7 +12,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 
-import supabase from '@/utils/supabase/supabaseClient';
+import { createClient } from '@/utils/supabase/browserClient';
 
 dayjs.extend(advancedFormat);
 
@@ -59,6 +59,7 @@ export default function Account() {
 
       if (!isLoading && user) {
         try {
+          const supabase = createClient();
           const { data, error } = await supabase
             .from('bookings')
             .select('*, workshop:workshops(*)')

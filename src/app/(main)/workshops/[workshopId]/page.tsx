@@ -1,6 +1,6 @@
 import Text from '@/components/ui/Text';
 
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/utils/supabase/serverClient';
 import { Workshop } from '@/utils/types/Workshop';
 
 import WorkshopDetailsClientWrapper from './WorkshopDetailsClientWrapper';

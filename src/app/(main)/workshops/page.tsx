@@ -10,7 +10,7 @@ import Loading from '@/components/misc/Loading';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 
-import supabase from '@/utils/supabase/supabaseClient';
+import { createClient } from '@/utils/supabase/browserClient';
 import { Workshop } from '@/utils/types/Workshop';
 
 import { createCheckoutSession } from '../../../actions/stripe';
@@ -31,6 +31,7 @@ export default function Workshops() {
 
       try {
         // Get workshops
+        const supabase = createClient();
         const { data, error } = await supabase
           .from('workshops')
           .select('*, bookings:bookings(count)')
