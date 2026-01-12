@@ -102,7 +102,7 @@ export default function Workshops() {
         </div>
       ) : (
         <div className="mt-10 sm:-mt-5">
-          <CardGrid cardWidth="md" imageHeight="md" cols={1}>
+          <CardGrid cols={1}>
             {workshops.map((workshop) => (
               <WorkshopCard
                 key={workshop.id}

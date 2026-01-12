@@ -59,14 +59,14 @@ export default async function About() {
         className="min-h-screen flex flex-col justify-center items-center space-y-8 scroll-mt-20"
       >
         <Heading variant="h2">Core team</Heading>
-        <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
+        <CardGrid cols={1}>
           {coreTeam.map((person) => (
             <PersonCard key={person.id} person={person} />
           ))}
         </CardGrid>
 
         <Heading variant="h2">Artists we work with</Heading>
-        <CardGrid cardWidth="lg" imageHeight="lg" cols={1}>
+        <CardGrid cols={1}>
           {guestArtists.map((person) => (
             <PersonCard key={person.id} person={person} />
           ))}

@@ -7,18 +7,19 @@ import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 
+import cn from '@/utils/style/cn';
 import { Workshop } from '@/utils/types/Workshop';
 
 interface WorkshopCardProps {
   workshop: Workshop;
   onBookNow: (id: string) => void;
-  imageHeight?: 'sm' | 'md' | 'lg';
+  className?: string;
 }
 
 export default function WorkshopCard({
   workshop,
   onBookNow,
-  imageHeight = 'md',
+  className = '',
 }: WorkshopCardProps) {
   const isSoldOut = workshop.max_places_available - workshop.bookings <= 0;
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,7 +31,7 @@ export default function WorkshopCard({
   };
 
   return (
-    <Card className="w-full h-full" imageHeight={imageHeight}>
+    <Card className={`${cn('w-full, md:w-xl', className)}`}>
       <div className={`flex flex-col h-full`}>
         {/* Image */}
 
@@ -38,7 +39,6 @@ export default function WorkshopCard({
           <CardImage
             src={`/workshops/${workshop.image_url}`}
             alt="Workshop image"
-            imageHeight={imageHeight}
           />
         </div>
 

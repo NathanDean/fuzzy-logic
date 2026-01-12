@@ -45,7 +45,7 @@ export default function WorkshopDetailsClientWrapper({
 
   return (
     <div className="sm:-mt-10">
-      <CardGrid cardWidth="xl" imageHeight="lg" cols={1}>
+      <CardGrid cols={1}>
         {errorMessage && <Text>{errorMessage}</Text>}
 
         <WorkshopDetailsCard
