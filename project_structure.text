@@ -1,7 +1,30 @@
 - .env.local
 - .gitignore
+- .husky
+  - pre-commit
+  - _
+    - .gitignore
+    - applypatch-msg
+    - commit-msg
+    - h
+    - husky.sh
+    - post-applypatch
+    - post-checkout
+    - post-commit
+    - post-merge
+    - post-rewrite
+    - pre-applypatch
+    - pre-auto-gc
+    - pre-commit
+    - pre-merge-commit
+    - pre-push
+    - pre-rebase
+    - prepare-commit-msg
 - .prettierignore
 - .prettierrc
+- .swc
+  - plugins
+    - windows_x86_64_18.0.0
 - .vercel
   - .env.preview.local
   - output
@@ -20,19 +43,35 @@
   - lcov-report
     - app
       - (auth)
+        - login
+          - index.html
+          - page.tsx.html
         - reset
           - index.html
           - page.tsx.html
         - signup
           - index.html
           - page.tsx.html
+        - update
+          - index.html
+          - page.tsx.html
       - (main)
+        - about
+          - index.html
+          - page.tsx.html
+          - _components
+            - index.html
+            - PersonCard.tsx.html
         - workshops
+          - index.html
+          - page.tsx.html
           - [workshopId]
             - index.html
+            - page.tsx.html
             - WorkshopDetailsClientWrapper.tsx.html
           - _components
             - index.html
+            - WorkshopCard.tsx.html
             - WorkshopDetailsCard.tsx.html
       - account
         - index.html
@@ -90,6 +129,7 @@
           - links
             - index.html
             - LoginLink.tsx.html
+            - ResetPasswordLink.tsx.html
             - SignUpLink.tsx.html
           - PasswordStrength.tsx.html
           - TurnstileWidget.tsx.html
@@ -99,6 +139,7 @@
           - index.html
           - LoginLink.tsx.html
           - SignUpLink.tsx.html
+        - MailingListForm.tsx.html
         - PasswordStrengthIndicator.tsx.html
         - TurnstileWidget.tsx.html
       - Header.tsx.html
@@ -161,6 +202,7 @@
 - package-lock.json
 - package.json
 - postcss.config.mjs
+- project_structure.text
 - public
   - canvas-dark.png
   - canvas.png
@@ -185,6 +227,10 @@
     - playing-realistic-emotions.jpg
 - README.md
 - src
+  - actions
+    - auth.ts
+    - mailingList.ts
+    - stripe.ts
   - app
     - (admin)
       - cookies
@@ -235,8 +281,6 @@
       - error.tsx
       - page.tsx
     - actions
-      - mailingList.ts
-      - stripe.ts
     - api
       - webhooks
         - stripe
@@ -286,8 +330,6 @@
   - styles
     - globals.css
   - utils
-    - auth
-      - actions.ts
     - style
       - cn.ts
     - supabase
@@ -303,6 +345,9 @@
 - __mocks__
   - @marsidev
     - react-turnstile.js
+  - @supabase
+    - ssr.ts
+    - supabase-js.ts
   - next
     - font
       - google.js
@@ -312,6 +357,7 @@
     - link.js
     - navigation.js
 - __tests__
+  - About.test.tsx
   - Account.test.tsx
   - AuthContext.test.tsx
   - Header.test.tsx
@@ -319,7 +365,6 @@
   - Login.test.tsx
   - Reset.test.tsx
   - Signup.test.tsx
-  - Teachers.test.tsx
   - Update.test.tsx
   - WorkshopDetails.test.tsx
   - WorkshopDetailsClientWrapper.test.tsx
