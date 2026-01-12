@@ -1,4 +1,5 @@
 import Heading from '@/components/ui/Heading';
+import ListItem from '@/components/ui/ListItem';
 import Text from '@/components/ui/Text';
 
 export default function PrivacyPolicy() {
@@ -33,12 +34,8 @@ export default function PrivacyPolicy() {
         </Text>
 
         <ul className="list-disc pl-5 space-y-1">
-          <li>
-            <Text>Names and contact details</Text>
-          </li>
-          <li>
-            <Text>Purchase or account history</Text>
-          </li>
+          <ListItem>Names and contact details</ListItem>
+          <ListItem>Purchase or account history</ListItem>
         </ul>
       </section>
 
@@ -61,6 +58,8 @@ export default function PrivacyPolicy() {
           {`ICO's`} website.
         </Text>
 
+        <Heading variant="h3">Lawful bases in UK law</Heading>
+
         <Text>
           Which lawful basis we rely on may affect your data protection rights
           which are set out in brief below. You can find out more about your
@@ -69,125 +68,111 @@ export default function PrivacyPolicy() {
         </Text>
 
         <ul className="list-disc pl-5 space-y-4 detail-text">
-          <li>
-            <Text>
-              <span className="font-bold">Your right of access</span> - You have
-              the right to ask us for copies of your personal information. You
-              can request other information such as details about where we get
-              personal information from and who we share personal information
-              with. There are some exemptions which means you may not receive
-              all the information you ask for.
-              <a
-                href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#roa"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text as="span">You can read more about this right here</Text>
-              </a>
-              .
-            </Text>
-          </li>
+          <ListItem>
+            <span className="font-bold">Your right of access</span> - You have
+            the right to ask us for copies of your personal information. You can
+            request other information such as details about where we get
+            personal information from and who we share personal information
+            with. There are some exemptions which means you may not receive all
+            the information you ask for.
+            <a
+              href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#roa"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Text as="span">You can read more about this right here</Text>
+            </a>
+            .
+          </ListItem>
 
-          <li>
-            <Text>
-              <span className="font-bold">Your right to rectification</span> -
-              You have the right to ask us to correct or delete personal
-              information you think is inaccurate or incomplete.
-              <a
-                href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtr"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text as="span">You can read more about this right here</Text>
-              </a>
-              .
-            </Text>
-          </li>
+          <ListItem>
+            <span className="font-bold">Your right to rectification</span> - You
+            have the right to ask us to correct or delete personal information
+            you think is inaccurate or incomplete.
+            <a
+              href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Text as="span">You can read more about this right here</Text>
+            </a>
+            .
+          </ListItem>
 
-          <li>
-            <Text>
-              <span className="font-bold">Your right to erasure</span> - You
-              have the right to ask us to delete your personal information.
-              <a
-                href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rte"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text as="span">You can read more about this right here</Text>
-              </a>
-              .
-            </Text>
-          </li>
+          <ListItem>
+            <span className="font-bold">Your right to erasure</span> - You have
+            the right to ask us to delete your personal information.
+            <a
+              href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rte"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Text as="span">You can read more about this right here</Text>
+            </a>
+            .
+          </ListItem>
 
-          <li>
-            <Text>
-              <span className="font-bold">
-                Your right to restriction of processing
-              </span>{' '}
-              - You have the right to ask us to limit how we can use your
-              personal information.
-              <a
-                href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtrop"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text as="span">
-                  You can read more about this right here
-                </Text>{' '}
-              </a>
-              .
-            </Text>
-          </li>
+          <ListItem>
+            <span className="font-bold">
+              Your right to restriction of processing
+            </span>{' '}
+            - You have the right to ask us to limit how we can use your personal
+            information.
+            <a
+              href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtrop"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Text as="span">
+                You can read more about this right here
+              </Text>{' '}
+            </a>
+            .
+          </ListItem>
 
-          <li>
-            <Text>
-              <span className="font-bold">
-                Your right to object to processing
-              </span>{' '}
-              - You have the right to object to the processing of your personal
-              data.
-              <a
-                href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rto"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text as="span">You can read more about this right here</Text>
-              </a>
-              .
-            </Text>
-          </li>
+          <ListItem>
+            <span className="font-bold">
+              Your right to object to processing
+            </span>{' '}
+            - You have the right to object to the processing of your personal
+            data.
+            <a
+              href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rto"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Text as="span">You can read more about this right here</Text>
+            </a>
+            .
+          </ListItem>
 
-          <li>
-            <Text>
-              <span className="font-bold">Your right to data portability</span>{' '}
-              - You have the right to ask that we transfer the personal
-              information you gave us to another organisation, or to you.
-              <a
-                href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtdp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text as="span">You can read more about this right here</Text>
-              </a>
-              .
-            </Text>
-          </li>
+          <ListItem>
+            <span className="font-bold">Your right to data portability</span> -
+            You have the right to ask that we transfer the personal information
+            you gave us to another organisation, or to you.
+            <a
+              href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtdp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Text as="span">You can read more about this right here</Text>
+            </a>
+            .
+          </ListItem>
 
-          <li>
-            <Text>
-              <span className="font-bold">Your right to withdraw consent</span>{' '}
-              - When we use consent as our lawful basis you have the right to
-              withdraw your consent at any time.
-              <a
-                href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtwc"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text as="span">You can read more about this right here</Text>
-              </a>
-              .
-            </Text>
-          </li>
+          <ListItem>
+            <span className="font-bold">Your right to withdraw consent</span> -
+            When we use consent as our lawful basis you have the right to
+            withdraw your consent at any time.
+            <a
+              href="https://ico.org.uk/for-organisations/advice-for-small-organisations/create-your-own-privacy-notice/your-data-protection-rights/#rtwc"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Text as="span">You can read more about this right here</Text>
+            </a>
+            .
+          </ListItem>
         </ul>
 
         <Text>
@@ -212,26 +197,22 @@ export default function PrivacyPolicy() {
           </Text>
 
           <ul className="list-disc pl-5 space-y-1">
-            <li>
-              <Text>
-                <span className="font-bold">Legitimate interests</span> -{' '}
-                {`we're`} collecting or using your information because it
-                benefits you, our organisation or someone else, without causing
-                an undue risk of harm to anyone. All of your data protection
-                rights may apply, except the right to portability. Our
-                legitimate interests are:
-              </Text>
+            <ListItem>
+              <span className="font-bold">Legitimate interests</span> -{' '}
+              {`we're`} collecting or using your information because it benefits
+              you, our organisation or someone else, without causing an undue
+              risk of harm to anyone. All of your data protection rights may
+              apply, except the right to portability. Our legitimate interests
+              are:
               <ul className="list-disc pl-5 mt-1 space-y-1">
-                <li>
-                  <Text>
-                    We collect {`customers'`} names to allow us to keep track of
-                    who is attending workshops. We collect {`customers'`} email
-                    addresses to enable them to log into their accounts and
-                    track their bookings.
-                  </Text>
-                </li>
+                <ListItem>
+                  We collect {`customers'`} names to allow us to keep track of
+                  who is attending workshops. We collect {`customers'`} email
+                  addresses to enable them to log into their accounts and track
+                  their bookings.
+                </ListItem>
               </ul>
-            </li>
+            </ListItem>
           </ul>
 
           <Text>
@@ -245,9 +226,7 @@ export default function PrivacyPolicy() {
       <section className="space-y-4">
         <Heading variant="h2">Where we get personal information from</Heading>
         <ul className="list-disc pl-5 space-y-1">
-          <li>
-            <Text>Directly from you</Text>
-          </li>
+          <ListItem>Directly from you</ListItem>
         </ul>
       </section>
 
@@ -259,24 +238,18 @@ export default function PrivacyPolicy() {
           provide our services and fulfill our legal obligations. Specifically:
         </Text>
         <ul className="list-disc pl-5 space-y-1 detail-text">
-          <li>
-            <Text>
-              Account information is kept while your account is active and for 7
-              years after closure for legal and tax purposes
-            </Text>
-          </li>
-          <li>
-            <Text>
-              Booking and payment records are retained for 7 years after the
-              workshop date for accounting and legal requirements
-            </Text>
-          </li>
-          <li>
-            <Text>
-              Marketing communications data is kept until you unsubscribe or
-              request deletion
-            </Text>{' '}
-          </li>
+          <ListItem>
+            Account information is kept while your account is active and for 7
+            years after closure for legal and tax purposes
+          </ListItem>
+          <ListItem>
+            Booking and payment records are retained for 7 years after the
+            workshop date for accounting and legal requirements
+          </ListItem>
+          <ListItem>
+            Marketing communications data is kept until you unsubscribe or
+            request deletion
+          </ListItem>
         </ul>
       </section>
 
@@ -285,12 +258,10 @@ export default function PrivacyPolicy() {
         <Heading variant="h2">Who we share information with</Heading>
 
         <ul className="list-disc pl-5 space-y-1">
-          <li>
-            <Text>
-              Suppliers and service providers (including payment processors and
-              email service providers)
-            </Text>
-          </li>
+          <ListItem>
+            Suppliers and service providers (including payment processors and
+            email service providers)
+          </ListItem>
         </ul>
       </section>
 

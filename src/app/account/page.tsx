@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Card from '@/components/cards/Card';
 import Loading from '@/components/misc/Loading';
 import Heading from '@/components/ui/Heading';
+import ListItem from '@/components/ui/ListItem';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 import dayjs from 'dayjs';
@@ -133,15 +134,22 @@ export default function Account() {
                   <ul className="list-disc pl-5 space-y-1">
                     {bookings.map((booking) =>
                       booking.workshop ? (
-                        <li key={booking.id}>
-                          <Text>
-                            {booking.workshop.class_name} -{' '}
-                            {dayjs(
-                              `${booking.workshop.date} ${booking.workshop.start_time}`
-                            ).format('ha on ddd Do MMM')}{' '}
-                            at {booking.workshop.venue}
-                          </Text>{' '}
-                        </li>
+                        <ul
+                          key={booking.id}
+                          className="list-disc pl-5 space-y-1"
+                        >
+                          {bookings.map((booking) =>
+                            booking.workshop ? (
+                              <ListItem key={booking.id}>
+                                {booking.workshop.class_name} -{' '}
+                                {dayjs(
+                                  `${booking.workshop.date} ${booking.workshop.start_time}`
+                                ).format('ha on ddd Do MMM')}{' '}
+                                at {booking.workshop.venue}
+                              </ListItem>
+                            ) : null
+                          )}
+                        </ul>
                       ) : null
                     )}
                   </ul>
