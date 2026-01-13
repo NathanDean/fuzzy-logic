@@ -1,3 +1,4 @@
+import Card from '@/components/cards/Card';
 import TextContainer from '@/components/containers/TextContainer';
 import Main from '@/components/Main';
 import Heading from '@/components/ui/Heading';
@@ -22,7 +23,7 @@ export default function CookiePolicy() {
             </Heading>
             <div className="space-y-4">
               {/* Authentication cookies */}
-              <div className="rounded-lg bg-gray-50 p-4">
+              <Card className="p-6">
                 <Heading variant="h3" className="mb-2">
                   Authentication Cookies
                 </Heading>
@@ -40,10 +41,10 @@ export default function CookiePolicy() {
                   (deleted when you close your browser) and persistent cookies
                   (up to 30 days)
                 </Text>{' '}
-              </div>
+              </Card>
 
               {/* Turnstile cookies */}
-              <div className="rounded-lg bg-gray-50 p-4">
+              <Card className="p-6">
                 <Heading variant="h3" className="mb-2">
                   CAPTCHA Security Cookies
                 </Heading>
@@ -63,7 +64,7 @@ export default function CookiePolicy() {
                 <Text>
                   <span className="font-bold">Third party:</span> Cloudflare
                 </Text>{' '}
-              </div>
+              </Card>
             </div>
           </div>
 

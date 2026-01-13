@@ -22,6 +22,7 @@ export default function TurnstileWidget({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
   return (
     <div
       className={cn(
