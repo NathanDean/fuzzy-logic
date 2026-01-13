@@ -36,7 +36,7 @@ export default async function About() {
   const guestArtists = people.slice(1);
 
   return (
-    <Main className="py-0">
+    <Main className="py-0 lg:py-0">
       <section className="flex min-h-screen items-center justify-center">
         <TextContainer>
           <Text>Fuzzy Logic is an improv company.</Text>
