@@ -9,6 +9,7 @@ import {
   PasswordStrengthBar,
   PasswordStrengthLabel,
 } from '@/components/forms/auth/PasswordStrength';
+import Main from '@/components/Main';
 
 import usePasswordStrength from '@/hooks/usePasswordStrength';
 
@@ -30,76 +31,77 @@ export default function SignUpPage() {
   const navigationLinks = <LoginLink />;
 
   return (
-    <AuthForm
-      isDisabled={passwordStrength < 3}
-      navigationLinks={navigationLinks}
-      onSubmit={handleSubmit}
-      errorMessage={errorMessage}
-      className="mb-10"
-    >
-      {({ FormTurnstile, FormButton }) => (
-        <>
-          <div className="grid grid-cols-1 gap-y-3 lg:grid-cols-2 lg:gap-x-6">
-            <div className="flex flex-col space-y-1">
-              <label htmlFor="firstName">First name:</label>
-              <input id="firstName" name="firstName" type="text" required />
-            </div>
-
-            <div className="flex flex-col space-y-1">
-              <label htmlFor="lastName">Last name:</label>
-              <input id="lastName" name="lastName" type="text" required />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <label htmlFor="email">Email:</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <label htmlFor="password">Password:</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <label htmlFor="confirmPassword">Confirm password:</label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col space-y-1">
-              <PasswordStrengthLabel score={passwordStrength} />
-
-              <PasswordStrengthBar score={passwordStrength} />
-            </div>
-
-            <div className="flex h-full flex-col justify-end">
-              <FormTurnstile />
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="mb-2 flex w-full flex-row items-center justify-center space-x-2 text-center lg:mb-0">
-                <input
-                  id="subscribe"
-                  name="subscribe"
-                  type="checkbox"
-                  className="h-full w-auto"
-                />
-                <label htmlFor="subscribe">Subscribe to mailing list</label>
+    <Main>
+      <AuthForm
+        isDisabled={passwordStrength < 3}
+        navigationLinks={navigationLinks}
+        onSubmit={handleSubmit}
+        errorMessage={errorMessage}
+      >
+        {({ FormTurnstile, FormButton }) => (
+          <>
+            <div className="grid grid-cols-1 gap-y-3 lg:grid-cols-2 lg:gap-x-6">
+              <div className="flex flex-col space-y-1">
+                <label htmlFor="firstName">First name:</label>
+                <input id="firstName" name="firstName" type="text" required />
               </div>
-              <FormButton>Sign up</FormButton>
+
+              <div className="flex flex-col space-y-1">
+                <label htmlFor="lastName">Last name:</label>
+                <input id="lastName" name="lastName" type="text" required />
+              </div>
+              <div className="flex flex-col space-y-1">
+                <label htmlFor="email">Email:</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div className="flex flex-col space-y-1">
+                <label htmlFor="password">Password:</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="flex flex-col space-y-1">
+                <label htmlFor="confirmPassword">Confirm password:</label>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col space-y-1">
+                <PasswordStrengthLabel score={passwordStrength} />
+
+                <PasswordStrengthBar score={passwordStrength} />
+              </div>
+
+              <div className="flex h-full flex-col justify-end">
+                <FormTurnstile />
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="mb-2 flex w-full flex-row items-center justify-center space-x-2 text-center lg:mb-0">
+                  <input
+                    id="subscribe"
+                    name="subscribe"
+                    type="checkbox"
+                    className="h-full w-auto"
+                  />
+                  <label htmlFor="subscribe">Subscribe to mailing list</label>
+                </div>
+                <FormButton>Sign up</FormButton>
+              </div>
             </div>
-          </div>
-          <div className="mt-4 text-center"></div>
-        </>
-      )}
-    </AuthForm>
+            <div className="mt-4 text-center"></div>
+          </>
+        )}
+      </AuthForm>
+    </Main>
   );
 }

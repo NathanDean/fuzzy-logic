@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import DisplayMessageContainer from '@/components/containers/DisplayMessageContainer';
+import Main from '@/components/Main';
 import Loading from '@/components/misc/Loading';
 import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
@@ -63,8 +64,10 @@ function ConfirmSignupComponent() {
 
 export default function ConfirmSignupPage() {
   return (
-    <Suspense fallback={<Loading />}>
-      <ConfirmSignupComponent />
-    </Suspense>
+    <Main>
+      <Suspense fallback={<Loading />}>
+        <ConfirmSignupComponent />
+      </Suspense>
+    </Main>
   );
 }

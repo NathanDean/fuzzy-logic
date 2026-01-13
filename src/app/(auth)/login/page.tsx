@@ -10,6 +10,7 @@ import { createCheckoutSession } from '@/actions/stripe';
 import AuthForm from '@/components/forms/auth/Authform';
 import ResetPasswordLink from '@/components/forms/auth/links/ResetPasswordLink';
 import SignUpLink from '@/components/forms/auth/links/SignUpLink';
+import Main from '@/components/Main';
 import Loading from '@/components/misc/Loading';
 import Text from '@/components/ui/Text';
 
@@ -93,8 +94,10 @@ function LoginForm() {
 // Needs to be wrapped in suspense boundary to access URL params
 export default function LoginPage() {
   return (
-    <Suspense fallback={<Loading />}>
-      <LoginForm />
-    </Suspense>
+    <Main>
+      <Suspense fallback={<Loading />}>
+        <LoginForm />
+      </Suspense>
+    </Main>
   );
 }

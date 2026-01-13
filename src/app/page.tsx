@@ -1,14 +1,17 @@
+import Main from '@/components/Main';
 import Heading from '@/components/ui/Heading';
 import Logo from '@/components/ui/Logo';
 
 export default function Home() {
   return (
-    <div className="flex h-full flex-col items-center justify-center">
-      <Heading variant="h1" className="mb-4 px-1 text-center text-8xl">
-        <Logo />
-      </Heading>
+    <Main className="pt-25">
+      <div className="flex flex-col items-center justify-center space-y-4">
+        <Heading variant="h1" className="text-center text-8xl">
+          <Logo />
+        </Heading>
 
-      <Heading variant="h2">an improv company</Heading>
-    </div>
+        <Heading variant="h2">an improv company</Heading>
+      </div>
+    </Main>
   );
 }

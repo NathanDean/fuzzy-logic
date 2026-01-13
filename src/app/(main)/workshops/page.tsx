@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import CardGrid from '@/components/cards/CardGrid';
 import MailingListForm from '@/components/forms/MailingListForm';
+import Main from '@/components/Main';
 import Loading from '@/components/misc/Loading';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
@@ -87,7 +88,7 @@ export default function Workshops() {
   };
 
   return (
-    <>
+    <Main>
       {loading ? (
         <Loading />
       ) : errorMessage ? (
@@ -101,7 +102,7 @@ export default function Workshops() {
           <MailingListForm />
         </div>
       ) : (
-        <div className="mt-10 sm:-mt-5">
+        <div>
           <CardGrid cols={1}>
             {workshops.map((workshop) => (
               <WorkshopCard
@@ -114,6 +115,6 @@ export default function Workshops() {
           </CardGrid>
         </div>
       )}
-    </>
+    </Main>
   );
 }

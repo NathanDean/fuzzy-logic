@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 
 import Footer from '@/components/misc/Footer';
 import Header from '@/components/nav/Header';
+import { AuthProvider } from '@/contexts/AuthContext';
 import { outfit, sigmar } from '@/lib/fonts';
 import { Analytics } from '@vercel/analytics/next';
 
@@ -44,14 +45,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sigmar.variable} ${outfit.variable}`}>
-      <body className="flex h-screen flex-col bg-[url('/canvas.png')] bg-cover bg-fixed bg-center bg-no-repeat antialiased sm:text-lg dark:bg-[url('/canvas-dark.png')]">
-        <Header />
+      <body className="relative flex min-h-screen flex-col bg-[url('/canvas.png')] bg-cover bg-fixed bg-center bg-no-repeat antialiased sm:text-lg dark:bg-[url('/canvas-dark.png')]">
+        <AuthProvider>
+          <Header />
 
-        <main className="mx-auto flex w-3/4 flex-grow flex-col items-center justify-center pt-20 sm:w-xl sm:px-10 sm:pt-35 lg:w-3xl xl:w-4xl">
           {children}
-        </main>
-        <Footer />
-        <Analytics />
+
+          <Footer />
+          <Analytics />
+        </AuthProvider>
       </body>
     </html>
   );

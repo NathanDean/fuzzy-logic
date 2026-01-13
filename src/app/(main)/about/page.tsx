@@ -1,6 +1,8 @@
 import PersonCard from '@/app/(main)/about/_components/PersonCard';
 import CardGrid from '@/components/cards/CardGrid';
+import CardContainer from '@/components/containers/CardContainer';
 import TextContainer from '@/components/containers/TextContainer';
+import Main from '@/components/Main';
 import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
@@ -34,7 +36,7 @@ export default async function About() {
   const guestArtists = people.slice(1);
 
   return (
-    <div className="-mt-15 -mb-13 sm:-mt-30 sm:-mb-16">
+    <Main className="lg:py-0">
       <section className="flex min-h-screen items-center justify-center">
         <TextContainer>
           <Text>Fuzzy Logic is an improv company.</Text>
@@ -63,26 +65,30 @@ export default async function About() {
         className="flex min-h-screen scroll-mt-20 flex-col items-center justify-center space-y-8"
       >
         <Heading variant="h2">Core team</Heading>
-        <CardGrid cols={1}>
-          {coreTeam.map((person) => (
-            <PersonCard
-              key={person.id}
-              person={person}
-              className="h-full w-full md:min-h-[70vh]"
-            />
-          ))}
-        </CardGrid>
+        <CardContainer>
+          <CardGrid cols={1}>
+            {coreTeam.map((person) => (
+              <PersonCard
+                key={person.id}
+                person={person}
+                className="h-full w-full md:min-h-[70vh]"
+              />
+            ))}
+          </CardGrid>
+        </CardContainer>
 
         <Heading variant="h2">Artists we work with</Heading>
-        <CardGrid cols={1}>
-          {guestArtists.map((person) => (
-            <PersonCard
-              key={person.id}
-              person={person}
-              className="h-full w-full md:min-h-[70vh]"
-            />
-          ))}
-        </CardGrid>
+        <CardContainer>
+          <CardGrid cols={1}>
+            {guestArtists.map((person) => (
+              <PersonCard
+                key={person.id}
+                person={person}
+                className="h-full w-full md:min-h-[70vh]"
+              />
+            ))}
+          </CardGrid>
+        </CardContainer>
       </section>
 
       <section
@@ -98,6 +104,6 @@ export default async function About() {
           </Text>
         </TextContainer>
       </section>
-    </div>
+    </Main>
   );
 }

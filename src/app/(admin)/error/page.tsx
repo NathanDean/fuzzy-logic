@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import DisplayMessageContainer from '@/components/containers/DisplayMessageContainer';
+import Main from '@/components/Main';
 import Loading from '@/components/misc/Loading';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
@@ -42,8 +43,10 @@ function ErrorPageComponent() {
 
 export default function ErrorPage() {
   return (
-    <Suspense fallback={<Loading />}>
-      <ErrorPageComponent />
-    </Suspense>
+    <Main>
+      <Suspense fallback={<Loading />}>
+        <ErrorPageComponent />
+      </Suspense>
+    </Main>
   );
 }

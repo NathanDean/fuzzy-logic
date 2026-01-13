@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import Card from '@/components/cards/Card';
+import Main from '@/components/Main';
 import Loading from '@/components/misc/Loading';
 import Heading from '@/components/ui/Heading';
 import ListItem from '@/components/ui/ListItem';
@@ -108,52 +109,48 @@ export default function Account() {
   }, [isLoading, user]);
 
   return (
-    <>
+    <Main>
       {isLoading ? (
         <Loading />
       ) : (
-        <div>
-          <Card className="space-y-1 p-6">
-            <Heading variant="h1">Account</Heading>
+        <Card className="space-y-1 p-6">
+          <Heading variant="h1">Account</Heading>
 
-            <div className="space-y-1">
-              <Text>
-                Name: {metadata?.first_name} {metadata?.last_name}
-              </Text>
-              <Text>Email: {user?.email}</Text>
-              <Text>Upcoming workshops:</Text>
+          <div className="space-y-1">
+            <Text>
+              Name: {metadata?.first_name} {metadata?.last_name}
+            </Text>
+            <Text>Email: {user?.email}</Text>
+            <Text>Upcoming workshops:</Text>
 
-              {isSupabaseLoading ? (
-                <Text>...</Text>
-              ) : (
-                <>
-                  {errorMessage && (
-                    <Text className="error">{errorMessage}</Text>
+            {isSupabaseLoading ? (
+              <Text>...</Text>
+            ) : (
+              <>
+                {errorMessage && <Text className="error">{errorMessage}</Text>}
+
+                <ul className="list-disc space-y-1 pl-5">
+                  {bookings.length > 0 ? (
+                    bookings.map((booking) =>
+                      booking.workshop ? (
+                        <ListItem key={booking.id}>
+                          {booking.workshop.class_name} -{' '}
+                          {dayjs(
+                            `${booking.workshop.date} ${booking.workshop.start_time}`
+                          ).format('ha on ddd Do MMM')}{' '}
+                          at {booking.workshop.venue}
+                        </ListItem>
+                      ) : null
+                    )
+                  ) : (
+                    <ListItem>No bookings found</ListItem>
                   )}
-
-                  <ul className="list-disc space-y-1 pl-5">
-                    {bookings.length > 0 ? (
-                      bookings.map((booking) =>
-                        booking.workshop ? (
-                          <ListItem key={booking.id}>
-                            {booking.workshop.class_name} -{' '}
-                            {dayjs(
-                              `${booking.workshop.date} ${booking.workshop.start_time}`
-                            ).format('ha on ddd Do MMM')}{' '}
-                            at {booking.workshop.venue}
-                          </ListItem>
-                        ) : null
-                      )
-                    ) : (
-                      <ListItem>No bookings found</ListItem>
-                    )}
-                  </ul>
-                </>
-              )}
-            </div>
-          </Card>
-        </div>
+                </ul>
+              </>
+            )}
+          </div>
+        </Card>
       )}
-    </>
+    </Main>
   );
 }

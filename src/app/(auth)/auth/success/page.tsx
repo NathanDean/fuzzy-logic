@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import DisplayMessageContainer from '@/components/containers/DisplayMessageContainer';
+import Main from '@/components/Main';
 import Loading from '@/components/misc/Loading';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
@@ -36,7 +37,7 @@ function AuthSuccessComponent() {
       : [];
 
   return (
-    <>
+    <Main>
       {displayMessages.length > 0 ? (
         <DisplayMessageContainer>
           <Heading variant="h1">{displayMessages[0]}</Heading>
@@ -50,7 +51,7 @@ function AuthSuccessComponent() {
           <Heading variant="h1">Invalid success code</Heading>
         </DisplayMessageContainer>
       )}
-    </>
+    </Main>
   );
 }
 

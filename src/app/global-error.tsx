@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 
+import Main from '@/components/Main';
 import ErrorMessage from '@/components/misc/ErrorMessage';
 import Footer from '@/components/misc/Footer';
 import Header from '@/components/nav/Header';
@@ -21,7 +22,9 @@ export default function GlobalError({ error, reset }: ErrorProps) {
       <body className="flex h-screen flex-col bg-[url('/canvas.png')] bg-cover bg-fixed bg-center bg-no-repeat antialiased sm:text-lg dark:bg-[url('/canvas-dark.png')]">
         <AuthProvider>
           <Header />
-          <ErrorMessage onClick={reset} type="global" />
+          <Main>
+            <ErrorMessage onClick={reset} type="global" />
+          </Main>
         </AuthProvider>
         <Footer />
         <Analytics />

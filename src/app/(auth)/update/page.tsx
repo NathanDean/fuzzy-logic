@@ -11,6 +11,7 @@ import {
   PasswordStrengthBar,
   PasswordStrengthLabel,
 } from '@/components/forms/auth/PasswordStrength';
+import Main from '@/components/Main';
 import { useAuth } from '@/contexts/AuthContext';
 
 import usePasswordStrength from '@/hooks/usePasswordStrength';
@@ -42,43 +43,45 @@ export default function UpdatePassword() {
   const navigationLinks = <SignUpLink />;
 
   return (
-    <AuthForm
-      navigationLinks={navigationLinks}
-      onSubmit={handleSubmit}
-      errorMessage={errorMessage}
-      isDisabled={passwordStrength < 3}
-    >
-      {({ FormButton }) => (
-        <>
-          {errorMessage && <p className="error">{errorMessage}</p>}
+    <Main>
+      <AuthForm
+        navigationLinks={navigationLinks}
+        onSubmit={handleSubmit}
+        errorMessage={errorMessage}
+        isDisabled={passwordStrength < 3}
+      >
+        {({ FormButton }) => (
+          <>
+            {errorMessage && <p className="error">{errorMessage}</p>}
 
-          <label htmlFor="password">New password:</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            <label htmlFor="password">New password:</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-          <label htmlFor="confirmPassword">Confirm new password:</label>
-          <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            required
-          />
+            <label htmlFor="confirmPassword">Confirm new password:</label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              required
+            />
 
-          <div className="space-y-2">
-            <PasswordStrengthLabel score={passwordStrength} />
+            <div className="space-y-2">
+              <PasswordStrengthLabel score={passwordStrength} />
 
-            <PasswordStrengthBar score={passwordStrength} />
-          </div>
+              <PasswordStrengthBar score={passwordStrength} />
+            </div>
 
-          <FormButton>Update password</FormButton>
-        </>
-      )}
-    </AuthForm>
+            <FormButton>Update password</FormButton>
+          </>
+        )}
+      </AuthForm>
+    </Main>
   );
 }

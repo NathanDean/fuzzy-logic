@@ -5,7 +5,7 @@ import Text from '../ui/Text';
 
 export default function Footer() {
   return (
-    <footer className="flex w-full justify-between px-4 py-4">
+    <footer className="absolute right-0 bottom-0 left-0 z-10 flex w-full justify-between px-4 py-4">
       <div className="flex items-center space-x-4 text-gray-600 dark:text-gray-400">
         <Link href="/privacy">
           <Text variant="small" as="span">
