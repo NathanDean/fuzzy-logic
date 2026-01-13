@@ -4,7 +4,7 @@ import Text from '@/components/ui/Text';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="sm:w-xl lg:w-3xl xl:w-4xl space-y-4 large-text">
+    <div className="large-text space-y-4 sm:w-xl lg:w-3xl xl:w-4xl">
       {/* Main heading */}
       <Heading variant="h1">Fuzzy Logic customer privacy notice</Heading>
 
@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
           goods, including delivery:
         </Text>
 
-        <ul className="list-disc pl-5 space-y-1">
+        <ul className="list-disc space-y-1 pl-5">
           <ListItem>Names and contact details</ListItem>
           <ListItem>Purchase or account history</ListItem>
         </ul>
@@ -67,7 +67,7 @@ export default function PrivacyPolicy() {
           {`ICO's`} website:
         </Text>
 
-        <ul className="list-disc pl-5 space-y-4 detail-text">
+        <ul className="detail-text list-disc space-y-4 pl-5">
           <ListItem>
             <span className="font-bold">Your right of access</span> - You have
             the right to ask us for copies of your personal information. You can
@@ -196,7 +196,7 @@ export default function PrivacyPolicy() {
             <span className="font-bold">provide services and goods</span> are:
           </Text>
 
-          <ul className="list-disc pl-5 space-y-1">
+          <ul className="list-disc space-y-1 pl-5">
             <ListItem>
               <span className="font-bold">Legitimate interests</span> -{' '}
               {`we're`} collecting or using your information because it benefits
@@ -204,7 +204,7 @@ export default function PrivacyPolicy() {
               risk of harm to anyone. All of your data protection rights may
               apply, except the right to portability. Our legitimate interests
               are:
-              <ul className="list-disc pl-5 mt-1 space-y-1">
+              <ul className="mt-1 list-disc space-y-1 pl-5">
                 <ListItem>
                   We collect {`customers'`} names to allow us to keep track of
                   who is attending workshops. We collect {`customers'`} email
@@ -225,7 +225,7 @@ export default function PrivacyPolicy() {
       {/* Where we get information section */}
       <section className="space-y-4">
         <Heading variant="h2">Where we get personal information from</Heading>
-        <ul className="list-disc pl-5 space-y-1">
+        <ul className="list-disc space-y-1 pl-5">
           <ListItem>Directly from you</ListItem>
         </ul>
       </section>
@@ -237,7 +237,7 @@ export default function PrivacyPolicy() {
           We retain your personal information for as long as necessary to
           provide our services and fulfill our legal obligations. Specifically:
         </Text>
-        <ul className="list-disc pl-5 space-y-1 detail-text">
+        <ul className="detail-text list-disc space-y-1 pl-5">
           <ListItem>
             Account information is kept while your account is active and for 7
             years after closure for legal and tax purposes
@@ -257,7 +257,7 @@ export default function PrivacyPolicy() {
       <section className="space-y-4">
         <Heading variant="h2">Who we share information with</Heading>
 
-        <ul className="list-disc pl-5 space-y-1">
+        <ul className="list-disc space-y-1 pl-5">
           <ListItem>
             Suppliers and service providers (including payment processors and
             email service providers)
@@ -284,7 +284,7 @@ export default function PrivacyPolicy() {
           <Text>
             <span className="font-bold">The {`ICO's`} address:</span>
           </Text>
-          <address className="not-italic pl-4">
+          <address className="pl-4 not-italic">
             <Text>Information {`Commissioner's`} Office</Text>
             <Text>Wycliffe House</Text>
             <Text>Water Lane</Text>

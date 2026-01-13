@@ -19,9 +19,9 @@ interface PersonCardProps {
 export default function PersonCard({ person, className }: PersonCardProps) {
   return (
     <Card key={person.id} className={className}>
-      <div className="flex flex-col lg:flex-row h-full">
+      <div className="flex h-full flex-col lg:flex-row">
         {/* Image */}
-        <div className="h-96 lg:w-1/2 lg:h-auto relative">
+        <div className="relative h-96 lg:h-auto lg:w-1/2">
           <CardImage
             src={
               `/people/${person.image_url}` ||
@@ -32,7 +32,7 @@ export default function PersonCard({ person, className }: PersonCardProps) {
           />
         </div>
 
-        <div className="lg:w-1/2 flex flex-col flex-grow p-6 space-y-2">
+        <div className="flex flex-grow flex-col space-y-2 p-6 lg:w-1/2">
           {/* Name */}
           <Heading variant="h2">{person.name}</Heading>
 

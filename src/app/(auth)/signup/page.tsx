@@ -39,7 +39,7 @@ export default function SignUpPage() {
     >
       {({ FormTurnstile, FormButton }) => (
         <>
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-6 gap-y-3">
+          <div className="grid grid-cols-1 gap-y-3 lg:grid-cols-2 lg:gap-x-6">
             <div className="flex flex-col space-y-1">
               <label htmlFor="firstName">First name:</label>
               <input id="firstName" name="firstName" type="text" required />
@@ -80,24 +80,24 @@ export default function SignUpPage() {
               <PasswordStrengthBar score={passwordStrength} />
             </div>
 
-            <div className="flex flex-col justify-end h-full">
+            <div className="flex h-full flex-col justify-end">
               <FormTurnstile />
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="flex flex-row justify-center items-center w-full space-x-2 text-center mb-2 lg:mb-0">
+              <div className="mb-2 flex w-full flex-row items-center justify-center space-x-2 text-center lg:mb-0">
                 <input
                   id="subscribe"
                   name="subscribe"
                   type="checkbox"
-                  className="w-auto h-full"
+                  className="h-full w-auto"
                 />
                 <label htmlFor="subscribe">Subscribe to mailing list</label>
               </div>
               <FormButton>Sign up</FormButton>
             </div>
           </div>
-          <div className="text-center mt-4"></div>
+          <div className="mt-4 text-center"></div>
         </>
       )}
     </AuthForm>

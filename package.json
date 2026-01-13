@@ -60,7 +60,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-silent-reporter": "^0.6.0",
     "lint-staged": "^16.2.7",
-    "prettier": "^3.5.3",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "typescript": "^5"

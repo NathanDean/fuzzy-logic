@@ -18,7 +18,7 @@ export default function GlobalError({ error, reset }: ErrorProps) {
 
   return (
     <html lang="en" className={`${sigmar.variable} ${outfit.variable}`}>
-      <body className="antialiased flex flex-col h-screen bg-[url('/canvas.png')] dark:bg-[url('/canvas-dark.png')] bg-cover bg-no-repeat bg-fixed bg-center sm:text-lg">
+      <body className="flex h-screen flex-col bg-[url('/canvas.png')] bg-cover bg-fixed bg-center bg-no-repeat antialiased sm:text-lg dark:bg-[url('/canvas-dark.png')]">
         <AuthProvider>
           <Header />
           <ErrorMessage onClick={reset} type="global" />

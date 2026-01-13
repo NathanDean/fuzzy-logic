@@ -113,7 +113,7 @@ export default function Account() {
         <Loading />
       ) : (
         <div>
-          <Card className="p-6 space-y-1">
+          <Card className="space-y-1 p-6">
             <Heading variant="h1">Account</Heading>
 
             <div className="space-y-1">
@@ -131,7 +131,7 @@ export default function Account() {
                     <Text className="error">{errorMessage}</Text>
                   )}
 
-                  <ul className="list-disc pl-5 space-y-1">
+                  <ul className="list-disc space-y-1 pl-5">
                     {bookings.length > 0 ? (
                       bookings.map((booking) =>
                         booking.workshop ? (

@@ -3,7 +3,7 @@ import Text from '@/components/ui/Text';
 
 export default function CookiePolicy() {
   return (
-    <div className="sm:w-xl lg:w-3xl xl:w-4xl space-y-4">
+    <div className="space-y-4 sm:w-xl lg:w-3xl xl:w-4xl">
       <Heading variant="h1">Cookie Notice</Heading>
 
       <div className="space-y-6">
@@ -19,7 +19,7 @@ export default function CookiePolicy() {
           </Heading>
           <div className="space-y-4">
             {/* Authentication cookies */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="rounded-lg bg-gray-50 p-4">
               <Heading variant="h3" className="mb-2">
                 Authentication Cookies
               </Heading>
@@ -40,7 +40,7 @@ export default function CookiePolicy() {
             </div>
 
             {/* Turnstile cookies */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="rounded-lg bg-gray-50 p-4">
               <Heading variant="h3" className="mb-2">
                 CAPTCHA Security Cookies
               </Heading>
@@ -77,7 +77,7 @@ export default function CookiePolicy() {
           </Text>{' '}
         </div>
 
-        <div className="pt-4 border-t border-gray-200">
+        <div className="border-t border-gray-200 pt-4">
           <Text>
             This policy complies with the Privacy and Electronic Communications
             Regulations (PECR). For questions about our cookie use, please

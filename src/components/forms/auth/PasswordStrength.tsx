@@ -25,7 +25,7 @@ export function PasswordStrengthBar({ score }: { score: number }) {
   const { colour } = STRENGTH_CONFIG[score];
 
   return (
-    <div className="bg-gray-300 w-full h-2.5 rounded-full">
+    <div className="h-2.5 w-full rounded-full bg-gray-300">
       <div
         className={cn(
           'h-2.5 rounded-full transition-all duration-300',

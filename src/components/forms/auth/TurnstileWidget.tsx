@@ -25,7 +25,7 @@ export default function TurnstileWidget({
   return (
     <div
       className={cn(
-        'min-h-[150px] sm:min-h-[75px] flex justify-center items-center',
+        'flex min-h-[150px] items-center justify-center sm:min-h-[75px]',
         className
       )}
     >

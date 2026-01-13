@@ -30,11 +30,7 @@ export default function CardImage({
       width={showFullInfo ? undefined : 5000}
       height={showFullInfo ? undefined : 5000}
       alt={alt}
-      className={`
-                ${className} 
-                ${!showFullInfo ? heightClass : 'h-full w-full'} 
-                object-center object-cover
-            `}
+      className={` ${className} ${!showFullInfo ? heightClass : 'h-full w-full'} object-cover object-center`}
     />
   );
 }

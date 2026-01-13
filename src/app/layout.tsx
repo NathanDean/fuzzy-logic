@@ -44,10 +44,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sigmar.variable} ${outfit.variable}`}>
-      <body className="antialiased flex flex-col h-screen bg-[url('/canvas.png')] dark:bg-[url('/canvas-dark.png')] bg-cover bg-no-repeat bg-fixed bg-center sm:text-lg">
+      <body className="flex h-screen flex-col bg-[url('/canvas.png')] bg-cover bg-fixed bg-center bg-no-repeat antialiased sm:text-lg dark:bg-[url('/canvas-dark.png')]">
         <Header />
 
-        <main className="w-3/4 sm:w-xl lg:w-3xl xl:w-4xl flex flex-grow flex-col items-center justify-center mx-auto pt-20 sm:px-10 sm:pt-35">
+        <main className="mx-auto flex w-3/4 flex-grow flex-col items-center justify-center pt-20 sm:w-xl sm:px-10 sm:pt-35 lg:w-3xl xl:w-4xl">
           {children}
         </main>
         <Footer />

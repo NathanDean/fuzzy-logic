@@ -33,8 +33,8 @@ export default async function About() {
   const guestArtists = people.slice(1);
 
   return (
-    <div className="-mt-15 sm:-mt-30 -mb-13 sm:-mb-16">
-      <section className="min-h-screen flex flex-col justify-center items-start space-y-2">
+    <div className="-mt-15 -mb-13 sm:-mt-30 sm:-mb-16">
+      <section className="flex min-h-screen flex-col items-start justify-center space-y-2">
         <Text>Fuzzy Logic is an improv company.</Text>
         <Text>
           We run workshops targeting specific technical skills that make up the
@@ -45,7 +45,7 @@ export default async function About() {
           ambitious about improving their skills and exploring the artistic
           potential of improv.
         </Text>
-        <div className="w-full flex flex-row items-stretch justify-center space-x-2">
+        <div className="flex w-full flex-row items-stretch justify-center space-x-2">
           <Button href="#people">
             <Text as="span">{`Who we are`}</Text>
           </Button>
@@ -57,7 +57,7 @@ export default async function About() {
 
       <section
         id="people"
-        className="min-h-screen flex flex-col justify-center items-center space-y-8 scroll-mt-20"
+        className="flex min-h-screen scroll-mt-20 flex-col items-center justify-center space-y-8"
       >
         <Heading variant="h2">Core team</Heading>
         <CardGrid cols={1}>
@@ -65,7 +65,7 @@ export default async function About() {
             <PersonCard
               key={person.id}
               person={person}
-              className="w-full h-full md:min-h-[70vh]"
+              className="h-full w-full md:min-h-[70vh]"
             />
           ))}
         </CardGrid>
@@ -80,7 +80,7 @@ export default async function About() {
 
       <section
         id="story"
-        className="min-h-screen flex flex-col justify-center items-start space-y-2"
+        className="flex min-h-screen flex-col items-start justify-center space-y-2"
       >
         <Text>
           {`Fuzzy Logic was founded by Nathan Dean, following a decade's experience in the world of artist and artform development at Arts Council England and talent agency Avalon.`}

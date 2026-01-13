@@ -25,7 +25,7 @@ function ConfirmSignupComponent() {
 
   if (!confirmationUrl) {
     return (
-      <div className="flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
+      <div className="flex flex-col items-center space-y-2 sm:w-xl lg:w-3xl xl:w-4xl">
         <Heading variant="h1">Invalid confirmation link</Heading>
         <Text>This confirmation link appears to be invalid or incomplete.</Text>
         <Text>
@@ -37,7 +37,7 @@ function ConfirmSignupComponent() {
   }
 
   return (
-    <div className="flex flex-col items-center sm:w-xl lg:w-3xl xl:w-4xl space-y-2">
+    <div className="flex flex-col items-center space-y-2 sm:w-xl lg:w-3xl xl:w-4xl">
       <Heading variant="h1">Please confirm your email address</Heading>
 
       <Text>

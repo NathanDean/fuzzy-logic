@@ -10,7 +10,7 @@ interface CardProps {
 export default function Card({ children, className = '' }: CardProps) {
   return (
     <div
-      className={`${cn('rounded-2xl bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm overflow-hidden', className)}`}
+      className={`${cn('overflow-hidden rounded-2xl bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm', className)}`}
     >
       {children}
     </div>

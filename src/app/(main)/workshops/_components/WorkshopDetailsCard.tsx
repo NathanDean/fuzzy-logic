@@ -32,10 +32,10 @@ export default function WorkshopDetailsCard({
   return (
     // <Card className="md:min-h-[70vh]">
     <Card className={className}>
-      <div className="flex flex-col lg:flex-row h-full">
+      <div className="flex h-full flex-col lg:flex-row">
         {/* Image */}
 
-        <div className="h-96 lg:w-1/2 lg:h-auto relative">
+        <div className="relative h-96 lg:h-auto lg:w-1/2">
           <CardImage
             src={`/workshops/${workshop.image_url}`}
             alt="Workshop image"
@@ -44,7 +44,7 @@ export default function WorkshopDetailsCard({
         </div>
 
         {/* Text content */}
-        <div className="p-6 flex flex-col flex-grow lg:w-1/2">
+        <div className="flex flex-grow flex-col p-6 lg:w-1/2">
           <div className="flex-grow space-y-1">
             {/* Workshop name */}
             <Heading variant="h2">{workshop.class_name}</Heading>
@@ -77,7 +77,7 @@ export default function WorkshopDetailsCard({
           </div>
 
           {/* Buttons */}
-          <div className="flex sm:flex-row gap-3 mt-4">
+          <div className="mt-4 flex gap-3 sm:flex-row">
             {/* Book now */}
 
             <Button

@@ -50,10 +50,10 @@ export default function MailingListForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`${isInFooter && 'text-sm'} m-0 p-0 bg-transparent shadow-none`}
+      className={`${isInFooter && 'text-sm'} m-0 bg-transparent p-0 shadow-none`}
     >
       {subscribeMessage && <Text variant="small">{subscribeMessage}</Text>}
-      <div className="w-full sm:w-auto flex flex-col sm:flex-row items-center sm:space-x-2 space-y-2 sm:space-y-0">
+      <div className="flex w-full flex-col items-center space-y-2 sm:w-auto sm:flex-row sm:space-y-0 sm:space-x-2">
         <input
           className={`${isInFooter && 'h-8'} my-0`}
           id="email"
@@ -63,7 +63,7 @@ export default function MailingListForm({
           required
         />
         <Button
-          className={`${isInFooter && 'h-8 text-sm'} sm:my-0 `}
+          className={`${isInFooter && 'h-8 text-sm'} sm:my-0`}
           type="submit"
         >
           <Text variant="small" as="span">

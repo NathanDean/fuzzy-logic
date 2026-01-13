@@ -31,7 +31,7 @@ export default function WorkshopCard({
 
   return (
     <Card className={className}>
-      <div className={`flex flex-col h-full`}>
+      <div className={`flex h-full flex-col`}>
         {/* Image */}
 
         <div className="relative">
@@ -42,7 +42,7 @@ export default function WorkshopCard({
         </div>
 
         {/* Text content */}
-        <div className="p-6 flex flex-col flex-grow">
+        <div className="flex flex-grow flex-col p-6">
           <div className="flex-grow space-y-1">
             {/* Workshop name */}
             <Heading variant="h2">{workshop.class_name}</Heading>
@@ -65,7 +65,7 @@ export default function WorkshopCard({
           </div>
 
           {/* Buttons */}
-          <div className="flex sm:flex-row gap-3 mt-4">
+          <div className="mt-4 flex gap-3 sm:flex-row">
             {/* Book now */}
             <Button
               onClick={handleBookNow}

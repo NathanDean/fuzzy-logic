@@ -19,23 +19,23 @@
   }
 
   h1 {
-    @apply text-2xl sm:text-3xl font-medium;
+    @apply text-2xl font-medium sm:text-3xl;
   }
 
   h2 {
-    @apply text-xl sm:text-2xl font-medium;
+    @apply text-xl font-medium sm:text-2xl;
   }
 
   h3 {
-    @apply text-lg sm:text-xl font-medium;
+    @apply text-lg font-medium sm:text-xl;
   }
 
   h4 {
-    @apply text-base sm:text-lg font-medium;
+    @apply text-base font-medium sm:text-lg;
   }
 
   header a {
-    @apply hover:text-blue-700 dark:hover:text-indigo-300 transition-colors duration-150;
+    @apply transition-colors duration-150 hover:text-blue-700 dark:hover:text-indigo-300;
   }
 }
 
@@ -43,8 +43,7 @@
   input,
   textarea,
   select {
-    @apply w-full p-2 border rounded-sm bg-[var(--background)]/80 focus:outline-1 outline-blue-700
-      hover:border-gray-500;
+    @apply w-full rounded-sm border bg-[var(--background)]/80 p-2 outline-blue-700 hover:border-gray-500 focus:outline-1;
   }
 }
 
