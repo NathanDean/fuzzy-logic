@@ -1,5 +1,6 @@
 import PersonCard from '@/app/(main)/about/_components/PersonCard';
 import CardGrid from '@/components/cards/CardGrid';
+import TextContainer from '@/components/containers/TextContainer';
 import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
@@ -34,25 +35,27 @@ export default async function About() {
 
   return (
     <div className="-mt-15 -mb-13 sm:-mt-30 sm:-mb-16">
-      <section className="flex min-h-screen flex-col items-start justify-center space-y-2">
-        <Text>Fuzzy Logic is an improv company.</Text>
-        <Text>
-          We run workshops targeting specific technical skills that make up the
-          craft of improv.
-        </Text>
-        <Text>
-          Our students are improvisers who are actively performing, and are
-          ambitious about improving their skills and exploring the artistic
-          potential of improv.
-        </Text>
-        <div className="flex w-full flex-row items-stretch justify-center space-x-2">
-          <Button href="#people">
-            <Text as="span">{`Who we are`}</Text>
-          </Button>
-          <Button href="#story">
-            <Text as="span">{`Our story`}</Text>
-          </Button>
-        </div>
+      <section className="flex min-h-screen items-center justify-center">
+        <TextContainer>
+          <Text>Fuzzy Logic is an improv company.</Text>
+          <Text>
+            We run workshops targeting specific technical skills that make up
+            the craft of improv.
+          </Text>
+          <Text>
+            Our students are improvisers who are actively performing, and are
+            ambitious about improving their skills and exploring the artistic
+            potential of improv.
+          </Text>
+          <div className="flex w-full flex-row items-stretch justify-center space-x-2">
+            <Button href="#people">
+              <Text as="span">{`Who we are`}</Text>
+            </Button>
+            <Button href="#story">
+              <Text as="span">{`Our story`}</Text>
+            </Button>
+          </div>
+        </TextContainer>
       </section>
 
       <section
@@ -80,14 +83,16 @@ export default async function About() {
 
       <section
         id="story"
-        className="flex min-h-screen flex-col items-start justify-center space-y-2"
+        className="flex min-h-screen items-center justify-center space-y-2"
       >
-        <Text>
-          {`Fuzzy Logic was founded by Nathan Dean, following a decade's experience in the world of artist and artform development at Arts Council England and talent agency Avalon.`}
-        </Text>
-        <Text>
-          {`We ran our first workshops in July 2025. We also produce the sketch series scenesAboutLeaving and the twoprov show A Very Capable Boy, with more shows to come in future.`}
-        </Text>
+        <TextContainer>
+          <Text>
+            {`Fuzzy Logic was founded by Nathan Dean, following a decade's experience in the world of artist and artform development at Arts Council England and talent agency Avalon.`}
+          </Text>
+          <Text>
+            {`We ran our first workshops in July 2025. We also produce the sketch series scenesAboutLeaving and the twoprov show A Very Capable Boy, with more shows to come in future.`}
+          </Text>
+        </TextContainer>
       </section>
     </div>
   );

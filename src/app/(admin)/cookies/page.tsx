@@ -1,9 +1,10 @@
+import TextContainer from '@/components/containers/TextContainer';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
 export default function CookiePolicy() {
   return (
-    <div className="space-y-4 sm:w-xl lg:w-3xl xl:w-4xl">
+    <TextContainer>
       <Heading variant="h1">Cookie Notice</Heading>
 
       <div className="space-y-6">
@@ -85,6 +86,6 @@ export default function CookiePolicy() {
           </Text>{' '}
         </div>
       </div>
-    </div>
+    </TextContainer>
   );
 }

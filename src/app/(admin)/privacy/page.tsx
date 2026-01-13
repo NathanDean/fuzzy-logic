@@ -1,18 +1,18 @@
+import TextContainer from '@/components/containers/TextContainer';
 import Heading from '@/components/ui/Heading';
 import ListItem from '@/components/ui/ListItem';
 import Text from '@/components/ui/Text';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="large-text space-y-4 sm:w-xl lg:w-3xl xl:w-4xl">
+    <TextContainer>
+      {' '}
       {/* Main heading */}
       <Heading variant="h1">Fuzzy Logic customer privacy notice</Heading>
-
       <Text>
         This privacy notice tells you what to expect us to do with your personal
         information.
       </Text>
-
       {/* Contact details section */}
       <section className="space-y-4">
         <Heading variant="h2">Contact details</Heading>
@@ -21,7 +21,6 @@ export default function PrivacyPolicy() {
           <Text>data@fzzy.co.uk</Text>
         </div>
       </section>
-
       {/* What information we collect section */}
       <section className="space-y-4">
         <Heading variant="h2">
@@ -38,7 +37,6 @@ export default function PrivacyPolicy() {
           <ListItem>Purchase or account history</ListItem>
         </ul>
       </section>
-
       {/* Lawful bases section */}
       <section className="space-y-4">
         <Heading variant="h2">Lawful bases and data protection rights</Heading>
@@ -221,7 +219,6 @@ export default function PrivacyPolicy() {
           </Text>
         </div>
       </section>
-
       {/* Where we get information section */}
       <section className="space-y-4">
         <Heading variant="h2">Where we get personal information from</Heading>
@@ -229,7 +226,6 @@ export default function PrivacyPolicy() {
           <ListItem>Directly from you</ListItem>
         </ul>
       </section>
-
       {/* How long we keep information section */}
       <section className="space-y-4">
         <Heading variant="h2">How long we keep information</Heading>
@@ -252,7 +248,6 @@ export default function PrivacyPolicy() {
           </ListItem>
         </ul>
       </section>
-
       {/* Who we share information with section */}
       <section className="space-y-4">
         <Heading variant="h2">Who we share information with</Heading>
@@ -264,7 +259,6 @@ export default function PrivacyPolicy() {
           </ListItem>
         </ul>
       </section>
-
       {/* How to complain section */}
       <section className="space-y-4">
         <Heading variant="h2">How to complain</Heading>
@@ -308,12 +302,11 @@ export default function PrivacyPolicy() {
           </Text>
         </div>
       </section>
-
       {/* Last updated section */}
       <section className="space-y-4">
         <Heading variant="h2">Last updated</Heading>
         <Text>This privacy notice was last updated on 26/05/2025.</Text>
       </section>
-    </div>
+    </TextContainer>
   );
 }
