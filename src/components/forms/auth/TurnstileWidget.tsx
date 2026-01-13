@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import { Turnstile } from '@marsidev/react-turnstile';
 
@@ -9,10 +9,7 @@ interface TurnstileWidgetProps {
   className?: string;
 }
 
-export default function TurnstileWidget({
-  onSuccess,
-  className = '',
-}: TurnstileWidgetProps) {
+function TurnstileWidget({ onSuccess, className = '' }: TurnstileWidgetProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -43,3 +40,5 @@ export default function TurnstileWidget({
     </div>
   );
 }
+
+export default memo(TurnstileWidget);

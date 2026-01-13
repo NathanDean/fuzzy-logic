@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { signup } from '@/actions/auth';
 import AuthForm from '@/components/forms/auth/Authform';
@@ -9,6 +9,7 @@ import {
   PasswordStrengthBar,
   PasswordStrengthLabel,
 } from '@/components/forms/auth/PasswordStrength';
+import TurnstileWidget from '@/components/forms/auth/TurnstileWidget';
 import Main from '@/components/Main';
 
 import usePasswordStrength from '@/hooks/usePasswordStrength';
@@ -17,6 +18,8 @@ export default function SignUpPage() {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const passwordStrength = usePasswordStrength(password);
+  const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
+  const isDisabled = passwordStrength < 3 || isTurnstileLoading;
 
   const handleSubmit = async (formData: FormData) => {
     setErrorMessage('');
@@ -30,15 +33,20 @@ export default function SignUpPage() {
 
   const navigationLinks = <LoginLink />;
 
+  const handleTurnstileSuccess = useCallback(
+    () => setIsTurnstileLoading(false),
+    []
+  );
+
   return (
     <Main>
       <AuthForm
-        isDisabled={passwordStrength < 3}
+        isDisabled={isDisabled}
         navigationLinks={navigationLinks}
         onSubmit={handleSubmit}
         errorMessage={errorMessage}
       >
-        {({ FormTurnstile, FormButton }) => (
+        {({ FormButton }) => (
           <>
             <div className="grid grid-cols-1 gap-y-3 lg:grid-cols-2 lg:gap-x-6">
               <div className="flex flex-col space-y-1">
@@ -82,7 +90,7 @@ export default function SignUpPage() {
               </div>
 
               <div className="flex h-full flex-col justify-end">
-                <FormTurnstile />
+                <TurnstileWidget onSuccess={handleTurnstileSuccess} />
               </div>
 
               <div className="flex flex-col items-center">

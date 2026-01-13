@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
@@ -10,6 +10,7 @@ import { createCheckoutSession } from '@/actions/stripe';
 import AuthForm from '@/components/forms/auth/Authform';
 import ResetPasswordLink from '@/components/forms/auth/links/ResetPasswordLink';
 import SignUpLink from '@/components/forms/auth/links/SignUpLink';
+import TurnstileWidget from '@/components/forms/auth/TurnstileWidget';
 import Main from '@/components/Main';
 import Loading from '@/components/misc/Loading';
 import Text from '@/components/ui/Text';
@@ -17,6 +18,7 @@ import Text from '@/components/ui/Text';
 import { createClient } from '@/utils/supabase/browserClient';
 
 function LoginForm() {
+  const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirectTo');
@@ -54,6 +56,11 @@ function LoginForm() {
     }
   };
 
+  const handleTurnstileSuccess = useCallback(
+    () => setIsTurnstileLoading(false),
+    []
+  );
+
   const navigationLinks = (
     <>
       <SignUpLink />
@@ -66,9 +73,10 @@ function LoginForm() {
       <AuthForm
         navigationLinks={navigationLinks}
         onSubmit={handleSubmit}
+        isDisabled={isTurnstileLoading}
         errorMessage={errorMessage}
       >
-        {({ FormTurnstile, FormButton }) => (
+        {({ FormButton }) => (
           <>
             {redirectTo === 'workshop' && workshopId && (
               <Text className="text-center">
@@ -81,7 +89,7 @@ function LoginForm() {
             <label htmlFor="password">Password:</label>
             <input id="password" name="password" type="password" required />
 
-            <FormTurnstile />
+            <TurnstileWidget onSuccess={handleTurnstileSuccess} />
 
             <FormButton>Log in</FormButton>
           </>
