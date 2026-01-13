@@ -1,156 +1,40 @@
-'use client';
+import { redirect } from 'next/navigation';
 
-import { useEffect, useState } from 'react';
-
-import { useRouter } from 'next/navigation';
-
-import Card from '@/components/cards/Card';
 import Main from '@/components/Main';
-import Loading from '@/components/misc/Loading';
-import Heading from '@/components/ui/Heading';
-import ListItem from '@/components/ui/ListItem';
-import Text from '@/components/ui/Text';
-import { useAuth } from '@/contexts/AuthContext';
-import dayjs from 'dayjs';
-import advancedFormat from 'dayjs/plugin/advancedFormat';
 
-import { createClient } from '@/utils/supabase/browserClient';
+import { createClient } from '@/utils/supabase/serverClient';
 
-dayjs.extend(advancedFormat);
+import AccountClientWrapper from './AccountClientWrapper';
 
-interface Booking {
-  id: string;
-  created_at: string;
-  workshop_id: string;
-  user_id: string;
-  status: string;
-  session_id: string;
-  workshop: {
-    id: string;
-    created_at: string;
-    class_name: string;
-    date: string;
-    start_time: string;
-    end_time: string;
-    venue: string;
-    price: number;
-    max_places_available: number;
-    description: string;
-    bookings: number;
-  };
-}
+export default async function Account() {
+  const supabase = await createClient();
+  const today = new Date().toISOString().split('T')[0];
 
-export default function Account() {
-  const { user, isLoading, isLoggedIn } = useAuth();
-  const [bookings, setBookings] = useState<Booking[]>([]);
-  const [isSupabaseLoading, setIsSupabaseLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const router = useRouter();
-  const metadata = user?.user_metadata;
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
 
-  useEffect(() => {
-    // If no user after AuthContext loads, redirect to login page
-    if (!isLoading && !isLoggedIn) {
-      router.push('/login');
-    }
-  }, [isLoading, isLoggedIn, router]);
+  if (authError || !user) {
+    redirect('/login');
+  }
 
-  useEffect(() => {
-    async function fetchBookings() {
-      setErrorMessage('');
+  const { data: bookings, error: dbError } = await supabase
+    .from('bookings')
+    .select('*, workshop:workshops(*)')
+    .eq('user_id', user.id)
+    .eq('status', 'confirmed')
+    .gte('workshop.date', today)
+    .order('date', { referencedTable: 'workshops', ascending: true })
+    .order('start_time', { referencedTable: 'workshops', ascending: true });
 
-      if (!isLoading && user) {
-        try {
-          const supabase = createClient();
-          const { data, error } = await supabase
-            .from('bookings')
-            .select('*, workshop:workshops(*)')
-            .eq('user_id', user.id)
-            .eq('status', 'confirmed');
-
-          if (error) {
-            throw error;
-          }
-
-          if (data) {
-            const futureBookings = data
-              .filter(
-                (booking) =>
-                  booking.workshop &&
-                  booking.workshop.date >=
-                    new Date().toISOString().split('T')[0]
-              )
-              .sort((a, b) => {
-                // Sort by date
-                if (a.workshop.date !== b.workshop.date) {
-                  return a.workshop.date.localeCompare(b.workshop.date);
-                }
-
-                // If same date sort by time
-                return a.workshop.start_time.localeCompare(
-                  b.workshop.start_time
-                );
-              });
-
-            setBookings(futureBookings);
-          }
-        } catch (error) {
-          console.error('Error fetching workshops', error);
-          setErrorMessage(
-            'Error fetching bookings.  Please try refreshing the page, or contact us if the problem continues.'
-          );
-        } finally {
-          setIsSupabaseLoading(false);
-        }
-      }
-    }
-
-    fetchBookings();
-  }, [isLoading, user]);
+  if (dbError) {
+    throw new Error('Error loading bookings.');
+  }
 
   return (
     <Main>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <Card className="space-y-1 p-6">
-          <Heading variant="h1">Account</Heading>
-
-          <div className="space-y-1">
-            <Text>
-              Name: {metadata?.first_name} {metadata?.last_name}
-            </Text>
-            <Text>Email: {user?.email}</Text>
-            <Text>Upcoming workshops:</Text>
-
-            {isSupabaseLoading ? (
-              <Text>...</Text>
-            ) : (
-              <>
-                {errorMessage && <Text className="error">{errorMessage}</Text>}
-
-                <ul className="list-disc space-y-1 pl-5">
-                  {bookings.length > 0 ? (
-                    bookings.map((booking) =>
-                      booking.workshop ? (
-                        <ListItem key={booking.id}>
-                          {booking.workshop.class_name} -{' '}
-                          {dayjs(
-                            `${booking.workshop.date} ${booking.workshop.start_time}`
-                          ).format('ha on ddd Do MMM')}{' '}
-                          at {booking.workshop.venue}
-                        </ListItem>
-                      ) : null
-                    )
-                  ) : (
-                    <ListItem>No bookings found</ListItem>
-                  )}
-                </ul>
-              </>
-            )}
-          </div>
-        </Card>
-      )}
+      <AccountClientWrapper user={user} bookings={bookings} />
     </Main>
   );
 }
