@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
+import DisplayMessageContainer from '@/components/containers/DisplayMessageContainer';
 import Loading from '@/components/misc/Loading';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
@@ -27,7 +28,7 @@ function ErrorPageComponent() {
       : 'Unknown error';
 
   return (
-    <div className="flex flex-col items-center space-y-1">
+    <DisplayMessageContainer>
       <Heading variant="h1">Sorry, something went wrong.</Heading>
 
       <Text>Error: {displayMessage}</Text>
@@ -35,7 +36,7 @@ function ErrorPageComponent() {
       <Text>
         Please try again, if the problem continues please get in touch.
       </Text>
-    </div>
+    </DisplayMessageContainer>
   );
 }
 

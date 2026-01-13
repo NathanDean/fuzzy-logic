@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
+import DisplayMessageContainer from '@/components/containers/DisplayMessageContainer';
 import Loading from '@/components/misc/Loading';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
@@ -37,15 +38,17 @@ function AuthSuccessComponent() {
   return (
     <>
       {displayMessages.length > 0 ? (
-        <div className="flex flex-col items-center space-y-1">
+        <DisplayMessageContainer>
           <Heading variant="h1">{displayMessages[0]}</Heading>
 
           {displayMessages[1] && <Text>{displayMessages[1]}</Text>}
 
           {displayMessages[2] && <Text>{displayMessages[2]}</Text>}
-        </div>
+        </DisplayMessageContainer>
       ) : (
-        <Heading variant="h1">Invalid success code</Heading>
+        <DisplayMessageContainer>
+          <Heading variant="h1">Invalid success code</Heading>
+        </DisplayMessageContainer>
       )}
     </>
   );

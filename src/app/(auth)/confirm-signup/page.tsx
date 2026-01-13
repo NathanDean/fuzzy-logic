@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
 
+import DisplayMessageContainer from '@/components/containers/DisplayMessageContainer';
 import Loading from '@/components/misc/Loading';
 import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
@@ -25,19 +26,19 @@ function ConfirmSignupComponent() {
 
   if (!confirmationUrl) {
     return (
-      <div className="flex flex-col items-center space-y-2 sm:w-xl lg:w-3xl xl:w-4xl">
+      <DisplayMessageContainer>
         <Heading variant="h1">Invalid confirmation link</Heading>
         <Text>This confirmation link appears to be invalid or incomplete.</Text>
         <Text>
           Please try clicking the link in your email again, or contact us if the
           problem continues.
         </Text>
-      </div>
+      </DisplayMessageContainer>
     );
   }
 
   return (
-    <div className="flex flex-col items-center space-y-2 sm:w-xl lg:w-3xl xl:w-4xl">
+    <DisplayMessageContainer>
       <Heading variant="h1">Please confirm your email address</Heading>
 
       <Text>
@@ -56,7 +57,7 @@ function ConfirmSignupComponent() {
       </Button>
 
       <Text>{`If you have any problems signing up please get in touch.`}</Text>
-    </div>
+    </DisplayMessageContainer>
   );
 }
 

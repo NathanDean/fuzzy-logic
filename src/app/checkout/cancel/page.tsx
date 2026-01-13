@@ -1,5 +1,10 @@
+import DisplayMessageContainer from '@/components/containers/DisplayMessageContainer';
 import Heading from '@/components/ui/Heading';
 
 export default function Cancel() {
-  return <Heading variant="h1">Booking cancelled</Heading>;
+  return (
+    <DisplayMessageContainer>
+      <Heading variant="h1">Booking cancelled</Heading>
+    </DisplayMessageContainer>
+  );
 }
