@@ -27,8 +27,8 @@ export default function CardImage({
     <Image
       src={src}
       fill={showFullInfo}
-      width={showFullInfo ? undefined : 5000}
-      height={showFullInfo ? undefined : 5000}
+      width={showFullInfo ? undefined : 1000}
+      height={showFullInfo ? undefined : 1000}
       alt={alt}
       className={` ${className} ${!showFullInfo ? heightClass : 'h-full w-full'} object-cover object-center`}
     />

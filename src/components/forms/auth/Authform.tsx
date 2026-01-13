@@ -27,7 +27,7 @@ export default function AuthForm({
   className = '',
 }: AuthFormProps) {
   const styles = cn(
-    'grid min-w-[350px] space-y-2 rounded-2xl bg-[var(--background)]/80 p-10 text-center text-lg text-[var(--foreground)] shadow-sm',
+    'grid min-w-[350px] space-y-2 rounded-2xl bg-[var(--background)]/80 p-10 text-center text-[var(--foreground)] shadow-sm',
     className
   );
 

@@ -7,6 +7,8 @@ import Link from 'next/link';
 
 import { useAuth } from '@/contexts/AuthContext';
 
+import cn from '@/utils/style/cn';
+
 import Logo from '../ui/Logo';
 import MenuToggleButton from './MenuToggleButton';
 
@@ -57,7 +59,7 @@ export default function Header() {
   const styles = {
     fullNavbar: 'px-6 flex justify-between items-center',
     fullNavLinkContainer: 'hidden lg:flex space-x-6 text-xl tracking-wider',
-    mobileNavMenu: `${isMenuOpaque ? 'opacity-100' : 'opacity-0'} lg:hidden fixed inset-0 w-full h-screen p-6 transition-opacity duration-300 ease-in-out z-0 flex justify-center items-center bg-[var(--background)] text-[var(--foreground)]`,
+    mobileNavMenu: `${cn(isMenuOpaque ? 'opacity-100' : 'opacity-0', 'fixed inset-0 z-0 flex h-screen w-full items-center justify-center bg-[var(--background)] p-6 text-[var(--foreground)] transition-opacity duration-300 ease-in-out lg:hidden')}`,
     mobileNavbar:
       'fixed top-0 left-0 right-0 px-6 py-4 flex justify-between items-center bg',
     mobileNavLinkContainer:

@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import cn from '@/utils/style/cn';
+
 interface TextProps {
   children: ReactNode;
   variant?: 'large' | 'medium' | 'small';
@@ -20,8 +22,8 @@ export default function Text({
   };
 
   return as == 'p' ? (
-    <p className={`${variants[variant]} ${className}`}>{children}</p>
+    <p className={`${cn(variants[variant], className)}`}>{children}</p>
   ) : (
-    <span className={`${variants[variant]} ${className}`}>{children}</span>
+    <span className={`${cn(variants[variant], className)}`}>{children}</span>
   );
 }

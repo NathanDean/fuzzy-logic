@@ -13,7 +13,7 @@ export default function CardGrid({
 }: CardGridProps) {
   return (
     <div
-      className={`${cn('grid justify-items-center gap-10 pb-10', `md:grid-cols-${cols}`, className)}`}
+      className={`${cn('grid justify-items-center gap-10', `md:grid-cols-${cols}`, className)}`}
     >
       {children}
     </div>

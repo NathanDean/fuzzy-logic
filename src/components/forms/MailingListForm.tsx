@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import { subscribeToMailingList } from '@/actions/mailingList';
 
+import cn from '@/utils/style/cn';
+
 import Button from '../ui/Button';
 import Text from '../ui/Text';
 
@@ -53,7 +55,7 @@ export default function MailingListForm({
       className={`${isInFooter && 'text-sm'} m-0 bg-transparent p-0 shadow-none`}
     >
       {subscribeMessage && <Text variant="small">{subscribeMessage}</Text>}
-      <div className="flex w-full flex-col items-center space-y-2 sm:w-auto sm:flex-row sm:space-y-0 sm:space-x-2">
+      <div className="flex w-full flex-col items-stretch space-y-2 sm:w-auto sm:flex-row sm:space-y-0 sm:space-x-2">
         <input
           className={`${isInFooter && 'h-8'} my-0`}
           id="email"
@@ -63,10 +65,14 @@ export default function MailingListForm({
           required
         />
         <Button
-          className={`${isInFooter && 'h-8 text-sm'} sm:my-0`}
+          className={`${cn(isInFooter && 'h-8', 'sm:my-0')}`}
           type="submit"
         >
-          <Text variant="small" as="span">
+          <Text
+            className={`${cn(isInFooter && 'h-8', 'flex items-center sm:my-0')}`}
+            variant={isInFooter ? 'small' : 'medium'}
+            as="span"
+          >
             Subscribe
           </Text>
         </Button>
