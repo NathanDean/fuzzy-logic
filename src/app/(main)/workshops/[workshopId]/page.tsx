@@ -1,5 +1,4 @@
 import Main from '@/components/Main';
-import Text from '@/components/ui/Text';
 
 import { createClient } from '@/utils/supabase/serverClient';
 import { Workshop } from '@/utils/types/Workshop';
@@ -22,8 +21,8 @@ export default async function WorkshopDetails({
     .limit(1)
     .single();
 
-  if (error || !workshopData) {
-    return <Text>Workshop not found</Text>;
+  if (error) {
+    throw new Error('Error fetching workshop.');
   }
 
   const workshop: Workshop = {

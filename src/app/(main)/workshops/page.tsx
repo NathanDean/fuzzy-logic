@@ -1,3 +1,5 @@
+import Main from '@/components/Main';
+
 import { createClient } from '@/utils/supabase/serverClient';
 
 import WorkshopsClientWrapper from './WorkshopsClientWrapper';
@@ -25,5 +27,9 @@ export default async function Workshops() {
       bookings: workshop.bookings?.[0]?.count || 0,
     })) || [];
 
-  return <WorkshopsClientWrapper workshops={workshops} />;
+  return (
+    <Main>
+      <WorkshopsClientWrapper workshops={workshops} />
+    </Main>
+  );
 }

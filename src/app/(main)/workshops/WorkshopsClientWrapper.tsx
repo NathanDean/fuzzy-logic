@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { createCheckoutSession } from '@/actions/stripe';
 import CardGrid from '@/components/cards/CardGrid';
 import MailingListForm from '@/components/forms/MailingListForm';
-import Main from '@/components/Main';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -38,7 +37,7 @@ export default function WorkshopsClientWrapper({
     }
   };
   return (
-    <Main>
+    <>
       {workshops.length === 0 ? (
         <div className="space-y-2">
           <Text>
@@ -61,6 +60,6 @@ export default function WorkshopsClientWrapper({
           </CardGrid>
         </div>
       )}
-    </Main>
+    </>
   );
 }
