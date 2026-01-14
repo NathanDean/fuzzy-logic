@@ -10,7 +10,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { outfit, sigmar } from '@/lib/fonts';
 import { Analytics } from '@vercel/analytics/next';
 
-import ErrorProps from '@/utils/types/ErrorProps';
+import { ErrorProps } from '@/utils/types/ErrorProps';
 
 export default function GlobalError({ error, reset }: ErrorProps) {
   useEffect(() => {
