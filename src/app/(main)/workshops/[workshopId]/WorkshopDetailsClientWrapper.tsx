@@ -9,14 +9,14 @@ import CardGrid from '@/components/cards/CardGrid';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 
-import type { Workshop } from '@/utils/types/Workshop';
+import type { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
 
 import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 
 export default function WorkshopDetailsClientWrapper({
   workshop,
 }: {
-  workshop: Workshop;
+  workshop: WorkshopWithRemainingPlaces;
 }) {
   const { user, isLoggedIn } = useAuth();
   const [errorMessage, setErrorMessage] = useState<string>('');

@@ -9,6 +9,7 @@ export default async function Workshops() {
   const today = new Date().toISOString().split('T')[0];
 
   // Get workshops from Supabase
+
   const { data, error } = await supabase
     .from('workshops')
     .select('*, bookings:bookings(count)')
@@ -24,7 +25,8 @@ export default async function Workshops() {
   const workshops =
     data?.map((workshop) => ({
       ...workshop,
-      bookings: workshop.bookings?.[0]?.count || 0,
+      places_remaining:
+        workshop.max_places_available - (workshop.bookings?.[0]?.count || 0),
     })) || [];
 
   return (

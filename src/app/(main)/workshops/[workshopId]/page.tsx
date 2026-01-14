@@ -1,7 +1,7 @@
 import Main from '@/components/Main';
 
 import { createClient } from '@/utils/supabase/serverClient';
-import type { Workshop } from '@/utils/types/Workshop';
+import type { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
 
 import WorkshopDetailsClientWrapper from './WorkshopDetailsClientWrapper';
 
@@ -25,9 +25,11 @@ export default async function WorkshopDetails({
     throw new Error('Error fetching workshop.');
   }
 
-  const workshop: Workshop = {
+  const workshop: WorkshopWithRemainingPlaces = {
     ...workshopData,
-    bookings: workshopData.bookings?.[0]?.count || 0,
+    places_remaining:
+      workshopData.max_places_available -
+      (workshopData.bookings?.[0]?.count || 0),
   };
 
   return (

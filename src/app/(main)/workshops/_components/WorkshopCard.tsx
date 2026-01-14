@@ -7,10 +7,10 @@ import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 
-import type { Workshop } from '@/utils/types/Workshop';
+import type { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
 
 interface WorkshopCardProps {
-  workshop: Workshop;
+  workshop: WorkshopWithRemainingPlaces;
   onBookNow: (id: string) => void;
   className?: string;
 }
@@ -20,7 +20,7 @@ export default function WorkshopCard({
   onBookNow,
   className = '',
 }: WorkshopCardProps) {
-  const isSoldOut = workshop.max_places_available - workshop.bookings <= 0;
+  const isSoldOut = workshop.places_remaining <= 0;
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleBookNow = async () => {
