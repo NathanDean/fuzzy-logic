@@ -5,17 +5,9 @@ import Stripe from 'stripe';
 
 import { createAdminClient } from '@/utils/supabase/adminClient';
 import { createClient } from '@/utils/supabase/serverClient';
+import type { Workshop } from '@/utils/types/Workshop';
 
-interface Workshop {
-  id: string;
-  created_at: string;
-  class_name: string;
-  date: string;
-  start_time: string;
-  end_time: string;
-  venue: string;
-  description: string;
-  price: number;
+interface WorkshopWithRemainingPlaces extends Workshop {
   places_remaining: number;
 }
 
@@ -30,7 +22,7 @@ interface Booking {
 
 async function getWorkshop(
   workshopId: string
-): Promise<Workshop | { error: string }> {
+): Promise<WorkshopWithRemainingPlaces | { error: string }> {
   const supabase = await createClient();
 
   // Get workshop details from Supabase
