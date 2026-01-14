@@ -7,5 +7,8 @@ export interface Booking {
   user_id: string;
   status: string;
   session_id: string;
+}
+
+export interface BookingWithWorkshopDetails extends Booking {
   workshop: Workshop;
 }

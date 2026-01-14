@@ -5,20 +5,8 @@ import Stripe from 'stripe';
 
 import { createAdminClient } from '@/utils/supabase/adminClient';
 import { createClient } from '@/utils/supabase/serverClient';
-import type { Workshop } from '@/utils/types/Workshop';
-
-interface WorkshopWithRemainingPlaces extends Workshop {
-  places_remaining: number;
-}
-
-interface Booking {
-  id: string;
-  created_at: string;
-  workshop_id: string;
-  user_id: string;
-  status: string;
-  session_id: string;
-}
+import type { Booking } from '@/utils/types/Booking';
+import type { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
 
 async function getWorkshop(
   workshopId: string

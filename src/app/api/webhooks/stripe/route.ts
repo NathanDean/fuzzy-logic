@@ -5,15 +5,7 @@ import { PostgrestError } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
 import { createAdminClient } from '@/utils/supabase/adminClient';
-
-interface Booking {
-  id: string;
-  created_at: string;
-  workshop_id: string;
-  user_id: string;
-  status: string;
-  session_id: string;
-}
+import type { Booking } from '@/utils/types/Booking';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
