@@ -1,4 +1,4 @@
-export interface Workshop {
+export default interface Workshop {
   id: string;
   created_at: string;
   class_name: string;

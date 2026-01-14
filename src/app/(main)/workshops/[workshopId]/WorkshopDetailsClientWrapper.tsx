@@ -9,7 +9,7 @@ import CardGrid from '@/components/cards/CardGrid';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 
-import { Workshop } from '@/utils/types/Workshop';
+import type Workshop from '@/utils/types/Workshop';
 
 import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 

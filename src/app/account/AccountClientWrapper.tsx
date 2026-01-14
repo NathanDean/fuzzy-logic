@@ -5,28 +5,10 @@ import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 
-import type { Workshop } from '@/utils/types/Workshop';
+import type Booking from '@/utils/types/Booking';
+import type User from '@/utils/types/User';
 
 dayjs.extend(advancedFormat);
-
-interface User {
-  id: string;
-  email?: string;
-  user_metadata: {
-    first_name?: string;
-    last_name?: string;
-  };
-}
-
-interface Booking {
-  id: string;
-  created_at: string;
-  workshop_id: string;
-  user_id: string;
-  status: string;
-  session_id: string;
-  workshop: Workshop;
-}
 
 interface AccountClientWrapperProps {
   user: User;
