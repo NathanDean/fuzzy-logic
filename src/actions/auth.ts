@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/utils/supabase/serverClient';
 
+import { createCheckoutSession } from './stripe';
+
 export async function signup(formData: FormData) {
   const supabase = await createClient();
 
@@ -94,7 +96,7 @@ export async function signup(formData: FormData) {
   redirect('/auth/success?message=signup-successful');
 }
 
-export async function login(formData: FormData) {
+export async function login(formData: FormData, workshopId?: string | null) {
   const supabase = await createClient();
 
   const email = formData.get('email');
@@ -126,7 +128,7 @@ export async function login(formData: FormData) {
   }
 
   // Supabase sign in function
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
     options: {
@@ -160,7 +162,20 @@ export async function login(formData: FormData) {
     };
   }
 
-  return { success: true };
+  if (workshopId && data.user) {
+    const { user } = data;
+    try {
+      const { url } = await createCheckoutSession(workshopId, user.id);
+      if (url) {
+        return { success: true, redirectUrl: url };
+      }
+    } catch {
+      console.error('Error creating Stripe checkout session.');
+      return { success: true, redirectUrl: '/' };
+    }
+  }
+
+  return { success: true, redirectUrl: '/' };
 }
 
 export async function resetPassword(formData: FormData) {
