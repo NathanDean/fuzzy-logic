@@ -3,13 +3,7 @@ import CardImage from '@/components/cards/CardImage';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
-interface Person {
-  id: number;
-  created_at: string;
-  image_url: string | null;
-  name: string;
-  bio: string;
-}
+import { Person } from '@/utils/types/Person';
 
 interface PersonCardProps {
   person: Person;

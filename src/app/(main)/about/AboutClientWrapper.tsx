@@ -5,15 +5,9 @@ import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 
-import PersonCard from './_components/PersonCard';
+import { Person } from '@/utils/types/Person';
 
-interface Person {
-  id: number;
-  created_at: string;
-  image_url: string | null;
-  name: string;
-  bio: string;
-}
+import PersonCard from './_components/PersonCard';
 
 export default function AboutClientWrapper({ people }: { people: Person[] }) {
   const coreTeam = people.slice(0, 1);
