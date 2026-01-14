@@ -5,8 +5,8 @@ import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 
-import type Booking from '@/utils/types/Booking';
-import type User from '@/utils/types/User';
+import type { Booking } from '@/utils/types/Booking';
+import type { User } from '@/utils/types/User';
 
 dayjs.extend(advancedFormat);
 

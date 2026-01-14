@@ -7,7 +7,7 @@ import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 
-import type Workshop from '@/utils/types/Workshop';
+import type { Workshop } from '@/utils/types/Workshop';
 
 interface WorkshopDetailsCardProps {
   workshop: Workshop;

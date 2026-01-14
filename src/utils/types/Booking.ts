@@ -1,6 +1,6 @@
-import type Workshop from './Workshop';
+import type { Workshop } from './Workshop';
 
-export default interface Booking {
+export interface Booking {
   id: string;
   created_at: string;
   workshop_id: string;
