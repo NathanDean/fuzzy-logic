@@ -1,6 +1,7 @@
 import Workshops from '@/app/(main)/workshops/page';
 import '@testing-library/jest-dom';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+
+import { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
 
 // AuthContext mock
 jest.mock('@/contexts/AuthContext', () => ({
@@ -12,116 +13,116 @@ jest.mock('@/contexts/AuthContext', () => ({
 }));
 
 // Supabase client mock
-jest.mock('@/utils/supabase/supabaseClient', () => ({
-  from: jest.fn(() => ({
-    select: jest.fn(() => ({
-      gte: jest.fn().mockResolvedValue({
-        data: [
-          {
-            id: '1',
-            created_at: '2025-04-01T12:00:00Z',
-            class_name: 'Intro to Testing',
-            teacher: 'Mark Corrigan',
-            course_type: '2 week course, Saturday afternoons',
-            date: new Date().toISOString().split('T')[0],
-            start_time: '18:00:00',
-            end_time: '21:00:00',
-            venue: 'Test Theatre',
-            price: 100,
-            max_places_available: 12,
-            description: 'Lorem ipsum',
-            bookings: [{ count: 10 }],
-          },
-          {
-            id: '2',
-            created_at: '2025-04-01T12:00:00Z',
-            class_name: 'Advanced Testing',
-            teacher: 'Alan Johnson',
-            course_type: '8 week course, Tuesday evenings',
-            date: new Date().toISOString().split('T')[0],
-            start_time: '18:00:00',
-            end_time: '21:00:00',
-            venue: 'The New Test Theatre',
-            price: 100,
-            max_places_available: 12,
-            description: 'Slorem slipsum',
-            bookings: [{ count: 12 }],
-          },
-        ],
+jest.mock('@/utils/supabase/serverClient', () => ({
+  createClient: jest.fn().mockResolvedValue({
+    from: () => ({
+      select: () => ({
+        gte: () => ({
+          eq: () => ({
+            order: () =>
+              Promise.resolve({
+                data: [
+                  {
+                    id: '1',
+                    created_at: '2025-04-01T12:00:00Z',
+                    class_name: 'Intro to Testing',
+                    teacher: 'Mark Corrigan',
+                    course_type: '2 week course, Saturday afternoons',
+                    date: new Date().toISOString().split('T')[0],
+                    start_time: '18:00:00',
+                    end_time: '21:00:00',
+                    venue: 'Test Theatre',
+                    price: 100,
+                    max_places_available: 12,
+                    description: 'A workshop about testing.',
+                    image_url: 'an_honourable_man.png',
+                    on_sale: true,
+                    bookings: [{ count: 10 }],
+                  },
+                  {
+                    id: '2',
+                    created_at: '2025-04-01T12:00:00Z',
+                    class_name: 'Advanced Testing',
+                    teacher: 'Alan Johnson',
+                    course_type: '8 week course, Tuesday evenings',
+                    date: new Date().toISOString().split('T')[0],
+                    start_time: '18:00:00',
+                    end_time: '21:00:00',
+                    venue: 'The New Test Theatre',
+                    price: 100,
+                    max_places_available: 12,
+                    description: 'Slorem slipsum.',
+                    image_url: 'fwonkfort.jpg',
+                    on_sale: true,
+                    bookings: [{ count: 12 }],
+                  },
+                ],
 
-        error: null,
+                error: null,
+              }),
+          }),
+        }),
       }),
-    })),
-  })),
+    }),
+  }),
 }));
 
-// Stripe createCheckoutSession mock
-jest.mock('@/app/actions/stripe', () => ({
-  createCheckoutSession: jest
-    .fn()
-    .mockResolvedValue({ url: 'https://stripe.com/checkout' }),
-}));
+// Mock client wrapper component
+jest.mock('@/app/(main)/workshops/WorkshopsClientWrapper', () => {
+  return function MockedWrapper({
+    workshops,
+  }: {
+    workshops: WorkshopWithRemainingPlaces[];
+  }) {
+    return workshops; // Return props for testing
+  };
+});
 
-const mockCreateCheckoutSession =
-  require('@/app/actions/stripe').createCheckoutSession;
+it('passes correct workshops data to client wrapper', async () => {
+  const component = await Workshops();
+  const clientWrapper = component.props.children;
+  const workshops = clientWrapper.props.workshops;
+
+  // Test the props passed to the client wrapper
+  expect(workshops[0]).toHaveProperty('class_name', 'Intro to Testing');
+  expect(workshops[0]).toHaveProperty('teacher', 'Mark Corrigan');
+  expect(workshops[0]).toHaveProperty(
+    'course_type',
+    '2 week course, Saturday afternoons'
+  );
+  expect(workshops[0]).toHaveProperty('venue', 'Test Theatre');
+  expect(workshops[0]).toHaveProperty('start_time', '18:00:00');
+  expect(workshops[0]).toHaveProperty('end_time', '21:00:00');
+  expect(workshops[0]).toHaveProperty('price', 100);
+  expect(workshops[0]).toHaveProperty(
+    'description',
+    'A workshop about testing.'
+  );
+  expect(workshops[0]).toHaveProperty('max_places_available', 12);
+  expect(workshops[0]).toHaveProperty('bookings', [{ count: 10 }]);
+
+  expect(workshops[1]).toHaveProperty('class_name', 'Advanced Testing');
+  expect(workshops[1]).toHaveProperty('teacher', 'Alan Johnson');
+  expect(workshops[1]).toHaveProperty(
+    'course_type',
+    '8 week course, Tuesday evenings'
+  );
+  expect(workshops[1]).toHaveProperty('venue', 'The New Test Theatre');
+  expect(workshops[1]).toHaveProperty('start_time', '18:00:00');
+  expect(workshops[1]).toHaveProperty('end_time', '21:00:00');
+  expect(workshops[1]).toHaveProperty('price', 100);
+  expect(workshops[1]).toHaveProperty('description', 'Slorem slipsum.');
+  expect(workshops[1]).toHaveProperty('max_places_available', 12);
+  expect(workshops[1]).toHaveProperty('bookings', [{ count: 12 }]);
+});
 
 describe('Workshops', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+  it('calculates places_remaining correctly', async () => {
+    const component = await Workshops();
+    const clientWrapper = component.props.children;
+    const workshops = clientWrapper.props.workshops;
 
-  it('initially displays loading state', () => {
-    render(<Workshops />);
-
-    expect(screen.getByText('loading...')).toBeInTheDocument();
-  });
-
-  it('displays workshops after loading from Supabase', async () => {
-    render(<Workshops />);
-
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-
-    expect(screen.getByText('Intro to Testing')).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: 'with Mark Corrigan' })
-    ).toBeInTheDocument();
-    expect(screen.getByText('Advanced Testing')).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: 'with Alan Johnson' })
-    ).toBeInTheDocument();
-
-    const bookingButton = screen.getAllByRole('button');
-    expect(bookingButton).toHaveLength(2);
-
-    const moreInfoLinks = screen.getAllByRole('link', { name: 'More info' });
-    expect(moreInfoLinks).toHaveLength(2);
-  });
-
-  it('enables Book Now button when workshop.bookings < workshop.places_available', async () => {
-    render(<Workshops />);
-
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-
-    expect(screen.getByRole('button', { name: 'Book now' })).toBeEnabled();
-    expect(screen.getByRole('button', { name: 'Sold out' })).toBeDisabled();
-  });
-
-  it('calls createCheckoutSession with correct details when user clicks Book Now button', async () => {
-    render(<Workshops />);
-
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-
-    const bookNowButton = screen.getAllByRole('button', {
-      name: 'Book now',
-    })[0];
-    fireEvent.click(bookNowButton);
-
-    expect(mockCreateCheckoutSession).toHaveBeenCalledWith('1', 'test-user-id');
+    expect(workshops[0].places_remaining).toBe(2);
+    expect(workshops[1].places_remaining).toBe(0);
   });
 });
