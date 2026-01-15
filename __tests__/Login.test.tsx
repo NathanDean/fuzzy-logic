@@ -7,7 +7,7 @@ import LoginPage from '../src/app/(auth)/login/page';
 
 const mockLogin = jest.fn();
 
-jest.mock('@/utils/auth/actions', () => ({
+jest.mock('@/actions/auth', () => ({
   login: (formData: FormData) => {
     mockLogin(Object.fromEntries(formData));
 

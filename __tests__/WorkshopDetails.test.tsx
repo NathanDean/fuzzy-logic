@@ -15,7 +15,7 @@ interface Workshop {
   bookings: number;
 }
 
-jest.mock('@/utils/supabase/server', () => ({
+jest.mock('@/utils/supabase/serverClient', () => ({
   createClient: jest.fn().mockResolvedValue({
     from: jest.fn(() => ({
       select: jest.fn(() => ({

@@ -2,7 +2,7 @@ import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 
-jest.mock('@/utils/supabase/client', () => ({
+jest.mock('@/utils/supabase/browserClient', () => ({
   createClient: jest.fn(() => ({
     auth: {
       getUser: jest.fn().mockResolvedValue({

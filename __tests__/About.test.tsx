@@ -2,7 +2,7 @@ import About from '@/app/(main)/about/page';
 import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 
-jest.mock('@/utils/supabase/supabaseClient', () => ({
+jest.mock('@/utils/supabase/serverClient', () => ({
   from: jest.fn(() => ({
     select: jest.fn().mockResolvedValue({
       data: [

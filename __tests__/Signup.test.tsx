@@ -5,7 +5,7 @@ import SignUpPage from '../src/app/(auth)/signup/page';
 
 const mockSignUp = jest.fn();
 
-jest.mock('@/utils/auth/actions', () => ({
+jest.mock('@/actions/auth', () => ({
   signup: (formData: FormData) => {
     mockSignUp(Object.fromEntries(formData));
 

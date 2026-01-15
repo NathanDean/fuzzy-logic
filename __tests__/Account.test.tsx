@@ -10,7 +10,7 @@ jest.mock('@/contexts/AuthContext', () => ({
 }));
 
 // Supabase client mock
-jest.mock('@/utils/supabase/supabaseClient', () => ({
+jest.mock('@/utils/supabase/serverClient', () => ({
   from: jest.fn(() => ({
     select: jest.fn().mockResolvedValue({
       data: [

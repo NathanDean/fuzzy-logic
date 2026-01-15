@@ -1,3 +1,4 @@
+import { createCheckoutSession } from '@/actions/stripe';
 import '@testing-library/jest-dom';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
@@ -13,14 +14,13 @@ jest.mock('@/contexts/AuthContext', () => ({
 }));
 
 // Stripe createCheckoutSession mock
-jest.mock('@/app/actions/stripe', () => ({
+jest.mock('@/actions/stripe', () => ({
   createCheckoutSession: jest
     .fn()
     .mockResolvedValue({ url: 'https://stripe.com/checkout' }),
 }));
 
-const mockCreateCheckoutSession =
-  require('@/app/actions/stripe').createCheckoutSession;
+const mockCreateCheckoutSession = jest.mocked(createCheckoutSession);
 
 // Workshop details
 const workshopDetails = {
