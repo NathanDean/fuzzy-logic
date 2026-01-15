@@ -23,9 +23,9 @@ export default function AboutClientWrapper({ people }: { people: Person[] }) {
             the craft of improv.
           </Text>
           <Text>
-            Our students are improvisers who are actively performing, and are
-            ambitious about improving their skills and exploring the artistic
-            potential of improv.
+            Our students are active performers who are ambitious about
+            developing their skills and exploring the artistic potential of
+            improv.
           </Text>
           <div className="flex w-full flex-row items-stretch justify-center space-x-2">
             <Button href="#people">
@@ -78,7 +78,7 @@ export default function AboutClientWrapper({ people }: { people: Person[] }) {
             {`Fuzzy Logic was founded by Nathan Dean, following a decade's experience in the world of artist and artform development at Arts Council England and talent agency Avalon.`}
           </Text>
           <Text>
-            {`We ran our first workshops in July 2025. We also produce the sketch series scenesAboutLeaving and the twoprov show A Very Capable Boy, with more shows to come in future.`}
+            {`We ran our first workshops in 2025. We also produce the twoprov show A Very Capable Boy and sketch series scenesAboutLeaving, and have plans to work with performers on other shows in future.`}
           </Text>
         </TextContainer>
       </section>
