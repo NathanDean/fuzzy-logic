@@ -28,16 +28,16 @@ jest.mock('@/utils/supabase/serverClient', () => ({
 }));
 
 describe('About', () => {
-  it('displays people after loading from Supabase', async () => {
+  it('passes correct people data to client wrapper', async () => {
     render(<About />);
 
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
 
-    expect(screen.getByText('Mark Corrigan')).toBeInTheDocument();
+    expect(screen.getByRole('header', { name: 'Mark Corrigan' }));
     expect(screen.getByText('Boy to geek to drone')).toBeInTheDocument();
-    expect(screen.getByText('Jeremy Usborne')).toBeInTheDocument();
+    expect(screen.getByRole('header', { name: 'Jeremy Usborne' }));
     expect(screen.getByText('Big beats are the best')).toBeInTheDocument();
   });
 });
