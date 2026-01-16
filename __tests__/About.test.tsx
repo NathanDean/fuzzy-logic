@@ -1,43 +1,43 @@
 import About from '@/app/(main)/about/page';
 import '@testing-library/jest-dom';
-import { act, render, screen } from '@testing-library/react';
 
 jest.mock('@/utils/supabase/serverClient', () => ({
-  from: jest.fn(() => ({
-    select: jest.fn().mockResolvedValue({
-      data: [
-        {
-          id: 1,
-          created_at: '2025-04-01T12:00:00Z',
-          image_url: 'mark-corrigan.jpeg',
-          name: 'Mark Corrigan',
-          bio: 'Boy to geek to drone',
-        },
-        {
-          id: 1,
-          created_at: '2025-04-01T12:00:00Z',
-          image_url: 'jeremy-usborne.jpeg',
-          name: 'Jeremy Usborne',
-          bio: 'Big beats are the best',
-        },
-      ],
-
-      error: null,
+  createClient: jest.fn(() => ({
+    from: () => ({
+      select: () => ({
+        order: () =>
+          Promise.resolve({
+            data: [
+              {
+                id: 1,
+                created_at: '2025-04-01T12:00:00Z',
+                image_url: 'mark-corrigan.jpeg',
+                name: 'Mark Corrigan',
+                bio: 'Boy to geek to drone.',
+              },
+              {
+                id: 1,
+                created_at: '2025-04-01T12:00:00Z',
+                image_url: 'jeremy-usborne.jpeg',
+                name: 'Jeremy Usborne',
+                bio: 'Big beats are the best.',
+              },
+            ],
+          }),
+      }),
     }),
   })),
 }));
 
 describe('About', () => {
   it('passes correct people data to client wrapper', async () => {
-    render(<About />);
+    const component = await About();
+    const clientWrapper = component.props.children;
+    const people = clientWrapper.props.people;
 
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    });
-
-    expect(screen.getByRole('header', { name: 'Mark Corrigan' }));
-    expect(screen.getByText('Boy to geek to drone')).toBeInTheDocument();
-    expect(screen.getByRole('header', { name: 'Jeremy Usborne' }));
-    expect(screen.getByText('Big beats are the best')).toBeInTheDocument();
+    expect(people[0].name).toBe('Mark Corrigan');
+    expect(people[0].bio).toBe('Boy to geek to drone.');
+    expect(people[1].name).toBe('Jeremy Usborne');
+    expect(people[1].bio).toBe('Big beats are the best.');
   });
 });

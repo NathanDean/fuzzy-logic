@@ -19,13 +19,13 @@ const mockPeopleData = [
   },
 ];
 
-describe('About', () => {
+describe('AboutClientWrapper', () => {
   it('displays people after loading from Supabase', async () => {
     render(<AboutClientWrapper people={mockPeopleData} />);
 
-    expect(screen.getByRole('header', { name: 'Mark Corrigan' }));
+    expect(screen.getByRole('heading', { name: 'Mark Corrigan' }));
     expect(screen.getByText('Boy to geek to drone')).toBeInTheDocument();
-    expect(screen.getByRole('header', { name: 'Jeremy Usborne' }));
+    expect(screen.getByRole('heading', { name: 'Jeremy Usborne' }));
     expect(screen.getByText('Big beats are the best')).toBeInTheDocument();
   });
 });
