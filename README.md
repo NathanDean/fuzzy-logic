@@ -2,7 +2,7 @@
 
 ## Overview
 
-A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company. I built this when I wanted to run some improv workshops, and decided I would challenge myself to build my own booking platform, rather than relying on a third party service.
+This is the booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company I founded. I built it when I wanted to run a workshop, and took the opportunity to stretch my full stack development skills instead of using a third-party ticketing service.
 
 ### What it does
 
@@ -13,7 +13,7 @@ A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company.
 
 ### Tech stack
 
-- Next.js 15 + TypeScript (front-end + back-end)
+- Next.js + TypeScript (front-end + back-end)
 - Tailwind (styling)
 - Supabase (database and auth)
 - Cloudflare Turnstile (CAPTCHA)
@@ -22,24 +22,32 @@ A booking platform for [Fuzzy Logic](https://www.fzzy.co.uk), an improv company.
 - Manual testing checklist for critical flows
 - Vercel (deployment)
 
+After initial development the site was fully functional, but the codebase was less coherent than I wanted, and I found it difficult to navigate and maintain. I therefore revisited the project a few months later and refactored parts of the site, including organising `/app` using route groups, dividing `/components` into subdirectories, and separating all actions and hooks into dedicated folders. I also split several pages into server components for data fetching, and client wrappers for rendering, to make them easier to maintain and test. At the same time, I added Husky to ensure code quality with automated pre-commit linting and testing.
+
+I plan to continue refactoring the site, including standardising my approach to mocking across test suites, and applying design patterns where relevant.
+
 ## Data
 
 Some documentation on how data flows in the app, for my benefit in maintaining the project as much as yours in reading about it 🙃.
 
 ### Supabase data fetching
 
-The site fetches data from Supabase using the four clients in /utils/supabase:
+The site fetches data from Supabase using the three clients in /utils/supabase:
 
 - **admin.ts:** Uses createClient function with secret key, for backend admin
   - Used by Stripe webhook
 - **browserClient.ts:** Uses createBrowserClient function with publishable key, for data fetching in client components
-  - Used by About, Account, Login, and Workshops pages, and auth context
+  - Used by auth context
 - **serverClient.ts:** Uses createServerClient function with publishable key, for data fetching in server components
-  - Used by WorkshopDetails page, `/auth/confirm` route, and mailing list, Stripe, and auth actions
+  - Used by:
+    - About, Account, Workshops, and WorkshopDetails pages
+    - `/auth/confirm` and `/auth/callback` routes
+    - Mailing list, Stripe, and auth actions
+    - Supabase updateSession middleware function
 
 ### Auth data flows
 
-Authentication forms call corresponding actions, which in turn call the relevant Supabase auth function:
+Authentication forms call actions from `/actions/auth`, which in turn call the relevant Supabase auth function:
 
 #### Signup
 
@@ -123,7 +131,7 @@ flowchart LR
 
 The `/contexts/AuthContext` file exports a context provider component (`AuthContext`), and a `useAuth` function, which returns a `user`, and `isLoggedIn` and `isLoading` boolean variables. Other files which need to use the `AuthContext` call the `useAuth` function.
 
-This context is used by the Account page and Header component.
+This context is used by the Header component.
 
 ### Stripe data flows
 
@@ -146,8 +154,3 @@ flowchart LR
 ## Testing
 
 Individual elements of the app are tested using Jest unit tests. Critical integration flows, e.g. account creation and workshop bookings, are tested manually using the checklist at `/docs/manualTesting`.
-
-## Next steps
-
-- **Standardise TypeScript usage:** I've used TypeScript inconsistently throughout the site. I'm working on improving my understanding of TypeScript best practices, after which I will standardise its usage throughout the app.
-- **Standardise file structure:** There's some inconsistency in file names and locations. For example, the names for the Supabase clients aren't completely intuitive, and actions are split between the `/app/actions` and `/utils` folders. This makes the app harder to understand, and I plan to fix these inconsistencies. However, as the current structure works, I want to wait until I have ample time to properly apply and test a new approach, to avoid breaking changes.
