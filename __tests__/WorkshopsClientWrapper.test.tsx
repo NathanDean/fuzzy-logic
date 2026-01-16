@@ -35,7 +35,7 @@ const mockWorkshopsData = [
     class_name: 'Intro to Testing',
     teacher: 'Mark Corrigan',
     course_type: '2 week course, Saturday afternoons',
-    date: new Date().toISOString().split('T')[0],
+    date: '2026-01-16',
     start_time: '18:00:00',
     end_time: '21:00:00',
     venue: 'Test Theatre',
@@ -53,7 +53,7 @@ const mockWorkshopsData = [
     class_name: 'Advanced Testing',
     teacher: 'Alan Johnson',
     course_type: '8 week course, Tuesday evenings',
-    date: new Date().toISOString().split('T')[0],
+    date: '2026-01-16',
     start_time: '18:00:00',
     end_time: '21:00:00',
     venue: 'The New Test Theatre',
@@ -82,12 +82,12 @@ describe('Workshops', () => {
     expect(screen.getByText('Intro to Testing')).toBeInTheDocument();
     expect(screen.getByText('with Mark Corrigan')).toBeInTheDocument();
     expect(
-      screen.getByText('Begins 6pm on Thu 15 Jan at Test Theatre')
+      screen.getByText('Begins 6pm on Fri 16 Jan at Test Theatre')
     ).toBeInTheDocument();
     expect(screen.getByText('Advanced Testing')).toBeInTheDocument();
     expect(screen.getByText('with Alan Johnson')).toBeInTheDocument();
     expect(
-      screen.getByText('Begins 6pm on Thu 15 Jan at The New Test Theatre')
+      screen.getByText('Begins 6pm on Fri 16 Jan at The New Test Theatre')
     ).toBeInTheDocument();
 
     const bookingButton = screen.getAllByRole('button');
