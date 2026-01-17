@@ -1,6 +1,8 @@
 import Account from '@/app/account/page';
 import '@testing-library/jest-dom';
 
+import { mockBookingData } from '../__fixtures__/Booking';
+
 const mockGetUser = jest.fn();
 const mockRedirect = jest.fn();
 jest.mock('next/navigation', () => ({
@@ -15,33 +17,6 @@ const mockUserData = {
     last_name: 'Corrigan',
   },
 };
-
-const mockBookingData = [
-  {
-    id: 'test-booking-id',
-    created_at: '2025-05-10 22:37:58.966912+00',
-    workshop_id: 'test-workshop-id',
-    user_id: 'test-user-id',
-    status: 'confirmed',
-    session_id: 'test-session-id',
-    workshop: {
-      id: 'test-workshop-id',
-      created_at: '2025-04-01T12:00:00Z',
-      class_name: 'Intro to Testing',
-      teacher: 'Mark Corrigan',
-      course_type: '2 week course, Saturday afternoons',
-      date: new Date().toISOString().split('T')[0],
-      start_time: '18:00:00',
-      end_time: '21:00:00',
-      venue: 'Test Theatre',
-      price: 100,
-      max_places_available: 12,
-      description: 'A workshop about testing.',
-      image_url: 'an_honourable_man.png',
-      on_sale: true,
-    },
-  },
-];
 
 // Supabase client mock
 jest.mock('@/utils/supabase/serverClient', () => ({
@@ -94,6 +69,6 @@ describe('Account', () => {
     expect(user.user_metadata.first_name).toBe('Mark');
     expect(user.user_metadata.last_name).toBe('Corrigan');
     expect(bookings[0].id).toBe('test-booking-id');
-    expect(bookings[0].workshop.id).toBe('test-workshop-id');
+    expect(bookings[0].workshop_details.id).toBe('test-workshop-id');
   });
 });

@@ -2,6 +2,8 @@ import AccountClientWrapper from '@/app/account/AccountClientWrapper';
 import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 
+import { mockBookingData } from '../__fixtures__/Booking';
+
 const mockUserData = {
   id: 'test-user-id',
   email: 'm.corrigan@jlb-credit.com',
@@ -10,33 +12,6 @@ const mockUserData = {
     last_name: 'Corrigan',
   },
 };
-
-const mockBookingData = [
-  {
-    id: 'test-booking-id',
-    created_at: '2025-05-10 22:37:58.966912+00',
-    workshop_id: 'test-workshop-id',
-    user_id: 'test-user-id',
-    status: 'confirmed',
-    session_id: 'test-session-id',
-    workshop: {
-      id: '1',
-      created_at: '2025-04-01T12:00:00Z',
-      class_name: 'Intro to Testing',
-      teacher: 'Mark Corrigan',
-      course_type: '2 week course, Saturday afternoons',
-      date: new Date().toISOString().split('T')[0],
-      start_time: '18:00:00',
-      end_time: '21:00:00',
-      venue: 'Test Theatre',
-      price: 100,
-      max_places_available: 12,
-      description: 'A workshop about testing.',
-      image_url: 'an_honourable_man.png',
-      on_sale: true,
-    },
-  },
-];
 
 describe('AccountClientWrapper', () => {
   beforeEach(() => {
