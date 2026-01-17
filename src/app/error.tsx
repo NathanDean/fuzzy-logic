@@ -11,5 +11,5 @@ export default function Error({ error, reset }: ErrorProps) {
     console.error('Root error:', error);
   }, [error]);
 
-  return <ErrorMessage onClick={reset} type="root" />;
+  return <ErrorMessage onClick={reset} message={error.message} />;
 }

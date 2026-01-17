@@ -6,18 +6,16 @@ import Text from '../ui/Text';
 
 interface ErrorMessageProps {
   onClick: () => void;
-  type: string;
+  message: string;
 }
 
-export default function ErrorMessage({ onClick, type }: ErrorMessageProps) {
-  const capitalised_type = type[0].toUpperCase() + type.substring(1);
-
+export default function ErrorMessage({ onClick, message }: ErrorMessageProps) {
   return (
     <Main>
       <DisplayMessageContainer>
         {' '}
         <Heading variant="h1">Sorry, something went wrong.</Heading>
-        <Text>{capitalised_type} error.</Text>
+        <Text>{`"${message}"`}</Text>
         <Text>
           Please try again, if the problem continues please get in touch.
         </Text>

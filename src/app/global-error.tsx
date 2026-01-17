@@ -23,7 +23,7 @@ export default function GlobalError({ error, reset }: ErrorProps) {
         <AuthProvider>
           <Header />
           <Main>
-            <ErrorMessage onClick={reset} type="global" />
+            <ErrorMessage onClick={reset} message={error.message} />
           </Main>
         </AuthProvider>
         <Footer />
