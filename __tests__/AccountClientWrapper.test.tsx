@@ -3,15 +3,7 @@ import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 
 import { mockBookingData } from '../__fixtures__/Booking';
-
-const mockUserData = {
-  id: 'test-user-id',
-  email: 'm.corrigan@jlb-credit.com',
-  user_metadata: {
-    first_name: 'Mark',
-    last_name: 'Corrigan',
-  },
-};
+import { mockUserData } from '../__fixtures__/User';
 
 describe('AccountClientWrapper', () => {
   beforeEach(() => {

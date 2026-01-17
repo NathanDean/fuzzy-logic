@@ -2,21 +2,13 @@ import Account from '@/app/account/page';
 import '@testing-library/jest-dom';
 
 import { mockBookingData } from '../__fixtures__/Booking';
+import { mockUserData } from '../__fixtures__/User';
 
 const mockGetUser = jest.fn();
 const mockRedirect = jest.fn();
 jest.mock('next/navigation', () => ({
   redirect: (path: string) => mockRedirect(path),
 }));
-
-const mockUserData = {
-  id: 'test-user-id',
-  email: 'm.corrigan@jlb-credit.com',
-  user_metadata: {
-    first_name: 'Mark',
-    last_name: 'Corrigan',
-  },
-};
 
 // Supabase client mock
 jest.mock('@/utils/supabase/serverClient', () => ({
