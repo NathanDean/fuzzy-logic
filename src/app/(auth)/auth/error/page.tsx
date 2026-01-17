@@ -1,3 +1,5 @@
+// Error page user is forwarded to from auth-related routes
+
 'use client';
 
 import { Suspense } from 'react';

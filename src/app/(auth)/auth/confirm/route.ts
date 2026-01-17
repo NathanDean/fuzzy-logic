@@ -26,9 +26,9 @@ export async function GET(request: NextRequest) {
         redirect(next);
       }
     } catch {
-      redirect(`/error?message=email-verification-failed`);
+      redirect(`/auth/error?message=email-verification-failed`);
     }
   }
 
-  redirect('/error?message=invalid-verification-link');
+  redirect('/auth/error?message=invalid-verification-link');
 }

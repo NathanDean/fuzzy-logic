@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
   // If there's no code, redirect to error
   if (!code) {
-    redirect('/error?message=no-code');
+    redirect('/auth/error?message=no-code');
   }
 
   // Initialize Supabase client
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
   if (error) {
     console.error('Error exchanging code for session:', error);
-    redirect('/error?message=error-exchanging-code-for-session');
+    redirect('/auth/error?message=error-exchanging-code-for-session');
   }
 
   // Redirect to the update password page
