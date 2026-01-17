@@ -1,8 +1,6 @@
-import {
-  formatWorkshop,
-  type RawWorkshop,
-  type Workshop,
-} from '@/types/Workshop';
+import type { RawWorkshop, Workshop } from '@/types/Workshop';
+
+import { formatWorkshop } from '@/utils/transformers/formatWorkshop';
 
 const mockRawWorkshopsData: RawWorkshop[] = [
   {
