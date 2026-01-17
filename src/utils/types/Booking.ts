@@ -1,5 +1,3 @@
-import type { Workshop } from './Workshop';
-
 export interface Booking {
   id: string;
   created_at: string;
@@ -7,8 +5,11 @@ export interface Booking {
   user_id: string;
   status: string;
   session_id: string;
-}
-
-export interface BookingWithWorkshopDetails extends Booking {
-  workshop: Workshop;
+  workshop_details: {
+    id: string;
+    class_name: string;
+    venue: string;
+    date: string;
+    start_time: string;
+  };
 }

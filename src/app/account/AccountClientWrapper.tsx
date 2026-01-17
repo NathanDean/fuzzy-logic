@@ -5,14 +5,14 @@ import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 
-import type { BookingWithWorkshopDetails } from '@/utils/types/Booking';
+import type { Booking } from '@/utils/types/Booking';
 import type { User } from '@/utils/types/User';
 
 dayjs.extend(advancedFormat);
 
 interface AccountClientWrapperProps {
   user: User;
-  bookings: BookingWithWorkshopDetails[];
+  bookings: Booking[];
 }
 
 export default function AccountClientWrapper({
@@ -35,13 +35,13 @@ export default function AccountClientWrapper({
           <ul className="list-disc space-y-1 pl-5">
             {bookings.length > 0 ? (
               bookings.map((booking) =>
-                booking.workshop ? (
+                booking.workshop_details ? (
                   <ListItem key={booking.id}>
-                    {booking.workshop.class_name} -{' '}
+                    {booking.workshop_details.class_name} -{' '}
                     {dayjs(
-                      `${booking.workshop.date} ${booking.workshop.start_time}`
+                      `${booking.workshop_details.date} ${booking.workshop_details.start_time}`
                     ).format('ha on ddd Do MMM')}{' '}
-                    at {booking.workshop.venue}
+                    at {booking.workshop_details.venue}
                   </ListItem>
                 ) : null
               )

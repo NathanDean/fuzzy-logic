@@ -21,7 +21,7 @@ export default async function Account() {
 
   const { data: bookings, error: dbError } = await supabase
     .from('bookings')
-    .select('*, workshop:workshops(*)')
+    .select('*, workshop:workshops(id, class_name, venue, date, start_time)')
     .eq('user_id', user.id)
     .eq('status', 'confirmed')
     .gte('workshop.date', today)
