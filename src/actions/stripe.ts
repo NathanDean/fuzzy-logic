@@ -1,10 +1,10 @@
 'use server';
 
+import { createAdminClient } from '@/lib/supabase/adminClient';
+import { createClient } from '@/lib/supabase/serverClient';
 import { PostgrestError } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
-import { createAdminClient } from '@/utils/supabase/adminClient';
-import { createClient } from '@/utils/supabase/serverClient';
 import type { Booking } from '@/utils/types/Booking';
 import { formatWorkshop, type Workshop } from '@/utils/types/Workshop';
 

@@ -8,9 +8,8 @@ import {
   useState,
 } from 'react';
 
+import { createClient } from '@/lib/supabase/browserClient';
 import { User } from '@supabase/supabase-js';
-
-import { createClient } from '@/utils/supabase/browserClient';
 
 type AuthContext = {
   user: User | null;

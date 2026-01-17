@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { createClient } from '@/utils/supabase/serverClient';
+import { createClient } from '@/lib/supabase/serverClient';
 
 import { createCheckoutSession } from './stripe';
 

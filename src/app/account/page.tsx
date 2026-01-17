@@ -1,8 +1,7 @@
 import { redirect } from 'next/navigation';
 
 import Main from '@/components/Main';
-
-import { createClient } from '@/utils/supabase/serverClient';
+import { createClient } from '@/lib/supabase/serverClient';
 
 import AccountClientWrapper from './AccountClientWrapper';
 

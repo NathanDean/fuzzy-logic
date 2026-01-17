@@ -1,6 +1,6 @@
 import Main from '@/components/Main';
+import { createClient } from '@/lib/supabase/serverClient';
 
-import { createClient } from '@/utils/supabase/serverClient';
 import { formatWorkshop } from '@/utils/types/Workshop';
 
 import WorkshopDetailsClientWrapper from './WorkshopDetailsClientWrapper';

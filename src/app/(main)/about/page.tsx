@@ -1,6 +1,5 @@
 import Main from '@/components/Main';
-
-import { createClient } from '@/utils/supabase/serverClient';
+import { createClient } from '@/lib/supabase/serverClient';
 
 import AboutClientWrapper from './AboutClientWrapper';
 

@@ -6,7 +6,7 @@ import { Workshop } from '@/utils/types/Workshop';
 import { mockWorkshopsData } from '../__fixtures__/workshops';
 
 // Supabase client mock
-jest.mock('@/utils/supabase/serverClient', () => ({
+jest.mock('@/lib/supabase/serverClient', () => ({
   createClient: jest.fn().mockResolvedValue({
     from: () => ({
       select: () => ({

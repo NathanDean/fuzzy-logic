@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 
 import { mockPeopleData } from '../__fixtures__/people';
 
-jest.mock('@/utils/supabase/serverClient', () => ({
+jest.mock('@/lib/supabase/serverClient', () => ({
   createClient: jest.fn(() => ({
     from: () => ({
       select: () => ({

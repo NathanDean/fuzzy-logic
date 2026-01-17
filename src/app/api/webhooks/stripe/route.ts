@@ -1,10 +1,10 @@
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { createAdminClient } from '@/lib/supabase/adminClient';
 import { PostgrestError } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
-import { createAdminClient } from '@/utils/supabase/adminClient';
 import type { Booking } from '@/utils/types/Booking';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
