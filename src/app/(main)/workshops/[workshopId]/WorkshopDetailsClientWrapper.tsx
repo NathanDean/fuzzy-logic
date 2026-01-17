@@ -31,7 +31,7 @@ export default function WorkshopDetailsClientWrapper({
 
     const result = await createCheckoutSession(workshopId, user.id);
 
-    if (result.error) {
+    if (result && 'error' in result) {
       console.error('Error creating checkout session:', result.error);
       setErrorMessage(result.error);
       return;

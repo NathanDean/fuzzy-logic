@@ -3,7 +3,7 @@ import { NextRequest } from 'next/server';
 
 import { createClient } from '@/lib/supabase/serverClient';
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<void> {
   // Get the code parameter from the URL
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');

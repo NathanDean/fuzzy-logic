@@ -170,9 +170,9 @@ export async function login(
   if (workshopId && data.user) {
     const { user } = data;
     try {
-      const { url } = await createCheckoutSession(workshopId, user.id);
-      if (url) {
-        return { success: true, redirectUrl: url };
+      const result = await createCheckoutSession(workshopId, user.id);
+      if ('url' in result && result.url) {
+        return { success: true, redirectUrl: result.url };
       }
     } catch {
       console.error('Error creating Stripe checkout session.');

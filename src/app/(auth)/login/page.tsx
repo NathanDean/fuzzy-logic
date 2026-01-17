@@ -26,7 +26,7 @@ function LoginForm() {
 
     const result = await login(formData, workshopId);
 
-    if (result?.error) {
+    if (result && 'error' in result) {
       setErrorMessage(result.error);
       return;
     }
