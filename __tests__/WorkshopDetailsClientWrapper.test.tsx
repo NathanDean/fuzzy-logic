@@ -2,6 +2,7 @@ import { createCheckoutSession } from '@/actions/stripe';
 import '@testing-library/jest-dom';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
+import { mockWorkshopsData } from '../__fixtures__/workshops';
 import WorkshopDetailsClientWrapper from '../src/app/(main)/workshops/[workshopId]/WorkshopDetailsClientWrapper';
 
 // AuthContext mock
@@ -22,31 +23,13 @@ jest.mock('@/actions/stripe', () => ({
 
 const mockCreateCheckoutSession = jest.mocked(createCheckoutSession);
 
-// Workshop details
-const workshopDetails = {
-  id: '1',
-  created_at: '2025-04-01T12:00:00Z',
-  class_name: 'Intro to Testing',
-  teacher: 'Mark Corrigan',
-  course_type: '2 week course, Saturday afternoons',
-  date: '2025-04-18',
-  start_time: '18:00:00',
-  end_time: '21:00:00',
-  venue: 'Test Theatre',
-  price: 100,
-  max_places_available: 12,
-  image_url: 'test-image.jpg',
-  description: 'Lorem ipsum',
-  bookings: 10,
-};
-
 describe('WorkshopDetailsClientWrapper', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('displays workshop with correct details', () => {
-    render(<WorkshopDetailsClientWrapper workshop={workshopDetails} />);
+    render(<WorkshopDetailsClientWrapper workshop={mockWorkshopsData[0]} />);
 
     expect(screen.getByText('Intro to Testing')).toBeInTheDocument();
     expect(
@@ -59,17 +42,17 @@ describe('WorkshopDetailsClientWrapper', () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole('heading', {
-        name: 'Begins 6pm on Fri 18 Apr at Test Theatre',
+        name: 'Begins 6pm on Fri 16 Jan at Test Theatre',
       })
     ).toBeInTheDocument();
-    expect(screen.getByText('Lorem ipsum')).toBeInTheDocument();
+    expect(screen.getByText('A workshop about testing.')).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: 'Book now' })
     ).toBeInTheDocument();
   });
 
   it('calls createCheckoutSession with correct details when user clicks Book Now button', async () => {
-    render(<WorkshopDetailsClientWrapper workshop={workshopDetails} />);
+    render(<WorkshopDetailsClientWrapper workshop={mockWorkshopsData[0]} />);
 
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 0));

@@ -3,6 +3,8 @@ import WorkshopsClientWrapper from '@/app/(main)/workshops/WorkshopsClientWrappe
 import '@testing-library/jest-dom';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
+import { mockWorkshopsData } from '../__fixtures__/workshops';
+
 beforeAll(() => {
   Object.defineProperty(window, 'location', {
     writable: true,
@@ -27,45 +29,6 @@ jest.mock('@/actions/stripe', () => ({
 }));
 
 const mockCreateCheckoutSession = jest.mocked(createCheckoutSession);
-
-const mockWorkshopsData = [
-  {
-    id: '1',
-    created_at: '2025-04-01T12:00:00Z',
-    class_name: 'Intro to Testing',
-    teacher: 'Mark Corrigan',
-    course_type: '2 week course, Saturday afternoons',
-    date: '2026-01-16',
-    start_time: '18:00:00',
-    end_time: '21:00:00',
-    venue: 'Test Theatre',
-    price: 100,
-    max_places_available: 12,
-    description: 'A workshop about testing.',
-    image_url: 'an_honourable_man.png',
-    on_sale: true,
-    bookings: [{ count: 10 }],
-    places_remaining: 2,
-  },
-  {
-    id: '2',
-    created_at: '2025-04-01T12:00:00Z',
-    class_name: 'Advanced Testing',
-    teacher: 'Alan Johnson',
-    course_type: '8 week course, Tuesday evenings',
-    date: '2026-01-16',
-    start_time: '18:00:00',
-    end_time: '21:00:00',
-    venue: 'The New Test Theatre',
-    price: 100,
-    max_places_available: 12,
-    description: 'Slorem slipsum.',
-    bookings: [{ count: 12 }],
-    image_url: 'fwonkfort.jpg',
-    on_sale: true,
-    places_remaining: 0,
-  },
-];
 
 describe('Workshops', () => {
   beforeEach(() => {
@@ -97,7 +60,7 @@ describe('Workshops', () => {
     expect(moreInfoLinks).toHaveLength(2);
   });
 
-  it('enables Book Now button when workshop.bookings < workshop.places_available', async () => {
+  it('enables Book Now button when is_sold_out == false', async () => {
     render(<WorkshopsClientWrapper workshops={mockWorkshopsData} />);
 
     await act(async () => {

@@ -8,14 +8,14 @@ import MailingListForm from '@/components/forms/MailingListForm';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
 
-import type { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
+import type { Workshop } from '@/utils/types/Workshop';
 
 import WorkshopCard from './_components/WorkshopCard';
 
 export default function WorkshopsClientWrapper({
   workshops,
 }: {
-  workshops: WorkshopWithRemainingPlaces[];
+  workshops: Workshop[];
 }) {
   const { user, isLoggedIn } = useAuth();
   const router = useRouter();

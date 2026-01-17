@@ -7,10 +7,10 @@ import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import dayjs from 'dayjs';
 
-import type { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
+import type { Workshop } from '@/utils/types/Workshop';
 
 interface WorkshopDetailsCardProps {
-  workshop: WorkshopWithRemainingPlaces;
+  workshop: Workshop;
   onBookNow: (id: string) => void;
   className?: string;
 }

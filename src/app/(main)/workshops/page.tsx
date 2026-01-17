@@ -1,6 +1,7 @@
 import Main from '@/components/Main';
 
 import { createClient } from '@/utils/supabase/serverClient';
+import { formatWorkshop } from '@/utils/types/Workshop';
 
 import WorkshopsClientWrapper from './WorkshopsClientWrapper';
 
@@ -14,20 +15,14 @@ export default async function Workshops() {
     .from('workshops')
     .select('*, bookings:bookings(count)')
     .gte('date', today)
-    .eq('on_sale', true)
+    .eq('is_on_sale', true)
     .order('date');
 
   if (error) {
     throw new Error('Error fetching workshops.');
   }
 
-  // Add no. of bookings to workshops
-  const workshops =
-    data?.map((workshop) => ({
-      ...workshop,
-      places_remaining:
-        workshop.max_places_available - (workshop.bookings?.[0]?.count || 0),
-    })) || [];
+  const workshops = data?.map((workshop) => formatWorkshop(workshop)) || [];
 
   return (
     <Main>

@@ -6,15 +6,15 @@ import Stripe from 'stripe';
 import { createAdminClient } from '@/utils/supabase/adminClient';
 import { createClient } from '@/utils/supabase/serverClient';
 import type { Booking } from '@/utils/types/Booking';
-import type { WorkshopWithRemainingPlaces } from '@/utils/types/Workshop';
+import { formatWorkshop, type Workshop } from '@/utils/types/Workshop';
 
 async function getWorkshop(
   workshopId: string
-): Promise<WorkshopWithRemainingPlaces | { error: string }> {
+): Promise<Workshop | { error: string }> {
   const supabase = await createClient();
 
   // Get workshop details from Supabase
-  const { data: workshop, error } = await supabase
+  const { data: workshopData, error } = await supabase
     .from('workshops')
     .select('*, bookings:bookings(count)')
     .eq('id', workshopId)
@@ -24,15 +24,13 @@ async function getWorkshop(
     return { error: 'Error fetching workshop, please try again.' };
   }
 
-  if (!workshop) {
+  if (!workshopData) {
     return { error: `Workshop not found with ID: ${workshopId}.` };
   }
 
-  // Check whether there are places remaining on the workshop
-  const places_remaining =
-    workshop.max_places_available - (workshop.bookings?.[0]?.count || 0);
+  const workshop = formatWorkshop(workshopData);
 
-  return { ...workshop, places_remaining };
+  return workshop;
 }
 
 export async function createCheckoutSession(
