@@ -5,15 +5,6 @@ import { Workshop } from '@/utils/types/Workshop';
 
 import { mockWorkshopsData } from '../__fixtures__/workshops';
 
-// AuthContext mock
-jest.mock('@/contexts/AuthContext', () => ({
-  useAuth: () => ({
-    isLoggedIn: true,
-
-    user: { id: 'test-user-id' },
-  }),
-}));
-
 // Supabase client mock
 jest.mock('@/utils/supabase/serverClient', () => ({
   createClient: jest.fn().mockResolvedValue({
