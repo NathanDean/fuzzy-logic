@@ -1,8 +1,8 @@
 import Account from '@/app/account/page';
 import '@testing-library/jest-dom';
 
-import { mockBookingData } from '../__fixtures__/Booking';
-import { mockUserData } from '../__fixtures__/User';
+import { mockBookingData } from '../__fixtures__/booking';
+import { mockUserData } from '../__fixtures__/user';
 
 const mockGetUser = jest.fn();
 const mockRedirect = jest.fn();

@@ -2,8 +2,8 @@ import AccountClientWrapper from '@/app/account/AccountClientWrapper';
 import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 
-import { mockBookingData } from '../__fixtures__/Booking';
-import { mockUserData } from '../__fixtures__/User';
+import { mockBookingData } from '../__fixtures__/booking';
+import { mockUserData } from '../__fixtures__/user';
 
 describe('AccountClientWrapper', () => {
   beforeEach(() => {

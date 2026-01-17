@@ -1,4 +1,6 @@
-export const mockBookingData = [
+import { Booking } from '@/types/Booking';
+
+export const mockBookingData: Booking[] = [
   {
     id: 'test-booking-id',
     created_at: '2025-05-10 22:37:58.966912+00',

@@ -1,4 +1,6 @@
-export const mockPeopleData = [
+import { Person } from '@/types/Person';
+
+export const mockPeopleData: Person[] = [
   {
     id: 1,
     created_at: '2025-04-01T12:00:00Z',

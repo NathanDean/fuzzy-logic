@@ -1,4 +1,6 @@
-export const mockUserData = {
+import { User } from '@/types/User';
+
+export const mockUserData: User = {
   id: 'test-user-id',
   email: 'm.corrigan@jlb-credit.com',
   user_metadata: {
