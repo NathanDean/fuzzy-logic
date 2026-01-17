@@ -37,7 +37,7 @@ async function getWorkshop(
 export async function createCheckoutSession(
   workshopId: string,
   userId: string
-) {
+): Promise<{ error: string } | { url: string | null }> {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
   const supabase = await createClient();
   const supabaseAdmin = createAdminClient();
