@@ -2,11 +2,10 @@ import Card from '@/components/cards/Card';
 import Heading from '@/components/ui/Heading';
 import ListItem from '@/components/ui/ListItem';
 import Text from '@/components/ui/Text';
+import type { Booking } from '@/types/Booking';
+import type { User } from '@/types/User';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
-
-import type { Booking } from '@/utils/types/Booking';
-import type { User } from '@/utils/types/User';
 
 dayjs.extend(advancedFormat);
 

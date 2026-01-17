@@ -5,9 +5,8 @@ import CardImage from '@/components/cards/CardImage';
 import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
+import type { Workshop } from '@/types/Workshop';
 import dayjs from 'dayjs';
-
-import type { Workshop } from '@/utils/types/Workshop';
 
 interface WorkshopDetailsCardProps {
   workshop: Workshop;

@@ -8,8 +8,7 @@ import { createCheckoutSession } from '@/actions/stripe';
 import CardGrid from '@/components/cards/CardGrid';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
-
-import type { Workshop } from '@/utils/types/Workshop';
+import type { Workshop } from '@/types/Workshop';
 
 import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 

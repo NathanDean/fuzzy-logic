@@ -2,7 +2,7 @@ import {
   formatWorkshop,
   type RawWorkshop,
   type Workshop,
-} from '@/utils/types/Workshop';
+} from '@/types/Workshop';
 
 const mockRawWorkshopsData: RawWorkshop[] = [
   {

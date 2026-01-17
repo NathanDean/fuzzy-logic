@@ -1,7 +1,6 @@
 import WorkshopDetails from '@/app/(main)/workshops/[workshopId]/page';
+import { Workshop } from '@/types/Workshop';
 import '@testing-library/jest-dom';
-
-import { Workshop } from '@/utils/types/Workshop';
 
 import { mockWorkshopsData } from '../__fixtures__/workshops';
 

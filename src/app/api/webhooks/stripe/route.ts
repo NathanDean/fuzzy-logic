@@ -2,10 +2,9 @@ import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { createAdminClient } from '@/lib/supabase/adminClient';
+import type { Booking } from '@/types/Booking';
 import { PostgrestError } from '@supabase/supabase-js';
 import Stripe from 'stripe';
-
-import type { Booking } from '@/utils/types/Booking';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;

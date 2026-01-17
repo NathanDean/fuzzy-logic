@@ -2,11 +2,10 @@
 
 import { createAdminClient } from '@/lib/supabase/adminClient';
 import { createClient } from '@/lib/supabase/serverClient';
+import type { Booking } from '@/types/Booking';
+import { formatWorkshop, type Workshop } from '@/types/Workshop';
 import { PostgrestError } from '@supabase/supabase-js';
 import Stripe from 'stripe';
-
-import type { Booking } from '@/utils/types/Booking';
-import { formatWorkshop, type Workshop } from '@/utils/types/Workshop';
 
 async function getWorkshop(
   workshopId: string

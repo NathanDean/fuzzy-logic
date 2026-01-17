@@ -4,8 +4,7 @@ import TextContainer from '@/components/containers/TextContainer';
 import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
-
-import { Person } from '@/utils/types/Person';
+import { Person } from '@/types/Person';
 
 import PersonCard from './_components/PersonCard';
 

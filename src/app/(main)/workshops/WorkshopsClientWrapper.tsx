@@ -7,8 +7,7 @@ import CardGrid from '@/components/cards/CardGrid';
 import MailingListForm from '@/components/forms/MailingListForm';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
-
-import type { Workshop } from '@/utils/types/Workshop';
+import type { Workshop } from '@/types/Workshop';
 
 import WorkshopCard from './_components/WorkshopCard';
 

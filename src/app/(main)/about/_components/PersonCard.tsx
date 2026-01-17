@@ -2,8 +2,7 @@ import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
-
-import { Person } from '@/utils/types/Person';
+import { Person } from '@/types/Person';
 
 interface PersonCardProps {
   person: Person;
