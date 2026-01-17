@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/serverClient';
 
 import { createCheckoutSession } from './stripe';
 
-export async function signup(formData: FormData) {
+export async function signup(formData: FormData): Promise<{ error: string }> {
   const supabase = await createClient();
 
   const firstName = formData.get('firstName');
@@ -96,7 +96,12 @@ export async function signup(formData: FormData) {
   redirect('/auth/success?message=signup-successful');
 }
 
-export async function login(formData: FormData, workshopId?: string | null) {
+type LoginResult = { error: string } | { success: true; redirectUrl: string };
+
+export async function login(
+  formData: FormData,
+  workshopId?: string | null
+): Promise<LoginResult> {
   const supabase = await createClient();
 
   const email = formData.get('email');
@@ -178,7 +183,9 @@ export async function login(formData: FormData, workshopId?: string | null) {
   return { success: true, redirectUrl: '/' };
 }
 
-export async function resetPassword(formData: FormData) {
+export async function resetPassword(
+  formData: FormData
+): Promise<{ error: string }> {
   const supabase = await createClient();
 
   const email = formData.get('email');
@@ -230,7 +237,9 @@ export async function resetPassword(formData: FormData) {
   redirect('/auth/success?message=password-reset-request-successful');
 }
 
-export async function updatePassword(formData: FormData) {
+export async function updatePassword(
+  formData: FormData
+): Promise<{ error: string }> {
   const supabase = await createClient();
   const password = formData.get('password');
   const confirmPassword = formData.get('confirmPassword');
