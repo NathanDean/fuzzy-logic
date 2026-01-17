@@ -1,4 +1,4 @@
-import { sigmar } from '@/lib/fonts';
+import { sigmar } from '@/lib/googleFonts/fonts';
 
 import Heading from '../ui/Heading';
 

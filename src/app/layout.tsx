@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import Footer from '@/components/misc/Footer';
 import Header from '@/components/nav/Header';
 import { AuthProvider } from '@/contexts/AuthContext';
-import { outfit, sigmar } from '@/lib/fonts';
+import { outfit, sigmar } from '@/lib/googleFonts/fonts';
 import { Analytics } from '@vercel/analytics/next';
 
 import '@/styles/globals.css';

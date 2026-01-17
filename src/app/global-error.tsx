@@ -7,7 +7,7 @@ import ErrorMessage from '@/components/misc/ErrorMessage';
 import Footer from '@/components/misc/Footer';
 import Header from '@/components/nav/Header';
 import { AuthProvider } from '@/contexts/AuthContext';
-import { outfit, sigmar } from '@/lib/fonts';
+import { outfit, sigmar } from '@/lib/googleFonts/fonts';
 import { Analytics } from '@vercel/analytics/next';
 
 import { ErrorProps } from '@/utils/types/ErrorProps';
