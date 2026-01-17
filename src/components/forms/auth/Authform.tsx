@@ -54,7 +54,7 @@ export default function AuthForm({
       }}
       className={styles}
     >
-      {errorMessage && <p className="error">{errorMessage}</p>}
+      {errorMessage && <Text>{errorMessage}</Text>}
 
       {children({ FormButton })}
 
