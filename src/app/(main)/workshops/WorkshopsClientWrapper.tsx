@@ -19,7 +19,7 @@ export default function WorkshopsClientWrapper({
   const { user, isLoggedIn } = useAuth();
   const router = useRouter();
 
-  const handleBookNow = async (workshopId: string) => {
+  const handleBookNow = async (workshopId: string): Promise<void> => {
     if (!isLoggedIn || !user) {
       router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
       return;
@@ -35,6 +35,7 @@ export default function WorkshopsClientWrapper({
       window.location.href = result.url;
     }
   };
+
   return (
     <>
       {workshops.length === 0 ? (

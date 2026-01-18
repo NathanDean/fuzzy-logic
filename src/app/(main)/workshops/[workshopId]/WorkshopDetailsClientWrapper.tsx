@@ -21,7 +21,7 @@ export default function WorkshopDetailsClientWrapper({
   const [errorMessage, setErrorMessage] = useState<string>('');
   const router = useRouter();
 
-  const handleBookNow = async (workshopId: string) => {
+  const handleBookNow = async (workshopId: string): Promise<void> => {
     setErrorMessage('');
 
     if (!isLoggedIn || !user) {
