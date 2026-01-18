@@ -47,13 +47,13 @@ export default function WorkshopsClientWrapper({
         </div>
       ) : (
         <div>
-          <CardGrid cols={1}>
+          <CardGrid>
             {workshops.map((workshop) => (
               <WorkshopCard
                 key={workshop.id}
                 workshop={workshop}
                 onBookNow={handleBookNow}
-                className="w-full, md:w-xl"
+                className="w-full, md:w-lg"
               />
             ))}
           </CardGrid>
