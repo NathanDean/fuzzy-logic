@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 
 interface WorkshopDetailsCardProps {
   workshop: Workshop;
-  onBookNow: (id: string) => void;
+  onBookNow: (id: string) => Promise<void>;
   className?: string;
 }
 
