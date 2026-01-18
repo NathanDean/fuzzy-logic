@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/serverClient';
 
 export async function subscribeToMailingList(
   formData: FormData
-): Promise<{ error: string } | { success: boolean }> {
+): Promise<{ error: string } | { success: true }> {
   const supabase = await createClient();
 
   const email = formData.get('email') as string;
