@@ -21,7 +21,7 @@ function LoginForm() {
   const redirectTo = searchParams.get('redirectTo');
   const workshopId = searchParams.get('workshopId');
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (formData: FormData): Promise<void> => {
     setErrorMessage('');
 
     const result = await login(formData, workshopId);

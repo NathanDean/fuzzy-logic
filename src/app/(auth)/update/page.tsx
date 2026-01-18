@@ -30,7 +30,7 @@ export default function UpdatePassword() {
     }
   }, [isLoading, user, router]);
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (formData: FormData): Promise<void> => {
     setErrorMessage('');
 
     const result = await updatePassword(formData);

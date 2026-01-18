@@ -21,7 +21,7 @@ export default function SignUpPage() {
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
   const isDisabled = passwordStrength < 3 || isTurnstileLoading;
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (formData: FormData): Promise<void> => {
     setErrorMessage('');
 
     const result = await signup(formData);

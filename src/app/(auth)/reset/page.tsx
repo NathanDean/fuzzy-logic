@@ -12,7 +12,7 @@ export default function ResetPassword() {
   const [isTurnstileLoading, setIsTurnstileLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (formData: FormData): Promise<void> => {
     setErrorMessage('');
 
     const result = await resetPassword(formData);
