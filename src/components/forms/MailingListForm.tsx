@@ -36,7 +36,7 @@ export default function MailingListForm({
     const formData = new FormData(e.currentTarget);
     const result = await subscribeToMailingList(formData);
 
-    if (result?.error) {
+    if (result && 'error' in result) {
       // Handle error
       setSubscribeMessage('Sorry, please try again.');
     } else {
