@@ -9,7 +9,7 @@ zxcvbnOptions.setOptions({
   },
 });
 
-export default function usePasswordStrength(password: string) {
+export default function usePasswordStrength(password: string): number {
   return useMemo(() => {
     const passwordStrength = zxcvbn(password).score;
     return passwordStrength;
