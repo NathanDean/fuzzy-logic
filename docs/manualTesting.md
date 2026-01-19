@@ -1,8 +1,8 @@
 # Manual testing report
 
-## Last tested: 07/08/2025 (commit 50f170c)
+## Last tested: 19/01/2025 (most recent commit: aad484d)
 
-## Status: _**Ready**_ / Ready with minor issues / Blocked
+## Status: Ready / _**Ready with minor issues**_ / Blocked
 
 ### Critical issues
 
@@ -10,25 +10,13 @@
 
 ### Minor issues
 
-- None
+- User appears to already be logged in after updating password: not expected behaviour but not particularly problematic
 
 # Stripe
 
 ## Describes: Single click on Book Now button
 
 ### Expect: Single booking to be created with status === "in progress"
-
-- Passed from Workshops
-- Passed from WorkshopDetails
-
-## Describes: Successful payment
-
-### Expect: Matching booking status === "confirmed"
-
-- Passed from Workshops
-- Passed from WorkshopDetails
-
-### Expect: User to be redirected to success page
 
 - Passed from Workshops
 - Passed from WorkshopDetails
@@ -40,102 +28,87 @@
 - Passed from Workshops
 - Passed from WorkshopDetails
 
-### Expect: Matching booking status === "confirmed" after payment
+## Describes: Successful payment
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+### Expect: Matching booking status === "confirmed"
+
+- Passed
+
+### Expect: User to be redirected to success page
+
+- Passed
 
 ## Describes: Attempt to complete checkout session in multiple tabs/windows
 
 ### Expect: Single booking to be created with status === "in progress"
 
-- Passed from Workshops
-- TBC from WorkshopDetails
+- Passed
 
 ### Expect: Same booking status === "confirmed" after completing payment in second tab/window
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ## Describes: Exiting checkout session and returning to it before expiry
 
 ### Expect : Single booking to be in table with status === "in progress"
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ### Expect: Matching booking status === "confirmed" after payment
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ## Describes: Expired checkout session
 
 ### Expect: Matching booking to be deleted
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- TBC
 
 ## Describes: Failed payment
 
 ### Expect: Matching booking to be in table with status === "in progress"
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- TBC
 
 ### Expect: Matching booking to be deleted when checkout session expires
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- TBC
 
 ## Describes: Multiple users attempt to book last place
 
 ### Expect: Both users to see Book Now button enabled
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ### Expect: First user to proceed to checkout on clicking Book Now button
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ### Expect: Single booking for first user to be created with status === "in progress"
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ### Expect: Second user to see error message on clicking Book Now button
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ### Expect: No booking to be created for second user
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ## Describes: User attempts to book while logged out
 
 ### Expect: User to be redirected to login page displayed "Please login to continue" message
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ### Expect: User to be redirected to correct checkout page after successful login
 
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 ### Expect: Single booking to be created with status === "in progress"
 
-- Passed from Workshops
-- Passed from WorkshopDetails
-
-### Expect: Matching booking status === "confirmed" after payment
-
-- Passed from Workshops
-- Passed from WorkshopDetails
+- Passed
 
 # Auth
 
@@ -222,20 +195,6 @@
 ## Describes: User attempts multiple clicks on Login button
 
 ### Expect: Form to be disabled after first click
-
-- Passed
-
-## Describes: User attempts to login from two different browsers simultaneously
-
-### Expect: Form to be submitted in each browser
-
-- Passed
-
-### Expect: User to be successfully logged in in each browser
-
-- Passed
-
-### Expect: User to be redirected to Home page in each browser
 
 - Passed
 

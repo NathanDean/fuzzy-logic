@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { createCheckoutSession } from '@/actions/stripe';
+import { getCheckoutSession } from '@/actions/stripe';
 import CardGrid from '@/components/cards/CardGrid';
 import Text from '@/components/ui/Text';
 import { useAuth } from '@/contexts/AuthContext';
@@ -29,7 +29,7 @@ export default function WorkshopDetailsClientWrapper({
       return;
     }
 
-    const result = await createCheckoutSession(workshopId, user.id);
+    const result = await getCheckoutSession(workshopId, user.id);
 
     if (result && 'error' in result) {
       console.error('Error creating checkout session:', result.error);

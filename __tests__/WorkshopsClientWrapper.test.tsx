@@ -1,4 +1,4 @@
-import { createCheckoutSession } from '@/actions/stripe';
+import { getCheckoutSession } from '@/actions/stripe';
 import WorkshopsClientWrapper from '@/app/(main)/workshops/WorkshopsClientWrapper';
 import '@testing-library/jest-dom';
 import { act, fireEvent, render, screen } from '@testing-library/react';
@@ -21,14 +21,14 @@ jest.mock('@/contexts/AuthContext', () => ({
   }),
 }));
 
-// Stripe createCheckoutSession mock
+// Stripe getCheckoutSession mock
 jest.mock('@/actions/stripe', () => ({
-  createCheckoutSession: jest
+  getCheckoutSession: jest
     .fn()
     .mockResolvedValue({ url: 'https://stripe.com/checkout' }),
 }));
 
-const mockCreateCheckoutSession = jest.mocked(createCheckoutSession);
+const mockGetCheckoutSession = jest.mocked(getCheckoutSession);
 
 describe('Workshops', () => {
   beforeEach(() => {
@@ -71,7 +71,7 @@ describe('Workshops', () => {
     expect(screen.getByRole('button', { name: 'Sold out' })).toBeDisabled();
   });
 
-  it('calls createCheckoutSession with correct details when user clicks Book Now button', async () => {
+  it('calls getCheckoutSession with correct details when user clicks Book Now button', async () => {
     render(<WorkshopsClientWrapper workshops={mockWorkshopsData} />);
 
     await act(async () => {
@@ -86,7 +86,7 @@ describe('Workshops', () => {
       fireEvent.click(bookNowButton);
     });
 
-    expect(mockCreateCheckoutSession).toHaveBeenCalledWith('1', 'test-user-id');
+    expect(mockGetCheckoutSession).toHaveBeenCalledWith('1', 'test-user-id');
 
     expect(window.location.href).toBe('https://stripe.com/checkout');
   });

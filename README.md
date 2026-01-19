@@ -135,14 +135,14 @@ This context is used by the Header component.
 
 ### Stripe data flows
 
-Stripe sessions are created from the Workshops or WorkshopDetails pages by calling the createCheckoutSession action from `/actions/stripe`. This begins a Stripe checkout session, passes on success and cancellation URLs, and creates a new "in progress" workshop booking in Supabase.
+Stripe sessions are created from the Workshops or WorkshopDetails pages by calling the getCheckoutSession action from `/actions/stripe`. This begins a Stripe checkout session, passes on success and cancellation URLs, and creates a new "in progress" workshop booking in Supabase.
 
 On completion or expiration of the checkout session, Stripe sends the corresponding event to the `/api/webhooks/stripe` endpoint, which updates the matching booking in Supabase accordingly.
 
 ```mermaid
 flowchart LR
 %%{init: {'theme':'neutral'}}%%
-    A[**Workshops/WorkshopDetails page**<br>User clicks Book now...<br>Calls createCheckoutSession action from...] --> B[**Stripe actions**<br>Checks for remaining places...<br>Checks for existing checkout session...]
+    A[**Workshops/WorkshopDetails page**<br>User clicks Book now...<br>Calls getCheckoutSession action from...] --> B[**Stripe actions**<br>Checks for remaining places...<br>Checks for existing checkout session...]
     B --> |Success, create in progress booking, redirect to...| C[**Stripe checkout page**]
     C --> |User completes payment, user redirected to...| D[**Checkout success page**]
     C --> |User completes payment, Stripe sends completion event to...| E[**Stripe webhook endpoint**<br>Updates matching Supabase booking to confirmed OR deletes booking]

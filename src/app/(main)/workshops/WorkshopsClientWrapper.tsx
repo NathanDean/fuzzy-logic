@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { createCheckoutSession } from '@/actions/stripe';
+import { getCheckoutSession } from '@/actions/stripe';
 import CardGrid from '@/components/cards/CardGrid';
 import MailingListForm from '@/components/forms/MailingListForm';
 import Text from '@/components/ui/Text';
@@ -25,7 +25,7 @@ export default function WorkshopsClientWrapper({
       return;
     }
 
-    const result = await createCheckoutSession(workshopId, user.id);
+    const result = await getCheckoutSession(workshopId, user.id);
 
     if (result && 'error' in result) {
       throw new Error('Error creating checkout session.');

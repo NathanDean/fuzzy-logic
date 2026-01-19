@@ -4,17 +4,20 @@ import { createAdminClient } from '@/lib/supabase/adminClient';
 import { createClient } from '@/lib/supabase/serverClient';
 import type { Booking } from '@/types/Booking';
 import type { Workshop } from '@/types/Workshop';
-import { PostgrestError } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
 import { formatWorkshop } from '@/utils/transformers/formatWorkshop';
 
+type BookingResult = { error: string } | void;
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+
+// Get workshop details from Supabase
 async function getWorkshop(
   workshopId: string
 ): Promise<Workshop | { error: string }> {
   const supabase = await createClient();
 
-  // Get workshop details from Supabase
   const { data: workshopData, error } = await supabase
     .from('workshops')
     .select('*, bookings:bookings(count)')
@@ -34,28 +37,14 @@ async function getWorkshop(
   return workshop;
 }
 
-export async function createCheckoutSession(
+// Get details of existing booking from Supabase
+async function getBooking(
   workshopId: string,
   userId: string
-): Promise<{ error: string } | { url: string | null }> {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+): Promise<Booking | { error: string } | void> {
   const supabase = await createClient();
-  const supabaseAdmin = createAdminClient();
-  const result = await getWorkshop(workshopId);
 
-  if ('error' in result) {
-    return { error: 'Error creating checkout session, please try again' };
-  }
-
-  const workshop = result;
-
-  // Check whether the workshop has places remaining
-  if (workshop.places_remaining <= 0) {
-    return { error: 'Sorry, this workshop is now sold out.' };
-  }
-
-  // Check for existing in progress booking
-  const { data: existingBooking, error: existingBookingError } = (await supabase
+  const { data: booking, error } = await supabase
     .from('bookings')
     .select('*')
     .match({
@@ -63,38 +52,30 @@ export async function createCheckoutSession(
       user_id: userId,
       status: 'in progress',
     })
-    .limit(1)) as { data: Booking[] | null; error: PostgrestError | null };
+    .maybeSingle(); // Returns 0 or 1 result
 
-  if (existingBookingError) {
+  if (error) {
     return { error: 'Error finding existing booking, please try again.' };
   }
 
-  // If existing in progress booking has an active checkout session, retrieve it
-  if (
-    existingBooking &&
-    existingBooking.length > 0 &&
-    existingBooking[0].session_id
-  ) {
-    try {
-      // Check for existing checkout session
-      const existingSession = await stripe.checkout.sessions.retrieve(
-        existingBooking[0].session_id
-      );
-
-      // If the session is active, return and continue to its checkout URL
-      if (
-        existingSession.status !== 'expired' &&
-        existingSession.status !== 'complete'
-      ) {
-        return { url: existingSession.url };
-      }
-    } catch {
-      return { error: 'Error retrieving checkout session, please try again' };
-    }
+  if (booking) {
+    return booking;
   }
+}
 
-  // Otherwise, create new checkout session
-  const session = await stripe.checkout.sessions.create({
+async function retrieveSession(
+  sessionId: string
+): Promise<Stripe.Checkout.Session> {
+  const session = await stripe.checkout.sessions.retrieve(sessionId);
+  return session;
+}
+
+function getBookingDetails(
+  workshop: Workshop,
+  userId: string
+): Stripe.Checkout.SessionCreateParams {
+  return {
+    // Basic details
     payment_method_types: ['card'],
     line_items: [
       {
@@ -113,9 +94,11 @@ export async function createCheckoutSession(
     ],
 
     mode: 'payment',
+
+    // Allow promotional codes
     allow_promotion_codes: true,
 
-    // URLs for redirection after session completed or cancelled
+    // URLs for redirection after checkout session
     success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/cancel`,
 
@@ -128,36 +111,120 @@ export async function createCheckoutSession(
       workshop_price: workshop.price,
       user_id: userId,
     },
+  };
+}
+
+async function createSession(
+  bookingDetails: Stripe.Checkout.SessionCreateParams
+): Promise<Stripe.Checkout.Session> {
+  const session = await stripe.checkout.sessions.create(bookingDetails);
+  return session;
+}
+
+// Create new booking in Supabase
+async function createBooking(
+  sessionId: string,
+  workshopId: string,
+  userId: string
+): Promise<BookingResult> {
+  const supabaseAdmin = createAdminClient();
+
+  const { error } = await supabaseAdmin.from('bookings').insert({
+    workshop_id: workshopId,
+    user_id: userId,
+    session_id: sessionId,
+    status: 'in progress',
   });
 
-  // If existing in progress booking exists update it with new session ID
-  if (existingBooking && existingBooking.length > 0) {
-    const { error } = await supabaseAdmin
-      .from('bookings')
-      .update({ session_id: session.id })
-      .match({
-        workshop_id: workshopId,
-        user_id: userId,
-        status: 'in progress',
-      });
+  if (error) {
+    return { error: `Error processing booking: ${error.message}` };
+  }
+}
 
-    if (error) {
-      return { error: `Error processing booking: ${error.message}` };
-    }
-
-    // Otherwise create new in progress booking
-  } else {
-    const { error } = await supabaseAdmin.from('bookings').insert({
+// Update existing Supabase booking with new Stripe checkout session ID
+async function updateBooking(
+  sessionId: string,
+  workshopId: string,
+  userId: string
+): Promise<BookingResult> {
+  const supabaseAdmin = createAdminClient();
+  const { error } = await supabaseAdmin
+    .from('bookings')
+    .update({ session_id: sessionId })
+    .match({
       workshop_id: workshopId,
       user_id: userId,
-      session_id: session.id,
       status: 'in progress',
     });
 
-    if (error) {
-      return { error: `Error processing booking: ${error.message}` };
-    }
+  if (error) {
+    return { error: `Error processing booking: ${error.message}` };
+  }
+}
+
+// Initialise Stripe checkout session
+export async function getCheckoutSession(
+  workshopId: string,
+  userId: string
+): Promise<{ error: string } | { url: string | null }> {
+  // Get workshop details
+  const workshop = await getWorkshop(workshopId);
+  if ('error' in workshop) {
+    return { error: workshop.error };
   }
 
+  // Check if workshop is sold it
+  if (workshop.is_sold_out) {
+    return { error: 'Sorry, this workshop is now sold out.' };
+  }
+
+  // Check for existing in progress booking for workshop from current user
+  const result = await getBooking(workshopId, userId);
+
+  // If booking exists
+  if (result) {
+    if ('error' in result) {
+      return { error: 'Error retrieving booking.' };
+    }
+    const booking = result;
+    const sessionId = booking.session_id;
+
+    // Check for matching active checkout session
+    if (sessionId) {
+      try {
+        const session = await retrieveSession(sessionId);
+        if (session.status !== 'expired' && session.status !== 'complete') {
+          return { url: session.url };
+        }
+      } catch {
+        return { error: 'Error retrieving checkout session, please try again' };
+      }
+    }
+
+    // If no checkout session exists, create new session and add it to existing booking
+    const bookingDetails = getBookingDetails(workshop, userId);
+    const session = await createSession(bookingDetails);
+    const updateBookingResult = await updateBooking(
+      session.id,
+      workshopId,
+      userId
+    );
+    if (updateBookingResult && 'error' in updateBookingResult) {
+      return { error: 'Error updating booking, please try again.' };
+    }
+
+    // Return checkout session URL
+    return { url: session.url };
+  }
+
+  // If no booking exists, create new checkout session add to new booking
+  const bookingDetails = getBookingDetails(workshop, userId);
+  const session = await createSession(bookingDetails);
+  const newBookingResult = await createBooking(session.id, workshopId, userId);
+  if (newBookingResult && 'error' in newBookingResult) {
+    return { error: 'Error creating booking, please try again.' };
+  }
+
+  // Return checkout session URL
   return { url: session.url };
 }

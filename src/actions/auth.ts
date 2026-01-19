@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/lib/supabase/serverClient';
 
-import { createCheckoutSession } from './stripe';
+import { getCheckoutSession } from './stripe';
 
 export async function signup(formData: FormData): Promise<{ error: string }> {
   const supabase = await createClient();
@@ -170,7 +170,7 @@ export async function login(
   if (workshopId && data.user) {
     const { user } = data;
     try {
-      const result = await createCheckoutSession(workshopId, user.id);
+      const result = await getCheckoutSession(workshopId, user.id);
       if ('url' in result && result.url) {
         return { success: true, redirectUrl: result.url };
       }
