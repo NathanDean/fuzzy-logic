@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  JSX,
   ReactNode,
   useContext,
   useEffect,
@@ -27,7 +28,11 @@ const AuthContext = createContext<AuthContext>({
 });
 
 // Provider component to wrap round app
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({
+  children,
+}: {
+  children: ReactNode;
+}): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
