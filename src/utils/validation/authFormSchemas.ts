@@ -1,3 +1,4 @@
+// Zod schemas to validate form inputs used by auth actions
 import { z } from 'zod';
 
 export const signupSchema = z
