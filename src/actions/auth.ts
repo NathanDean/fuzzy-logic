@@ -5,6 +5,12 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/lib/supabase/serverClient';
 
+import {
+  loginSchema,
+  resetPasswordSchema,
+  signupSchema,
+  updatePasswordSchema,
+} from '@/utils/validation/authFormSchemas';
 import getAuthError from '@/utils/validation/getAuthError';
 
 import { getCheckoutSession } from './stripe';
@@ -12,51 +18,37 @@ import { getCheckoutSession } from './stripe';
 export async function signup(formData: FormData): Promise<{ error: string }> {
   const supabase = await createClient();
 
-  const firstName = formData.get('firstName');
-  const lastName = formData.get('lastName');
-  const email = formData.get('email');
-  const password = formData.get('password');
-  const confirmPassword = formData.get('confirmPassword');
-  const subscribe = formData.get('subscribe');
-  const turnstileToken = formData.get('cf-turnstile-response');
+  // Validate form input with Zod
+  const validatedFields = signupSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
 
-  //Validation
-
-  if (!email || typeof email != 'string') {
-    return { error: 'Email is required' };
+  if (!validatedFields.success) {
+    return {
+      error:
+        validatedFields.error.flatten().fieldErrors.confirmPassword?.[0] ||
+        validatedFields.error.errors[0].message,
+    };
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailRegex.test(email)) {
-    return { error: 'Please enter a valid email address' };
-  }
-
-  if (!password || typeof password != 'string') {
-    return { error: 'Password is required' };
-  }
-
-  if (password.length < 8) {
-    return { error: 'Password must be 8 or more characters long' };
-  }
-
-  if (password !== confirmPassword) {
-    return { error: 'Passwords must match' };
-  }
-
-  if (!turnstileToken || typeof turnstileToken !== 'string') {
-    return { error: 'CAPTCHA verification failed: Missing token' };
-  }
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    subscribe,
+    'cf-turnstile-response': turnstileToken,
+  } = validatedFields.data;
 
   // Sign up with Supabase Auth
   const { error } = await supabase.auth.signUp({
-    email: email as string,
-    password: password as string,
+    email: email,
+    password: password,
     options: {
       captchaToken: turnstileToken,
       data: {
-        first_name: firstName as string,
-        last_name: lastName as string,
+        first_name: firstName,
+        last_name: lastName,
       },
     },
   });
@@ -99,33 +91,22 @@ export async function login(
 ): Promise<LoginResult> {
   const supabase = await createClient();
 
-  const email = formData.get('email');
-  const password = formData.get('password');
-  const turnstileToken = formData.get('cf-turnstile-response');
+  const validatedFields = loginSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
 
-  //Validation
-
-  if (!email || typeof email != 'string') {
-    return { error: 'Email is required' };
+  if (!validatedFields.success) {
+    // Return the first error message found
+    return {
+      error: validatedFields.error.errors[0].message,
+    };
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailRegex.test(email)) {
-    return { error: 'Please enter a valid email address' };
-  }
-
-  if (!password || typeof password != 'string') {
-    return { error: 'Password is required' };
-  }
-
-  if (password.length < 8) {
-    return { error: 'Password must be 8 or more characters long' };
-  }
-
-  if (!turnstileToken || typeof turnstileToken !== 'string') {
-    return { error: 'CAPTCHA verification failed: Missing token' };
-  }
+  const {
+    email,
+    password,
+    'cf-turnstile-response': turnstileToken,
+  } = validatedFields.data;
 
   // Supabase sign in function
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -169,24 +150,16 @@ export async function resetPassword(
 ): Promise<{ error: string }> {
   const supabase = await createClient();
 
-  const email = formData.get('email');
-  const turnstileToken = formData.get('cf-turnstile-response');
-
-  //Validation
-
-  if (!email || typeof email != 'string') {
-    return { error: 'Email is required' };
+  const validatedFields = resetPasswordSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+  if (!validatedFields.success) {
+    return {
+      error: validatedFields.error.errors[0].message,
+    };
   }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailRegex.test(email)) {
-    return { error: 'Please enter a valid email address' };
-  }
-
-  if (!turnstileToken || typeof turnstileToken !== 'string') {
-    return { error: 'CAPTCHA verification failed: Missing token' };
-  }
+  const { email, 'cf-turnstile-response': turnstileToken } =
+    validatedFields.data;
 
   // Supabase password reset function
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -214,21 +187,18 @@ export async function updatePassword(
   formData: FormData
 ): Promise<{ error: string }> {
   const supabase = await createClient();
-  const password = formData.get('password');
-  const confirmPassword = formData.get('confirmPassword');
 
-  if (!password || typeof password != 'string') {
-    return { error: 'Password is required' };
+  const validatedFields = updatePasswordSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+  if (!validatedFields.success) {
+    return {
+      error:
+        validatedFields.error.flatten().fieldErrors.confirmPassword?.[0] ||
+        validatedFields.error.errors[0].message,
+    };
   }
-
-  if (password.length < 8) {
-    return { error: 'Password must be 8 or more characters long' };
-  }
-
-  if (password !== confirmPassword) {
-    return { error: 'Passwords must match' };
-  }
-
+  const { password } = validatedFields.data;
   const { error } = await supabase.auth.updateUser({
     password: password,
   });
