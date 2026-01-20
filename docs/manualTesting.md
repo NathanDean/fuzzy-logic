@@ -10,7 +10,7 @@
 
 ### Minor issues
 
-- User appears to already be logged in after updating password: not expected behaviour but not particularly problematic
+- User is logged in after updating password: not aligned with success message, which directs user to log in.
 
 # Stripe
 
@@ -62,17 +62,17 @@
 
 ### Expect: Matching booking to be deleted
 
-- TBC
+- Passed
 
 ## Describes: Failed payment
 
 ### Expect: Matching booking to be in table with status === "in progress"
 
-- TBC
+- Passed
 
 ### Expect: Matching booking to be deleted when checkout session expires
 
-- TBC
+- Passed
 
 ## Describes: Multiple users attempt to book last place
 

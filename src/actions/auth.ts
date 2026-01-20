@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { createClient } from '@/lib/supabase/serverClient';
+import { AuthError } from '@supabase/supabase-js';
 
 import {
   loginSchema,
@@ -15,7 +16,16 @@ import getAuthError from '@/utils/validation/getAuthError';
 
 import { getCheckoutSession } from './stripe';
 
-// Signup actions
+// Gets specific error message if one exists, otherwise returns default error message
+function handleSupabaseError(defaultMessage: string, error: AuthError) {
+  console.error(`${defaultMessage}:`, error);
+  const message = error.code
+    ? getAuthError(error.code, defaultMessage)
+    : defaultMessage;
+  return { error: message };
+}
+
+// Signup action
 export async function signup(formData: FormData): Promise<{ error: string }> {
   // Create Supabase client
   const supabase = await createClient();
@@ -57,14 +67,7 @@ export async function signup(formData: FormData): Promise<{ error: string }> {
 
   // Handle Supabase error
   if (error) {
-    console.error('Error signing up:', error);
-    const fallbackMessage =
-      'Error signing up, please refresh the page and try again.';
-    if (error.code) {
-      return { error: getAuthError(error.code, fallbackMessage) };
-    } else {
-      return { error: fallbackMessage };
-    }
+    return handleSupabaseError('Error signing up', error);
   }
 
   // Handle mailing list signup
@@ -119,14 +122,7 @@ export async function login(
 
   // Handle Supabase error
   if (error) {
-    console.error('Error logging in:', error);
-    const fallbackMessage =
-      'Error logging in, please refresh the page and try again.';
-    if (error.code) {
-      return { error: getAuthError(error.code, fallbackMessage) };
-    } else {
-      return { error: fallbackMessage };
-    }
+    return handleSupabaseError('Error logging in', error);
   }
 
   // Get Stripe checkout session if user was attempting to book workshop
@@ -178,14 +174,7 @@ export async function resetPassword(
 
   // Handle Supabase error
   if (error) {
-    console.error('Error requesting password reset:', error);
-    const fallbackMessage =
-      'Error requesting password reset, please refresh the page and try again.';
-    if (error.code) {
-      return { error: getAuthError(error.code, fallbackMessage) };
-    } else {
-      return { error: fallbackMessage };
-    }
+    return handleSupabaseError('Error requesting password reset', error);
   }
 
   // Redirect user on success
@@ -222,14 +211,7 @@ export async function updatePassword(
 
   // Handle Supabase error
   if (error) {
-    console.error('Error updating password:', error);
-    const fallbackMessage =
-      'Error updating password, please refresh the page and try again.';
-    if (error.code) {
-      return { error: getAuthError(error.code, fallbackMessage) };
-    } else {
-      return { error: fallbackMessage };
-    }
+    return handleSupabaseError('Error updating password', error);
   }
 
   // Redirect user on success
