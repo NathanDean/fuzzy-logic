@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/lib/supabase/serverClient';
 
+import getAuthError from '@/utils/validation/getAuthError';
+
 import { getCheckoutSession } from './stripe';
 
 export async function signup(formData: FormData): Promise<{ error: string }> {
@@ -59,23 +61,16 @@ export async function signup(formData: FormData): Promise<{ error: string }> {
     },
   });
 
+  // Handle Supabase error
   if (error) {
     console.error('Error signing up:', error);
-
-    if (error.code?.includes('captcha_failed')) {
-      return {
-        error:
-          'Captcha verification failed, please refresh the page and try again.',
-      };
+    const fallbackMessage =
+      'Error signing up, please refresh the page and try again.';
+    if (error.code) {
+      return { error: getAuthError(error.code, fallbackMessage) };
+    } else {
+      return { error: fallbackMessage };
     }
-
-    if (error.code?.includes('rate_limit')) {
-      return { error: 'Too many requests, please try again in a few minutes.' };
-    }
-
-    return {
-      error: 'Error signing up, please refresh the page and try again.',
-    };
   }
 
   if (subscribe) {
@@ -141,30 +136,16 @@ export async function login(
     },
   });
 
+  // Handle Supabase error
   if (error) {
-    console.error('Error logging in', error);
-
-    if (error.code?.includes('invalid_credentials')) {
-      return { error: 'Invalid email or password, please try again.' };
+    console.error('Error logging in:', error);
+    const fallbackMessage =
+      'Error logging in, please refresh the page and try again.';
+    if (error.code) {
+      return { error: getAuthError(error.code, fallbackMessage) };
+    } else {
+      return { error: fallbackMessage };
     }
-
-    if (error.code?.includes('email_not_confirmed')) {
-      return {
-        error:
-          'Email address not confirmed, please check your inbox for a confirmation email.',
-      };
-    }
-
-    if (error.code?.includes('captcha_failed')) {
-      return {
-        error:
-          'Captcha verification failed, please refresh the page and try again.',
-      };
-    }
-
-    return {
-      error: 'Error logging in, please refresh the page and try again.',
-    };
   }
 
   if (workshopId && data.user) {
@@ -213,24 +194,16 @@ export async function resetPassword(
     redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`,
   });
 
+  // Handle Supabase error
   if (error) {
-    console.error('Error resetting password:', error);
-
-    if (error.code?.includes('captcha_failed')) {
-      return {
-        error:
-          'Captcha verification failed, please refresh the page and try again.',
-      };
+    console.error('Error requesting password reset:', error);
+    const fallbackMessage =
+      'Error requesting password reset, please refresh the page and try again.';
+    if (error.code) {
+      return { error: getAuthError(error.code, fallbackMessage) };
+    } else {
+      return { error: fallbackMessage };
     }
-
-    if (error.code?.includes('rate_limit')) {
-      return { error: 'Too many requests, please try again in a few minutes.' };
-    }
-
-    return {
-      error:
-        'Error requesting password reset, please refresh the page and try again',
-    };
   }
 
   revalidatePath('/', 'layout');
@@ -260,26 +233,16 @@ export async function updatePassword(
     password: password,
   });
 
+  // Handle Supabase error
   if (error) {
     console.error('Error updating password:', error);
-
-    if (error.code?.includes('same_password')) {
-      return { error: 'New password must be different to previous password.' };
+    const fallbackMessage =
+      'Error updating password, please refresh the page and try again.';
+    if (error.code) {
+      return { error: getAuthError(error.code, fallbackMessage) };
+    } else {
+      return { error: fallbackMessage };
     }
-
-    if (
-      error.code?.includes('invalid_credentials') ||
-      error.code?.includes('user_not_found')
-    ) {
-      return {
-        error:
-          'Your session has expired, please request a new password reset email.',
-      };
-    }
-
-    return {
-      error: 'Error updating password, please refresh the page and try again',
-    };
   }
 
   revalidatePath('/', 'layout');
