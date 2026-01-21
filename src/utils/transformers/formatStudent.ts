@@ -26,7 +26,7 @@ const studentSchema = z
     email: data.email,
   }));
 
-export default function (rawUser: User): Student {
+export default function formatStudent(rawUser: User): Student {
   // Transform input
   const result = studentSchema.safeParse(rawUser);
 
