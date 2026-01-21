@@ -13,7 +13,7 @@ export default async function About() {
 
   return (
     <Main className="py-0 lg:py-0">
-      <AboutClientWrapper people={data} />
+      <AboutClientWrapper team={data} />
     </Main>
   );
 }

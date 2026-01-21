@@ -1,6 +1,6 @@
-import { Person } from '@/types/Person';
+import { TeamMember } from '@/types/TeamMember';
 
-export const mockPeopleData: Person[] = [
+export const mockTeamMemberData: TeamMember[] = [
   {
     id: 1,
     created_at: '2025-04-01T12:00:00Z',

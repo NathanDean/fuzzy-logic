@@ -2,11 +2,11 @@ import AboutClientWrapper from '@/app/(main)/about/AboutClientWrapper';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import { mockPeopleData } from '../__fixtures__/people';
+import { mockTeamMemberData } from '../__fixtures__/teamMember';
 
 describe('AboutClientWrapper', () => {
   it('displays people after loading from Supabase', async () => {
-    render(<AboutClientWrapper people={mockPeopleData} />);
+    render(<AboutClientWrapper team={mockTeamMemberData} />);
 
     expect(screen.getByRole('heading', { name: 'Mark Corrigan' }));
     expect(screen.getByText('Boy to geek to drone.')).toBeInTheDocument();

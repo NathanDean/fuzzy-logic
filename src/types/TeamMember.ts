@@ -1,4 +1,4 @@
-export interface Person {
+export interface TeamMember {
   id: number;
   created_at: string;
   image_url: string;

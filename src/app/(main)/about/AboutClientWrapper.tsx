@@ -4,13 +4,13 @@ import TextContainer from '@/components/containers/TextContainer';
 import Button from '@/components/ui/Button';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
-import { Person } from '@/types/Person';
+import { TeamMember } from '@/types/TeamMember';
 
 import PersonCard from './_components/PersonCard';
 
-export default function AboutClientWrapper({ people }: { people: Person[] }) {
-  const coreTeam = people.slice(0, 1);
-  const guestArtists = people.slice(1);
+export default function AboutClientWrapper({ team }: { team: TeamMember[] }) {
+  const coreTeam = team.slice(0, 1);
+  const guestArtists = team.slice(1);
 
   return (
     <>
@@ -44,10 +44,10 @@ export default function AboutClientWrapper({ people }: { people: Person[] }) {
         <Heading variant="h2">Core team</Heading>
         <CardContainer>
           <CardGrid cols={1}>
-            {coreTeam.map((person) => (
+            {coreTeam.map((teamMember) => (
               <PersonCard
-                key={person.id}
-                person={person}
+                key={teamMember.id}
+                person={teamMember}
                 className="h-full w-full md:min-h-[70vh]"
               />
             ))}
@@ -57,10 +57,10 @@ export default function AboutClientWrapper({ people }: { people: Person[] }) {
         <Heading variant="h2">Artists we work with</Heading>
         <CardContainer>
           <CardGrid cols={1}>
-            {guestArtists.map((person) => (
+            {guestArtists.map((teamMember) => (
               <PersonCard
-                key={person.id}
-                person={person}
+                key={teamMember.id}
+                person={teamMember}
                 className="h-full w-full md:min-h-[70vh]"
               />
             ))}
