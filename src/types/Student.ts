@@ -1,4 +1,4 @@
-export interface User {
+export interface RawStudent {
   id: string;
   email?: string;
   user_metadata: {

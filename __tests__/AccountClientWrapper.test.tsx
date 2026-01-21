@@ -3,14 +3,17 @@ import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 
 import { mockBookingData } from '../__fixtures__/booking';
-import { mockUserData } from '../__fixtures__/user';
+import { mockStudentData } from '../__fixtures__/student';
 
 describe('AccountClientWrapper', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   render(
-    <AccountClientWrapper user={mockUserData} bookings={mockBookingData} />
+    <AccountClientWrapper
+      student={mockStudentData}
+      bookings={mockBookingData}
+    />
   );
 
   it('displays user data correctly', async () => {

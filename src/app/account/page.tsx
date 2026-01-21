@@ -33,7 +33,7 @@ export default async function Account() {
 
   return (
     <Main>
-      <AccountClientWrapper user={user} bookings={bookings} />
+      <AccountClientWrapper student={user} bookings={bookings} />
     </Main>
   );
 }

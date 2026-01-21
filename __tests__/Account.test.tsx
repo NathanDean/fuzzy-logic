@@ -2,7 +2,7 @@ import Account from '@/app/account/page';
 import '@testing-library/jest-dom';
 
 import { mockBookingData } from '../__fixtures__/booking';
-import { mockUserData } from '../__fixtures__/user';
+import { mockStudentData } from '../__fixtures__/student';
 
 const mockGetUser = jest.fn();
 const mockRedirect = jest.fn();
@@ -50,16 +50,16 @@ describe('Account', () => {
   });
 
   it('passes correct user data to client wrapper when user is logged in', async () => {
-    mockGetUser.mockResolvedValue({ data: { user: mockUserData } });
+    mockGetUser.mockResolvedValue({ data: { user: mockStudentData } });
 
     const component = await Account();
     const clientWrapper = component.props.children;
-    const user = clientWrapper.props.user;
+    const student = clientWrapper.props.student;
     const bookings = clientWrapper.props.bookings;
 
-    expect(user.email).toBe('m.corrigan@jlb-credit.com');
-    expect(user.user_metadata.first_name).toBe('Mark');
-    expect(user.user_metadata.last_name).toBe('Corrigan');
+    expect(student.email).toBe('m.corrigan@jlb-credit.com');
+    expect(student.user_metadata.first_name).toBe('Mark');
+    expect(student.user_metadata.last_name).toBe('Corrigan');
     expect(bookings[0].id).toBe('test-booking-id');
     expect(bookings[0].workshop_details.id).toBe('test-workshop-id');
   });
