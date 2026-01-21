@@ -9,9 +9,7 @@ export const signupSchema = z
     password: z.string().min(8, 'Password must be 8 or more characters long'),
     confirmPassword: z.string(),
     subscribe: z.preprocess((val) => val === 'on', z.boolean().optional()),
-    'cf-turnstile-response': z.string({
-      required_error: 'CAPTCHA verification failed',
-    }),
+    'cf-turnstile-response': z.string().min(1, 'CAPTCHA verification failed'),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Passwords must match',
@@ -21,16 +19,12 @@ export const signupSchema = z
 export const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   password: z.string().min(8, 'Password must be 8 or more characters long'),
-  'cf-turnstile-response': z.string({
-    required_error: 'CAPTCHA verification failed',
-  }),
+  'cf-turnstile-response': z.string().min(1, 'CAPTCHA verification failed'),
 });
 
 export const resetPasswordSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  'cf-turnstile-response': z.string({
-    required_error: 'CAPTCHA verification failed',
-  }),
+  'cf-turnstile-response': z.string().min(1, 'CAPTCHA verification failed'),
 });
 
 export const updatePasswordSchema = z.object({

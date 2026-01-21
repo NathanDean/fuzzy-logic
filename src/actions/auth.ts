@@ -38,7 +38,7 @@ export async function signup(formData: FormData): Promise<{ error: string }> {
     return {
       error:
         validatedFields.error.flatten().fieldErrors.confirmPassword?.[0] ||
-        validatedFields.error.errors[0].message,
+        validatedFields.error.issues[0].message,
     };
   }
 
@@ -100,7 +100,7 @@ export async function login(
   );
   if (!validatedFields.success) {
     return {
-      error: validatedFields.error.errors[0].message,
+      error: validatedFields.error.issues[0].message,
     };
   }
 
@@ -158,7 +158,7 @@ export async function resetPassword(
   );
   if (!validatedFields.success) {
     return {
-      error: validatedFields.error.errors[0].message,
+      error: validatedFields.error.issues[0].message,
     };
   }
 
@@ -197,7 +197,7 @@ export async function updatePassword(
     return {
       error:
         validatedFields.error.flatten().fieldErrors.confirmPassword?.[0] ||
-        validatedFields.error.errors[0].message,
+        validatedFields.error.issues[0].message,
     };
   }
 

@@ -32,7 +32,7 @@ export default function formatStudent(rawUser: User): Student {
 
   // Handle error
   if (!result.success) {
-    throw new Error(result.error.errors[0].message);
+    throw new Error(result.error.issues[0].message);
   }
 
   // Return formatted student
