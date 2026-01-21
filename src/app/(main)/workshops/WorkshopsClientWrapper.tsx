@@ -1,13 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
-import { getCheckoutSession } from '@/actions/stripe';
 import CardGrid from '@/components/cards/CardGrid';
 import MailingListForm from '@/components/forms/MailingListForm';
 import Text from '@/components/ui/Text';
-import { useAuth } from '@/contexts/AuthContext';
 import type { Workshop } from '@/types/Workshop';
+
+import { useWorkshopCheckout } from '@/hooks/useWorkshopCheckout';
 
 import WorkshopCard from './_components/WorkshopCard';
 
@@ -16,25 +14,7 @@ export default function WorkshopsClientWrapper({
 }: {
   workshops: Workshop[];
 }) {
-  const { user, isLoggedIn } = useAuth();
-  const router = useRouter();
-
-  const handleBookNow = async (workshopId: string): Promise<void> => {
-    if (!isLoggedIn || !user) {
-      router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
-      return;
-    }
-
-    const result = await getCheckoutSession(workshopId, user.id);
-
-    if (result && 'error' in result) {
-      throw new Error('Error creating checkout session.');
-    }
-
-    if (result.url) {
-      window.location.href = result.url;
-    }
-  };
+  const { handleBookNow, error } = useWorkshopCheckout();
 
   return (
     <>
@@ -48,6 +28,7 @@ export default function WorkshopsClientWrapper({
         </div>
       ) : (
         <div>
+          {error && <Text>{error}</Text>}
           <CardGrid>
             {workshops.map((workshop) => (
               <WorkshopCard

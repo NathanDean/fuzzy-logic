@@ -1,14 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-
-import { useRouter } from 'next/navigation';
-
-import { getCheckoutSession } from '@/actions/stripe';
 import CardGrid from '@/components/cards/CardGrid';
 import Text from '@/components/ui/Text';
-import { useAuth } from '@/contexts/AuthContext';
 import type { Workshop } from '@/types/Workshop';
+
+import { useWorkshopCheckout } from '@/hooks/useWorkshopCheckout';
 
 import WorkshopDetailsCard from '../_components/WorkshopDetailsCard';
 
@@ -17,34 +13,11 @@ export default function WorkshopDetailsClientWrapper({
 }: {
   workshop: Workshop;
 }) {
-  const { user, isLoggedIn } = useAuth();
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const router = useRouter();
-
-  const handleBookNow = async (workshopId: string): Promise<void> => {
-    setErrorMessage('');
-
-    if (!isLoggedIn || !user) {
-      router.push(`/login?redirectTo=workshop&workshopId=${workshopId}`);
-      return;
-    }
-
-    const result = await getCheckoutSession(workshopId, user.id);
-
-    if (result && 'error' in result) {
-      console.error('Error creating checkout session:', result.error);
-      setErrorMessage(result.error);
-      return;
-    }
-
-    if (result.url) {
-      window.location.href = result.url;
-    }
-  };
+  const { handleBookNow, error } = useWorkshopCheckout();
 
   return (
     <CardGrid cols={1}>
-      {errorMessage && <Text>{errorMessage}</Text>}
+      {error && <Text>{error}</Text>}
 
       <WorkshopDetailsCard
         key={workshop.id}
