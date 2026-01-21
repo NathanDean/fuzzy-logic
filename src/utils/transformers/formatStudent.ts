@@ -7,9 +7,7 @@ import { z } from 'zod';
 const studentSchema = z
   .object({
     id: z.string().min(1, 'id is missing from raw student data.'),
-    email: z
-      .string()
-      .email('email is missing from raw student data or invalid.'),
+    email: z.email('email is missing from raw student data or invalid.'),
     user_metadata: z.object({
       first_name: z
         .string()

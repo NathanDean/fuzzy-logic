@@ -5,7 +5,7 @@ export const signupSchema = z
   .object({
     firstName: z.string().min(1, 'First name is required'),
     lastName: z.string().min(1, 'Last name is required'),
-    email: z.string().email('Please enter a valid email address'),
+    email: z.email('Please enter a valid email address'),
     password: z.string().min(8, 'Password must be 8 or more characters long'),
     confirmPassword: z.string(),
     subscribe: z.preprocess((val) => val === 'on', z.boolean().optional()),
@@ -17,13 +17,13 @@ export const signupSchema = z
   });
 
 export const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
+  email: z.email('Please enter a valid email address'),
   password: z.string().min(8, 'Password must be 8 or more characters long'),
   'cf-turnstile-response': z.string().min(1, 'CAPTCHA verification failed'),
 });
 
 export const resetPasswordSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
+  email: z.email('Please enter a valid email address'),
   'cf-turnstile-response': z.string().min(1, 'CAPTCHA verification failed'),
 });
 
