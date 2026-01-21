@@ -2,14 +2,14 @@ import Card from '@/components/cards/Card';
 import CardImage from '@/components/cards/CardImage';
 import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
-import { Person } from '@/types/TeamMember';
+import { TeamMember } from '@/types/TeamMember';
 
-interface PersonCardProps {
-  person: Person;
+interface TeamMemberCardProps {
+  person: TeamMember;
   className?: string;
 }
 
-export default function PersonCard({ person, className }: PersonCardProps) {
+export default function PersonCard({ person, className }: TeamMemberCardProps) {
   return (
     <Card key={person.id} className={className}>
       <div className="flex h-full flex-col lg:flex-row">

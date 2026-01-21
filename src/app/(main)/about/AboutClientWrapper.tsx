@@ -6,7 +6,7 @@ import Heading from '@/components/ui/Heading';
 import Text from '@/components/ui/Text';
 import { TeamMember } from '@/types/TeamMember';
 
-import PersonCard from './_components/PersonCard';
+import PersonCard from './_components/TeamMemberCard';
 
 export default function AboutClientWrapper({ team }: { team: TeamMember[] }) {
   const coreTeam = team.slice(0, 1);
