@@ -1,8 +1,9 @@
-// Transforms RawStudent object to Student object
-import type { RawStudent, Student } from '@/types/Student';
+// Transforms Supabase User object to Student object
+import { type Student } from '@/types/Student';
+import { type User } from '@supabase/supabase-js';
 import { z } from 'zod';
 
-// Zod schema to validate RawStudent type object and transform to Student type object
+// Zod schema to validate and transform input
 const studentSchema = z
   .object({
     id: z.string().min(1, 'id is missing from raw student data.'),
@@ -25,9 +26,9 @@ const studentSchema = z
     email: data.email,
   }));
 
-export default function (rawStudent: RawStudent): Student {
+export default function (rawUser: User): Student {
   // Transform input
-  const result = studentSchema.safeParse(rawStudent);
+  const result = studentSchema.safeParse(rawUser);
 
   // Handle error
   if (!result.success) {
