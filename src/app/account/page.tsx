@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import Main from '@/components/Main';
 import { createClient } from '@/lib/supabase/serverClient';
 
+import formatStudent from '@/utils/transformers/formatStudent';
+
 import AccountClientWrapper from './AccountClientWrapper';
 
 export default async function Account() {
@@ -17,6 +19,8 @@ export default async function Account() {
   if (authError || !user) {
     redirect('/login');
   }
+
+  const student = formatStudent(user);
 
   const { data: bookings, error: dbError } = await supabase
     .from('bookings')
@@ -33,7 +37,7 @@ export default async function Account() {
 
   return (
     <Main>
-      <AccountClientWrapper student={user} bookings={bookings} />
+      <AccountClientWrapper student={student} bookings={bookings} />
     </Main>
   );
 }

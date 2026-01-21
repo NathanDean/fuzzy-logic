@@ -3,14 +3,14 @@ import Heading from '@/components/ui/Heading';
 import ListItem from '@/components/ui/ListItem';
 import Text from '@/components/ui/Text';
 import type { Booking } from '@/types/Booking';
-import type { RawStudent } from '@/types/Student';
+import type { Student } from '@/types/Student';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 
 dayjs.extend(advancedFormat);
 
 interface AccountClientWrapperProps {
-  student: RawStudent;
+  student: Student;
   bookings: Booking[];
 }
 
@@ -18,8 +18,6 @@ export default function AccountClientWrapper({
   student,
   bookings,
 }: AccountClientWrapperProps) {
-  const metadata = student?.user_metadata;
-
   return (
     <>
       <Card className="space-y-1 p-6">
@@ -27,9 +25,9 @@ export default function AccountClientWrapper({
 
         <div className="space-y-1">
           <Text>
-            Name: {metadata?.first_name} {metadata?.last_name}
+            Name: {student.first_name} {student.last_name}
           </Text>
-          <Text>Email: {student?.email}</Text>
+          <Text>Email: {student.email}</Text>
           <Text>Upcoming workshops:</Text>
           <ul className="list-disc space-y-1 pl-5">
             {bookings.length > 0 ? (
