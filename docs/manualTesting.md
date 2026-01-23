@@ -1,6 +1,6 @@
 # Manual testing report
 
-## Last tested: 19/01/2025 (most recent commit: aad484d)
+## Last tested: 19/01/2025 (most recent commit: a206bc4)
 
 ## Status: Ready / _**Ready with minor issues**_ / Blocked
 
@@ -10,7 +10,9 @@
 
 ### Minor issues
 
-- User is logged in after updating password: not aligned with success message, which directs user to log in.
+- Error messages on Workshops page lack styling
+- Error message displays twice if user tries to submit non-matching passwords via update password form
+- User is logged in after updating password: not aligned with success message, which directs user to log in
 
 # Stripe
 
@@ -84,10 +86,6 @@
 
 - Passed
 
-### Expect: Single booking for first user to be created with status === "in progress"
-
-- Passed
-
 ### Expect: Second user to see error message on clicking Book Now button
 
 - Passed
@@ -103,10 +101,6 @@
 - Passed
 
 ### Expect: User to be redirected to correct checkout page after successful login
-
-- Passed
-
-### Expect: Single booking to be created with status === "in progress"
 
 - Passed
 
@@ -139,6 +133,10 @@
 - Passed
 
 ### Expect: User to be prompted to confirm email address
+
+- Passed
+
+### Expect: User to receive confirmation email
 
 - Passed
 
@@ -225,6 +223,10 @@
 - Passed
 
 ### Expect: User to be prompted to visit link in email
+
+- Passed
+
+### Expect: User to receive password reset email
 
 - Passed
 
