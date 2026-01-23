@@ -27,7 +27,12 @@ export const resetPasswordSchema = z.object({
   'cf-turnstile-response': z.string().min(1, 'CAPTCHA verification failed'),
 });
 
-export const updatePasswordSchema = z.object({
-  password: z.string().min(8, 'Password must be 8 or more characters long'),
-  confirmPassword: z.string(),
-});
+export const updatePasswordSchema = z
+  .object({
+    password: z.string().min(8, 'Password must be 8 or more characters long'),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords must match',
+    path: ['confirmPassword'],
+  });
