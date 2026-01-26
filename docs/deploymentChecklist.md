@@ -19,8 +19,8 @@
       3. Publishable key - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
    3. Supabase
       1. URL - NEXT_PUBLIC_SUPABASE_URL
-      2. Anon key - NEXT_PUBLIC_SUPABASE_ANON_KEY
-      3. Service role key - SUPABASE_SERVICE_ROLE_KEY
+      2. Anon key - NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      3. Service role key - SUPABASE_SECRET_KEY
    4. Turnstile
       1. Site key - NEXT_PUBLIC_TURNSTILE_SITE_KEY
       2. Secret key - TURNSTILE_SECRET_KEY
