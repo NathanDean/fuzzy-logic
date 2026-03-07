@@ -10,11 +10,11 @@ import Button from '../ui/Button';
 import Text from '../ui/Text';
 
 interface MailingListFormProps {
-  isInFooter?: boolean;
+  location?: 'body' | 'footer';
 }
 
 export default function MailingListForm({
-  isInFooter = false,
+  location = 'body',
 }: MailingListFormProps) {
   const [subscribeMessage, setSubscribeMessage] = useState('');
 
@@ -54,29 +54,21 @@ export default function MailingListForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`${isInFooter && 'text-sm'} m-0 bg-transparent p-0 shadow-none`}
+      className={`${cn(location == 'footer' ? 'h-8 text-sm' : 'h-10 text-base', 'm-0 flex justify-center bg-transparent p-0 shadow-none')}`}
     >
       {subscribeMessage && <Text variant="small">{subscribeMessage}</Text>}
-      <div className="flex w-full flex-col items-stretch space-y-2 sm:w-auto sm:flex-row sm:space-y-0 sm:space-x-2">
+
+      <div className="flex flex-col space-x-2 sm:flex-row">
         <input
-          className={`${isInFooter && 'h-8'} my-0`}
+          className="sm:my-0"
           id="email"
           name="email"
           type="email"
           placeholder="Email"
           required
         />
-        <Button
-          className={`${cn(isInFooter && 'h-8', 'sm:my-0')}`}
-          type="submit"
-        >
-          <Text
-            className={`${cn(isInFooter && 'h-8', 'flex items-center sm:my-0')}`}
-            variant={isInFooter ? 'small' : 'medium'}
-            as="span"
-          >
-            Subscribe
-          </Text>
+        <Button className="sm:my-0" type="submit">
+          Subscribe
         </Button>
       </div>
     </form>

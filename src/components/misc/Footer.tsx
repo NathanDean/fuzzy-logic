@@ -24,7 +24,7 @@ export default function Footer() {
         <Text variant="small" className="leading-4">
           Subscribe to our mailing list:
         </Text>
-        <MailingListForm isInFooter={true} />
+        <MailingListForm location="footer" />
       </div>
     </footer>
   );
