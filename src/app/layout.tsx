@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 
 import Footer from '@/components/misc/Footer';
 import Header from '@/components/nav/Header';
-import { AuthProvider } from '@/contexts/AuthContext';
 import { outfit, sigmar } from '@/lib/googleFonts/fonts';
 import { Analytics } from '@vercel/analytics/next';
 
@@ -46,14 +45,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sigmar.variable} ${outfit.variable}`}>
       <body className="relative flex min-h-screen flex-col bg-[url('/canvas.png')] bg-cover bg-fixed bg-center bg-no-repeat antialiased sm:text-lg dark:bg-[url('/canvas-dark.png')]">
-        <AuthProvider>
-          <Header />
+        <Header />
 
-          {children}
+        {children}
 
-          <Footer />
-          <Analytics />
-        </AuthProvider>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );

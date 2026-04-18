@@ -1,6 +1,7 @@
 import Main from '@/components/Main';
 import Heading from '@/components/ui/Heading';
 import Logo from '@/components/ui/Logo';
+import Text from '@/components/ui/Text';
 
 export default function Home() {
   return (
@@ -11,6 +12,10 @@ export default function Home() {
         </Heading>
 
         <Heading variant="h2">an improv company</Heading>
+
+        <Text className="absolute mt-80 text-center sm:mt-64">
+          Thinking deeply, back soon
+        </Text>
       </div>
     </Main>
   );
